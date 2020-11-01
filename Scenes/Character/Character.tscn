@@ -1,8 +1,13 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Scenes/Character/Character.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Character/sky_charac_run.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Character/sky_charac_idle.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sfx/Footstep_Dirt_07.wav" type="AudioStream" id=4]
+[ext_resource path="res://Assets/Sfx/Footstep_Dirt_00.wav" type="AudioStream" id=5]
+[ext_resource path="res://Assets/Sfx/Footstep_Dirt_01.wav" type="AudioStream" id=6]
+[ext_resource path="res://Assets/Sfx/Footstep_Dirt_03.wav" type="AudioStream" id=7]
+[ext_resource path="res://Assets/Sfx/Footstep_Dirt_08.wav" type="AudioStream" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3.49999, 4.5 )
@@ -120,17 +125,17 @@ animations = [ {
 "frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
 "loop": true,
 "name": "idle",
-"speed": 15.0
+"speed": 10.0
 }, {
 "frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ) ],
 "loop": true,
 "name": "run",
-"speed": 15.0
+"speed": 10.0
 } ]
 
 [node name="Character" type="KinematicBody2D"]
 script = ExtResource( 1 )
-speed = 500
+speed = 400
 jump_speed = 800
 gravity = 4000
 
@@ -141,4 +146,42 @@ shape = SubResource( 1 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( -1.52588e-05, -6 )
 frames = SubResource( 29 )
-animation = "run"
+animation = "idle"
+
+[node name="FootstepSounds" type="Node2D" parent="."]
+
+[node name="Footsteps" type="AudioStreamPlayer2D" parent="FootstepSounds"]
+stream = ExtResource( 5 )
+volume_db = -30.0
+pitch_scale = 0.6
+attenuation = 2.82843
+bus = "Sfx"
+
+[node name="Footsteps2" type="AudioStreamPlayer2D" parent="FootstepSounds"]
+stream = ExtResource( 6 )
+volume_db = -30.0
+pitch_scale = 0.6
+attenuation = 2.82843
+bus = "Sfx"
+
+[node name="Footsteps4" type="AudioStreamPlayer2D" parent="FootstepSounds"]
+stream = ExtResource( 7 )
+volume_db = -30.0
+pitch_scale = 0.6
+attenuation = 2.82843
+bus = "Sfx"
+
+[node name="Footsteps5" type="AudioStreamPlayer2D" parent="FootstepSounds"]
+stream = ExtResource( 4 )
+volume_db = -30.0
+pitch_scale = 0.6
+attenuation = 2.82843
+bus = "Sfx"
+
+[node name="Footsteps6" type="AudioStreamPlayer2D" parent="FootstepSounds"]
+stream = ExtResource( 8 )
+volume_db = -30.0
+pitch_scale = 0.6
+attenuation = 2.82843
+bus = "Sfx"
+[connection signal="frame_changed" from="Sprite" to="." method="_on_Sprite_frame_changed"]

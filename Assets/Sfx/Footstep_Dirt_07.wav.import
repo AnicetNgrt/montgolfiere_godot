@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Footstep_Dirt_07.wav-6c821ff9cceecdf6490b48b8f76568fd.sample"
+
+[deps]
+
+source_file="res://Assets/Sfx/Footstep_Dirt_07.wav"
+dest_files=[ "res://.import/Footstep_Dirt_07.wav-6c821ff9cceecdf6490b48b8f76568fd.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

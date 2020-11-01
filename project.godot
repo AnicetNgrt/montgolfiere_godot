@@ -19,6 +19,10 @@ config/name="SkyExploration"
 run/main_scene="res://Scenes/Game/Game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+RandomUtils="*res://Singletons/RandomUtils.gd"
+
 [display]
 
 window/size/width=1920

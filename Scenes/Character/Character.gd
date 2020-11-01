@@ -24,6 +24,8 @@ func get_input(delta:float):
 func _physics_process(delta:float):
 	get_input(delta)
 	update_jump(delta)
+	velocity.y += gravity * delta
+	velocity = move_and_slide(velocity, Vector2.UP)
 
 
 func on_running_started(direction:int, delta:float) -> void:
@@ -38,8 +40,12 @@ func on_running_ended() -> void:
 
 
 func update_jump(delta:float) -> void:
-	velocity.y += gravity * delta
-	velocity = move_and_slide(velocity, Vector2.UP)
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			velocity.y = jump_speed
+
+
+func _on_Sprite_frame_changed():
+	if $Sprite.animation == "run" && $Sprite.frame % 3 == 0:
+		var sound_player = RandomUtils.get_random_child($FootstepSounds)
+		sound_player.play()
