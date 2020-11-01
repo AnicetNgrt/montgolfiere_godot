@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Assets/Levels/land_test.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Character/Character.tscn" type="PackedScene" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://Assets/Clouds/clouds1.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Clouds/clouds2.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Clouds/clouds4.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/Level/LoopAudioPlayer.gd" type="Script" id=8]
+[ext_resource path="res://Assets/Sfx/Wind/windLoopable.wav" type="AudioStream" id=9]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -148,3 +150,17 @@ scale = Vector2( 1, 1 )
 position = Vector2( 95.5, 97.5 )
 scale = Vector2( 1, 1 )
 shape = SubResource( 6 )
+
+[node name="Wind" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -20.0
+autoplay = true
+bus = "Sfx"
+script = ExtResource( 8 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -20.0
+autoplay = true
+bus = "Sfx"
+script = ExtResource( 8 )

@@ -3,11 +3,11 @@
 [ext_resource path="res://Scenes/Character/Character.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Character/sky_charac_run.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Character/sky_charac_idle.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Sfx/Footstep_Dirt_07.wav" type="AudioStream" id=4]
-[ext_resource path="res://Assets/Sfx/Footstep_Dirt_00.wav" type="AudioStream" id=5]
-[ext_resource path="res://Assets/Sfx/Footstep_Dirt_01.wav" type="AudioStream" id=6]
-[ext_resource path="res://Assets/Sfx/Footstep_Dirt_03.wav" type="AudioStream" id=7]
-[ext_resource path="res://Assets/Sfx/Footstep_Dirt_08.wav" type="AudioStream" id=8]
+[ext_resource path="res://Assets/Sfx/FootstepsDirt/Footstep_Dirt_07.wav" type="AudioStream" id=4]
+[ext_resource path="res://Assets/Sfx/FootstepsDirt/Footstep_Dirt_00.wav" type="AudioStream" id=5]
+[ext_resource path="res://Assets/Sfx/FootstepsDirt/Footstep_Dirt_01.wav" type="AudioStream" id=6]
+[ext_resource path="res://Assets/Sfx/FootstepsDirt/Footstep_Dirt_03.wav" type="AudioStream" id=7]
+[ext_resource path="res://Assets/Sfx/FootstepsDirt/Footstep_Dirt_08.wav" type="AudioStream" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3.49999, 4.5 )
