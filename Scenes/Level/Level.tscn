@@ -34,14 +34,13 @@ resource_local_to_scene = true
 shader = SubResource( 1 )
 shader_param/scroll_speed = 0.05
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 3, 43 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 97, 5 )
 
-[sub_resource type="RectangleShape2D" id=3]
-
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 98, 12 )
 
 [node name="Level" type="Node2D"]
@@ -86,34 +85,30 @@ position = Vector2( -5, -5 )
 scale = Vector2( 10, 10 )
 
 [node name="InvisibleWallLeft" type="StaticBody2D" parent="Collisions"]
+scale = Vector2( 1, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/InvisibleWallLeft"]
 position = Vector2( -2.5, 42.5 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="InvisibleWallRight" type="StaticBody2D" parent="Collisions"]
+scale = Vector2( 1, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/InvisibleWallRight"]
 position = Vector2( 190.5, 42.5 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="InvisibleWallTop" type="StaticBody2D" parent="Collisions"]
+scale = Vector2( 1, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/InvisibleWallTop"]
 position = Vector2( 96.5, -4.5 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Ground" type="StaticBody2D" parent="Collisions"]
+scale = Vector2( 1, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/Ground"]
 position = Vector2( 95.5, 97.5 )
-
-shape = SubResource( 3 )
-
-[node name="Character" parent="." instance=ExtResource( 2 )]
-position = Vector2( 124.5, 26.5 )
-
-[node name="land_test" type="Sprite" parent="."]
-position = Vector2( 94, 89 )
-texture = ExtResource( 1 )
-
+scale = Vector2( 1, 1 )
+shape = SubResource( 6 )
