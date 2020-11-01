@@ -129,7 +129,6 @@ animations = [ {
 } ]
 
 [node name="Character" type="KinematicBody2D"]
-position = Vector2( 119.5, 22.5 )
 script = ExtResource( 1 )
 speed = 500
 gravity = 4000

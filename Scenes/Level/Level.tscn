@@ -48,6 +48,7 @@ scale = Vector2( 1, 1 )
 shape = SubResource( 1 )
 
 [node name="Character" parent="." instance=ExtResource( 2 )]
+position = Vector2( 124.5, 26.5 )
 
 [node name="land_test" type="Sprite" parent="."]
 position = Vector2( 94, 89 )

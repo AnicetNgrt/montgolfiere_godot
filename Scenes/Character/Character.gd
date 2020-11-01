@@ -9,6 +9,7 @@ enum Directions { LEFT = 0, RIGHT }
 var velocity := Vector2.ZERO
 
 func get_input():
+	velocity.x = 0
 	if Input.is_action_pressed("walk_right"):
 		on_running_started(Directions.RIGHT)
 	elif Input.is_action_pressed("walk_left"):
@@ -31,7 +32,6 @@ func on_running_started(direction:int) -> void:
 
 func on_running_ended() -> void:
 	$Sprite.play("idle")
-	velocity.x = 0
 
 
 func update_jump(delta:float) -> void:
