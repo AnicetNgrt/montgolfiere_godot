@@ -4,6 +4,9 @@ export (int) var speed := 0
 export (int) var jump_speed := 0
 export (int) var gravity := 0
 
+const ACCELERATION = 0
+const FRICTION = 0
+
 enum Directions { LEFT = 0, RIGHT }
 
 var velocity := Vector2.ZERO
