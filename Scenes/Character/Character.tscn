@@ -130,7 +130,7 @@ animations = [ {
 
 [node name="Character" type="KinematicBody2D"]
 script = ExtResource( 1 )
-speed = 500
+speed = 1000
 gravity = 4000
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]

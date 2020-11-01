@@ -4,29 +4,29 @@ export (int) var speed := 0
 export (int) var jump_speed := 0
 export (int) var gravity := 0
 
-const ACCELERATION = 0
+const ACCELERATION = 50
 const FRICTION = 0
 
 enum Directions { LEFT = 0, RIGHT }
 
 var velocity := Vector2.ZERO
 
-func get_input():
+func get_input(delta:float):
 	velocity.x = 0
 	if Input.is_action_pressed("walk_right"):
-		on_running_started(Directions.RIGHT)
+		on_running_started(Directions.RIGHT, delta)
 	elif Input.is_action_pressed("walk_left"):
-		on_running_started(Directions.LEFT)
+		on_running_started(Directions.LEFT, delta)
 	else:
 		on_running_ended()
 
 
 func _physics_process(delta:float):
-	get_input()
+	get_input(delta)
 	update_jump(delta)
 
 
-func on_running_started(direction:int) -> void:
+func on_running_started(direction:int, delta:float) -> void:
 	$Sprite.play("run")
 	$Sprite.flip_h = direction == Directions.RIGHT
 	if direction == Directions.RIGHT: velocity.x += speed
