@@ -132,6 +132,7 @@ animations = [ {
 position = Vector2( 119.5, 22.5 )
 script = ExtResource( 1 )
 speed = 500
+gravity = 4000
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2( -0.500015, -4.5 )

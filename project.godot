@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="SkyExploration"
-run/main_scene="res://Scenes/Game/Game.tscn"
+run/main_scene="res://Scenes/Level/Level.tscn"
 config/icon="res://icon.png"
 
 [display]
