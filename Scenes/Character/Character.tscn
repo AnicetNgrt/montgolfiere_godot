@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://Scenes/Character/Character.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Character/sky_charac_run.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Assets/Sfx/FootstepsDirt/Footstep_Dirt_01.wav" type="AudioStream" id=6]
 [ext_resource path="res://Assets/Sfx/FootstepsDirt/Footstep_Dirt_03.wav" type="AudioStream" id=7]
 [ext_resource path="res://Assets/Sfx/FootstepsDirt/Footstep_Dirt_08.wav" type="AudioStream" id=8]
+[ext_resource path="res://Assets/Character/sky_charac_climb.png" type="Texture" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3.49999, 4.5 )
@@ -120,6 +121,58 @@ region = Rect2( 120, 0, 12, 12 )
 atlas = ExtResource( 2 )
 region = Rect2( 132, 0, 12, 12 )
 
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 2 )
+region = Rect2( 12, 0, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 2 )
+region = Rect2( 24, 0, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 2 )
+region = Rect2( 36, 0, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 2 )
+region = Rect2( 48, 0, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 2 )
+region = Rect2( 60, 0, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 2 )
+region = Rect2( 72, 0, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 2 )
+region = Rect2( 84, 0, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 2 )
+region = Rect2( 96, 0, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 2 )
+region = Rect2( 108, 0, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 2 )
+region = Rect2( 120, 0, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 2 )
+region = Rect2( 132, 0, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=47]
+atlas = ExtResource( 9 )
+region = Rect2( 65, 0, 13, 12 )
+
 [sub_resource type="SpriteFrames" id=29]
 animations = [ {
 "frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
@@ -131,13 +184,27 @@ animations = [ {
 "loop": true,
 "name": "run",
 "speed": 10.0
+}, {
+"frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 47 ) ],
+"loop": false,
+"name": "jump",
+"speed": 8.0
 } ]
 
 [node name="Character" type="KinematicBody2D"]
+collision_mask = 2147483648
 script = ExtResource( 1 )
-speed = 400
-jump_speed = 800
-gravity = 4000
+max_speed_walking = 250
+max_speed_running = 600
+jump_speed = 400
+gravity = 1500
+acceleration_walking = 0.05
+acceleration_running = 0.1
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2( -0.500015, -4.5 )
@@ -147,41 +214,39 @@ shape = SubResource( 1 )
 position = Vector2( -1.52588e-05, -6 )
 frames = SubResource( 29 )
 animation = "idle"
+frame = 4
+playing = true
 
 [node name="FootstepSounds" type="Node2D" parent="."]
 
 [node name="Footsteps" type="AudioStreamPlayer2D" parent="FootstepSounds"]
 stream = ExtResource( 5 )
-volume_db = -30.0
 pitch_scale = 0.6
 attenuation = 2.82843
 bus = "Sfx"
 
 [node name="Footsteps2" type="AudioStreamPlayer2D" parent="FootstepSounds"]
 stream = ExtResource( 6 )
-volume_db = -30.0
 pitch_scale = 0.6
 attenuation = 2.82843
 bus = "Sfx"
 
 [node name="Footsteps4" type="AudioStreamPlayer2D" parent="FootstepSounds"]
 stream = ExtResource( 7 )
-volume_db = -30.0
 pitch_scale = 0.6
 attenuation = 2.82843
 bus = "Sfx"
 
 [node name="Footsteps5" type="AudioStreamPlayer2D" parent="FootstepSounds"]
 stream = ExtResource( 4 )
-volume_db = -30.0
 pitch_scale = 0.6
 attenuation = 2.82843
 bus = "Sfx"
 
 [node name="Footsteps6" type="AudioStreamPlayer2D" parent="FootstepSounds"]
 stream = ExtResource( 8 )
-volume_db = -30.0
 pitch_scale = 0.6
 attenuation = 2.82843
 bus = "Sfx"
+[connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
 [connection signal="frame_changed" from="Sprite" to="." method="_on_Sprite_frame_changed"]
