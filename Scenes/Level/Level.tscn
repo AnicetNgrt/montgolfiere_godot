@@ -86,33 +86,33 @@ speed = 0.05
 [node name="LandscapeBack" type="Node2D" parent="."]
 scale = Vector2( 10, 10 )
 
-[node name="ClimbAnchor" type="Area2D" parent="LandscapeBack"]
-position = Vector2( 118, 76 )
-scale = Vector2( 0.1, 0.1 )
-collision_layer = 0
-script = ExtResource( 11 )
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LandscapeBack/ClimbAnchor"]
-polygon = PoolVector2Array( 0, 0, -30, 90, 0, 90 )
-
-[node name="ClimbAnchor2" type="Area2D" parent="LandscapeBack"]
-position = Vector2( 127, 76 )
-scale = Vector2( 0.1, 0.1 )
-collision_layer = 0
-script = ExtResource( 11 )
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LandscapeBack/ClimbAnchor2"]
-polygon = PoolVector2Array( 0, 0, 30, 90, 0, 90 )
-
-[node name="Sprite" type="Sprite" parent="LandscapeBack"]
+[node name="ClimbableBlock" type="Sprite" parent="LandscapeBack"]
 position = Vector2( 122, 80 )
 texture = SubResource( 13 )
 offset = Vector2( 0.5, 0.5 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="LandscapeBack/Sprite"]
+[node name="ClimbAnchor" type="Area2D" parent="LandscapeBack/ClimbableBlock"]
+position = Vector2( -4, -4 )
+scale = Vector2( 0.1, 0.1 )
+collision_layer = 0
+script = ExtResource( 11 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LandscapeBack/ClimbableBlock/ClimbAnchor"]
+polygon = PoolVector2Array( 0, 0, -30, 90, 0, 90 )
+
+[node name="ClimbAnchor2" type="Area2D" parent="LandscapeBack/ClimbableBlock"]
+position = Vector2( 5, -4 )
+scale = Vector2( 0.1, 0.1 )
+collision_layer = 0
+script = ExtResource( 11 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LandscapeBack/ClimbableBlock/ClimbAnchor2"]
+polygon = PoolVector2Array( 0, 0, 30, 90, 0, 90 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="LandscapeBack/ClimbableBlock"]
 collision_layer = 0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LandscapeBack/Sprite/StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LandscapeBack/ClimbableBlock/StaticBody2D"]
 position = Vector2( -4, -4 )
 scale = Vector2( 0.1, 0.1 )
 polygon = PoolVector2Array( 0, 0, 90, 0, 90, 90, 0, 90 )
@@ -187,5 +187,5 @@ volume_db = -20.0
 autoplay = true
 bus = "Sfx"
 script = ExtResource( 8 )
-[connection signal="body_entered" from="LandscapeBack/ClimbAnchor" to="LandscapeBack/ClimbAnchor" method="_on_ClimbAnchor_body_entered"]
-[connection signal="body_entered" from="LandscapeBack/ClimbAnchor2" to="LandscapeBack/ClimbAnchor2" method="_on_ClimbAnchor_body_entered"]
+[connection signal="body_entered" from="LandscapeBack/ClimbableBlock/ClimbAnchor" to="LandscapeBack/ClimbableBlock/ClimbAnchor" method="_on_ClimbAnchor_body_entered"]
+[connection signal="body_entered" from="LandscapeBack/ClimbableBlock/ClimbAnchor2" to="LandscapeBack/ClimbableBlock/ClimbAnchor2" method="_on_ClimbAnchor_body_entered"]

@@ -270,30 +270,35 @@ playing = true
 
 [node name="Footsteps" type="AudioStreamPlayer2D" parent="FootstepSounds"]
 stream = ExtResource( 5 )
+volume_db = -15.0
 pitch_scale = 0.6
 attenuation = 2.82843
 bus = "Sfx"
 
 [node name="Footsteps2" type="AudioStreamPlayer2D" parent="FootstepSounds"]
 stream = ExtResource( 6 )
+volume_db = -15.0
 pitch_scale = 0.6
 attenuation = 2.82843
 bus = "Sfx"
 
 [node name="Footsteps4" type="AudioStreamPlayer2D" parent="FootstepSounds"]
 stream = ExtResource( 7 )
+volume_db = -15.0
 pitch_scale = 0.6
 attenuation = 2.82843
 bus = "Sfx"
 
 [node name="Footsteps5" type="AudioStreamPlayer2D" parent="FootstepSounds"]
 stream = ExtResource( 4 )
+volume_db = -15.0
 pitch_scale = 0.6
 attenuation = 2.82843
 bus = "Sfx"
 
 [node name="Footsteps6" type="AudioStreamPlayer2D" parent="FootstepSounds"]
 stream = ExtResource( 8 )
+volume_db = -15.0
 pitch_scale = 0.6
 attenuation = 2.82843
 bus = "Sfx"
