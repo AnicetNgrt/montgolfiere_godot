@@ -1,4 +1,5 @@
 tool
+class_name BackgroundLayer
 extends Sprite
 
 export(float) var speed setget set_speed

@@ -16,8 +16,11 @@ var velocity := Vector2.ZERO
 var climbing := false
 
 
+func _ready():
+	$Sprite.play("idle")
+
+
 func _physics_process(delta:float):
-	print($Sprite.animation)
 	get_input(delta)
 	update_jump(delta)
 	update_movement(delta)
@@ -28,7 +31,7 @@ func get_input(delta:float):
 
 
 func handle_walking(delta:float) -> void:
-	if is_on_floor():
+	if is_on_floor() and not climbing:
 		if Input.is_action_pressed("walk_right"):
 			on_walking_started(Directions.RIGHT, delta)
 		elif Input.is_action_pressed("walk_left"):
@@ -55,7 +58,6 @@ func on_walking_started(direction:int, delta:float) -> void:
 func on_walking_ended() -> void:
 	if $Sprite.animation == "walk" or $Sprite.animation == "run":
 		$Sprite.play("idle")
-		print("here")
 	velocity.x = lerp(velocity.x, 0, get_friction())
 
 
@@ -81,7 +83,7 @@ func on_climbing_started(towards:Vector2):
 
 func on_climbing_finished(towards:Vector2):
 	climbing = false
-	$Sprite.play("idle")
+	#$Sprite.play("idle")
 
 
 func _on_Sprite_frame_changed():
@@ -117,4 +119,4 @@ func is_running() -> bool:
 
 
 func can_climb() -> bool:
-	return true
+	return !climbing

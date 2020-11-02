@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scenes/Level/Level.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Level/Backgrounds/SkyBackDefault.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Level/Props/Test/Platform.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Level/Props/Test/ClimbableBlockTest.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Character/Character.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Level/Props/Test/Block.tscn" type="PackedScene" id=6]
+
+[node name="Level" instance=ExtResource( 1 )]
+scale = Vector2( 1, 1 )
+
+[node name="SkyBackDefault" parent="." index="0" instance=ExtResource( 2 )]
+position = Vector2( 840, 270 )
+
+[node name="Character" parent="." index="2" instance=ExtResource( 5 )]
+position = Vector2( 170, 540 )
+scale = Vector2( 10, 10 )
+
+[node name="Platform" parent="." index="3" instance=ExtResource( 3 )]
+position = Vector2( 1.52588e-05, 540 )
+
+[node name="Platform2" parent="." index="4" instance=ExtResource( 3 )]
+position = Vector2( 450, 540 )
+
+[node name="Platform3" parent="." index="5" instance=ExtResource( 3 )]
+position = Vector2( 250, 770 )
+
+[node name="Platform4" parent="." index="6" instance=ExtResource( 3 )]
+position = Vector2( 660, 770 )
+
+[node name="Platform5" parent="." index="7" instance=ExtResource( 3 )]
+position = Vector2( 1020, 770 )
+
+[node name="ClimbableBlock" parent="." index="8" instance=ExtResource( 4 )]
+modulate = Color( 0.564706, 1, 0.54902, 1 )
+position = Vector2( 1060, 720 )
+scale = Vector2( 10, 10 )
+
+[node name="ClimbableBlock2" parent="." index="9" instance=ExtResource( 4 )]
+modulate = Color( 0.564706, 1, 0.54902, 1 )
+position = Vector2( 1150, 630 )
+scale = Vector2( 10, 10 )
+
+[node name="ClimbableBlock4" parent="." index="10" instance=ExtResource( 4 )]
+modulate = Color( 0.564706, 1, 0.54902, 1 )
+position = Vector2( 940, 490 )
+scale = Vector2( 10, 10 )
+
+[node name="ClimbableBlock5" parent="." index="11" instance=ExtResource( 4 )]
+modulate = Color( 0.564706, 1, 0.54902, 1 )
+position = Vector2( 580, 490 )
+scale = Vector2( 10, 10 )
+
+[node name="Block" parent="." index="12" instance=ExtResource( 6 )]
+position = Vector2( 850, 580 )
+scale = Vector2( 10, 10 )
+
+[node name="Block2" parent="." index="13" instance=ExtResource( 6 )]
+position = Vector2( 1240, 630 )
+scale = Vector2( 10, 10 )

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Sfx/Wind/windLoopable.wav" type="AudioStream" id=1]
+[ext_resource path="res://Utils/LoopAudioPlayer.gd" type="Script" id=2]
+
+[node name="Wind" type="AudioStreamPlayer"]
+stream = ExtResource( 1 )
+volume_db = -20.0
+autoplay = true
+bus = "Sfx"
+script = ExtResource( 2 )

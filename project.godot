@@ -9,13 +9,43 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Sprite",
+"class": "BackgroundLayer",
+"language": "GDScript",
+"path": "res://Scenes/Level/BackgroundLayer/BackgroundLayer.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Character",
 "language": "GDScript",
 "path": "res://Scenes/Character/Character.gd"
+}, {
+"base": "Area2D",
+"class": "ClimbAnchor",
+"language": "GDScript",
+"path": "res://Scenes/Level/ClimbAnchor/ClimbAnchor.gd"
+}, {
+"base": "Node2D",
+"class": "Exit",
+"language": "GDScript",
+"path": "res://Scenes/Level/Exit/Exit.gd"
+}, {
+"base": "Control",
+"class": "Game",
+"language": "GDScript",
+"path": "res://Scenes/Game/Game.gd"
+}, {
+"base": "Node2D",
+"class": "Level",
+"language": "GDScript",
+"path": "res://Scenes/Level/Level.gd"
 } ]
 _global_script_class_icons={
-"Character": ""
+"BackgroundLayer": "",
+"Character": "",
+"ClimbAnchor": "",
+"Exit": "",
+"Game": "",
+"Level": ""
 }
 
 [application]
@@ -35,7 +65,7 @@ window/size/height=1080
 window/size/test_width=1080
 window/size/test_height=720
 window/dpi/allow_hidpi=true
-window/stretch/mode="2d"
+window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
 [importer_defaults]
