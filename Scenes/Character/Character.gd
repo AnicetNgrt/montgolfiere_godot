@@ -1,3 +1,4 @@
+class_name Character
 extends KinematicBody2D
 
 export (int) var max_speed_walking := 0
@@ -12,7 +13,7 @@ export (float, 0, 1.0) var acceleration_running = 0.5
 enum Directions { LEFT = 0, RIGHT }
 
 var velocity := Vector2.ZERO
-var jumping := false
+var climbing := false
 
 
 func _physics_process(delta:float):
@@ -72,6 +73,17 @@ func update_jump(delta:float) -> void:
 			velocity.y = -jump_speed
 
 
+func on_climbing_started(towards:Vector2):
+	climbing = true
+	$Sprite.play("climb")
+	$Sprite.flip_h = global_position.x < towards.x
+
+
+func on_climbing_finished(towards:Vector2):
+	climbing = false
+	$Sprite.play("idle")
+
+
 func _on_Sprite_frame_changed():
 	var anim = $Sprite.animation
 	if (anim == "run" || anim == "walk") && is_on_floor() && $Sprite.frame % 3 == 0:
@@ -102,3 +114,7 @@ func get_acceleration() -> float:
 
 func is_running() -> bool:
 	return Input.is_action_pressed("run")
+
+
+func can_climb() -> bool:
+	return true
