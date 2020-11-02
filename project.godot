@@ -129,6 +129,7 @@ climb={
 
 2d_physics/layer_1="Characters"
 2d_physics/layer_2="Montgolfieres"
+2d_physics/layer_20="CameraLimits"
 
 [rendering]
 

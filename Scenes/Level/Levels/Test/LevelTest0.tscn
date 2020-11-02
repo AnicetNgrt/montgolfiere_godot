@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Scenes/Level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Level/Backgrounds/SkyBackDefault.tscn" type="PackedScene" id=2]
@@ -6,56 +6,318 @@
 [ext_resource path="res://Scenes/Level/Props/Test/ClimbableBlockTest.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Character/Character.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Level/Props/Test/Block.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Level/Camera/Camera.gd" type="Script" id=7]
+[ext_resource path="res://Assets/Props/cow.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Props/eolienne.png" type="Texture" id=9]
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 82, 82 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 9 )
+region = Rect2( 82, 0, 82, 82 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 9 )
+region = Rect2( 164, 0, 82, 82 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 9 )
+region = Rect2( 246, 0, 82, 82 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 9 )
+region = Rect2( 328, 0, 82, 82 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 9 )
+region = Rect2( 410, 0, 82, 82 )
+
+[sub_resource type="SpriteFrames" id=27]
+animations = [ {
+"frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ) ],
+"loop": true,
+"name": "idle",
+"speed": 15.0
+} ]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 19, 11 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 8 )
+region = Rect2( 19, 0, 19, 11 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 8 )
+region = Rect2( 38, 0, 19, 11 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 8 )
+region = Rect2( 57, 0, 19, 11 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 8 )
+region = Rect2( 76, 0, 19, 11 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 8 )
+region = Rect2( 95, 0, 19, 11 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 8 )
+region = Rect2( 114, 0, 19, 11 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 8 )
+region = Rect2( 133, 0, 19, 11 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 8 )
+region = Rect2( 152, 0, 19, 11 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 8 )
+region = Rect2( 171, 0, 19, 11 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 8 )
+region = Rect2( 190, 0, 19, 11 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 8 )
+region = Rect2( 209, 0, 19, 11 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 8 )
+region = Rect2( 228, 0, 19, 11 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 8 )
+region = Rect2( 247, 0, 19, 11 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 8 )
+region = Rect2( 266, 0, 19, 11 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 8 )
+region = Rect2( 285, 0, 19, 11 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 8 )
+region = Rect2( 304, 0, 19, 11 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 8 )
+region = Rect2( 323, 0, 19, 11 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 8 )
+region = Rect2( 342, 0, 19, 11 )
+
+[sub_resource type="SpriteFrames" id=20]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
 
 [node name="Level" instance=ExtResource( 1 )]
 scale = Vector2( 1, 1 )
 
 [node name="SkyBackDefault" parent="." index="0" instance=ExtResource( 2 )]
-position = Vector2( 840, 270 )
 
-[node name="Character" parent="." index="2" instance=ExtResource( 5 )]
-position = Vector2( 170, 540 )
+[node name="Props" type="Node2D" parent="." index="2"]
+
+[node name="Windmill2" type="AnimatedSprite" parent="Props" index="0"]
+modulate = Color( 0.827451, 0.827451, 0.827451, 1 )
+position = Vector2( -480, 170 )
+scale = Vector2( 10, 10 )
+frames = SubResource( 27 )
+animation = "idle"
+frame = 4
+playing = true
+flip_h = true
+
+[node name="Cow" type="AnimatedSprite" parent="Props" index="1"]
+position = Vector2( -630, -60 )
+scale = Vector2( 10, 10 )
+frames = SubResource( 20 )
+animation = "idle"
+frame = 5
+playing = true
+offset = Vector2( 0.5, 0.5 )
+
+[node name="Cow2" type="AnimatedSprite" parent="Props" index="2"]
+position = Vector2( -540, 520 )
+scale = Vector2( 10, 10 )
+frames = SubResource( 20 )
+animation = "idle"
+frame = 5
+playing = true
+offset = Vector2( 0.5, 0.5 )
+flip_h = true
+
+[node name="Windmill" type="AnimatedSprite" parent="Props" index="3"]
+modulate = Color( 0.827451, 0.827451, 0.827451, 1 )
+position = Vector2( -970, -410 )
+scale = Vector2( 10, 10 )
+frames = SubResource( 27 )
+animation = "idle"
+frame = 5
+playing = true
+
+[node name="Character" parent="." index="3" instance=ExtResource( 5 )]
+position = Vector2( -490, 3.05176e-05 )
 scale = Vector2( 10, 10 )
 
-[node name="Platform" parent="." index="3" instance=ExtResource( 3 )]
-position = Vector2( 1.52588e-05, 540 )
+[node name="Platforms" type="Node2D" parent="." index="4"]
 
-[node name="Platform2" parent="." index="4" instance=ExtResource( 3 )]
-position = Vector2( 450, 540 )
+[node name="Platform" parent="Platforms" index="0" instance=ExtResource( 3 )]
+position = Vector2( -660, 3.05176e-05 )
 
-[node name="Platform3" parent="." index="5" instance=ExtResource( 3 )]
-position = Vector2( 250, 770 )
+[node name="Platform6" parent="Platforms" index="1" instance=ExtResource( 3 )]
+position = Vector2( -1020, 9.15527e-05 )
 
-[node name="Platform4" parent="." index="6" instance=ExtResource( 3 )]
-position = Vector2( 660, 770 )
+[node name="Platform7" parent="Platforms" index="2" instance=ExtResource( 3 )]
+position = Vector2( -1380, 9.15527e-05 )
 
-[node name="Platform5" parent="." index="7" instance=ExtResource( 3 )]
-position = Vector2( 1020, 770 )
+[node name="Platform2" parent="Platforms" index="3" instance=ExtResource( 3 )]
+position = Vector2( -210, 3.05176e-05 )
 
-[node name="ClimbableBlock" parent="." index="8" instance=ExtResource( 4 )]
+[node name="Platform3" parent="Platforms" index="4" instance=ExtResource( 3 )]
+position = Vector2( -410, 230 )
+
+[node name="Platform8" parent="Platforms" index="5" instance=ExtResource( 3 )]
+position = Vector2( -770, 260 )
+
+[node name="Platform9" parent="Platforms" index="6" instance=ExtResource( 3 )]
+position = Vector2( -1130, 290 )
+
+[node name="Platform10" parent="Platforms" index="7" instance=ExtResource( 3 )]
+position = Vector2( -690, 580 )
+
+[node name="Platform11" parent="Platforms" index="8" instance=ExtResource( 3 )]
+position = Vector2( -1050, 550 )
+
+[node name="Platform12" parent="Platforms" index="9" instance=ExtResource( 3 )]
+position = Vector2( -1410, 520 )
+
+[node name="Platform4" parent="Platforms" index="10" instance=ExtResource( 3 )]
+position = Vector2( 6.10352e-05, 230 )
+
+[node name="Platform5" parent="Platforms" index="11" instance=ExtResource( 3 )]
+position = Vector2( 360, 230 )
+
+[node name="ClimbableBlock" parent="Platforms" index="12" instance=ExtResource( 4 )]
 modulate = Color( 0.564706, 1, 0.54902, 1 )
-position = Vector2( 1060, 720 )
+position = Vector2( 400, 180 )
 scale = Vector2( 10, 10 )
 
-[node name="ClimbableBlock2" parent="." index="9" instance=ExtResource( 4 )]
+[node name="ClimbableBlock2" parent="Platforms" index="13" instance=ExtResource( 4 )]
 modulate = Color( 0.564706, 1, 0.54902, 1 )
-position = Vector2( 1150, 630 )
+position = Vector2( 490, 90 )
 scale = Vector2( 10, 10 )
 
-[node name="ClimbableBlock4" parent="." index="10" instance=ExtResource( 4 )]
+[node name="ClimbableBlock4" parent="Platforms" index="14" instance=ExtResource( 4 )]
 modulate = Color( 0.564706, 1, 0.54902, 1 )
-position = Vector2( 940, 490 )
+position = Vector2( 280, -50 )
 scale = Vector2( 10, 10 )
 
-[node name="ClimbableBlock5" parent="." index="11" instance=ExtResource( 4 )]
+[node name="ClimbableBlock5" parent="Platforms" index="15" instance=ExtResource( 4 )]
 modulate = Color( 0.564706, 1, 0.54902, 1 )
-position = Vector2( 580, 490 )
+position = Vector2( -79.9999, -49.9999 )
 scale = Vector2( 10, 10 )
 
-[node name="Block" parent="." index="12" instance=ExtResource( 6 )]
-position = Vector2( 850, 580 )
+[node name="Block" parent="Platforms" index="16" instance=ExtResource( 6 )]
+position = Vector2( 190, 40 )
 scale = Vector2( 10, 10 )
 
-[node name="Block2" parent="." index="13" instance=ExtResource( 6 )]
-position = Vector2( 1240, 630 )
+[node name="Block2" parent="Platforms" index="17" instance=ExtResource( 6 )]
+position = Vector2( 580, 90 )
 scale = Vector2( 10, 10 )
+
+[node name="Camera2D" type="Camera2D" parent="." index="5"]
+visible = false
+current = true
+script = ExtResource( 7 )
+
+[node name="BorderTop" type="Area2D" parent="Camera2D" index="0"]
+position = Vector2( -950, -1400 )
+collision_layer = 0
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Camera2D/BorderTop" index="0"]
+position = Vector2( 0, 1100 )
+polygon = PoolVector2Array( 0, -20, 1920, -20, 1920, -240, 0, -240 )
+
+[node name="BorderBottom" type="Area2D" parent="Camera2D" index="1"]
+position = Vector2( -960, 320 )
+collision_layer = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Camera2D/BorderBottom" index="0"]
+position = Vector2( 0, 240 )
+polygon = PoolVector2Array( 0, -20, 1920, -20, 1920, -240, 0, -240 )
+
+[node name="BorderLeft" type="Area2D" parent="Camera2D" index="2"]
+position = Vector2( -940, -540 )
+collision_layer = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Camera2D/BorderLeft" index="0"]
+polygon = PoolVector2Array( 650, 0, 650, 1080, -20, 1080, -20, 0 )
+
+[node name="BorderRight" type="Area2D" parent="Camera2D" index="3"]
+position = Vector2( -960, -540 )
+collision_layer = 0
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Camera2D/BorderRight" index="0"]
+position = Vector2( 1270, 0 )
+polygon = PoolVector2Array( 650, 0, 650, 1080, -20, 1080, -20, 0 )
+
+[node name="DetectorTop" type="Area2D" parent="Camera2D" index="4"]
+position = Vector2( -960, -540 )
+collision_layer = 0
+collision_mask = 524288
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Camera2D/DetectorTop" index="0"]
+position = Vector2( 0, -1 )
+polygon = PoolVector2Array( 0, 0, 1920, 0, 1920, -20, 0, -20 )
+
+[node name="DetectorBottom" type="Area2D" parent="Camera2D" index="5"]
+position = Vector2( -960, -540 )
+collision_layer = 0
+collision_mask = 524288
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Camera2D/DetectorBottom" index="0"]
+position = Vector2( 0, 1101 )
+polygon = PoolVector2Array( 0, 0, 1920, 0, 1920, -20, 0, -20 )
+
+[node name="DetectorLeft" type="Area2D" parent="Camera2D" index="6"]
+position = Vector2( -940, -540 )
+collision_layer = 0
+collision_mask = 524288
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Camera2D/DetectorLeft" index="0"]
+position = Vector2( -21, 0 )
+polygon = PoolVector2Array( 0, 0, 0, 1080, -20, 1080, -20, 0 )
+
+[node name="DetectorRight" type="Area2D" parent="Camera2D" index="7"]
+position = Vector2( -960, -540 )
+collision_layer = 0
+collision_mask = 524288
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Camera2D/DetectorRight" index="0"]
+position = Vector2( 1271, 0 )
+polygon = PoolVector2Array( 670, 0, 670, 1080, 650, 1080, 650, 0 )
+
+[node name="CameraArea" type="Area2D" parent="." index="6"]
+visible = false
+collision_layer = 524288
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CameraArea" index="0"]
+modulate = Color( 0.133333, 0.8, 0.368627, 0.839216 )
+polygon = PoolVector2Array( -1990, -540, 1920, -540, 1920, 760, -1990, 760 )

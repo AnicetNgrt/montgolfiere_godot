@@ -69,6 +69,11 @@ func update_movement(delta:float) -> void:
 func update_jump(delta:float) -> void:
 	if is_on_floor() and $Sprite.animation == "jump":
 		$Sprite.play("idle")
+	if not is_on_floor() and $Sprite.animation == "jump":
+		if $Sprite.flip_h:
+			velocity.x += 4
+		else:
+			velocity.x -= 4
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			$Sprite.play("jump")

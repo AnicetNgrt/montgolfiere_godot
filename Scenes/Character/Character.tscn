@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=2]
+[gd_scene load_steps=65 format=2]
 
 [ext_resource path="res://Scenes/Character/Character.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Character/sky_charac_run.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Assets/Sfx/FootstepsDirt/Footstep_Dirt_03.wav" type="AudioStream" id=7]
 [ext_resource path="res://Assets/Sfx/FootstepsDirt/Footstep_Dirt_08.wav" type="AudioStream" id=8]
 [ext_resource path="res://Assets/Character/sky_charac_climb.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Character/sky_charac_jump.png" type="Texture" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 2.50002, 4.5 )
@@ -217,9 +218,9 @@ region = Rect2( 143, 0, 13, 12 )
 atlas = ExtResource( 9 )
 region = Rect2( 156, 0, 13, 12 )
 
-[sub_resource type="AtlasTexture" id=53]
-atlas = ExtResource( 9 )
-region = Rect2( 65, 0, 13, 12 )
+[sub_resource type="AtlasTexture" id=56]
+atlas = ExtResource( 10 )
+region = Rect2( 0, 0, 13, 12 )
 
 [sub_resource type="SpriteFrames" id=54]
 animations = [ {
@@ -243,7 +244,7 @@ animations = [ {
 "name": "climb",
 "speed": 30.0
 }, {
-"frames": [ SubResource( 53 ) ],
+"frames": [ SubResource( 56 ) ],
 "loop": false,
 "name": "jump",
 "speed": 8.0
@@ -262,12 +263,15 @@ acceleration_running = 0.1
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2( -0.500015, -4.5 )
 shape = SubResource( 1 )
+disabled = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -2, 0, 1, 0, 2, -2, 2, -5, 1, -7, 1, -8, -2, -8, -2, -7, -3, -5, -3, -2 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( -1.52588e-05, -6 )
 frames = SubResource( 54 )
 animation = "idle"
-frame = 10
 playing = true
 
 [node name="FootstepSounds" type="Node2D" parent="."]
