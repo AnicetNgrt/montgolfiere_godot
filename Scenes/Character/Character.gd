@@ -125,3 +125,10 @@ func is_running() -> bool:
 
 func can_climb() -> bool:
 	return !climbing
+
+
+func switch_layer(layer:int):
+	set_collision_layer_bit(layer+5, true)
+	for i in range(5, 15):
+		if i != layer+5: set_collision_layer_bit(i, false)
+	print("switched to "+str(layer))

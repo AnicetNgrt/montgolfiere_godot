@@ -8,22 +8,26 @@
 atlas = ExtResource( 4 )
 region = Rect2( 10, 55, 9, 9 )
 
-[node name="ClimbableBlock" type="Sprite"]
-position = Vector2( 122, 80 )
-texture = SubResource( 1 )
-offset = Vector2( 0.5, 0.5 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D"]
 show_behind_parent = true
 collision_layer = 0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( -4, -4 )
 scale = Vector2( 0.1, 0.1 )
-polygon = PoolVector2Array( 0, 0, 90, 0, 90, 90, 0, 90 )
+polygon = PoolVector2Array( -360, -360, 540, -360, 540, 540, -360, 540 )
+
+[node name="ClimbableBlock" type="Sprite" parent="."]
+scale = Vector2( 10, 10 )
+texture = SubResource( 1 )
+offset = Vector2( 0.5, 0.5 )
 
 [node name="ClimbAnchorLeft" parent="." instance=ExtResource( 1 )]
+position = Vector2( -40, -40 )
+scale = Vector2( 1, 1 )
 
 [node name="ClimbAnchorRight" parent="." instance=ExtResource( 2 )]
+position = Vector2( 50, -40 )
+scale = Vector2( 1, 1 )
 [connection signal="body_entered" from="ClimbAnchorLeft" to="ClimbAnchorLeft" method="_on_ClimbAnchor_body_entered"]
 [connection signal="body_entered" from="ClimbAnchorRight" to="ClimbAnchorRight" method="_on_ClimbAnchor_body_entered"]

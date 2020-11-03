@@ -6,14 +6,15 @@
 atlas = ExtResource( 1 )
 region = Rect2( 10, 55, 9, 9 )
 
-[node name="Block" type="Sprite"]
-position = Vector2( 4, 4 )
-texture = SubResource( 1 )
-offset = Vector2( 0.5, 0.5 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D"]
 show_behind_parent = true
 collision_layer = 0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 4, 4 )
 polygon = PoolVector2Array( -4, -4, 5, -4, 5, 5, -4, 5 )
+
+[node name="Block" type="Sprite" parent="."]
+position = Vector2( 4, 4 )
+texture = SubResource( 1 )
+offset = Vector2( 0.5, 0.5 )

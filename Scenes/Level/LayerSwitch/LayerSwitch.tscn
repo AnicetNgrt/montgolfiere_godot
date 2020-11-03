@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/Level/Levels/Test/LayerSwitch.gd" type="Script" id=1]
+
+[node name="LayerSwitch" type="Area2D"]
+collision_layer = 0
+collision_mask = 32
+script = ExtResource( 1 )
+layer_out = 1
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 110, -20 )
+polygon = PoolVector2Array( 20.0001, 19.9999, 20, 9.99994, -270, 10.0012, -270, 20.0012 )
+[connection signal="body_entered" from="." to="." method="_on_LayerSwitch_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_LayerSwitch_body_exited"]
