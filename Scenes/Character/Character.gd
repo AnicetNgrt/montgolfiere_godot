@@ -132,3 +132,7 @@ func switch_layer(layer:int):
 	for i in range(5, 15):
 		if i != layer+5: set_collision_layer_bit(i, false)
 	print("switched to "+str(layer))
+
+
+func set_direction(direction:int):
+	$Sprite.flip_h = direction == Directions.RIGHT

@@ -6,8 +6,8 @@
 atlas = ExtResource( 1 )
 region = Rect2( 10, 55, 9, 9 )
 
-[node name="StaticBody2D" type="StaticBody2D"]
-show_behind_parent = true
+[node name="Block" type="StaticBody2D"]
+scale = Vector2( 10, 10 )
 collision_layer = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

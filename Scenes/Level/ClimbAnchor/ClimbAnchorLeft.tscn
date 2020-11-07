@@ -4,7 +4,6 @@
 
 [node name="ClimbAnchorLeft" type="Area2D"]
 position = Vector2( -2.38419e-07, -2.38419e-07 )
-scale = Vector2( 10, 10 )
 collision_layer = 0
 script = ExtResource( 1 )
 

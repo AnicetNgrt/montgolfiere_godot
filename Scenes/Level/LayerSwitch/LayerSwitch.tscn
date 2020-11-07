@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Scenes/Level/Levels/Test/LayerSwitch.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Level/LayerSwitch/LayerSwitch.gd" type="Script" id=1]
+
 
 [node name="LayerSwitch" type="Area2D"]
 collision_layer = 0
