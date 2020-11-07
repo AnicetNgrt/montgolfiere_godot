@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Game/Game.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/Crimson_Text/CrimsonText-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/UI/Stamina/camembert.png" type="Texture" id=3]
+[ext_resource path="res://Assets/UI/Stamina/camembert_over.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -34,6 +36,30 @@ margin_right = 352.0
 margin_bottom = -325.0
 custom_fonts/font = SubResource( 1 )
 text = "MONTGOLFIERE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Character" type="Control" parent="UIlayer/UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StaminaBar" type="TextureProgress" parent="UIlayer/UI/Character"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = -1070.0
+margin_right = 74.0
+margin_bottom = -1006.0
+rect_scale = Vector2( 0.3, 0.3 )
+value = 79.0
+texture_under = ExtResource( 3 )
+texture_progress = ExtResource( 4 )
+fill_mode = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
