@@ -3,12 +3,12 @@ extends Node
 
 
 var levels_connections = {
-	"test0-0a":"res://Scenes/Level/Levels/Test/LevelTest0.tscn"
+	"test0-0a":"res://Scenes/Levels/Test/LevelTest0.tscn"
 }
 
 
 func _ready():
-	load_level("res://Scenes/Level/Levels/Test/LevelTest0.tscn", "test0-spawn")
+	load_level("res://Scenes/Levels/Test/LevelTest0.tscn", "test0-spawn")
 
 
 func load_level(level_path:String, entrance_key:String):
