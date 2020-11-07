@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Scenes/Level/BackgroundLayer/BackgroundLayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Level/Props/Test/ClimbableBlock.tscn" type="PackedScene" id=2]
@@ -22,6 +22,56 @@
 [ext_resource path="res://Assets/Levels/beginning/front1.png" type="Texture" id=20]
 [ext_resource path="res://Assets/Levels/beginning/front2.png" type="Texture" id=21]
 [ext_resource path="res://Resources/Levels/dropShadow.tres" type="Material" id=23]
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+uniform float scroll_speed;
+uniform float radius = 5.0;
+uniform vec4 modulate: hint_color;
+
+void fragment() {
+	vec2 ps = TEXTURE_PIXEL_SIZE;
+	
+	vec2 shifteduv = UV;
+    shifteduv.x = mod(shifteduv.x+TIME*scroll_speed, 1.0);
+	
+	vec4 shadow = texture(TEXTURE, shifteduv + vec2(-radius, -radius) * ps);
+	
+	shadow += texture(TEXTURE, shifteduv + vec2(-radius, 0.0) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(-radius, radius) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(0.0, -radius) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(0.0, radius) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(radius, -radius) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(radius, 0.0) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(radius, radius) * ps);
+	shadow /= 8.0;
+	shadow *= modulate;
+	
+    vec4 color = texture(TEXTURE, shifteduv);
+    COLOR = mix(shadow, color, color.a);
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+resource_local_to_scene = true
+shader = SubResource( 3 )
+shader_param/scroll_speed = 0.001
+shader_param/radius = 1.0
+shader_param/modulate = Color( 0, 0, 0, 0.0980392 )
+
+[sub_resource type="ShaderMaterial" id=5]
+resource_local_to_scene = true
+shader = SubResource( 3 )
+shader_param/scroll_speed = -0.002
+shader_param/radius = 1.0
+shader_param/modulate = Color( 0, 0, 0, 0.0980392 )
+
+[sub_resource type="ShaderMaterial" id=6]
+resource_local_to_scene = true
+shader = SubResource( 3 )
+shader_param/scroll_speed = 0.003
+shader_param/radius = 1.0
+shader_param/modulate = Color( 0, 0, 0, 0.0980392 )
 
 [node name="Level" instance=ExtResource( 5 )]
 default_spawn = "default"
@@ -52,6 +102,7 @@ texture = ExtResource( 17 )
 motion_scale = Vector2( 0.05, 0 )
 
 [node name="BackgroundLayer" parent="Node2D/Background/nuages0" index="0" instance=ExtResource( 1 )]
+material = SubResource( 4 )
 position = Vector2( 1170, 400 )
 scale = Vector2( 10, 10 )
 texture = ExtResource( 15 )
@@ -71,6 +122,7 @@ texture = ExtResource( 10 )
 motion_scale = Vector2( 0.1, 0 )
 
 [node name="BackgroundLayer" parent="Node2D/Background/nuages1" index="0" instance=ExtResource( 1 )]
+material = SubResource( 5 )
 position = Vector2( 30, 250 )
 scale = Vector2( 10, 10 )
 texture = ExtResource( 12 )
@@ -90,6 +142,7 @@ texture = ExtResource( 18 )
 motion_scale = Vector2( 0.45, 0.5 )
 
 [node name="BackgroundLayer" parent="Node2D/Background/nuages2" index="0" instance=ExtResource( 1 )]
+material = SubResource( 6 )
 position = Vector2( -9.53674e-07, 200 )
 scale = Vector2( 10, 10 )
 texture = ExtResource( 11 )

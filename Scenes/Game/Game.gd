@@ -8,7 +8,7 @@ var levels_connections = {
 
 
 func _ready():
-	load_level("res://Scenes/Levels/Test/LevelTest0.tscn", "test0-spawn")
+	load_level("res://Scenes/Levels/Beginning/Home.tscn", "default")
 
 
 func load_level(level_path:String, entrance_key:String):
