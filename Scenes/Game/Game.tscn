@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scenes/Game/Game.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/Crimson_Text/CrimsonText-Regular.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://Assets/UI/Stamina/camembert.png" type="Texture" id=3]
+[ext_resource path="res://Resources/Levels/dropShadowUi.tres" type="Material" id=3]
 [ext_resource path="res://Assets/UI/Stamina/camembert_over.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=1]
@@ -14,6 +14,7 @@ font_data = ExtResource( 2 )
 [node name="Game" type="Node"]
 pause_mode = 2
 script = ExtResource( 1 )
+default_level_path = "res://Scenes/Levels/Beginning/Home.tscn"
 
 [node name="UIlayer" type="CanvasLayer" parent="."]
 
@@ -48,18 +49,24 @@ __meta__ = {
 }
 
 [node name="StaminaBar" type="TextureProgress" parent="UIlayer/UI/Character"]
-modulate = Color( 1, 1, 1, 0 )
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = -1070.0
-margin_right = 74.0
-margin_bottom = -1006.0
-rect_scale = Vector2( 0.3, 0.3 )
-value = 79.0
-texture_under = ExtResource( 3 )
+material = ExtResource( 3 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -260.0
+margin_top = 280.0
+margin_right = 260.0
+margin_bottom = 543.0
+step = 0.1
+value = 50.9
+texture_under = ExtResource( 4 )
 texture_progress = ExtResource( 4 )
-fill_mode = 4
+fill_mode = 8
+tint_under = Color( 0, 0, 0, 1 )
+tint_over = Color( 1, 1, 1, 0.607843 )
+tint_progress = Color( 0.611765, 0.858824, 0.262745, 1 )
+radial_center_offset = Vector2( 0, 130 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

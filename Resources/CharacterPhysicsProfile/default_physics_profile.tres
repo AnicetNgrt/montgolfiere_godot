@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Resources/CharacterPhysicsProfile/CharacterPhysicsProfile.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+max_speed_walking = 250
+max_speed_running = 600
+jump_speed = 400
+gravity = 1500
+friction_floor = 0.2
+friction_air = 0.01
+acceleration_walking = 0.25
+acceleration_running = 0.5

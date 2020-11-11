@@ -1,21 +1,8 @@
 class_name Character
 extends KinematicBody2D
 
-export (int) var max_speed_walking := 0
-export (int) var max_speed_running := 0
-export (int) var jump_speed := 0
-export (int) var gravity := 0
-export (float, 0, 1.0) var friction_floor = 0.2
-export (float, 0, 1.0) var friction_air = 0.01
-export (float, 0, 1.0) var acceleration_walking = 0.25
-export (float, 0, 1.0) var acceleration_running = 0.5
-export (float) var max_stamina = 100
-export (float) var stamina setget set_stamina
-export (float) var walk_stamina_loss_mult = 2
-export (float) var run_stamina_loss_mult = 10
-export (float) var jump_stamina_loss = 2
-export (float) var jump_run_stamina_loss = 10
-export (float) var climb_stamina_loss = 5
+export (Resource) var state
+export (Resource) var physics_profile
 
 enum Directions { LEFT = 0, RIGHT }
 
@@ -25,7 +12,7 @@ var climbing := false
 signal stamina_changed(stamina)
 
 func _ready():
-	stamina = max_stamina
+	state.stamina = state.max_stamina
 	$Sprite.play("idle")
 
 
@@ -40,7 +27,7 @@ func get_input(delta:float):
 
 
 func handle_walking(delta:float) -> void:
-	if is_on_floor() and not climbing and stamina > 0:
+	if is_on_floor() and not climbing and state.stamina > 0:
 		if Input.is_action_pressed("walk_right"):
 			on_walking_started(Directions.RIGHT, delta)
 		elif Input.is_action_pressed("walk_left"):
@@ -61,10 +48,10 @@ func on_walking_started(direction:int, delta:float) -> void:
 		velocity.x = lerp(velocity.x, -get_max_speed(), get_acceleration())
 	
 	if is_running(): 
-		self.stamina -= run_stamina_loss_mult*delta
+		self.state.stamina -= state.run_stamina_loss_mult*delta
 		$Sprite.play("run")
 	else: 
-		self.stamina -= walk_stamina_loss_mult*delta
+		self.state.stamina -= state.walk_stamina_loss_mult*delta
 		$Sprite.play("walk")
 
 
@@ -75,7 +62,7 @@ func on_walking_ended() -> void:
 
 
 func update_movement(delta:float) -> void:
-	velocity.y += gravity * delta
+	velocity.y += physics_profile.gravity * delta
 	velocity = move_and_slide(velocity, Vector2.UP)
 
 
@@ -88,20 +75,20 @@ func update_jump(delta:float) -> void:
 		else:
 			velocity.x -= 4
 	if Input.is_action_just_pressed("jump"):
-		if is_on_floor() and stamina > 0:
+		if is_on_floor() and state.stamina > 0:
 			$Sprite.play("jump")
-			velocity.y = -jump_speed
+			velocity.y = -physics_profile.jump_speed
 			if is_running():
-				self.stamina -= jump_run_stamina_loss
+				set_stamina_and_notify(state.stamina - state.jump_run_stamina_loss)
 			else:
-				self.stamina -= jump_stamina_loss
+				set_stamina_and_notify(state.stamina - state.jump_stamina_loss)
 
 
 func on_climbing_started(towards:Vector2):
 	climbing = true
 	$Sprite.play("climb")
 	$Sprite.flip_h = global_position.x < towards.x
-	self.stamina -= climb_stamina_loss
+	set_stamina_and_notify(state.stamina - state.climb_stamina_loss)
 
 
 func on_climbing_finished(towards:Vector2):
@@ -118,23 +105,23 @@ func _on_Sprite_frame_changed():
 
 func get_friction() -> float:
 	if is_on_floor():
-		return friction_floor
+		return physics_profile.friction_floor
 	else:
-		return friction_air
+		return physics_profile.friction_air
 
 
 func get_max_speed() -> int:
 	if is_running():
-		return max_speed_running
+		return physics_profile.max_speed_running
 	else:
-		return max_speed_walking
+		return physics_profile.max_speed_walking
 
 
 func get_acceleration() -> float:
 	if is_running():
-		return acceleration_running
+		return physics_profile.acceleration_running
 	else:
-		return acceleration_walking
+		return physics_profile.acceleration_walking
 
 
 func is_running() -> bool:
@@ -142,7 +129,7 @@ func is_running() -> bool:
 
 
 func can_climb() -> bool:
-	return !climbing and stamina > 0
+	return !climbing and state.stamina > 0
 
 
 func switch_layer(layer:int):
@@ -156,7 +143,7 @@ func set_direction(direction:int):
 	$Sprite.flip_h = direction == Directions.RIGHT
 
 
-func set_stamina(value):
-	stamina = value
-	emit_signal("stamina_changed", stamina)
+func set_stamina_and_notify(value):
+	state.stamina = value
+	emit_signal("stamina_changed", state.stamina)
 	#if not is_inside_tree(): yield(self, "ready")

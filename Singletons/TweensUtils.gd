@@ -1,6 +1,6 @@
 extends Node
 
-func interpolate_property(parent:Node, node:Node, property:String, before, after, duration:float, trans, easing):
+func interpolate_property(node:Node, property:String, before, after, duration:float, trans, easing):
 	if trans == null: trans = 1
 	if easing == null: easing = 1
 	
@@ -20,9 +20,8 @@ func interpolate_property(parent:Node, node:Node, property:String, before, after
 	tween.call_deferred("queue_free")
 
 
-func fadein(parent:Node, element:CanvasItem):
+func fadein(element:CanvasItem):
 	self.interpolate_property(
-		parent,
 		element, 
 		"modulate", 
 		Color(1,1,1,0), 
@@ -30,9 +29,8 @@ func fadein(parent:Node, element:CanvasItem):
 		1, null, null)
 
 
-func fadeout(parent:Node, element:CanvasItem):
+func fadeout(element:CanvasItem):
 	self.interpolate_property(
-		parent,
 		element,
 		"modulate", 
 		Color(1,1,1,1), 

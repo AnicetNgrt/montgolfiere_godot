@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=67 format=2]
 
 [ext_resource path="res://Scenes/Character/Character.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Character/sky_charac_run.png" type="Texture" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://Assets/Sfx/FootstepsDirt/Footstep_Dirt_08.wav" type="AudioStream" id=8]
 [ext_resource path="res://Assets/Character/sky_charac_climb.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Character/sky_charac_jump.png" type="Texture" id=10]
+[ext_resource path="res://Resources/CharacterState/default_character_state.tres" type="Resource" id=11]
+[ext_resource path="res://Resources/CharacterPhysicsProfile/default_physics_profile.tres" type="Resource" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 2.50002, 4.00853 )
@@ -253,12 +255,8 @@ animations = [ {
 [node name="Character" type="KinematicBody2D"]
 collision_mask = 2147483648
 script = ExtResource( 1 )
-max_speed_walking = 250
-max_speed_running = 600
-jump_speed = 400
-gravity = 1500
-acceleration_walking = 0.05
-acceleration_running = 0.1
+state = ExtResource( 11 )
+physics_profile = ExtResource( 12 )
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2( 2.98023e-08, -40 )
@@ -270,7 +268,7 @@ position = Vector2( -5, -60 )
 scale = Vector2( 10, 10 )
 frames = SubResource( 54 )
 animation = "idle"
-frame = 3
+frame = 9
 playing = true
 offset = Vector2( -1.52588e-05, 0 )
 

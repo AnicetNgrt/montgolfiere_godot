@@ -24,11 +24,11 @@ void fragment() {
 	shadow *= modulate;
 	
     vec4 color = texture(TEXTURE, shifteduv);
-    COLOR = mix(shadow, color, color.a);
+    COLOR = mix(shadow, COLOR, color.a);
 }"
 
 [resource]
 resource_local_to_scene = true
 shader = SubResource( 1 )
-shader_param/radius = 5.0
-shader_param/modulate = Color( 1, 1, 1, 0.447059 )
+shader_param/radius = 2.0
+shader_param/modulate = Color( 0, 0, 0, 0.254902 )

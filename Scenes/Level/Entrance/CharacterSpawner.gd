@@ -3,7 +3,7 @@ extends Node2D
 
 const CharacterPs = preload("res://Scenes/Character/Character.tscn")
 
-export(String) var key
+export(Resource) var spawnpoint_data
 export(int) var layer
 export(Character.Directions) var direction
 

@@ -4,6 +4,8 @@ extends Node
 
 onready var stamina_bar = $UIlayer/UI/Character/StaminaBar
 
+export(String, FILE) var default_level_path
+
 var current_entity = null
 var current_level = null
 var current_entity_ui_position := Vector2(0, 0)
@@ -11,28 +13,18 @@ var current_entity_ui_position := Vector2(0, 0)
 var time_last_charac_stamina_update = 0
 
 
-var levels_connections = {
-	"test0-0a":"res://Scenes/Levels/Test/LevelTest0.tscn"
-}
-
-
 func _physics_process(delta):
 	var ticks_msec = OS.get_ticks_msec()
-	#print(current_level)
-	if current_entity is Character and current_level and stamina_bar:
-		var pos = current_entity.position - current_level.get_node("Camera").get_camera_position()
-		current_entity_ui_position = pos/1.7 + Vector2(935, 400)
-		stamina_bar.rect_position = current_entity_ui_position
-	
+
 	if ticks_msec - time_last_charac_stamina_update > 1000 and stamina_bar:
-		if stamina_bar.modulate.a == 1: TweensUtils.fadeout(self, stamina_bar)
+		if stamina_bar.modulate.a == 1: TweensUtils.fadeout(stamina_bar)
 
 
 func _ready():
-	load_level("res://Scenes/Levels/Beginning/Home.tscn", "default")
+	load_level(default_level_path, "default")
 
 
-func load_level(level_path:String, entrance_key:String):
+func load_level(level_path, sp_name):
 	get_tree().paused = true
 	if has_node("Level"):
 		var prev_level = get_node("Level")
@@ -47,15 +39,15 @@ func load_level(level_path:String, entrance_key:String):
 	new_level.name = "Level"
 	new_level.do_self_spawn = false
 	yield(new_level, "ready")
-	new_level.enter_at(entrance_key)
+	new_level.enter_at(sp_name)
 	get_tree().paused = false
 	if not new_level.is_ready_and_spawned: 
 		yield(new_level, "ready_and_spawned")
 	current_level = new_level
 
 
-func on_level_goto_level(entrance_key:String):
-	load_level(levels_connections[entrance_key], entrance_key)
+func on_level_goto_level(data):
+	load_level(data.level_path, data.name)
 
 
 func on_level_switch_entity(entity):
@@ -67,6 +59,14 @@ func on_level_switch_entity(entity):
 
 func on_character_stamina_changed(stamina):
 	time_last_charac_stamina_update = OS.get_ticks_msec()
-	stamina_bar.value = stamina
+	TweensUtils.interpolate_property(
+		stamina_bar, 
+		"value", 
+		stamina_bar.value, 
+		stamina/2, 
+		0.3, 
+		null, 
+		null
+	)
 	if stamina_bar.modulate.a == 0: 
-		TweensUtils.fadein(self, stamina_bar)
+		TweensUtils.fadein(stamina_bar)

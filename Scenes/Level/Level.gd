@@ -3,7 +3,7 @@ class_name Level
 extends Node2D
 
 signal ready_and_spawned()
-signal goto_level(key)
+signal goto_level(data)
 signal switch_entity(character)
 
 
@@ -27,15 +27,15 @@ func _ready():
 #	print($Background.offset)
 
 
-func on_exit_body_exited(body:Node, key:String) -> void:
-	emit_signal("goto_level", key)
+func on_exit_body_exited(body:Node, data:Resource) -> void:
+	emit_signal("goto_level", data)
 
 
 func enter_at(key:String):
 	var spawner = null
 	for c in get_children():
 		if c is CharacterSpawner:
-			if c.key == key: 
+			if c.spawnpoint_data.name == key: 
 				spawner = c
 				break
 

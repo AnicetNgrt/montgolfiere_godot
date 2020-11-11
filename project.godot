@@ -19,10 +19,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/Character/Character.gd"
 }, {
+"base": "Resource",
+"class": "CharacterPhysicsProfile",
+"language": "GDScript",
+"path": "res://Resources/CharacterPhysicsProfile/CharacterPhysicsProfile.gd"
+}, {
 "base": "Node2D",
 "class": "CharacterSpawner",
 "language": "GDScript",
 "path": "res://Scenes/Level/Entrance/CharacterSpawner.gd"
+}, {
+"base": "Resource",
+"class": "CharacterState",
+"language": "GDScript",
+"path": "res://Resources/CharacterState/CharacterState.gd"
 }, {
 "base": "Area2D",
 "class": "ClimbAnchor",
@@ -43,15 +53,23 @@ _global_script_classes=[ {
 "class": "Level",
 "language": "GDScript",
 "path": "res://Scenes/Level/Level.gd"
+}, {
+"base": "Resource",
+"class": "SpawnPoint",
+"language": "GDScript",
+"path": "res://Resources/SpawnPoint/SpawnPoint.gd"
 } ]
 _global_script_class_icons={
 "BackgroundLayer": "",
 "Character": "",
+"CharacterPhysicsProfile": "",
 "CharacterSpawner": "",
+"CharacterState": "",
 "ClimbAnchor": "",
 "Exit": "",
 "Game": "",
-"Level": ""
+"Level": "",
+"SpawnPoint": ""
 }
 
 [application]
@@ -143,6 +161,11 @@ climb={
 
 2d_physics/layer_1="Characters"
 2d_physics/layer_2="Montgolfieres"
+2d_physics/layer_6="level_layer_1"
+2d_physics/layer_7="level_layer_2"
+2d_physics/layer_8="level_layer_3"
+2d_physics/layer_9="level_layer_4"
+2d_physics/layer_10="level_layer_5"
 2d_physics/layer_20="CameraLimits"
 
 [rendering]

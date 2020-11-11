@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Scenes/Level/BackgroundLayer/BackgroundLayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Level/Props/Test/ClimbableBlock.tscn" type="PackedScene" id=2]
@@ -21,9 +21,10 @@
 [ext_resource path="res://Assets/Levels/beginning/plaine5.png" type="Texture" id=19]
 [ext_resource path="res://Assets/Levels/beginning/front1.png" type="Texture" id=20]
 [ext_resource path="res://Assets/Levels/beginning/front2.png" type="Texture" id=21]
+[ext_resource path="res://Scenes/Levels/Beginning/spawnpoint_default.tres" type="Resource" id=22]
 [ext_resource path="res://Resources/Levels/dropShadow.tres" type="Material" id=23]
 
-[sub_resource type="Shader" id=3]
+[sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
 
 uniform float scroll_speed;
@@ -52,23 +53,23 @@ void fragment() {
     COLOR = mix(shadow, color, color.a);
 }"
 
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
-shader = SubResource( 3 )
+shader = SubResource( 1 )
 shader_param/scroll_speed = 0.001
 shader_param/radius = 1.0
 shader_param/modulate = Color( 0, 0, 0, 0.0980392 )
 
-[sub_resource type="ShaderMaterial" id=5]
+[sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
-shader = SubResource( 3 )
+shader = SubResource( 1 )
 shader_param/scroll_speed = -0.002
 shader_param/radius = 1.0
 shader_param/modulate = Color( 0, 0, 0, 0.0980392 )
 
-[sub_resource type="ShaderMaterial" id=6]
+[sub_resource type="ShaderMaterial" id=4]
 resource_local_to_scene = true
-shader = SubResource( 3 )
+shader = SubResource( 1 )
 shader_param/scroll_speed = 0.003
 shader_param/radius = 1.0
 shader_param/modulate = Color( 0, 0, 0, 0.0980392 )
@@ -100,7 +101,7 @@ texture = ExtResource( 17 )
 motion_scale = Vector2( 0.05, 0 )
 
 [node name="BackgroundLayer" parent="Background/nuages0" index="0" instance=ExtResource( 1 )]
-material = SubResource( 4 )
+material = SubResource( 2 )
 position = Vector2( 1170, 400 )
 scale = Vector2( 10, 10 )
 texture = ExtResource( 15 )
@@ -120,7 +121,7 @@ texture = ExtResource( 10 )
 motion_scale = Vector2( 0.1, 0 )
 
 [node name="BackgroundLayer" parent="Background/nuages1" index="0" instance=ExtResource( 1 )]
-material = SubResource( 5 )
+material = SubResource( 3 )
 position = Vector2( 30, 250 )
 scale = Vector2( 10, 10 )
 texture = ExtResource( 12 )
@@ -140,7 +141,7 @@ texture = ExtResource( 18 )
 motion_scale = Vector2( 0.45, 0.5 )
 
 [node name="BackgroundLayer" parent="Background/nuages2" index="0" instance=ExtResource( 1 )]
-material = SubResource( 6 )
+material = SubResource( 4 )
 position = Vector2( -9.53674e-07, 200 )
 scale = Vector2( 10, 10 )
 texture = ExtResource( 11 )
@@ -181,7 +182,7 @@ texture = ExtResource( 20 )
 [node name="CharacterSpawner" type="Node2D" parent="." index="3"]
 position = Vector2( -3450, 920 )
 script = ExtResource( 9 )
-key = "default"
+spawnpoint_data = ExtResource( 22 )
 layer = 2
 
 [node name="CameraAnchor" type="Node2D" parent="CharacterSpawner" index="0"]
@@ -514,15 +515,5 @@ polygon = PoolVector2Array( -1070, -2300, 7060, -2280, 7110, 1420, -1070, 1400 )
 [node name="Camera" parent="." index="9" instance=ExtResource( 4 )]
 visible = false
 zoom = Vector2( 1.5, 1.5 )
-
-[node name="ColorRect" type="ColorRect" parent="." index="10"]
-visible = false
-margin_left = -950.0
-margin_top = -360.0
-margin_right = 1090.0
-margin_bottom = 1080.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [editable path="CameraArea"]
