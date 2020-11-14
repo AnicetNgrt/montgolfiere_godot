@@ -21,6 +21,7 @@ func _physics_process(delta):
 
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	load_level(default_level_path, "default")
 
 
@@ -63,7 +64,7 @@ func on_character_stamina_changed(stamina):
 		stamina_bar, 
 		"value", 
 		stamina_bar.value, 
-		stamina/2, 
+		stamina - fmod(stamina, 0.926), 
 		0.3, 
 		null, 
 		null

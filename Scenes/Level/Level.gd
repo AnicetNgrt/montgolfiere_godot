@@ -48,6 +48,7 @@ func enter_at(key:String):
 		emit_signal("ready_and_spawned")
 		is_ready_and_spawned = true
 		if instance is Character:
+			instance.connect("layer_changed", self, "on_character_layer_changed")
 			emit_signal("switch_entity", instance)
 
 
@@ -60,3 +61,7 @@ func set_custom_modulate(value):
 			for layer in c.get_children():
 				if layer is ParallaxLayer:
 					layer.modulate = value
+
+
+func on_character_layer_changed(layer:int):
+	move_child(get_node("Character"), get_node("layer"+str(layer)).get_index())

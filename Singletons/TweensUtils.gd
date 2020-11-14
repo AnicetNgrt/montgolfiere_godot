@@ -15,7 +15,7 @@ func interpolate_property(node:Node, property:String, before, after, duration:fl
 		easing)
 	add_child(tween)
 	tween.start()
-	yield(tween, "tween_completed")
+	if tween.is_active(): yield(tween, "tween_completed")
 	remove_child(tween)
 	tween.call_deferred("queue_free")
 
