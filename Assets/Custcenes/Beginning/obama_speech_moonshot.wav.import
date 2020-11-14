@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/obama_speech_moonshot.wav-fc8a1c51c84e01c4386304ed81de0ed0.sample"
+
+[deps]
+
+source_file="res://Assets/Custcenes/Beginning/obama_speech_moonshot.wav"
+dest_files=[ "res://.import/obama_speech_moonshot.wav-fc8a1c51c84e01c4386304ed81de0ed0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
