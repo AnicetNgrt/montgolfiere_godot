@@ -87,7 +87,7 @@ func update_jump(delta:float) -> void:
 		else:
 			velocity.x -= 4
 	if Input.is_action_just_pressed("jump"):
-		if is_on_floor():
+		if is_on_floor() and !climbing:
 			$Sprite.play("jump")
 			velocity.y = -physics_profile.jump_speed
 			if is_running():

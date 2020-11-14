@@ -110,38 +110,43 @@ position = Vector2( 1070, 250 )
 scale = Vector2( 12.1958, 5.57548 )
 collision_mask = 64
 
-[node name="Block11" parent="layer1" index="1" instance=ExtResource( 6 )]
+[node name="Block15" parent="layer1" index="1" instance=ExtResource( 6 )]
+position = Vector2( 1180, 280 )
+scale = Vector2( 12.1958, 5.57548 )
+collision_mask = 64
+
+[node name="Block11" parent="layer1" index="2" instance=ExtResource( 6 )]
 position = Vector2( 960, 220 )
 scale = Vector2( 12.1958, 5.57548 )
 collision_mask = 64
 
-[node name="Block12" parent="layer1" index="2" instance=ExtResource( 6 )]
+[node name="Block12" parent="layer1" index="3" instance=ExtResource( 6 )]
 position = Vector2( 850, 190 )
 scale = Vector2( 12.1958, 5.57548 )
 collision_mask = 64
 
-[node name="Block14" parent="layer1" index="3" instance=ExtResource( 6 )]
+[node name="Block14" parent="layer1" index="4" instance=ExtResource( 6 )]
 position = Vector2( 620, 7.62939e-06 )
 rotation = 0.464216
 scale = Vector2( 17.3927, 5.35527 )
 collision_mask = 64
 
-[node name="Block13" parent="layer1" index="4" instance=ExtResource( 6 )]
+[node name="Block13" parent="layer1" index="5" instance=ExtResource( 6 )]
 position = Vector2( 770, 70 )
 scale = Vector2( 5.55699, 5.57181 )
 collision_mask = 64
 
-[node name="Platform" parent="layer1" index="5" instance=ExtResource( 5 )]
+[node name="Platform" parent="layer1" index="6" instance=ExtResource( 5 )]
 position = Vector2( 1290, 330 )
 rotation = -1.57079
 collision_mask = 64
 
-[node name="[0] LayerSwitch" parent="layer1" index="6" instance=ExtResource( 12 )]
+[node name="[0] LayerSwitch" parent="layer1" index="7" instance=ExtResource( 12 )]
 position = Vector2( 1230, 280 )
 collision_mask = 64
 layer_out = 0
 
-[node name="ClimbAnchor" type="Area2D" parent="layer1" index="7"]
+[node name="ClimbAnchor" type="Area2D" parent="layer1" index="8"]
 position = Vector2( 820, 70 )
 script = ExtResource( 11 )
 
@@ -274,14 +279,14 @@ script = ExtResource( 11 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer0/ClimbAnchor" index="0"]
 polygon = PoolVector2Array( 0, 0, 50, 50, 0, 50 )
 
-[node name="ClimbAnchor3" type="Area2D" parent="layer0" index="21"]
-position = Vector2( 1200, 550 )
+[node name="ClimbAnchor6" type="Area2D" parent="layer0" index="21"]
+position = Vector2( 1270, 550 )
 collision_layer = 0
 collision_mask = 32
 script = ExtResource( 11 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer0/ClimbAnchor3" index="0"]
-polygon = PoolVector2Array( 0, 0, 50, 50, 0, 50 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer0/ClimbAnchor6" index="0"]
+polygon = PoolVector2Array( 0, 0, -30, 20, 0, 20 )
 
 [node name="ClimbAnchor4" type="Area2D" parent="layer0" index="22"]
 position = Vector2( 1440, 550 )
