@@ -2,6 +2,9 @@ tool
 extends Node2D
 
 export(Resource) var artifact setget set_artifact
+var face = "A"
+var last_swap = OS.get_ticks_msec()
+var swap_cooldown = 500
 
 func set_artifact(val):
 	artifact = val
@@ -42,3 +45,22 @@ func hide_all_directions():
 	$FaceB/N_WEST.hide()
 	$FaceB/S_EAST.hide()
 	$FaceB/S_WEST.hide()
+
+func change_to_face_A():
+	if face == "B": $AnimationPlayer.play_backwards("toFaceB")
+	face = "A"
+
+func change_to_face_B():
+	if face == "A": $AnimationPlayer.play("toFaceB")
+	face = "B"
+
+
+func _on_Area2D_input_event(viewport, event, shape_idx):
+	print(event)
+	if event is InputEventMouseButton:
+		if OS.get_ticks_msec() - last_swap > swap_cooldown:
+			last_swap = OS.get_ticks_msec()
+			if face == "B":
+				change_to_face_A()
+			else: 
+				change_to_face_B()
