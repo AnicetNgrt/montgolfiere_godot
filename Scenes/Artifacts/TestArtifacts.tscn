@@ -9,17 +9,17 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="Artifact" parent="." instance=ExtResource( 1 )]
-position = Vector2( 140, 210 )
+position = Vector2( 320, 520 )
 artifact = ExtResource( 2 )
 
 [node name="Artifact2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 560, 210 )
+position = Vector2( 740, 520 )
 artifact = ExtResource( 4 )
 
 [node name="Artifact3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1400, 210 )
+position = Vector2( 1580, 520 )
 artifact = ExtResource( 3 )
 
 [node name="Artifact4" parent="." instance=ExtResource( 1 )]
-position = Vector2( 980, 210 )
+position = Vector2( 1160, 520 )
 artifact = ExtResource( 5 )

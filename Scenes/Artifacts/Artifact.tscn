@@ -1,45 +1,210 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/Artifacts/Artifact.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Artifacts/sacred-stone/sacred-stone_layer 4.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Artifacts/wind-directions/wind-directions_background.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Artifacts/wind-directions/wind-directions_south.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Artifacts/wind-directions/wind-directions_north-west.png" type="Texture" id=5]
 [ext_resource path="res://Utils/FollowMouse2D.gd" type="Script" id=6]
 [ext_resource path="res://Resources/Levels/dropShadow.tres" type="Material" id=7]
+[ext_resource path="res://Assets/Artifacts/wind-directions/wind-directions_south-east.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Artifacts/wind-directions/wind-directions_west.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Artifacts/wind-directions/wind-directions_east.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Artifacts/wind-directions/wind-directions_south-west.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Artifacts/wind-directions/wind-directions_north-east.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Artifacts/wind-directions/wind-directions_north.png" type="Texture" id=13]
+
+[sub_resource type="Animation" id=1]
+resource_name = "toFaceB"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("FaceA:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("FaceB:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("FaceA:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1e-05, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("FaceB:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1 ) ]
+}
 
 [node name="Artifact" type="Node2D"]
-position = Vector2( 730, 170 )
+position = Vector2( 180, 310 )
 scale = Vector2( 10, 10 )
 script = ExtResource( 1 )
 
-[node name="Background" type="Sprite" parent="."]
-position = Vector2( 19, 32 )
+[node name="FaceA" type="Node2D" parent="."]
+
+[node name="Background" type="Sprite" parent="FaceA"]
 scale = Vector2( 1, 1 )
 texture = ExtResource( 2 )
+offset = Vector2( 0.5, 0.499996 )
+script = ExtResource( 6 )
+follow_offset = Vector2( 800, 500 )
+factor = 0.0
+
+[node name="Painting" type="Sprite" parent="FaceA"]
+scale = Vector2( 1, 1 )
+offset = Vector2( 0.5, 0.499996 )
+script = ExtResource( 6 )
+follow_offset = Vector2( 800, 500 )
+factor = 0.015
+
+[node name="Frame" type="Sprite" parent="FaceA"]
+scale = Vector2( 1, 1 )
+offset = Vector2( 0.5, 0.499996 )
+script = ExtResource( 6 )
+follow_offset = Vector2( 800, 500 )
+factor = 0.025
+
+[node name="Object" type="Sprite" parent="FaceA"]
+material = ExtResource( 7 )
+scale = Vector2( 1, 1 )
+offset = Vector2( 0.5, 0.499996 )
+script = ExtResource( 6 )
+follow_offset = Vector2( 800, 500 )
+factor = 0.05
+
+[node name="FaceB" type="Node2D" parent="."]
+visible = false
+scale = Vector2( 1e-05, 1 )
+
+[node name="World" type="Sprite" parent="FaceB"]
+material = ExtResource( 7 )
+position = Vector2( -3.8147e-06, -1.90735e-06 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 3 )
 offset = Vector2( 0.5, 0.5 )
 script = ExtResource( 6 )
 follow_offset = Vector2( 800, 500 )
 factor = 0.0
 
-[node name="Painting" type="Sprite" parent="."]
-position = Vector2( 19, 32 )
-scale = Vector2( 1, 1 )
-offset = Vector2( 0.5, 0.5 )
-script = ExtResource( 6 )
-follow_offset = Vector2( 800, 500 )
-factor = 0.015
-
-[node name="Frame" type="Sprite" parent="."]
-position = Vector2( 19, 32 )
-scale = Vector2( 1, 1 )
-offset = Vector2( 0.5, 0.5 )
-script = ExtResource( 6 )
-follow_offset = Vector2( 800, 500 )
-factor = 0.025
-
-[node name="Object" type="Sprite" parent="."]
+[node name="NORTH" type="Sprite" parent="FaceB"]
+visible = false
 material = ExtResource( 7 )
 position = Vector2( 19, 32 )
 scale = Vector2( 1, 1 )
+texture = ExtResource( 13 )
 offset = Vector2( 0.5, 0.5 )
 script = ExtResource( 6 )
 follow_offset = Vector2( 800, 500 )
 factor = 0.05
+
+[node name="SOUTH" type="Sprite" parent="FaceB"]
+visible = false
+material = ExtResource( 7 )
+position = Vector2( 19, 32 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 4 )
+offset = Vector2( 0.5, 0.5 )
+script = ExtResource( 6 )
+follow_offset = Vector2( 800, 500 )
+factor = 0.05
+
+[node name="WEST" type="Sprite" parent="FaceB"]
+visible = false
+material = ExtResource( 7 )
+position = Vector2( 19, 32 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 9 )
+offset = Vector2( 0.5, 0.5 )
+script = ExtResource( 6 )
+follow_offset = Vector2( 800, 500 )
+factor = 0.05
+
+[node name="EAST" type="Sprite" parent="FaceB"]
+visible = false
+material = ExtResource( 7 )
+position = Vector2( 19, 32 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 10 )
+offset = Vector2( 0.5, 0.5 )
+script = ExtResource( 6 )
+follow_offset = Vector2( 800, 500 )
+factor = 0.05
+
+[node name="N_EAST" type="Sprite" parent="FaceB"]
+visible = false
+material = ExtResource( 7 )
+position = Vector2( 19, 32 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 12 )
+offset = Vector2( 0.5, 0.5 )
+script = ExtResource( 6 )
+follow_offset = Vector2( 800, 500 )
+factor = 0.05
+
+[node name="N_WEST" type="Sprite" parent="FaceB"]
+visible = false
+material = ExtResource( 7 )
+position = Vector2( 19, 32 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 5 )
+offset = Vector2( 0.5, 0.5 )
+script = ExtResource( 6 )
+follow_offset = Vector2( 800, 500 )
+factor = 0.05
+
+[node name="S_EAST" type="Sprite" parent="FaceB"]
+visible = false
+material = ExtResource( 7 )
+position = Vector2( 19, 32 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 8 )
+offset = Vector2( 0.5, 0.5 )
+script = ExtResource( 6 )
+follow_offset = Vector2( 800, 500 )
+factor = 0.05
+
+[node name="S_WEST" type="Sprite" parent="FaceB"]
+visible = false
+material = ExtResource( 7 )
+position = Vector2( 19, 32 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 11 )
+offset = Vector2( 0.5, 0.5 )
+script = ExtResource( 6 )
+follow_offset = Vector2( 800, 500 )
+factor = 0.05
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/toFaceB = SubResource( 1 )

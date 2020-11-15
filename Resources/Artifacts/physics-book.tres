@@ -10,3 +10,4 @@ script = ExtResource( 1 )
 frame = ExtResource( 4 )
 object = ExtResource( 3 )
 background = ExtResource( 2 )
+direction = 0
