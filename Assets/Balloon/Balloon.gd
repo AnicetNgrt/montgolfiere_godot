@@ -15,7 +15,7 @@ func _physics_process(delta):
 func get_action_balloon():
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("right_balloon") - Input.get_action_strength("left_balloon")
-	input_vector.y = Input.get_action_strength("down_ballon") - Input.get_action_strength("up_balloon")
+	input_vector.y = Input.get_action_strength("down_balloon") - Input.get_action_strength("up_balloon")
 	return input_vector.normalized()
 
 func move_balloon(delta, input_vector):
