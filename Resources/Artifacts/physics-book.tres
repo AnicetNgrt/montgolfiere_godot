@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://Resources/Artifacts/Artifact.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Artifacts/physics-book/physics-book_layer 3.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Artifacts/physics-book/physics-book_layer 2.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Artifacts/physics-book/physics-book_layer 1.png" type="Texture" id=4]
+
+[resource]
+script = ExtResource( 1 )
+frame = ExtResource( 4 )
+object = ExtResource( 3 )
+background = ExtResource( 2 )
