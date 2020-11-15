@@ -31,27 +31,27 @@
 [ext_resource path="res://Assets/Fonts/Crimson_Text/CrimsonText-Italic.ttf" type="DynamicFontData" id=30]
 [ext_resource path="res://Utils/FollowMouse2D.gd" type="Script" id=31]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=1]
 size = 64
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 10 )
 
-[sub_resource type="StyleBoxLine" id=4]
+[sub_resource type="StyleBoxLine" id=2]
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=5]
 size = 200
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 30 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 length = 110.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("ObamaSpeech:playing")
@@ -312,7 +312,7 @@ __meta__ = {
 margin_top = 47.0
 margin_right = 713.0
 margin_bottom = 131.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 text = "Github Game Off 2020"
 align = 1
 __meta__ = {
@@ -323,7 +323,7 @@ __meta__ = {
 margin_top = 135.0
 margin_right = 713.0
 margin_bottom = 219.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 text = "Web monetization jam 2020"
 align = 1
 __meta__ = {
@@ -359,7 +359,7 @@ __meta__ = {
 margin_top = 47.0
 margin_right = 713.0
 margin_bottom = 131.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 text = "Anicet Nougaret"
 align = 1
 __meta__ = {
@@ -370,7 +370,7 @@ __meta__ = {
 margin_top = 135.0
 margin_right = 713.0
 margin_bottom = 185.0
-custom_styles/separator = SubResource( 4 )
+custom_styles/separator = SubResource( 2 )
 custom_constants/separation = 50
 
 [node name="Label2" type="Label" parent="Texts/Team"]
@@ -388,7 +388,7 @@ __meta__ = {
 margin_top = 236.0
 margin_right = 713.0
 margin_bottom = 320.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 text = "Thibault Henrion"
 align = 1
 __meta__ = {
@@ -479,7 +479,7 @@ __meta__ = {
 margin_top = 47.0
 margin_right = 1141.0
 margin_bottom = 131.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 text = "Godot Game Engine"
 align = 1
 __meta__ = {
@@ -562,8 +562,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 custom_styles/hover = ExtResource( 14 )
 custom_styles/pressed = ExtResource( 15 )
-custom_styles/focus = SubResource( 1 )
-custom_styles/disabled = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
 custom_styles/normal = ExtResource( 15 )
 custom_fonts/font = ExtResource( 17 )
 custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
@@ -575,7 +575,6 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-factor = 1.0
 
 [node name="SceneA" type="Node2D" parent="."]
 modulate = Color( 1, 1, 1, 0 )
@@ -641,7 +640,7 @@ margin_left = 450.0
 margin_top = 80.0
 margin_right = 1464.0
 margin_bottom = 281.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Earth's Secrets"
 __meta__ = {
@@ -654,28 +653,24 @@ scale = Vector2( 10, 10 )
 
 [node name="B_sky" type="Sprite" parent="SceneB"]
 position = Vector2( 81, 39 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 27 )
 script = ExtResource( 31 )
 factor = 0.1
 
 [node name="B_layer 2" type="Sprite" parent="SceneB"]
 position = Vector2( 81, 39 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 29 )
 script = ExtResource( 31 )
 factor = 0.15
 
 [node name="B_layer 1" type="Sprite" parent="SceneB"]
 position = Vector2( 81, 39 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 28 )
 script = ExtResource( 31 )
 factor = 0.2
 
 [node name="B_layer 3" type="Sprite" parent="SceneB"]
 position = Vector2( 81, 39 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 26 )
 script = ExtResource( 31 )
 factor = 0.3
@@ -687,7 +682,6 @@ scale = Vector2( 10, 10 )
 
 [node name="C_space" type="Sprite" parent="SceneC"]
 position = Vector2( 38, 37 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 24 )
 script = ExtResource( 31 )
 factor = 0.05
@@ -740,5 +734,5 @@ volume_db = -80.0
 script = ExtResource( 13 )
 
 [node name="Animation" type="AnimationPlayer" parent="."]
-anims/Main = SubResource( 5 )
+anims/Main = SubResource( 6 )
 [connection signal="pressed" from="Texts/Poem/PoemContinueButton" to="." method="_on_PoemContinueButton_pressed"]
