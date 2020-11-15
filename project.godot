@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Resource",
+"class": "Artifact",
+"language": "GDScript",
+"path": "res://Resources/Artifacts/Artifact.gd"
+}, {
 "base": "Sprite",
 "class": "BackgroundLayer",
 "language": "GDScript",
@@ -60,6 +65,7 @@ _global_script_classes=[ {
 "path": "res://Resources/SpawnPoint/SpawnPoint.gd"
 } ]
 _global_script_class_icons={
+"Artifact": "",
 "BackgroundLayer": "",
 "Character": "",
 "CharacterPhysicsProfile": "",
