@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Assets/Custcenes/Beginning/obama_speech_moonshot.wav" type="AudioStream" id=1]
 [ext_resource path="res://Assets/Custcenes/Beginning/A/A_layer 6.png" type="Texture" id=2]
@@ -19,7 +19,7 @@
 [ext_resource path="res://Resources/Fonts/regular_df.tres" type="DynamicFont" id=17]
 [ext_resource path="res://Assets/Music/Humoresque_1955_performance.ogg" type="AudioStream" id=18]
 [ext_resource path="res://Assets/Custcenes/Beginning/D/D_layer 1.png" type="Texture" id=19]
-[ext_resource path="res://Assets/Music/Pavane for a Dead Princess.wav" type="AudioStream" id=20]
+[ext_resource path="res://Assets/Music/Pavane_for_a_Dead_Princess.ogg" type="AudioStream" id=20]
 [ext_resource path="res://Assets/Custcenes/Beginning/D/D_space.png" type="Texture" id=21]
 [ext_resource path="res://Assets/Custcenes/Beginning/D/D_layer 2.png" type="Texture" id=22]
 [ext_resource path="res://Assets/Custcenes/Beginning/C/C_iss.png" type="Texture" id=23]
@@ -46,12 +46,18 @@ bg_color = Color( 0.6, 0.6, 0.6, 0 )
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
 [sub_resource type="DynamicFont" id=5]
+size = 64
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=6]
 size = 200
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 30 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 length = 110.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("ObamaSpeech:playing")
@@ -487,6 +493,7 @@ __meta__ = {
 }
 
 [node name="Poem" type="Control" parent="Texts"]
+modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -576,6 +583,64 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Disclaimer" type="Control" parent="Texts"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Texts/Disclaimer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="Texts/Disclaimer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -620.0
+margin_top = -100.0
+margin_right = 630.0
+margin_bottom = -16.0
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Please, turn the sound on, go fullscreen, and enjoy!"
+align = 1
+valign = 1
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+factor = 0.5
+
+[node name="ContinueToPoemButton" type="Button" parent="Texts/Disclaimer"]
+margin_left = 875.0
+margin_top = 562.0
+margin_right = 1025.0
+margin_bottom = 609.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_styles/hover = ExtResource( 14 )
+custom_styles/pressed = ExtResource( 15 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = ExtResource( 15 )
+custom_fonts/font = ExtResource( 17 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+text = "Continue"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="SceneA" type="Node2D" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 scale = Vector2( 10, 10 )
@@ -640,7 +705,7 @@ margin_left = 450.0
 margin_top = 80.0
 margin_right = 1464.0
 margin_bottom = 281.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Earth's Secrets"
 __meta__ = {
@@ -734,5 +799,6 @@ volume_db = -80.0
 script = ExtResource( 13 )
 
 [node name="Animation" type="AnimationPlayer" parent="."]
-anims/Main = SubResource( 6 )
+anims/Main = SubResource( 7 )
 [connection signal="pressed" from="Texts/Poem/PoemContinueButton" to="." method="_on_PoemContinueButton_pressed"]
+[connection signal="pressed" from="Texts/Disclaimer/ContinueToPoemButton" to="." method="_on_ContinueToPoemButton_pressed"]

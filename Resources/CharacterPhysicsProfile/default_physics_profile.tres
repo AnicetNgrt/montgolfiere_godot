@@ -4,10 +4,11 @@
 
 [resource]
 script = ExtResource( 1 )
-max_speed_walking = Vector2( 1000, 0 )
-max_speed_running = Vector2( 1400, 0 )
+max_speed_walking = Vector2( 800, 0 )
+max_speed_running = Vector2( 1100, 0 )
 jump_speed = 800
 gravity = 1500
+ground_stick_factor = 500
 friction_floor = 0.5
 friction_air = 0.01
 acceleration_walking = 0.25

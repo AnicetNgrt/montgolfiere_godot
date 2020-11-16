@@ -131,321 +131,321 @@ layer = 2
 [node name="CameraAnchor" type="Node2D" parent="CharacterSpawner" index="0"]
 position = Vector2( 0, -180 )
 
-[node name="EnvFront" type="Node2D" parent="." index="4"]
-
-[node name="front2" type="Sprite" parent="EnvFront" index="0"]
-position = Vector2( 0, 10 )
-scale = Vector2( 10, 10 )
-texture = ExtResource( 21 )
-
-[node name="Layer0" type="Node2D" parent="." index="5"]
+[node name="layer0" type="Node2D" parent="." index="4"]
 visible = false
 modulate = Color( 1, 1, 1, 0.494118 )
 position = Vector2( -3620, -60 )
 
-[node name="Platform" parent="Layer0" index="0" instance=ExtResource( 8 )]
+[node name="Platform" parent="layer0" index="0" instance=ExtResource( 8 )]
 modulate = Color( 0.623529, 1, 0.588235, 1 )
 position = Vector2( 30, 0 )
 collision_mask = 32
 
-[node name="Platform2" parent="Layer0" index="1" instance=ExtResource( 8 )]
+[node name="Platform2" parent="layer0" index="1" instance=ExtResource( 8 )]
 modulate = Color( 0.623529, 1, 0.588235, 1 )
 position = Vector2( 390, 0 )
 collision_mask = 32
 
-[node name="Platform3" parent="Layer0" index="2" instance=ExtResource( 8 )]
+[node name="Platform3" parent="layer0" index="2" instance=ExtResource( 8 )]
 modulate = Color( 0.623529, 1, 0.588235, 1 )
 position = Vector2( 750, 0 )
 collision_mask = 32
 
-[node name="Platform7" parent="Layer0" index="3" instance=ExtResource( 8 )]
+[node name="Platform7" parent="layer0" index="3" instance=ExtResource( 8 )]
 modulate = Color( 0.623529, 1, 0.588235, 1 )
 position = Vector2( 1110, 0 )
 collision_mask = 32
 
-[node name="Platform8" parent="Layer0" index="4" instance=ExtResource( 8 )]
+[node name="Platform8" parent="layer0" index="4" instance=ExtResource( 8 )]
 modulate = Color( 0.623529, 1, 0.588235, 1 )
 position = Vector2( 1470, 0 )
 collision_mask = 32
 
-[node name="Platform9" parent="Layer0" index="5" instance=ExtResource( 8 )]
+[node name="Platform9" parent="layer0" index="5" instance=ExtResource( 8 )]
 modulate = Color( 0.623529, 1, 0.588235, 1 )
 position = Vector2( 1830, 0 )
 collision_mask = 32
 
-[node name="Platform10" parent="Layer0" index="6" instance=ExtResource( 8 )]
+[node name="Platform10" parent="layer0" index="6" instance=ExtResource( 8 )]
 modulate = Color( 0.623529, 1, 0.588235, 1 )
 position = Vector2( 2190, 0 )
 collision_mask = 32
 
-[node name="Platform11" parent="Layer0" index="7" instance=ExtResource( 8 )]
+[node name="Platform11" parent="layer0" index="7" instance=ExtResource( 8 )]
 modulate = Color( 0.623529, 1, 0.588235, 1 )
 position = Vector2( 2550, 0 )
 collision_mask = 32
 
-[node name="Platform12" parent="Layer0" index="8" instance=ExtResource( 8 )]
+[node name="Platform12" parent="layer0" index="8" instance=ExtResource( 8 )]
 modulate = Color( 0.623529, 1, 0.588235, 1 )
 position = Vector2( 2910, 0 )
 collision_mask = 32
 
-[node name="Platform13" parent="Layer0" index="9" instance=ExtResource( 8 )]
+[node name="Platform13" parent="layer0" index="9" instance=ExtResource( 8 )]
 modulate = Color( 0.623529, 1, 0.588235, 1 )
 position = Vector2( 3270, 0 )
 collision_mask = 32
 
-[node name="Platform14" parent="Layer0" index="10" instance=ExtResource( 8 )]
+[node name="Platform14" parent="layer0" index="10" instance=ExtResource( 8 )]
 modulate = Color( 0.623529, 1, 0.588235, 1 )
 position = Vector2( 3630, 0 )
 collision_mask = 32
 
-[node name="Platform15" parent="Layer0" index="11" instance=ExtResource( 8 )]
+[node name="Platform15" parent="layer0" index="11" instance=ExtResource( 8 )]
 modulate = Color( 0.623529, 1, 0.588235, 1 )
 position = Vector2( 3990, 0 )
 collision_mask = 32
 
-[node name="Platform16" parent="Layer0" index="12" instance=ExtResource( 8 )]
+[node name="Platform16" parent="layer0" index="12" instance=ExtResource( 8 )]
 modulate = Color( 0.623529, 1, 0.588235, 1 )
 position = Vector2( 4350, 0 )
 collision_mask = 32
 
-[node name="Platform17" parent="Layer0" index="13" instance=ExtResource( 8 )]
+[node name="Platform17" parent="layer0" index="13" instance=ExtResource( 8 )]
 modulate = Color( 0.623529, 1, 0.588235, 1 )
 position = Vector2( 4710, 0 )
 collision_mask = 32
 
-[node name="Platform18" parent="Layer0" index="14" instance=ExtResource( 8 )]
+[node name="Platform18" parent="layer0" index="14" instance=ExtResource( 8 )]
 modulate = Color( 0.623529, 1, 0.588235, 1 )
 position = Vector2( 5070, 0 )
 collision_mask = 32
 
-[node name="Platform4" parent="Layer0" index="15" instance=ExtResource( 8 )]
+[node name="Platform4" parent="layer0" index="15" instance=ExtResource( 8 )]
 modulate = Color( 0.623529, 1, 0.588235, 1 )
 position = Vector2( -180, 30 )
 collision_mask = 32
 
-[node name="Platform6" parent="Layer0" index="16" instance=ExtResource( 8 )]
+[node name="Platform6" parent="layer0" index="16" instance=ExtResource( 8 )]
 modulate = Color( 0.623529, 1, 0.588235, 1 )
 position = Vector2( -620, 90 )
 rotation = -1.57079
 collision_mask = 32
 
-[node name="Platform5" parent="Layer0" index="17" instance=ExtResource( 8 )]
+[node name="Platform5" parent="layer0" index="17" instance=ExtResource( 8 )]
 modulate = Color( 0.623529, 1, 0.588235, 1 )
 position = Vector2( -350, 60 )
 collision_mask = 32
 
-[node name="Block" parent="Layer0" index="18" instance=ExtResource( 3 )]
+[node name="Block" parent="layer0" index="18" instance=ExtResource( 3 )]
 modulate = Color( 0.623529, 1, 0.588235, 1 )
 position = Vector2( -530, 90 )
 collision_mask = 32
 
-[node name="Block2" parent="Layer0" index="19" instance=ExtResource( 3 )]
+[node name="Block2" parent="layer0" index="19" instance=ExtResource( 3 )]
 modulate = Color( 0.623529, 1, 0.588235, 1 )
 position = Vector2( -440, 90 )
 collision_mask = 32
 
-[node name="[1] LayerSwitch" parent="Layer0" index="20" instance=ExtResource( 6 )]
+[node name="[1] LayerSwitch" parent="layer0" index="20" instance=ExtResource( 6 )]
 modulate = Color( 0.623529, 1, 0.588235, 1 )
 position = Vector2( -430, 90 )
 scale = Vector2( 0.600001, 1 )
 
-[node name="Layer1" type="Node2D" parent="." index="6"]
+[node name="layer1" type="Node2D" parent="." index="5"]
 visible = false
 modulate = Color( 1, 1, 1, 0.494118 )
 position = Vector2( -3620, -60 )
 
-[node name="Block" parent="Layer1" index="0" instance=ExtResource( 3 )]
+[node name="Block" parent="layer1" index="0" instance=ExtResource( 3 )]
 modulate = Color( 1, 0.792157, 0.792157, 1 )
 position = Vector2( -350, 120 )
 collision_mask = 64
 
-[node name="Block4" parent="Layer1" index="1" instance=ExtResource( 3 )]
+[node name="Block4" parent="layer1" index="1" instance=ExtResource( 3 )]
 modulate = Color( 1, 0.792157, 0.792157, 1 )
 position = Vector2( -440, 120 )
 collision_mask = 64
 
-[node name="Block5" parent="Layer1" index="2" instance=ExtResource( 3 )]
+[node name="Block5" parent="layer1" index="2" instance=ExtResource( 3 )]
 modulate = Color( 1, 0.792157, 0.792157, 1 )
 position = Vector2( -530, 120 )
 collision_mask = 64
 
-[node name="Block7" parent="Layer1" index="3" instance=ExtResource( 3 )]
+[node name="Block7" parent="layer1" index="3" instance=ExtResource( 3 )]
 modulate = Color( 1, 0.792157, 0.792157, 1 )
 position = Vector2( -440, 90 )
 collision_mask = 64
 
-[node name="Block9" parent="Layer1" index="4" instance=ExtResource( 3 )]
+[node name="Block9" parent="layer1" index="4" instance=ExtResource( 3 )]
 modulate = Color( 1, 0.792157, 0.792157, 1 )
 position = Vector2( -40, 100 )
 collision_mask = 64
 
-[node name="Block10" parent="Layer1" index="5" instance=ExtResource( 3 )]
+[node name="Block10" parent="layer1" index="5" instance=ExtResource( 3 )]
 modulate = Color( 1, 0.792157, 0.792157, 1 )
 position = Vector2( -40, 10 )
 collision_mask = 64
 
-[node name="Block8" parent="Layer1" index="6" instance=ExtResource( 3 )]
+[node name="Block8" parent="layer1" index="6" instance=ExtResource( 3 )]
 modulate = Color( 1, 0.792157, 0.792157, 1 )
 position = Vector2( -530, 90 )
 collision_mask = 64
 
-[node name="Block6" parent="Layer1" index="7" instance=ExtResource( 3 )]
+[node name="Block6" parent="layer1" index="7" instance=ExtResource( 3 )]
 modulate = Color( 1, 0.792157, 0.792157, 1 )
 position = Vector2( -620, 30 )
 collision_mask = 64
 
-[node name="Block2" parent="Layer1" index="8" instance=ExtResource( 3 )]
+[node name="Block2" parent="layer1" index="8" instance=ExtResource( 3 )]
 modulate = Color( 1, 0.792157, 0.792157, 1 )
 position = Vector2( -260, 140 )
 collision_mask = 64
 
-[node name="Block3" parent="Layer1" index="9" instance=ExtResource( 3 )]
+[node name="Block3" parent="layer1" index="9" instance=ExtResource( 3 )]
 modulate = Color( 1, 0.792157, 0.792157, 1 )
 position = Vector2( -210, 160 )
 collision_mask = 64
 
-[node name="[0] LayerSwitch" parent="Layer1" index="10" instance=ExtResource( 6 )]
+[node name="[0] LayerSwitch" parent="layer1" index="10" instance=ExtResource( 6 )]
 modulate = Color( 1, 0.792157, 0.792157, 1 )
 position = Vector2( -250, 60 )
 scale = Vector2( 0.600001, 1 )
 collision_mask = 64
 layer_out = 0
 
-[node name="[2] LayerSwitch" parent="Layer1" index="11" instance=ExtResource( 6 )]
+[node name="[2] LayerSwitch" parent="layer1" index="11" instance=ExtResource( 6 )]
 modulate = Color( 1, 0.792157, 0.792157, 1 )
 position = Vector2( -80, 190 )
 scale = Vector2( 0.360001, 1 )
 collision_mask = 64
 layer_out = 2
 
-[node name="Layer2" type="Node2D" parent="." index="7"]
+[node name="layer2" type="Node2D" parent="." index="6"]
 visible = false
 modulate = Color( 1, 1, 1, 0.494118 )
 position = Vector2( -3620, -60 )
 
-[node name="Platform" parent="Layer2" index="0" instance=ExtResource( 8 )]
+[node name="Platform" parent="layer2" index="0" instance=ExtResource( 8 )]
 modulate = Color( 0.996078, 1, 0.505882, 1 )
 position = Vector2( -320, 190 )
 collision_mask = 128
 
-[node name="Platform2" parent="Layer2" index="1" instance=ExtResource( 8 )]
+[node name="Platform2" parent="layer2" index="1" instance=ExtResource( 8 )]
 modulate = Color( 0.996078, 1, 0.505882, 1 )
 position = Vector2( -950, 190 )
 collision_mask = 128
 
-[node name="ClimbableBlock5" parent="Layer2" index="2" instance=ExtResource( 2 )]
+[node name="ClimbableBlock5" parent="layer2" index="2" instance=ExtResource( 2 )]
 modulate = Color( 0.996078, 1, 0.505882, 1 )
 position = Vector2( -370, 230 )
 collision_mask = 128
 
-[node name="ClimbableBlock6" parent="Layer2" index="3" instance=ExtResource( 2 )]
+[node name="ClimbableBlock6" parent="layer2" index="3" instance=ExtResource( 2 )]
 modulate = Color( 0.996078, 1, 0.505882, 1 )
 position = Vector2( -580, 320 )
 collision_mask = 128
 
-[node name="ClimbableBlock7" parent="Layer2" index="4" instance=ExtResource( 2 )]
+[node name="ClimbableBlock7" parent="layer2" index="4" instance=ExtResource( 2 )]
 modulate = Color( 0.996078, 1, 0.505882, 1 )
 position = Vector2( -410, 450 )
 collision_mask = 128
 
-[node name="ClimbableBlock8" parent="Layer2" index="5" instance=ExtResource( 2 )]
+[node name="ClimbableBlock8" parent="layer2" index="5" instance=ExtResource( 2 )]
 modulate = Color( 0.996078, 1, 0.505882, 1 )
 position = Vector2( -330, 540 )
 collision_mask = 128
 
-[node name="ClimbableBlock9" parent="Layer2" index="6" instance=ExtResource( 2 )]
+[node name="ClimbableBlock9" parent="layer2" index="6" instance=ExtResource( 2 )]
 modulate = Color( 0.996078, 1, 0.505882, 1 )
 position = Vector2( -170, 690 )
 scale = Vector2( 8.87996, 10 )
 collision_mask = 128
 
-[node name="Platform3" parent="Layer2" index="7" instance=ExtResource( 8 )]
+[node name="Platform3" parent="layer2" index="7" instance=ExtResource( 8 )]
 modulate = Color( 0.996078, 1, 0.505882, 1 )
 position = Vector2( -390, 720 )
 collision_mask = 128
 
-[node name="ClimbableBlock10" parent="Layer2" index="8" instance=ExtResource( 2 )]
+[node name="ClimbableBlock10" parent="layer2" index="8" instance=ExtResource( 2 )]
 modulate = Color( 0.996078, 1, 0.505882, 1 )
 position = Vector2( -436.182, 764.353 )
 rotation = -0.0904369
 collision_mask = 128
 
-[node name="ClimbableBlock11" parent="Layer2" index="9" instance=ExtResource( 2 )]
+[node name="ClimbableBlock11" parent="layer2" index="9" instance=ExtResource( 2 )]
 modulate = Color( 0.996078, 1, 0.505882, 1 )
 position = Vector2( -610, 900 )
 collision_mask = 128
 
-[node name="Platform4" parent="Layer2" index="10" instance=ExtResource( 8 )]
+[node name="Platform4" parent="layer2" index="10" instance=ExtResource( 8 )]
 modulate = Color( 0.996078, 1, 0.505882, 1 )
 position = Vector2( -800, 950 )
 collision_mask = 128
 
-[node name="Platform5" parent="Layer2" index="11" instance=ExtResource( 8 )]
+[node name="Platform5" parent="layer2" index="11" instance=ExtResource( 8 )]
 modulate = Color( 0.996078, 1, 0.505882, 1 )
 position = Vector2( -440, 980 )
 collision_mask = 128
 
-[node name="Platform13" parent="Layer2" index="12" instance=ExtResource( 8 )]
+[node name="Platform13" parent="layer2" index="12" instance=ExtResource( 8 )]
 modulate = Color( 0.996078, 1, 0.505882, 1 )
 position = Vector2( -720, 500 )
 collision_mask = 128
 
-[node name="Block" parent="Layer2" index="13" instance=ExtResource( 3 )]
+[node name="Block" parent="layer2" index="13" instance=ExtResource( 3 )]
 modulate = Color( 0.996078, 1, 0.505882, 1 )
 position = Vector2( -620, 370 )
 collision_mask = 128
 
-[node name="Block2" parent="Layer2" index="14" instance=ExtResource( 3 )]
+[node name="Block2" parent="layer2" index="14" instance=ExtResource( 3 )]
 modulate = Color( 0.996078, 1, 0.505882, 1 )
 position = Vector2( -540, 410 )
 collision_mask = 128
 
-[node name="Platform6" parent="Layer2" index="15" instance=ExtResource( 8 )]
+[node name="Platform6" parent="layer2" index="15" instance=ExtResource( 8 )]
 modulate = Color( 0.996078, 1, 0.505882, 1 )
 position = Vector2( -80, 980 )
 collision_mask = 128
 
-[node name="Platform7" parent="Layer2" index="16" instance=ExtResource( 8 )]
+[node name="Platform7" parent="layer2" index="16" instance=ExtResource( 8 )]
 modulate = Color( 0.996078, 1, 0.505882, 1 )
 position = Vector2( -40, 830 )
 rotation = -1.57079
 collision_mask = 128
 
-[node name="Platform8" parent="Layer2" index="17" instance=ExtResource( 8 )]
+[node name="Platform8" parent="layer2" index="17" instance=ExtResource( 8 )]
 modulate = Color( 0.996078, 1, 0.505882, 1 )
 position = Vector2( -40, 550 )
 rotation = -1.57079
 collision_mask = 128
 
-[node name="Platform9" parent="Layer2" index="18" instance=ExtResource( 8 )]
+[node name="Platform9" parent="layer2" index="18" instance=ExtResource( 8 )]
 modulate = Color( 0.996078, 1, 0.505882, 1 )
 position = Vector2( -40, 390 )
 rotation = -1.57079
 collision_mask = 128
 
-[node name="Platform10" parent="Layer2" index="19" instance=ExtResource( 8 )]
+[node name="Platform10" parent="layer2" index="19" instance=ExtResource( 8 )]
 modulate = Color( 0.996078, 1, 0.505882, 1 )
 position = Vector2( -950, 280 )
 rotation = -1.57079
 collision_mask = 128
 
-[node name="Platform11" parent="Layer2" index="20" instance=ExtResource( 8 )]
+[node name="Platform11" parent="layer2" index="20" instance=ExtResource( 8 )]
 modulate = Color( 0.996078, 1, 0.505882, 1 )
 position = Vector2( -710, 640 )
 rotation = -1.57079
 collision_mask = 128
 
-[node name="Platform12" parent="Layer2" index="21" instance=ExtResource( 8 )]
+[node name="Platform12" parent="layer2" index="21" instance=ExtResource( 8 )]
 modulate = Color( 0.996078, 1, 0.505882, 1 )
 position = Vector2( -740, 1000 )
 rotation = -1.57079
 collision_mask = 128
 
-[node name="[1] LayerSwitch" parent="Layer2" index="22" instance=ExtResource( 6 )]
+[node name="[1] LayerSwitch" parent="layer2" index="22" instance=ExtResource( 6 )]
 modulate = Color( 0.996078, 1, 0.505882, 1 )
 position = Vector2( -90, 160 )
 scale = Vector2( 0.480001, 1 )
 collision_mask = 128
+
+[node name="EnvFront" type="Node2D" parent="." index="7"]
+
+[node name="front2" type="Sprite" parent="EnvFront" index="0"]
+position = Vector2( 0, 10 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 21 )
 
 [node name="CameraArea" parent="." index="8" instance=ExtResource( 7 )]
 visible = false

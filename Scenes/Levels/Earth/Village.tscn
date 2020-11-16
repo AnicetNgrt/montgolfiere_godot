@@ -1,0 +1,264 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scenes/Level/Level.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Levels/earth/village/village_platforms.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Level/Camera/CameraArea_2x2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Level/Camera/Camera.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Level/LayerSwitch/LayerSwitch.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Level/Entrance/CharacterSpawner.gd" type="Script" id=6]
+[ext_resource path="res://Scenes/Levels/Earth/sp_village_default.tres" type="Resource" id=7]
+[ext_resource path="res://Scenes/Level/ClimbAnchor/ClimbAnchor.gd" type="Script" id=8]
+
+[node name="Level" instance=ExtResource( 1 )]
+default_spawn = "default"
+
+[node name="village_platforms" type="Sprite" parent="." index="1"]
+scale = Vector2( 10, 10 )
+texture = ExtResource( 2 )
+
+[node name="layer3" type="Node2D" parent="." index="2"]
+modulate = Color( 0, 1, 0.929412, 1 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="layer3" index="0"]
+collision_layer = 0
+collision_mask = 256
+
+[node name="CollisionPolygon2D15" type="CollisionPolygon2D" parent="layer3/StaticBody2D" index="0"]
+polygon = PoolVector2Array( 580, -170, 560, -170, 560, -660, 580, -660 )
+
+[node name="CollisionPolygon2D17" type="CollisionPolygon2D" parent="layer3/StaticBody2D" index="1"]
+position = Vector2( 0, 560 )
+polygon = PoolVector2Array( 580, -420, 560, -420, 560, -660, 580, -660 )
+
+[node name="CollisionPolygon2D16" type="CollisionPolygon2D" parent="layer3/StaticBody2D" index="2"]
+position = Vector2( 170, 140 )
+polygon = PoolVector2Array( 580, -30, 560, -30, 560, -660, 580, -660 )
+
+[node name="layer2" type="Node2D" parent="." index="3"]
+modulate = Color( 1, 0, 0, 1 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="layer2" index="0"]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="0"]
+polygon = PoolVector2Array( 40, 280, 40, 420, 160, 420, 160, 280 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="1"]
+polygon = PoolVector2Array( 80, 630, -40, 630, -40, 660, 220, 660, 220, 600, 250, 600, 250, 570, 280, 570, 280, 540, 160, 540, 160, 570, 120, 570, 120, 600, 80, 600 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="2"]
+polygon = PoolVector2Array( 280, 540, 280, 410, 350, 410, 350, 320, 420, 320, 420, 300, 510, 300, 510, 330, 620, 440, 740, 440, 740, 500, 420, 500, 420, 540 )
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="3"]
+polygon = PoolVector2Array( 520, 750, 570, 750, 570, 720, 630, 720, 630, 690, 690, 690, 690, 660, 740, 660, 740, 630, 950, 630, 950, 660, 860, 660, 860, 690, 820, 690, 820, 720, 750, 720, 750, 780, 520, 780 )
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="4"]
+polygon = PoolVector2Array( 1060, 630, 1060, 670, 1190, 670, 1190, 630 )
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="5"]
+polygon = PoolVector2Array( 1240, 700, 1240, 740, 1380, 740, 1380, 700 )
+
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="6"]
+polygon = PoolVector2Array( 680, 230, 860, 230, 860, 280, 680, 280 )
+
+[node name="CollisionPolygon2D23" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="7"]
+position = Vector2( 50, -630 )
+polygon = PoolVector2Array( 630, 110, 630, 140, 1170, 140, 1170, 110 )
+
+[node name="CollisionPolygon2D24" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="8"]
+polygon = PoolVector2Array( 10, -20, -20, -20, -220, -120, -730, -120, -730, -150, -240, -150 )
+
+[node name="CollisionPolygon2D25" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="9"]
+polygon = PoolVector2Array( 560, -660, 560, -170, 580, -170, 580, -660 )
+
+[node name="CollisionPolygon2D27" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="10"]
+position = Vector2( 0, 560 )
+polygon = PoolVector2Array( 560, -660, 560, -390, 580, -390, 580, -660 )
+
+[node name="CollisionPolygon2D26" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="11"]
+position = Vector2( 220, 160 )
+polygon = PoolVector2Array( 560, -660, 560, -30, 580, -30, 580, -660 )
+
+[node name="CollisionPolygon2D28" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="12"]
+polygon = PoolVector2Array( 1220, -610, 1240, -610, 1240, -520, 1220, -520 )
+
+[node name="CollisionPolygon2D29" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="13"]
+position = Vector2( -1970, 370 )
+polygon = PoolVector2Array( 1220, -610, 1240, -610, 1240, -520, 1220, -520 )
+
+[node name="CollisionPolygon2D30" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="14"]
+polygon = PoolVector2Array( 860, 150, 880, 150, 880, 230, 860, 230 )
+
+[node name="CollisionPolygon2D31" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="15"]
+polygon = PoolVector2Array( 580, -100, 410, -100, 50, 80, 50, 90, 90, 90, 410, -70, 580, -70 )
+
+[node name="[1] LayerSwitch" parent="layer2" index="1" instance=ExtResource( 5 )]
+position = Vector2( 30, 630 )
+scale = Vector2( 0.368, 1 )
+collision_mask = 128
+
+[node name="[1] LayerSwitch2" parent="layer2" index="2" instance=ExtResource( 5 )]
+position = Vector2( 520, 730 )
+scale = Vector2( 0.368, 1 )
+collision_mask = 128
+
+[node name="[1] LayerSwitch3" parent="layer2" index="3" instance=ExtResource( 5 )]
+position = Vector2( 1190, 740 )
+scale = Vector2( 2.365, 1 )
+collision_mask = 128
+
+[node name="[0] LayerSwitch" parent="layer2" index="4" instance=ExtResource( 5 )]
+position = Vector2( 1610, 860 )
+scale = Vector2( 2.365, 1 )
+collision_mask = 128
+layer_out = 0
+
+[node name="[1] LayerSwitch4" parent="layer2" index="5" instance=ExtResource( 5 )]
+position = Vector2( -40, 300 )
+scale = Vector2( 0.586, 2.977 )
+collision_mask = 128
+
+[node name="ClimbAnchor" type="Area2D" parent="layer2" index="6"]
+position = Vector2( 280, 410 )
+script = ExtResource( 8 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/ClimbAnchor" index="0"]
+polygon = PoolVector2Array( 0, 0, -40, 70, 0, 70 )
+
+[node name="ClimbAnchor5" type="Area2D" parent="layer2" index="7"]
+position = Vector2( 160, 280 )
+script = ExtResource( 8 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/ClimbAnchor5" index="0"]
+polygon = PoolVector2Array( 0, 0, 40, 70, 0, 70 )
+
+[node name="ClimbAnchor6" type="Area2D" parent="layer2" index="8"]
+position = Vector2( 740, 440 )
+script = ExtResource( 8 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/ClimbAnchor6" index="0"]
+polygon = PoolVector2Array( 0, 0, 40, 70, 0, 70 )
+
+[node name="ClimbAnchor7" type="Area2D" parent="layer2" index="9"]
+position = Vector2( 1190, 630 )
+script = ExtResource( 8 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/ClimbAnchor7" index="0"]
+polygon = PoolVector2Array( 0, 0, 40, 70, 0, 70 )
+
+[node name="ClimbAnchor2" type="Area2D" parent="layer2" index="10"]
+position = Vector2( 350, 320 )
+script = ExtResource( 8 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/ClimbAnchor2" index="0"]
+polygon = PoolVector2Array( 0, 0, -40, 70, 0, 70 )
+
+[node name="ClimbAnchor4" type="Area2D" parent="layer2" index="11"]
+position = Vector2( 680, 230 )
+script = ExtResource( 8 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/ClimbAnchor4" index="0"]
+polygon = PoolVector2Array( 0, 0, -30, 30, 0, 50 )
+
+[node name="layer1" type="Node2D" parent="." index="4"]
+modulate = Color( 1, 0.866667, 0, 1 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="layer1" index="0"]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer1/StaticBody2D" index="0"]
+polygon = PoolVector2Array( 1390, 950, 1390, 920, 1260, 920, 1260, 890, 1150, 890, 880, 750, 490, 750, 260, 630, -40, 630, -40, 280, -270, 280, -270, 420, -340, 420, -340, 540, -420, 540, -510, 590, -820, 590, -910, 540, -1080, 540, -1080, 350, -1110, 350, -1110, 1080, 1390, 1080, 1580, 1080, 1580, 950 )
+
+[node name="[2] LayerSwitch" parent="layer1" index="1" instance=ExtResource( 5 )]
+position = Vector2( 600, 720 )
+scale = Vector2( 0.189, 1 )
+collision_mask = 64
+layer_out = 2
+
+[node name="[2] LayerSwitch2" parent="layer1" index="2" instance=ExtResource( 5 )]
+position = Vector2( 100, 600 )
+scale = Vector2( 0.121, 1 )
+collision_mask = 64
+layer_out = 2
+
+[node name="ClimbAnchor6" type="Area2D" parent="layer1" index="3"]
+position = Vector2( -270, 280 )
+script = ExtResource( 8 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer1/ClimbAnchor6" index="0"]
+polygon = PoolVector2Array( 0, 0, -40, 70, 0, 70 )
+
+[node name="ClimbAnchor7" type="Area2D" parent="layer1" index="4"]
+position = Vector2( -340, 420 )
+script = ExtResource( 8 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer1/ClimbAnchor7" index="0"]
+polygon = PoolVector2Array( 0, 0, -40, 70, 0, 70 )
+
+[node name="layer0" type="Node2D" parent="." index="5"]
+modulate = Color( 0, 1, 0.180392, 1 )
+
+[node name="Static" type="StaticBody2D" parent="layer0" index="0"]
+collision_layer = 0
+collision_mask = 2147483680
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer0/Static" index="0"]
+polygon = PoolVector2Array( 1920, 950, 750, 950, 160, 860, -110, 860, -470, 950, -1080, 950, -1080, 790, -1110, 790, -1110, 1080, 1920, 1080 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="layer0/Static" index="1"]
+polygon = PoolVector2Array( -620, 610, -620, 640, -410, 640, -410, 610 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="layer0/Static" index="2"]
+polygon = PoolVector2Array( -350, 660, -260, 660, -260, 720, -350, 720 )
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="layer0/Static" index="3"]
+polygon = PoolVector2Array( -260, 720, -260, 780, -180, 780, -180, 720 )
+
+[node name="[1] LayerSwitch" parent="layer0" index="1" instance=ExtResource( 5 )]
+position = Vector2( 1330, 920 )
+scale = Vector2( 0.431, 1 )
+collision_mask = 2147483680
+
+[node name="[1] LayerSwitch2" parent="layer0" index="2" instance=ExtResource( 5 )]
+position = Vector2( -650, 590 )
+scale = Vector2( 0.983, 1 )
+collision_mask = 2147483680
+
+[node name="ClimbAnchor8" type="Area2D" parent="layer0" index="3"]
+position = Vector2( -180, 720 )
+script = ExtResource( 8 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer0/ClimbAnchor8" index="0"]
+polygon = PoolVector2Array( 0, 0, 40, 70, 0, 70 )
+
+[node name="ClimbAnchor9" type="Area2D" parent="layer0" index="4"]
+position = Vector2( -260, 660 )
+script = ExtResource( 8 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer0/ClimbAnchor9" index="0"]
+polygon = PoolVector2Array( 0, 0, 40, 70, 0, 70 )
+
+[node name="ClimbAnchor10" type="Area2D" parent="layer0" index="5"]
+position = Vector2( -410, 610 )
+script = ExtResource( 8 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer0/ClimbAnchor10" index="0"]
+polygon = PoolVector2Array( 0, 0, 40, 70, 0, 70 )
+
+[node name="CharacterSpawner" type="Node2D" parent="." index="6"]
+position = Vector2( 1880, 880 )
+script = ExtResource( 6 )
+spawnpoint_data = ExtResource( 7 )
+
+[node name="CameraAnchor" type="Node2D" parent="CharacterSpawner" index="0"]
+position = Vector2( -920, -340 )
+
+[node name="Camera" parent="." index="7" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 960, 540 )
+
+[node name="CameraArea" parent="." index="8" instance=ExtResource( 3 )]
+visible = false
+position = Vector2( -1920, -1080 )

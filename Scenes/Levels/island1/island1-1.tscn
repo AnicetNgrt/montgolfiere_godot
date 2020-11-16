@@ -103,7 +103,6 @@ position = Vector2( 96, 54 )
 texture = ExtResource( 17 )
 
 [node name="layer1" type="Node2D" parent="." index="4"]
-visible = false
 
 [node name="Block10" parent="layer1" index="0" instance=ExtResource( 6 )]
 position = Vector2( 1070, 250 )

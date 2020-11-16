@@ -47,7 +47,7 @@ func on_walking_started(direction:int, delta:float) -> void:
 	else: 
 		velocity = lerp(velocity, get_max_speed() * Vector2(-1, 0), get_acceleration())
 	#velocity.y = lerp(velocity.y, -get_floor_normal().y, get_acceleration())
-	velocity += -100*get_floor_normal()
+	velocity += physics_profile.ground_stick_factor*get_floor_normal()*-1
 	if is_running(): 
 		set_stamina_and_notify(state.stamina - state.run_stamina_loss_mult*delta)
 		$Sprite.play("run")
@@ -162,7 +162,8 @@ func set_direction(direction:int):
 
 
 func set_stamina_and_notify(value):
-	var new_stamina = clamp(value, 0, state.max_stamina)
-	if new_stamina != state.stamina:
-		emit_signal("stamina_changed", new_stamina)
-	state.stamina = new_stamina
+	pass
+	#var new_stamina = clamp(value, 0, state.max_stamina)
+	#if new_stamina != state.stamina:
+	#	emit_signal("stamina_changed", new_stamina)
+	#state.stamina = new_stamina

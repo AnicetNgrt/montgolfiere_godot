@@ -1,0 +1,10 @@
+[gd_scene format=2]
+
+[node name="CameraArea" type="Area2D"]
+position = Vector2( 0, 10 )
+collision_layer = 524288
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+modulate = Color( 0.133333, 0.8, 0.368627, 0.839216 )
+polygon = PoolVector2Array( 0, -10, 3840, -10, 3840, 1070, 0, 1070 )

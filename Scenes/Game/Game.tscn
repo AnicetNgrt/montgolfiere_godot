@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/Game/Game.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/Crimson_Text/CrimsonText-Regular.ttf" type="DynamicFontData" id=2]
@@ -15,10 +15,18 @@ use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 2 )
 
+[sub_resource type="Environment" id=2]
+background_mode = 4
+glow_enabled = true
+glow_intensity = 1.51
+glow_bloom = 0.21
+glow_bicubic_upscale = true
+adjustment_enabled = true
+
 [node name="Game" type="Node"]
 pause_mode = 2
 script = ExtResource( 1 )
-default_level_path = "res://Scenes/Levels/island1/island1-1.tscn"
+default_level_path = "res://Scenes/Levels/Earth/Earth1.tscn"
 
 [node name="UIlayer" type="CanvasLayer" parent="."]
 
@@ -53,6 +61,7 @@ __meta__ = {
 }
 
 [node name="StaminaBar" type="TextureProgress" parent="UIlayer/UI/Character"]
+modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -105,3 +114,6 @@ modulate = Color( 0.705882, 0.12549, 0.164706, 1 )
 position = Vector2( 408, 193 )
 texture = ExtResource( 5 )
 flip_h = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 2 )
