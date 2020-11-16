@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Scenes/Level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Levels/earth/village/village_platforms.png" type="Texture" id=2]
@@ -8,33 +8,129 @@
 [ext_resource path="res://Scenes/Level/Entrance/CharacterSpawner.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/Levels/Earth/sp_village_default.tres" type="Resource" id=7]
 [ext_resource path="res://Scenes/Level/ClimbAnchor/ClimbAnchor.gd" type="Script" id=8]
+[ext_resource path="res://Assets/Levels/earth/village/village_silos_front.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Levels/earth/village/village_scaf_front.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Levels/earth/village/village_ship_front.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Levels/earth/village/village_soil.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Levels/earth/village/village_ship_back.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Levels/earth/village/village_ship_blocks.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Levels/earth/village/village_scaf_ship.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Levels/earth/village/village_silos_back.png" type="Texture" id=16]
+[ext_resource path="res://Scenes/Level/BackgroundLayer/BackgroundLayer.gd" type="Script" id=17]
+[ext_resource path="res://Assets/Clouds/clouds3.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Levels/earth/earth/earth_sky.png" type="Texture" id=20]
+[ext_resource path="res://Scenes/Level/BackgroundLayer/BackgroundLayer.tscn" type="PackedScene" id=22]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float scroll_speed;
+uniform float radius = 5.0;
+uniform vec4 modulate: hint_color;
+
+void fragment() {
+	vec2 ps = TEXTURE_PIXEL_SIZE;
+	
+	vec2 shifteduv = UV;
+    shifteduv.x = mod(shifteduv.x+TIME*scroll_speed, 1.0);
+	
+	vec4 shadow = texture(TEXTURE, shifteduv + vec2(-radius, -radius) * ps);
+	
+	shadow += texture(TEXTURE, shifteduv + vec2(-radius, 0.0) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(-radius, radius) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(0.0, -radius) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(0.0, radius) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(radius, -radius) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(radius, 0.0) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(radius, radius) * ps);
+	shadow /= 8.0;
+	shadow *= modulate;
+	
+    vec4 color = texture(TEXTURE, shifteduv);
+    COLOR = mix(shadow, color, color.a);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/scroll_speed = 0.01
+shader_param/radius = 0.0
+shader_param/modulate = Color( 0, 0, 0, 0.0980392 )
 
 [node name="Level" instance=ExtResource( 1 )]
 default_spawn = "default"
 
 [node name="village_platforms" type="Sprite" parent="." index="1"]
+visible = false
 scale = Vector2( 10, 10 )
 texture = ExtResource( 2 )
 
-[node name="layer3" type="Node2D" parent="." index="2"]
-modulate = Color( 0, 1, 0.929412, 1 )
+[node name="bg" type="ParallaxBackground" parent="." index="2"]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="layer3" index="0"]
-collision_layer = 0
-collision_mask = 256
+[node name="ParallaxLayer" type="ParallaxLayer" parent="bg" index="0"]
+position = Vector2( -0.1, -1 )
+motion_scale = Vector2( 0, 0 )
 
-[node name="CollisionPolygon2D15" type="CollisionPolygon2D" parent="layer3/StaticBody2D" index="0"]
-polygon = PoolVector2Array( 580, -170, 560, -170, 560, -660, 580, -660 )
+[node name="earth_sky" type="Sprite" parent="bg/ParallaxLayer" index="0"]
+position = Vector2( 0.1, 1 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 20 )
 
-[node name="CollisionPolygon2D17" type="CollisionPolygon2D" parent="layer3/StaticBody2D" index="1"]
-position = Vector2( 0, 560 )
-polygon = PoolVector2Array( 580, -420, 560, -420, 560, -660, 580, -660 )
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="bg" index="1"]
+position = Vector2( -0.1, -1 )
+motion_scale = Vector2( 0.25, 0.05 )
 
-[node name="CollisionPolygon2D16" type="CollisionPolygon2D" parent="layer3/StaticBody2D" index="2"]
-position = Vector2( 170, 140 )
-polygon = PoolVector2Array( 580, -30, 560, -30, 560, -660, 580, -660 )
+[node name="BackgroundLayer" type="Sprite" parent="bg/ParallaxLayer4" index="0" instance=ExtResource( 22 )]
+material = SubResource( 2 )
+position = Vector2( 0.1, 11 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 18 )
+script = ExtResource( 17 )
+speed = 0.01
 
-[node name="layer2" type="Node2D" parent="." index="3"]
+[node name="back" type="Node2D" parent="." index="3"]
+scale = Vector2( 10, 10 )
+
+[node name="village_silos_back" type="Sprite" parent="back" index="0"]
+position = Vector2( 0, 7.62939e-06 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 16 )
+
+[node name="village_silos_front" type="Sprite" parent="back" index="1"]
+position = Vector2( 0, 7.62939e-06 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 9 )
+
+[node name="village_ship_blocks" type="Sprite" parent="back" index="2"]
+position = Vector2( 0, 7.62939e-06 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 14 )
+
+[node name="village_ship_back" type="Sprite" parent="back" index="3"]
+position = Vector2( 0, 7.62939e-06 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 13 )
+
+[node name="village_scaf_ship" type="Sprite" parent="back" index="4"]
+position = Vector2( 0, 7.62939e-06 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 15 )
+
+[node name="village_ship_front" type="Sprite" parent="back" index="5"]
+position = Vector2( 0, 7.62939e-06 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 11 )
+
+[node name="village_scaf_front" type="Sprite" parent="back" index="6"]
+position = Vector2( 0, 7.62939e-06 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 10 )
+
+[node name="village_soil" type="Sprite" parent="back" index="7"]
+position = Vector2( 0, 7.62939e-06 )
+texture = ExtResource( 12 )
+
+[node name="layer2" type="Node2D" parent="." index="4"]
 modulate = Color( 1, 0, 0, 1 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="layer2" index="0"]
@@ -45,7 +141,8 @@ collision_mask = 128
 polygon = PoolVector2Array( 40, 280, 40, 420, 160, 420, 160, 280 )
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="1"]
-polygon = PoolVector2Array( 80, 630, -40, 630, -40, 660, 220, 660, 220, 600, 250, 600, 250, 570, 280, 570, 280, 540, 160, 540, 160, 570, 120, 570, 120, 600, 80, 600 )
+position = Vector2( 30, 0 )
+polygon = PoolVector2Array( 80, 630, -70, 630, -70, 660, 220, 660, 220, 600, 250, 600, 250, 570, 280, 570, 280, 540, 160, 540, 160, 570, 120, 570, 120, 600, 80, 600 )
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="2"]
 polygon = PoolVector2Array( 280, 540, 280, 410, 350, 410, 350, 320, 420, 320, 420, 300, 510, 300, 510, 330, 620, 440, 740, 440, 740, 500, 420, 500, 420, 540 )
@@ -60,42 +157,37 @@ polygon = PoolVector2Array( 1060, 630, 1060, 670, 1190, 670, 1190, 630 )
 polygon = PoolVector2Array( 1240, 700, 1240, 740, 1380, 740, 1380, 700 )
 
 [node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="6"]
-polygon = PoolVector2Array( 680, 230, 860, 230, 860, 280, 680, 280 )
+polygon = PoolVector2Array( 630, 230, 860, 230, 860, 280, 630, 280 )
 
 [node name="CollisionPolygon2D23" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="7"]
 position = Vector2( 50, -630 )
-polygon = PoolVector2Array( 630, 110, 630, 140, 1170, 140, 1170, 110 )
+polygon = PoolVector2Array( 680, 110, 680, 140, 1170, 140, 1170, 110 )
 
 [node name="CollisionPolygon2D24" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="8"]
 polygon = PoolVector2Array( 10, -20, -20, -20, -220, -120, -730, -120, -730, -150, -240, -150 )
 
-[node name="CollisionPolygon2D25" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="9"]
-polygon = PoolVector2Array( 560, -660, 560, -170, 580, -170, 580, -660 )
-
-[node name="CollisionPolygon2D27" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="10"]
-position = Vector2( 0, 560 )
-polygon = PoolVector2Array( 560, -660, 560, -390, 580, -390, 580, -660 )
-
-[node name="CollisionPolygon2D26" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="11"]
-position = Vector2( 220, 160 )
-polygon = PoolVector2Array( 560, -660, 560, -30, 580, -30, 580, -660 )
-
-[node name="CollisionPolygon2D28" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="12"]
+[node name="CollisionPolygon2D28" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="9"]
 polygon = PoolVector2Array( 1220, -610, 1240, -610, 1240, -520, 1220, -520 )
 
-[node name="CollisionPolygon2D29" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="13"]
+[node name="CollisionPolygon2D29" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="10"]
 position = Vector2( -1970, 370 )
-polygon = PoolVector2Array( 1220, -610, 1240, -610, 1240, -520, 1220, -520 )
+polygon = PoolVector2Array( 1200, -680, 1240, -680, 1240, -510, 1200, -510 )
 
-[node name="CollisionPolygon2D30" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="14"]
-polygon = PoolVector2Array( 860, 150, 880, 150, 880, 230, 860, 230 )
-
-[node name="CollisionPolygon2D31" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="15"]
+[node name="CollisionPolygon2D31" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="11"]
 polygon = PoolVector2Array( 580, -100, 410, -100, 50, 80, 50, 90, 90, 90, 410, -70, 580, -70 )
 
+[node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="12"]
+polygon = PoolVector2Array( 580, 130, 560, 130, 560, -100, 640, -100, 640, -10, 580, -10 )
+
+[node name="CollisionPolygon2D9" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="13"]
+polygon = PoolVector2Array( 730, 130, 800, 130, 800, -490, 780, -490, 780, -260, 730, -260, 730, -160, 780, -160, 780, 30, 730, 30 )
+
+[node name="CollisionPolygon2D10" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="14"]
+polygon = PoolVector2Array( 580, -190, 560, -190, 560, -790, 580, -790, 580, -410, 640, -410, 640, -320, 580, -320 )
+
 [node name="[1] LayerSwitch" parent="layer2" index="1" instance=ExtResource( 5 )]
-position = Vector2( 30, 630 )
-scale = Vector2( 0.368, 1 )
+position = Vector2( 40, 630 )
+scale = Vector2( 0.508, 1 )
 collision_mask = 128
 
 [node name="[1] LayerSwitch2" parent="layer2" index="2" instance=ExtResource( 5 )]
@@ -124,14 +216,14 @@ position = Vector2( 280, 410 )
 script = ExtResource( 8 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/ClimbAnchor" index="0"]
-polygon = PoolVector2Array( 0, 0, -40, 70, 0, 70 )
+polygon = PoolVector2Array( 0, 0, -20, 70, 0, 70 )
 
 [node name="ClimbAnchor5" type="Area2D" parent="layer2" index="7"]
 position = Vector2( 160, 280 )
 script = ExtResource( 8 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/ClimbAnchor5" index="0"]
-polygon = PoolVector2Array( 0, 0, 40, 70, 0, 70 )
+polygon = PoolVector2Array( 0, 0, 20, 70, 0, 70 )
 
 [node name="ClimbAnchor6" type="Area2D" parent="layer2" index="8"]
 position = Vector2( 740, 440 )
@@ -152,16 +244,58 @@ position = Vector2( 350, 320 )
 script = ExtResource( 8 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/ClimbAnchor2" index="0"]
-polygon = PoolVector2Array( 0, 0, -40, 70, 0, 70 )
+polygon = PoolVector2Array( 0, 0, -20, 70, 0, 70 )
 
-[node name="ClimbAnchor4" type="Area2D" parent="layer2" index="11"]
-position = Vector2( 680, 230 )
+[node name="ClimbAnchor3" type="Area2D" parent="layer2" index="11"]
+position = Vector2( 730, 30 )
+script = ExtResource( 8 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/ClimbAnchor3" index="0"]
+polygon = PoolVector2Array( 0, 0, -40, 100, 0, 100 )
+
+[node name="ClimbAnchor8" type="Area2D" parent="layer2" index="12"]
+position = Vector2( 730, -260 )
+script = ExtResource( 8 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/ClimbAnchor8" index="0"]
+polygon = PoolVector2Array( 0, 0, -40, 100, 0, 100 )
+
+[node name="ClimbAnchor10" type="Area2D" parent="layer2" index="13"]
+position = Vector2( 640, -100 )
+script = ExtResource( 8 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/ClimbAnchor10" index="0"]
+polygon = PoolVector2Array( 0, 0, 30, 90, 0, 90 )
+
+[node name="ClimbAnchor12" type="Area2D" parent="layer2" index="14"]
+position = Vector2( 10, -60 )
+script = ExtResource( 8 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/ClimbAnchor12" index="0"]
+polygon = PoolVector2Array( 0, 30, 30, 40, 0, 70 )
+
+[node name="ClimbAnchor11" type="Area2D" parent="layer2" index="15"]
+position = Vector2( 640, -410 )
+script = ExtResource( 8 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/ClimbAnchor11" index="0"]
+polygon = PoolVector2Array( 0, 0, 30, 90, 0, 90 )
+
+[node name="ClimbAnchor9" type="Area2D" parent="layer2" index="16"]
+position = Vector2( 730, -520 )
+script = ExtResource( 8 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/ClimbAnchor9" index="0"]
+polygon = PoolVector2Array( 0, 0, -30, 50, 0, 50 )
+
+[node name="ClimbAnchor4" type="Area2D" parent="layer2" index="17"]
+position = Vector2( 630, 230 )
 script = ExtResource( 8 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/ClimbAnchor4" index="0"]
 polygon = PoolVector2Array( 0, 0, -30, 30, 0, 50 )
 
-[node name="layer1" type="Node2D" parent="." index="4"]
+[node name="layer1" type="Node2D" parent="." index="5"]
 modulate = Color( 1, 0.866667, 0, 1 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="layer1" index="0"]
@@ -169,7 +303,7 @@ collision_layer = 0
 collision_mask = 64
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer1/StaticBody2D" index="0"]
-polygon = PoolVector2Array( 1390, 950, 1390, 920, 1260, 920, 1260, 890, 1150, 890, 880, 750, 490, 750, 260, 630, -40, 630, -40, 280, -270, 280, -270, 420, -340, 420, -340, 540, -420, 540, -510, 590, -820, 590, -910, 540, -1080, 540, -1080, 350, -1110, 350, -1110, 1080, 1390, 1080, 1580, 1080, 1580, 950 )
+polygon = PoolVector2Array( 1390, 950, 1390, 920, 1260, 920, 1260, 890, 1150, 890, 880, 750, 490, 750, 260, 630, -39.6071, 630, -40, 670, -250, 670, -210, 540, -40, 490, -40, 280, -270, 280, -270, 420, -340, 420, -340, 540, -420, 540, -510, 590, -820, 590, -910, 540, -1080, 540, -1080, 350, -1110, 350, -1110, 1080, 1390, 1080, 1580, 1080, 1580, 950 )
 
 [node name="[2] LayerSwitch" parent="layer1" index="1" instance=ExtResource( 5 )]
 position = Vector2( 600, 720 )
@@ -178,26 +312,44 @@ collision_mask = 64
 layer_out = 2
 
 [node name="[2] LayerSwitch2" parent="layer1" index="2" instance=ExtResource( 5 )]
-position = Vector2( 100, 600 )
+position = Vector2( 130, 600 )
 scale = Vector2( 0.121, 1 )
 collision_mask = 64
 layer_out = 2
 
-[node name="ClimbAnchor6" type="Area2D" parent="layer1" index="3"]
+[node name="[2] LayerSwitch3" parent="layer1" index="3" instance=ExtResource( 5 )]
+position = Vector2( 110, 280 )
+scale = Vector2( 0.443, 1 )
+collision_mask = 64
+layer_out = 2
+
+[node name="[0] LayerSwitch" parent="layer1" index="4" instance=ExtResource( 5 )]
+position = Vector2( 1530, 950 )
+scale = Vector2( 0.865, 1 )
+collision_mask = 64
+layer_out = 0
+
+[node name="[0] LayerSwitch2" parent="layer1" index="5" instance=ExtResource( 5 )]
+position = Vector2( -110, 670 )
+scale = Vector2( 0.865, 1 )
+collision_mask = 64
+layer_out = 0
+
+[node name="ClimbAnchor6" type="Area2D" parent="layer1" index="6"]
 position = Vector2( -270, 280 )
 script = ExtResource( 8 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer1/ClimbAnchor6" index="0"]
-polygon = PoolVector2Array( 0, 0, -40, 70, 0, 70 )
+polygon = PoolVector2Array( 0, 0, -20, 70, 0, 70 )
 
-[node name="ClimbAnchor7" type="Area2D" parent="layer1" index="4"]
+[node name="ClimbAnchor7" type="Area2D" parent="layer1" index="7"]
 position = Vector2( -340, 420 )
 script = ExtResource( 8 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer1/ClimbAnchor7" index="0"]
-polygon = PoolVector2Array( 0, 0, -40, 70, 0, 70 )
+polygon = PoolVector2Array( 0, 0, -20, 70, 0, 70 )
 
-[node name="layer0" type="Node2D" parent="." index="5"]
+[node name="layer0" type="Node2D" parent="." index="6"]
 modulate = Color( 0, 1, 0.180392, 1 )
 
 [node name="Static" type="StaticBody2D" parent="layer0" index="0"]
@@ -247,7 +399,7 @@ script = ExtResource( 8 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer0/ClimbAnchor10" index="0"]
 polygon = PoolVector2Array( 0, 0, 40, 70, 0, 70 )
 
-[node name="CharacterSpawner" type="Node2D" parent="." index="6"]
+[node name="CharacterSpawner" type="Node2D" parent="." index="7"]
 position = Vector2( 1880, 880 )
 script = ExtResource( 6 )
 spawnpoint_data = ExtResource( 7 )
@@ -255,10 +407,13 @@ spawnpoint_data = ExtResource( 7 )
 [node name="CameraAnchor" type="Node2D" parent="CharacterSpawner" index="0"]
 position = Vector2( -920, -340 )
 
-[node name="Camera" parent="." index="7" instance=ExtResource( 4 )]
+[node name="front" type="Node2D" parent="." index="8"]
+scale = Vector2( 10, 10 )
+
+[node name="Camera" parent="." index="9" instance=ExtResource( 4 )]
 visible = false
 position = Vector2( 960, 540 )
 
-[node name="CameraArea" parent="." index="8" instance=ExtResource( 3 )]
+[node name="CameraArea" parent="." index="10" instance=ExtResource( 3 )]
 visible = false
 position = Vector2( -1920, -1080 )

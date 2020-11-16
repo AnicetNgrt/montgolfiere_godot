@@ -10,7 +10,7 @@ export(float) var ARTIFACT_DURATION = 2.0
 
 export(Array, Resource) var cards = []
 var wind:Vector2
-onready var Wind_time:Timer = $Wind_timer
+onready var Wind_time:Timer = $WindTimer
 
 var velocity = Vector2.ZERO
 
