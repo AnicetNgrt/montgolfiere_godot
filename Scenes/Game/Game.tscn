@@ -8,20 +8,13 @@
 [ext_resource path="res://Assets/UI/Stamina/ball2.png" type="Texture" id=6]
 [ext_resource path="res://Assets/UI/Stamina/ball3.png" type="Texture" id=7]
 [ext_resource path="res://Scenes/Game/StaminaBar.gd" type="Script" id=8]
+[ext_resource path="res://Resources/Environment/default.tres" type="Environment" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 2 )
-
-[sub_resource type="Environment" id=2]
-background_mode = 4
-glow_enabled = true
-glow_intensity = 1.51
-glow_bloom = 0.21
-glow_bicubic_upscale = true
-adjustment_enabled = true
 
 [node name="Game" type="Node"]
 pause_mode = 2
@@ -116,4 +109,4 @@ texture = ExtResource( 5 )
 flip_h = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 2 )
+environment = ExtResource( 9 )

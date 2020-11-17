@@ -10,6 +10,7 @@ signal switch_entity(character)
 export(bool) var do_self_spawn = true 
 export(String) var default_spawn = ""
 export(Color) var custom_modulate = Color.white setget set_custom_modulate
+export(Resource) var region #: Region
 
 var is_ready_and_spawned = false
 

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://Resources/Region/Region.gd" type="Script" id=1]
+[ext_resource path="res://Resources/Environment/default.tres" type="Environment" id=2]
+[ext_resource path="res://Resources/CharacterPhysicsProfile/default_physics_profile.tres" type="Resource" id=3]
+
+[resource]
+script = ExtResource( 1 )
+map_name = ""
+environment = ExtResource( 2 )
+physics_profile = ExtResource( 3 )

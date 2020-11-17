@@ -60,6 +60,11 @@ _global_script_classes=[ {
 "path": "res://Scenes/Level/Level.gd"
 }, {
 "base": "Resource",
+"class": "Region",
+"language": "GDScript",
+"path": "res://Resources/Region/Region.gd"
+}, {
+"base": "Resource",
 "class": "SpawnPoint",
 "language": "GDScript",
 "path": "res://Resources/SpawnPoint/SpawnPoint.gd"
@@ -75,6 +80,7 @@ _global_script_class_icons={
 "Exit": "",
 "Game": "",
 "Level": "",
+"Region": "",
 "SpawnPoint": ""
 }
 
