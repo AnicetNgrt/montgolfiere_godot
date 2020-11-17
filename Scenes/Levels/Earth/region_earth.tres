@@ -6,6 +6,6 @@
 
 [resource]
 script = ExtResource( 1 )
-map_name = ""
+map_name = "Space Graveyard"
 environment = ExtResource( 2 )
 physics_profile = ExtResource( 3 )

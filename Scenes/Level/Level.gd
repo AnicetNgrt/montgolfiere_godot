@@ -48,9 +48,17 @@ func enter_at(key:String):
 			$Camera.global_position = spawner.get_node("CameraAnchor").global_position
 		emit_signal("ready_and_spawned")
 		is_ready_and_spawned = true
+		if not region.is_inside:
+			region.is_inside = true
+			show_region_title()
+			
 		if instance is Character:
 			instance.connect("layer_changed", self, "on_character_layer_changed")
 			emit_signal("switch_entity", instance)
+
+
+func show_region_title():
+	UiSummoner.summon_region_title(region.map_name)
 
 
 func set_custom_modulate(value):

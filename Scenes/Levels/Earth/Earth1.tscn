@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Scenes/Level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Level/Entrance/CharacterSpawner.gd" type="Script" id=2]
@@ -24,6 +24,7 @@
 [ext_resource path="res://Assets/Levels/earth/earth/earth_left_cliff.png" type="Texture" id=22]
 [ext_resource path="res://Assets/Levels/earth/earth/earth_stair.png" type="Texture" id=23]
 [ext_resource path="res://Scenes/Level/BackgroundLayer/BackgroundLayer.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Scenes/Levels/Earth/region_earth.tres" type="Resource" id=25]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -63,6 +64,7 @@ shader_param/modulate = Color( 0, 0, 0, 0.0980392 )
 
 [node name="Level" instance=ExtResource( 1 )]
 default_spawn = "default"
+region = ExtResource( 25 )
 
 [node name="earth_platforms" type="Sprite" parent="." index="1"]
 visible = false
