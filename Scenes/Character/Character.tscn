@@ -125,104 +125,104 @@ atlas = ExtResource( 2 )
 region = Rect2( 121, 0, 11, 12 )
 
 [sub_resource type="AtlasTexture" id=29]
-atlas = ExtResource( 10 )
+atlas = ExtResource( 9 )
 region = Rect2( 0, 0, 13, 12 )
 
 [sub_resource type="AtlasTexture" id=30]
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 11, 12 )
-
-[sub_resource type="AtlasTexture" id=31]
-atlas = ExtResource( 2 )
-region = Rect2( 11, 0, 11, 12 )
-
-[sub_resource type="AtlasTexture" id=32]
-atlas = ExtResource( 2 )
-region = Rect2( 22, 0, 11, 12 )
-
-[sub_resource type="AtlasTexture" id=33]
-atlas = ExtResource( 2 )
-region = Rect2( 33, 0, 11, 12 )
-
-[sub_resource type="AtlasTexture" id=34]
-atlas = ExtResource( 2 )
-region = Rect2( 44, 0, 11, 12 )
-
-[sub_resource type="AtlasTexture" id=35]
-atlas = ExtResource( 2 )
-region = Rect2( 55, 0, 11, 12 )
-
-[sub_resource type="AtlasTexture" id=36]
-atlas = ExtResource( 2 )
-region = Rect2( 66, 0, 11, 12 )
-
-[sub_resource type="AtlasTexture" id=37]
-atlas = ExtResource( 2 )
-region = Rect2( 77, 0, 11, 12 )
-
-[sub_resource type="AtlasTexture" id=38]
-atlas = ExtResource( 2 )
-region = Rect2( 88, 0, 11, 12 )
-
-[sub_resource type="AtlasTexture" id=39]
-atlas = ExtResource( 2 )
-region = Rect2( 99, 0, 11, 12 )
-
-[sub_resource type="AtlasTexture" id=40]
-atlas = ExtResource( 2 )
-region = Rect2( 110, 0, 11, 12 )
-
-[sub_resource type="AtlasTexture" id=41]
-atlas = ExtResource( 2 )
-region = Rect2( 121, 0, 11, 12 )
-
-[sub_resource type="AtlasTexture" id=42]
-atlas = ExtResource( 9 )
-region = Rect2( 0, 0, 13, 12 )
-
-[sub_resource type="AtlasTexture" id=43]
 atlas = ExtResource( 9 )
 region = Rect2( 13, 0, 13, 12 )
 
-[sub_resource type="AtlasTexture" id=44]
+[sub_resource type="AtlasTexture" id=31]
 atlas = ExtResource( 9 )
 region = Rect2( 26, 0, 13, 12 )
 
-[sub_resource type="AtlasTexture" id=45]
+[sub_resource type="AtlasTexture" id=32]
 atlas = ExtResource( 9 )
 region = Rect2( 39, 0, 13, 12 )
 
-[sub_resource type="AtlasTexture" id=46]
+[sub_resource type="AtlasTexture" id=33]
 atlas = ExtResource( 9 )
 region = Rect2( 52, 0, 13, 12 )
 
-[sub_resource type="AtlasTexture" id=47]
+[sub_resource type="AtlasTexture" id=34]
 atlas = ExtResource( 9 )
 region = Rect2( 65, 0, 13, 12 )
 
-[sub_resource type="AtlasTexture" id=48]
+[sub_resource type="AtlasTexture" id=35]
 atlas = ExtResource( 9 )
 region = Rect2( 78, 0, 13, 12 )
 
-[sub_resource type="AtlasTexture" id=49]
+[sub_resource type="AtlasTexture" id=36]
 atlas = ExtResource( 9 )
 region = Rect2( 91, 0, 13, 12 )
 
-[sub_resource type="AtlasTexture" id=50]
+[sub_resource type="AtlasTexture" id=37]
 atlas = ExtResource( 9 )
 region = Rect2( 104, 0, 13, 12 )
 
-[sub_resource type="AtlasTexture" id=51]
+[sub_resource type="AtlasTexture" id=38]
 atlas = ExtResource( 9 )
 region = Rect2( 117, 0, 13, 12 )
 
-[sub_resource type="AtlasTexture" id=52]
+[sub_resource type="AtlasTexture" id=39]
 atlas = ExtResource( 9 )
 region = Rect2( 143, 0, 13, 12 )
 
-[sub_resource type="AtlasTexture" id=53]
+[sub_resource type="AtlasTexture" id=40]
 atlas = ExtResource( 9 )
 region = Rect2( 156, 0, 13, 12 )
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 10 )
+region = Rect2( 0, 0, 13, 12 )
+
+[sub_resource type="AtlasTexture" id=42]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 11, 12 )
+
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 2 )
+region = Rect2( 11, 0, 11, 12 )
+
+[sub_resource type="AtlasTexture" id=44]
+atlas = ExtResource( 2 )
+region = Rect2( 22, 0, 11, 12 )
+
+[sub_resource type="AtlasTexture" id=45]
+atlas = ExtResource( 2 )
+region = Rect2( 33, 0, 11, 12 )
+
+[sub_resource type="AtlasTexture" id=46]
+atlas = ExtResource( 2 )
+region = Rect2( 44, 0, 11, 12 )
+
+[sub_resource type="AtlasTexture" id=47]
+atlas = ExtResource( 2 )
+region = Rect2( 55, 0, 11, 12 )
+
+[sub_resource type="AtlasTexture" id=48]
+atlas = ExtResource( 2 )
+region = Rect2( 66, 0, 11, 12 )
+
+[sub_resource type="AtlasTexture" id=49]
+atlas = ExtResource( 2 )
+region = Rect2( 77, 0, 11, 12 )
+
+[sub_resource type="AtlasTexture" id=50]
+atlas = ExtResource( 2 )
+region = Rect2( 88, 0, 11, 12 )
+
+[sub_resource type="AtlasTexture" id=51]
+atlas = ExtResource( 2 )
+region = Rect2( 99, 0, 11, 12 )
+
+[sub_resource type="AtlasTexture" id=52]
+atlas = ExtResource( 2 )
+region = Rect2( 110, 0, 11, 12 )
+
+[sub_resource type="AtlasTexture" id=53]
+atlas = ExtResource( 2 )
+region = Rect2( 121, 0, 11, 12 )
 
 [sub_resource type="SpriteFrames" id=54]
 animations = [ {
@@ -236,20 +236,20 @@ animations = [ {
 "name": "walk",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 29 ) ],
+"frames": [ SubResource( 29 ), SubResource( 29 ), SubResource( 30 ), SubResource( 30 ), SubResource( 31 ), SubResource( 31 ), SubResource( 32 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 35 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ) ],
+"loop": false,
+"name": "climb",
+"speed": 30.0
+}, {
+"frames": [ SubResource( 41 ) ],
 "loop": false,
 "name": "jump",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ) ],
+"frames": [ SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ) ],
 "loop": true,
 "name": "run",
 "speed": 10.0
-}, {
-"frames": [ SubResource( 42 ), SubResource( 42 ), SubResource( 43 ), SubResource( 43 ), SubResource( 44 ), SubResource( 44 ), SubResource( 45 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 48 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ) ],
-"loop": false,
-"name": "climb",
-"speed": 30.0
 } ]
 
 [node name="Character" type="KinematicBody2D"]
@@ -268,7 +268,7 @@ position = Vector2( -5, -60 )
 scale = Vector2( 10, 10 )
 frames = SubResource( 54 )
 animation = "idle"
-frame = 5
+frame = 12
 playing = true
 offset = Vector2( -1.52588e-05, 0 )
 
@@ -308,4 +308,174 @@ volume_db = -15.0
 pitch_scale = 0.6
 attenuation = 2.82843
 bus = "Sfx"
+
+[node name="HintsRaycasts" type="Node2D" parent="."]
+visible = false
+
+[node name="RayCast2D" type="RayCast2D" parent="HintsRaycasts"]
+position = Vector2( 0, -50 )
+enabled = true
+cast_to = Vector2( 0, 200 )
+collision_mask = 262144
+
+[node name="RayCast2D2" type="RayCast2D" parent="HintsRaycasts"]
+position = Vector2( 0, -50 )
+rotation = 0.785398
+enabled = true
+cast_to = Vector2( 0, 200 )
+collision_mask = 262144
+
+[node name="RayCast2D3" type="RayCast2D" parent="HintsRaycasts"]
+position = Vector2( 0, -50 )
+rotation = 1.5708
+enabled = true
+cast_to = Vector2( 0, 200 )
+collision_mask = 262144
+
+[node name="RayCast2D4" type="RayCast2D" parent="HintsRaycasts"]
+position = Vector2( 0, -50 )
+rotation = 2.35619
+enabled = true
+cast_to = Vector2( 0, 200 )
+collision_mask = 262144
+
+[node name="RayCast2D5" type="RayCast2D" parent="HintsRaycasts"]
+position = Vector2( 0, -50 )
+rotation = 3.14159
+enabled = true
+cast_to = Vector2( 0, 200 )
+collision_mask = 262144
+
+[node name="RayCast2D6" type="RayCast2D" parent="HintsRaycasts"]
+position = Vector2( 0, -50 )
+rotation = -2.35619
+enabled = true
+cast_to = Vector2( 0, 200 )
+collision_mask = 262144
+
+[node name="RayCast2D7" type="RayCast2D" parent="HintsRaycasts"]
+position = Vector2( 0, -50 )
+rotation = -1.57079
+enabled = true
+cast_to = Vector2( 0, 200 )
+collision_mask = 262144
+
+[node name="RayCast2D8" type="RayCast2D" parent="HintsRaycasts"]
+position = Vector2( 0, -50 )
+rotation = -0.785397
+enabled = true
+cast_to = Vector2( 0, 200 )
+collision_mask = 262144
+
+[node name="RayCast2D9" type="RayCast2D" parent="HintsRaycasts"]
+position = Vector2( 0, -50 )
+rotation = 0.261799
+enabled = true
+cast_to = Vector2( 0, 200 )
+collision_mask = 262144
+
+[node name="RayCast2D10" type="RayCast2D" parent="HintsRaycasts"]
+position = Vector2( 0, -50 )
+rotation = 1.0472
+enabled = true
+cast_to = Vector2( 0, 200 )
+collision_mask = 262144
+
+[node name="RayCast2D11" type="RayCast2D" parent="HintsRaycasts"]
+position = Vector2( 0, -50 )
+rotation = 1.83259
+enabled = true
+cast_to = Vector2( 0, 200 )
+collision_mask = 262144
+
+[node name="RayCast2D12" type="RayCast2D" parent="HintsRaycasts"]
+position = Vector2( 0, -50 )
+rotation = 2.61799
+enabled = true
+cast_to = Vector2( 0, 200 )
+collision_mask = 262144
+
+[node name="RayCast2D13" type="RayCast2D" parent="HintsRaycasts"]
+position = Vector2( 0, -50 )
+rotation = 3.40339
+enabled = true
+cast_to = Vector2( 0, 200 )
+collision_mask = 262144
+
+[node name="RayCast2D14" type="RayCast2D" parent="HintsRaycasts"]
+position = Vector2( 0, -50 )
+rotation = -2.09439
+enabled = true
+cast_to = Vector2( 0, 200 )
+collision_mask = 262144
+
+[node name="RayCast2D15" type="RayCast2D" parent="HintsRaycasts"]
+position = Vector2( 0, -50 )
+rotation = -1.309
+enabled = true
+cast_to = Vector2( 0, 200 )
+collision_mask = 262144
+
+[node name="RayCast2D16" type="RayCast2D" parent="HintsRaycasts"]
+position = Vector2( 0, -50 )
+rotation = -0.523598
+enabled = true
+cast_to = Vector2( 0, 200 )
+collision_mask = 262144
+
+[node name="RayCast2D17" type="RayCast2D" parent="HintsRaycasts"]
+position = Vector2( 0, -50 )
+rotation = 0.523598
+enabled = true
+cast_to = Vector2( 0, 200 )
+collision_mask = 262144
+
+[node name="RayCast2D18" type="RayCast2D" parent="HintsRaycasts"]
+position = Vector2( 0, -50 )
+rotation = 1.309
+enabled = true
+cast_to = Vector2( 0, 200 )
+collision_mask = 262144
+
+[node name="RayCast2D19" type="RayCast2D" parent="HintsRaycasts"]
+position = Vector2( 0, -50 )
+rotation = 2.09439
+enabled = true
+cast_to = Vector2( 0, 200 )
+collision_mask = 262144
+
+[node name="RayCast2D20" type="RayCast2D" parent="HintsRaycasts"]
+position = Vector2( 0, -50 )
+rotation = 2.87979
+enabled = true
+cast_to = Vector2( 0, 200 )
+collision_mask = 262144
+
+[node name="RayCast2D21" type="RayCast2D" parent="HintsRaycasts"]
+position = Vector2( 0, -50 )
+rotation = 3.66519
+enabled = true
+cast_to = Vector2( 0, 200 )
+collision_mask = 262144
+
+[node name="RayCast2D22" type="RayCast2D" parent="HintsRaycasts"]
+position = Vector2( 0, -50 )
+rotation = -1.83259
+enabled = true
+cast_to = Vector2( 0, 200 )
+collision_mask = 262144
+
+[node name="RayCast2D23" type="RayCast2D" parent="HintsRaycasts"]
+position = Vector2( 0, -50 )
+rotation = -1.0472
+enabled = true
+cast_to = Vector2( 0, 200 )
+collision_mask = 262144
+
+[node name="RayCast2D24" type="RayCast2D" parent="HintsRaycasts"]
+position = Vector2( 0, -50 )
+rotation = -0.261799
+enabled = true
+cast_to = Vector2( 0, 200 )
+collision_mask = 262144
 [connection signal="frame_changed" from="Sprite" to="." method="_on_Sprite_frame_changed"]

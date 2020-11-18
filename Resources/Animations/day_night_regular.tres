@@ -1,0 +1,18 @@
+[gd_resource type="Animation" format=2]
+
+[resource]
+resource_name = "day_night"
+length = 24.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:custom_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 6.1, 10.1, 13.9, 15.4, 16.9, 20.9, 22.1, 23.4, 24 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0.188235, 0.184314, 0.34902, 1 ), Color( 0.45098, 0.352941, 0.513726, 1 ), Color( 0.890196, 0.890196, 0.890196, 1 ), Color( 0.890196, 0.890196, 0.890196, 1 ), Color( 1, 0.992157, 0.894118, 1 ), Color( 0.909804, 0.909804, 0.909804, 1 ), Color( 1, 0.760784, 0.52549, 1 ), Color( 0.666667, 0.454902, 0.67451, 1 ), Color( 0.188235, 0.184314, 0.34902, 1 ), Color( 0, 0, 0, 1 ) ]
+}

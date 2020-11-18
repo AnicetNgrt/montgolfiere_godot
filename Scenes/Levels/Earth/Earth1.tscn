@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Scenes/Level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Level/Entrance/CharacterSpawner.gd" type="Script" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://Assets/Levels/earth/earth/earth_stair.png" type="Texture" id=23]
 [ext_resource path="res://Scenes/Level/BackgroundLayer/BackgroundLayer.tscn" type="PackedScene" id=24]
 [ext_resource path="res://Scenes/Levels/Earth/region_earth.tres" type="Resource" id=25]
+[ext_resource path="res://Resources/Animations/day_night_regular.tres" type="Animation" id=26]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -63,7 +64,9 @@ shader_param/radius = 0.0
 shader_param/modulate = Color( 0, 0, 0, 0.0980392 )
 
 [node name="Level" instance=ExtResource( 1 )]
+modulate = Color( 0, 0, 0, 1 )
 default_spawn = "default"
+custom_modulate = Color( 0, 0, 0, 1 )
 region = ExtResource( 25 )
 
 [node name="earth_platforms" type="Sprite" parent="." index="1"]
@@ -75,6 +78,7 @@ texture = ExtResource( 6 )
 [node name="bg" type="ParallaxBackground" parent="." index="2"]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="bg" index="0"]
+modulate = Color( 0, 0, 0, 1 )
 position = Vector2( -0.1, -1 )
 motion_scale = Vector2( 0, 0 )
 
@@ -83,6 +87,7 @@ scale = Vector2( 10, 10 )
 texture = ExtResource( 9 )
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="bg" index="1"]
+modulate = Color( 0, 0, 0, 1 )
 position = Vector2( -0.1, -1 )
 motion_scale = Vector2( 0.25, 0.1 )
 
@@ -93,6 +98,7 @@ scale = Vector2( 10, 10 )
 speed = 0.01
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="bg" index="2"]
+modulate = Color( 0, 0, 0, 1 )
 motion_scale = Vector2( 0, 0.5 )
 
 [node name="earth_landscape2" type="Sprite" parent="bg/ParallaxLayer2" index="0"]
@@ -100,10 +106,12 @@ scale = Vector2( 10, 10 )
 texture = ExtResource( 11 )
 
 [node name="ParallaxLayer5" type="ParallaxLayer" parent="bg" index="3"]
+modulate = Color( 0, 0, 0, 1 )
 position = Vector2( -0.1, -1 )
 motion_scale = Vector2( 0.25, 0.6 )
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="bg" index="4"]
+modulate = Color( 0, 0, 0, 1 )
 motion_scale = Vector2( 0, 0.75 )
 
 [node name="earth_landscape1" type="Sprite" parent="bg/ParallaxLayer3" index="0"]
@@ -166,22 +174,23 @@ position = Vector2( 0, -420 )
 visible = false
 modulate = Color( 0.85098, 0, 1, 1 )
 
-[node name="Area2D" type="StaticBody2D" parent="layer2" index="0"]
-collision_layer = 0
-collision_mask = 128
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="layer2/Area2D" index="0"]
-polygon = PoolVector2Array( -780, 110, -780, 80, -850, 80, -850, 50, -920, 50, -920, 10, -780, 10, -780, 40, -720, 40, -720, 70, -660, 70, -660, 110, -390, 110, -390, 140, -780, 140 )
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/Area2D" index="1"]
-polygon = PoolVector2Array( 10, 70, 10, 110, -130, 110, -130, 140, 20, 140, 20, 100, 90, 100, 90, 70, 140, 70, 140, 40, 200, 40, 960, 40, 960, 10, 110, 10, 110, 40, 70, 40, 70, 70 )
-
-[node name="[1] LayerSwitch" parent="layer2" index="1" instance=ExtResource( 7 )]
+[node name="[1] LayerSwitch" parent="layer2" index="0" instance=ExtResource( 7 )]
 position = Vector2( -340, 110 )
 scale = Vector2( 2.75, 1 )
 collision_mask = 128
 
+[node name="StaticBody2D" type="StaticBody2D" parent="layer2" index="1"]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="0"]
+polygon = PoolVector2Array( -60, 70, -60, 110, -130, 110, -130, 140, 60, 140, 60, 100, 120, 100, 120, 70, 190, 70, 190, 40, 960, 40, 960, 10, 130, 10, 130, 40, 70, 40, 70, 70 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="1"]
+polygon = PoolVector2Array( -600, 70, -600, 110, -390, 110, -390, 140, -750, 140, -750, 110, -780, 110, -780, 70, -850, 70, -850, 40, -960, 40, -960, 10, -780, 10, -780, 40, -720, 40, -720, 70 )
+
 [node name="layer1" type="Node2D" parent="." index="6"]
+visible = false
 modulate = Color( 1, 0.423529, 0, 1 )
 
 [node name="[0] LayerSwitch" parent="layer1" index="0" instance=ExtResource( 7 )]
@@ -196,13 +205,13 @@ layer_out = 0
 
 [node name="[2] LayerSwitch" parent="layer1" index="2" instance=ExtResource( 7 )]
 position = Vector2( 0, 80 )
-scale = Vector2( 0.376, 1 )
+scale = Vector2( 0.376, 1.389 )
 collision_mask = 64
 layer_out = 2
 
 [node name="[2] LayerSwitch2" parent="layer1" index="3" instance=ExtResource( 7 )]
-position = Vector2( -626, 80 )
-scale = Vector2( 0.21, 1 )
+position = Vector2( -650, 80 )
+scale = Vector2( 0.427, 1.146 )
 collision_mask = 64
 layer_out = 2
 
@@ -347,41 +356,42 @@ script = ExtResource( 8 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer1/ClimbAnchor15" index="0"]
 polygon = PoolVector2Array( 0, 0, -40, 80, 0, 80 )
 
-[node name="Area2D" type="StaticBody2D" parent="layer1" index="20"]
+[node name="StaticBody" type="StaticBody2D" parent="layer1" index="20"]
 position = Vector2( 0, 610 )
-collision_layer = 0
+collision_layer = 262144
 collision_mask = 64
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer1/Area2D" index="0"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer1/StaticBody" index="0"]
 polygon = PoolVector2Array( -800, 720, -800, 680, -720, 680, -720, 640, -650, 640, -650, 600, -470, 600, -310, 440, -270, 440, -270, 280, -200, 280, -200, 440, -140, 440, -140, 570, 50, 570, 50, 640, -580, 640, -580, 680, -660, 680, -660, 720 )
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="layer1/Area2D" index="1"]
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="layer1/StaticBody" index="1"]
 polygon = PoolVector2Array( 140, 570, 140, 640, 280, 640, 280, 570 )
 
-[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="layer1/Area2D" index="2"]
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="layer1/StaticBody" index="2"]
 polygon = PoolVector2Array( 450, 570, 450, 640, 610, 640, 610, 660, 960, 660, 960, 160, 920, 160, 920, 630, 760, 630, 760, 600, 660, 600, 660, 570 )
 
-[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="layer1/Area2D" index="3"]
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="layer1/StaticBody" index="3"]
 polygon = PoolVector2Array( -920, 470, -600, 470, -420, 110, -420, 100, -330, 100, -330, -20, -420, -20, -420, 100, -540, 100, -540, -220, -620, -220, -620, -410, -390, -410, -390, -500, -920, -500, -920, -600, -960, -600, -960, -410, -960, 760, -700, 760, -700, 720, -920, 720 )
 
-[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="layer1/Area2D" index="4"]
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="layer1/StaticBody" index="4"]
 polygon = PoolVector2Array( -230, -330, -130, -330, -130, -500, 20, -500, 680, -170, 770, -170, 770, -80, 700, -80, 420, -220, -230, -220 )
 
-[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="layer1/Area2D" index="5"]
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="layer1/StaticBody" index="5"]
 polygon = PoolVector2Array( 140, 190, -60, 190, -60, 100, 140, 100 )
 
-[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="layer1/Area2D" index="6"]
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="layer1/StaticBody" index="6"]
 position = Vector2( 350, 0 )
 polygon = PoolVector2Array( 40, 190, -60, 190, -60, 100, 40, 100 )
 
-[node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="layer1/Area2D" index="7"]
+[node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="layer1/StaticBody" index="7"]
 position = Vector2( 200, 90 )
 polygon = PoolVector2Array( 90, 190, -60, 190, -60, 100, 90, 100 )
 
-[node name="CollisionPolygon2D9" type="CollisionPolygon2D" parent="layer1/Area2D" index="8"]
+[node name="CollisionPolygon2D9" type="CollisionPolygon2D" parent="layer1/StaticBody" index="8"]
 polygon = PoolVector2Array( 390, 190, 390, 280, 690, 280, 690, 190, 960, 190, 960, -560, 920, -560, 920, -10, 700, 100, 630, 100, 630, 190 )
 
 [node name="layer0" type="Node2D" parent="." index="7"]
+visible = false
 modulate = Color( 0, 0.486275, 1, 1 )
 
 [node name="[1] LayerSwitch" parent="layer0" index="0" instance=ExtResource( 7 )]
@@ -394,6 +404,7 @@ scale = Vector2( 0.268, 1 )
 
 [node name="ClimbAnchor4" type="Area2D" parent="layer0" index="2"]
 position = Vector2( 550, 1030 )
+collision_layer = 0
 collision_mask = 32
 script = ExtResource( 8 )
 
@@ -402,6 +413,7 @@ polygon = PoolVector2Array( 0, 0, 70, 140, 0, 140 )
 
 [node name="ClimbAnchor5" type="Area2D" parent="layer0" index="3"]
 position = Vector2( 690, 1240 )
+collision_layer = 0
 collision_mask = 32
 script = ExtResource( 8 )
 
@@ -409,7 +421,7 @@ script = ExtResource( 8 )
 polygon = PoolVector2Array( 0, 0, -50, 130, 0, 130 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="layer0" index="4"]
-collision_layer = 0
+collision_layer = 262144
 collision_mask = 32
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer0/StaticBody2D" index="0"]
@@ -441,3 +453,6 @@ position = Vector2( 0, -370 )
 [node name="CameraArea2" parent="." index="12" instance=ExtResource( 4 )]
 visible = false
 position = Vector2( 0, 1070 )
+
+[node name="AnimationPlayer" parent="." index="13"]
+anims/day_night_regular = ExtResource( 26 )

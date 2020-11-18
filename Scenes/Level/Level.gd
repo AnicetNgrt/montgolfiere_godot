@@ -16,6 +16,7 @@ var is_ready_and_spawned = false
 
 
 func _ready():
+	$AnimationPlayer.add_animation("day_night", region.day_night_anim)
 	if !Engine.is_editor_hint():
 		if do_self_spawn and default_spawn != "":
 			enter_at(default_spawn)
@@ -48,16 +49,19 @@ func enter_at(key:String):
 			$Camera.global_position = spawner.get_node("CameraAnchor").global_position
 		emit_signal("ready_and_spawned")
 		is_ready_and_spawned = true
+		
 		if not region.is_inside:
 			region.is_inside = true
-			show_region_title()
+			on_region_enter()
 			
 		if instance is Character:
 			instance.connect("layer_changed", self, "on_character_layer_changed")
 			emit_signal("switch_entity", instance)
 
 
-func show_region_title():
+func on_region_enter():
+	$AnimationPlayer.play("day_night", -1, 0.33)
+	WorldEnvManager.set_environment(region.environment)
 	UiSummoner.summon_region_title(region.map_name)
 
 

@@ -26,6 +26,8 @@ func _physics_process(delta:float):
 
 func get_input(delta:float):
 	handle_walking(delta)
+	if Input.is_action_just_pressed("show_platforms_hints"):
+		refresh_platforms_hints()
 
 
 func handle_walking(delta:float) -> void:
@@ -167,3 +169,11 @@ func set_stamina_and_notify(value):
 	#if new_stamina != state.stamina:
 	#	emit_signal("stamina_changed", new_stamina)
 	#state.stamina = new_stamina
+
+
+func refresh_platforms_hints():
+	pass
+#	for c in $HintsRaycasts.get_children():
+#		if c is RayCast2D:
+#			print(c.get_collider())
+#			print(c.get_collision_point())
