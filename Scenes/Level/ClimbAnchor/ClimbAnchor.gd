@@ -11,7 +11,7 @@ func _physics_process(delta):
 		var bodies = get_overlapping_bodies()
 		for body in bodies:
 			if body is Character:
-				if body.can_climb() and Input.is_action_pressed("climb"):
+				if body.can_climb() and (Input.is_action_pressed("climb") or not body.is_on_floor()):
 					var s = sign(global_position.x-body.global_position.x)
 					var tween = Tween.new()
 					add_child(tween)

@@ -44,15 +44,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/Level/ClimbAnchor/ClimbAnchor.gd"
 }, {
-"base": "Node2D",
+"base": "Area2D",
 "class": "Exit",
 "language": "GDScript",
 "path": "res://Scenes/Level/Exit/Exit.gd"
-}, {
-"base": "Node",
-"class": "Game",
-"language": "GDScript",
-"path": "res://Scenes/Game/Game.gd"
 }, {
 "base": "Node2D",
 "class": "Level",
@@ -78,7 +73,6 @@ _global_script_class_icons={
 "CharacterState": "",
 "ClimbAnchor": "",
 "Exit": "",
-"Game": "",
 "Level": "",
 "Region": "",
 "SpawnPoint": ""
@@ -94,19 +88,20 @@ config/icon="res://icon.png"
 
 RandomUtils="*res://Singletons/RandomUtils.gd"
 TweensUtils="*res://Singletons/TweensUtils.gd"
+ProgressManager="*res://Singletons/ProgressManager.gd"
+WorldEnvManager="*res://Singletons/WorldEnvironmentManager.gd"
+LevelLoader="*res://Singletons/LevelLoader.gd"
 UiSummoner="*res://Singletons/UiSummoner.gd"
 RootManager="*res://Singletons/RootManager.gd"
-WorldEnvManager="*res://Singletons/WorldEnvironmentManager.gd"
 
 [display]
 
 window/size/width=1920
 window/size/height=1080
-window/size/fullscreen=true
 window/size/test_width=1080
 window/size/test_height=720
 window/dpi/allow_hidpi=true
-window/stretch/mode="viewport"
+window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
 [importer_defaults]

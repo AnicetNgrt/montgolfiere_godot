@@ -15,7 +15,7 @@
 [ext_resource path="res://Utils/LoopAudioPlayer.gd" type="Script" id=13]
 [ext_resource path="res://Resources/Buttons/black_border.tres" type="StyleBox" id=14]
 [ext_resource path="res://Resources/Buttons/trans_border.tres" type="StyleBox" id=15]
-[ext_resource path="res://Scenes/Cuscenes/Beginning/CutscenIntro.gd" type="Script" id=16]
+[ext_resource path="res://Scenes/Cutscenes/Beginning/CutscenIntro.gd" type="Script" id=16]
 [ext_resource path="res://Resources/Fonts/regular_df.tres" type="DynamicFont" id=17]
 [ext_resource path="res://Assets/Music/Humoresque_1955_performance.ogg" type="AudioStream" id=18]
 [ext_resource path="res://Assets/Custcenes/Beginning/D/D_layer 1.png" type="Texture" id=19]
@@ -493,7 +493,6 @@ __meta__ = {
 }
 
 [node name="Poem" type="Control" parent="Texts"]
-modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {

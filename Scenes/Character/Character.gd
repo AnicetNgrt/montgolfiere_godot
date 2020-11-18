@@ -1,11 +1,9 @@
 class_name Character
 extends KinematicBody2D
 
-export (Resource) var state
-export (Resource) var physics_profile
-
 enum Directions { LEFT = 0, RIGHT }
 
+var physics_profile: CharacterPhysicsProfile
 var wind_direction := Vector2(0, 0)
 var velocity := Vector2.ZERO
 var climbing := false
@@ -14,7 +12,6 @@ signal stamina_changed(stamina)
 signal layer_changed(layer)
 
 func _ready():
-	state.stamina = state.max_stamina
 	$Sprite.play("idle")
 
 
@@ -31,7 +28,7 @@ func get_input(delta:float):
 
 
 func handle_walking(delta:float) -> void:
-	if is_on_floor() and not climbing:# and state.stamina > 0:
+	if is_on_floor() and not climbing:
 		if Input.is_action_pressed("walk_right"):
 			on_walking_started(Directions.RIGHT, delta)
 		elif Input.is_action_pressed("walk_left"):
@@ -51,10 +48,8 @@ func on_walking_started(direction:int, delta:float) -> void:
 	#velocity.y = lerp(velocity.y, -get_floor_normal().y, get_acceleration())
 	velocity += physics_profile.ground_stick_factor*get_floor_normal()*-1
 	if is_running(): 
-		set_stamina_and_notify(state.stamina - state.run_stamina_loss_mult*delta)
 		$Sprite.play("run")
 	else: 
-		set_stamina_and_notify(state.stamina - state.walk_stamina_loss_mult*delta)
 		$Sprite.play("walk")
 
 
@@ -92,10 +87,6 @@ func update_jump(delta:float) -> void:
 		if is_on_floor() and !climbing:
 			$Sprite.play("jump")
 			velocity.y = -physics_profile.jump_speed
-			if is_running():
-				set_stamina_and_notify(state.stamina - state.jump_run_stamina_loss)
-			else:
-				set_stamina_and_notify(state.stamina - state.jump_stamina_loss)
 			play_footstep()
 
 
@@ -103,7 +94,6 @@ func on_climbing_started(towards:Vector2):
 	climbing = true
 	$Sprite.play("climb")
 	$Sprite.flip_h = global_position.x < towards.x
-	set_stamina_and_notify(state.stamina - state.climb_stamina_loss)
 	play_footstep()
 
 
@@ -132,9 +122,9 @@ func get_friction() -> float:
 
 func get_max_speed() -> Vector2:
 	if is_running():
-		return physics_profile.max_speed_running# * lerp(state.stamina/state.max_stamina, 1, 0.4)
+		return physics_profile.max_speed_running
 	else:
-		return physics_profile.max_speed_walking# * lerp(state.stamina/state.max_stamina, 1, 0.4)
+		return physics_profile.max_speed_walking
 
 
 func get_acceleration() -> float:
@@ -145,7 +135,7 @@ func get_acceleration() -> float:
 
 
 func is_running() -> bool:
-	return Input.is_action_pressed("run") and state.stamina > 0
+	return Input.is_action_pressed("run") and ProgressManager.character_state.stamina > 0
 
 
 func can_climb() -> bool:
@@ -165,10 +155,10 @@ func set_direction(direction:int):
 
 func set_stamina_and_notify(value):
 	pass
-	#var new_stamina = clamp(value, 0, state.max_stamina)
-	#if new_stamina != state.stamina:
+	#var new_stamina = clamp(value, 0, ProgressManager.character_state.max_stamina)
+	#if new_stamina != ProgressManager.character_state.stamina:
 	#	emit_signal("stamina_changed", new_stamina)
-	#state.stamina = new_stamina
+	#ProgressManager.character_state.stamina = new_stamina
 
 
 func refresh_platforms_hints():

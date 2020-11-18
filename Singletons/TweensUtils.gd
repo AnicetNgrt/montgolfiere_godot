@@ -20,19 +20,19 @@ func interpolate_property(node:Node, property:String, before, after, duration:fl
 	tween.call_deferred("queue_free")
 
 
-func fadein(element:CanvasItem):
+func fadein(element:CanvasItem, fade_duration = 1):
 	self.interpolate_property(
 		element, 
 		"modulate", 
 		Color(1,1,1,0), 
 		Color(1,1,1,1),
-		1, null, null)
+		fade_duration, null, null)
 
 
-func fadeout(element:CanvasItem):
+func fadeout(element:CanvasItem, fade_duration = 1):
 	self.interpolate_property(
 		element,
 		"modulate", 
 		Color(1,1,1,1), 
 		Color(1,1,1,0),
-		1, null, null)
+		fade_duration, null, null)

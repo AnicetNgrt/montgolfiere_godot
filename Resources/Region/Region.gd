@@ -9,6 +9,6 @@ export(Resource) var day_night_anim = preload("res://Resources/Animations/day_ni
 
 var discovered := false
 var is_inside := false
-var characState: CharacterState
+var character_state: CharacterState
 var checkpoint: SpawnPoint
 var time_of_day: float

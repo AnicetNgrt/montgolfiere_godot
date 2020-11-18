@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Scenes/Level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Levels/earth/village/village_platforms.png" type="Texture" id=2]
@@ -17,7 +17,10 @@
 [ext_resource path="res://Assets/Levels/earth/village/village_scaf_ship.png" type="Texture" id=15]
 [ext_resource path="res://Assets/Levels/earth/village/village_silos_back.png" type="Texture" id=16]
 [ext_resource path="res://Scenes/Levels/Earth/region_earth.tres" type="Resource" id=17]
+[ext_resource path="res://Resources/Animations/day_night_regular.tres" type="Animation" id=18]
+[ext_resource path="res://Scenes/Level/Exit/Exit.gd" type="Script" id=19]
 [ext_resource path="res://Assets/Levels/earth/earth/earth_sky.png" type="Texture" id=20]
+[ext_resource path="res://Scenes/Levels/Earth/sp_earth1_left1.tres" type="Resource" id=21]
 [ext_resource path="res://Scenes/Level/BackgroundLayer/BackgroundLayer.tscn" type="PackedScene" id=22]
 
 [sub_resource type="Shader" id=1]
@@ -60,6 +63,9 @@ shader_param/modulate = Color( 0, 0, 0, 0.0980392 )
 default_spawn = "default"
 region = ExtResource( 17 )
 
+[node name="DayNightAnimator" parent="." index="0"]
+anims/day_night = ExtResource( 18 )
+
 [node name="village_platforms" type="Sprite" parent="." index="1"]
 visible = false
 scale = Vector2( 10, 10 )
@@ -82,7 +88,7 @@ motion_scale = Vector2( 0.25, 0.05 )
 
 [node name="BackgroundLayer" parent="bg/ParallaxLayer4" index="0" instance=ExtResource( 22 )]
 material = SubResource( 2 )
-position = Vector2( 0.1, 11 )
+position = Vector2( 0.1, 31 )
 scale = Vector2( 10, 10 )
 speed = 0.01
 
@@ -391,13 +397,22 @@ script = ExtResource( 8 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer0/ClimbAnchor10" index="0"]
 polygon = PoolVector2Array( 0, 0, 40, 70, 0, 70 )
 
+[node name="Exit" type="Area2D" parent="layer0" index="6"]
+collision_layer = 0
+collision_mask = 32
+script = ExtResource( 19 )
+spawnpoint = ExtResource( 21 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer0/Exit" index="0"]
+polygon = PoolVector2Array( 1920, 800, 1920, 950, 1950, 950, 1950, 800 )
+
 [node name="CharacterSpawner" type="Node2D" parent="." index="7"]
-position = Vector2( 1880, 880 )
+position = Vector2( 1880, 950 )
 script = ExtResource( 6 )
 spawnpoint_data = ExtResource( 7 )
 
 [node name="CameraAnchor" type="Node2D" parent="CharacterSpawner" index="0"]
-position = Vector2( -920, -340 )
+position = Vector2( -920, -410 )
 
 [node name="front" type="Node2D" parent="." index="8"]
 scale = Vector2( 10, 10 )

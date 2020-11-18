@@ -2,10 +2,7 @@ tool
 class_name Level
 extends Node2D
 
-signal ready_and_spawned()
-signal goto_level(data)
-signal switch_entity(character)
-
+onready var day_night_animator = $DayNightAnimator
 
 export(bool) var do_self_spawn = true 
 export(String) var default_spawn = ""
@@ -15,18 +12,18 @@ export(Resource) var region #: Region
 var is_ready_and_spawned = false
 
 
+func _physics_process(delta):
+	if day_night_animator and day_night_animator.current_animation == "day_night":
+		region.time_of_day = day_night_animator.current_animation_position/day_night_animator.current_animation_length 
+
 func _ready():
-	$AnimationPlayer.add_animation("day_night", region.day_night_anim)
+	day_night_animator.add_animation("day_night", region.day_night_anim)
 	if !Engine.is_editor_hint():
 		if do_self_spawn and default_spawn != "":
+			RootManager.remove_child_deff(self)
+			LevelLoader.call_deferred("add_child", self)
+			LevelLoader.current_level = self
 			enter_at(default_spawn)
-			pass
-		for exit in $Exits.get_children():
-			exit.connect("body_exited", self, "on_exit_body_exited")
-
-
-#func _physics_process(delta):
-#	print($Background.offset)
 
 
 func on_exit_body_exited(body:Node, data:Resource) -> void:
@@ -47,21 +44,23 @@ func enter_at(key:String):
 		add_child_below_node(spawner, instance)
 		if spawner.has_node("CameraAnchor"):
 			$Camera.global_position = spawner.get_node("CameraAnchor").global_position
-		emit_signal("ready_and_spawned")
 		is_ready_and_spawned = true
 		
 		if not region.is_inside:
 			region.is_inside = true
-			on_region_enter()
-			
+			on_region_enter(spawner.spawnpoint_data)
+		
+		play_daynight()
+		day_night_animator.seek(day_night_animator.current_animation_length*region.time_of_day)
+		
 		if instance is Character:
 			instance.connect("layer_changed", self, "on_character_layer_changed")
-			emit_signal("switch_entity", instance)
+			instance.physics_profile = region.physics_profile
 
-
-func on_region_enter():
-	$AnimationPlayer.play("day_night", -1, 0.33)
+func on_region_enter(spawnpoint:SpawnPoint):
+	region.checkpoint = spawnpoint
 	WorldEnvManager.set_environment(region.environment)
+	yield(get_tree().create_timer(1), "timeout")
 	UiSummoner.summon_region_title(region.map_name)
 
 
@@ -76,5 +75,19 @@ func set_custom_modulate(value):
 					layer.modulate = value
 
 
+func pause_daynight():
+	day_night_animator.stop()
+
+
+func play_daynight():
+	day_night_animator.play("day_night", -1, 0.3)
+
+
 func on_character_layer_changed(layer:int):
 	move_child(get_node("Character"), get_node("layer"+str(layer)).get_index())
+
+
+func _on_DayNightAnimator_animation_finished(anim_name):
+	region.time_of_day = 0
+	LevelLoader.load_level(region.checkpoint)
+	region.is_inside = false
