@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Level/Level.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Levels/prototype/Test.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Level/Entrance/CharacterSpawner.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Levels/Test/sp_test_tibo_default.tres" type="Resource" id=4]
+[ext_resource path="res://Scenes/Levels/Earth/region_earth.tres" type="Resource" id=5]
+
+[node name="Level" instance=ExtResource( 1 )]
+default_spawn = "default"
+region = ExtResource( 5 )
+
+[node name="Test" type="Sprite" parent="." index="1"]
+position = Vector2( 960, 540 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 2 )
+
+[node name="layer0" type="Node2D" parent="." index="2"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="layer0" index="0"]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer0/StaticBody2D" index="0"]
+polygon = PoolVector2Array( 0, 170, 180, 170, 180, 420, 0, 420 )
+
+[node name="layer1" type="Node2D" parent="." index="3"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="layer1" index="0"]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer1/StaticBody2D" index="0"]
+polygon = PoolVector2Array( 1080, 280, 1080, 300, 1140, 410, 1420, 370, 1420, 360, 1260, 280 )
+
+[node name="CharacterSpawner" type="Node2D" parent="." index="4"]
+position = Vector2( 80, 170 )
+script = ExtResource( 3 )
+spawnpoint_data = ExtResource( 4 )
+direction = 1
