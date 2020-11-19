@@ -363,47 +363,12 @@ collision_mask = 2147483680
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer0/Static" index="0"]
 polygon = PoolVector2Array( 1920, 950, 750, 950, 160, 860, -110, 860, -470, 950, -1080, 950, -1080, 790, -1110, 790, -1110, 1080, 1920, 1080 )
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="layer0/Static" index="1"]
-polygon = PoolVector2Array( -620, 610, -620, 640, -410, 640, -410, 610 )
-
-[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="layer0/Static" index="2"]
-polygon = PoolVector2Array( -350, 660, -260, 660, -260, 720, -350, 720 )
-
-[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="layer0/Static" index="3"]
-polygon = PoolVector2Array( -260, 720, -260, 780, -180, 780, -180, 720 )
-
 [node name="[1] LayerSwitch" parent="layer0" index="1" instance=ExtResource( 5 )]
 position = Vector2( 1330, 920 )
 scale = Vector2( 0.431, 1 )
 collision_mask = 2147483680
 
-[node name="[1] LayerSwitch2" parent="layer0" index="2" instance=ExtResource( 5 )]
-position = Vector2( -650, 590 )
-scale = Vector2( 0.983, 1 )
-collision_mask = 2147483680
-
-[node name="ClimbAnchor8" type="Area2D" parent="layer0" index="3"]
-position = Vector2( -180, 720 )
-script = ExtResource( 8 )
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer0/ClimbAnchor8" index="0"]
-polygon = PoolVector2Array( 0, 0, 40, 70, 0, 70 )
-
-[node name="ClimbAnchor9" type="Area2D" parent="layer0" index="4"]
-position = Vector2( -260, 660 )
-script = ExtResource( 8 )
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer0/ClimbAnchor9" index="0"]
-polygon = PoolVector2Array( 0, 0, 40, 70, 0, 70 )
-
-[node name="ClimbAnchor10" type="Area2D" parent="layer0" index="5"]
-position = Vector2( -410, 610 )
-script = ExtResource( 8 )
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer0/ClimbAnchor10" index="0"]
-polygon = PoolVector2Array( 0, 0, 40, 70, 0, 70 )
-
-[node name="Exit" type="Area2D" parent="layer0" index="6"]
+[node name="Exit" type="Area2D" parent="layer0" index="2"]
 collision_layer = 0
 collision_mask = 32
 script = ExtResource( 19 )

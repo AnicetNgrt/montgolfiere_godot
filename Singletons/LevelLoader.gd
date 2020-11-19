@@ -1,6 +1,6 @@
 extends Node
 
-var current_level = null
+var current_level:Level = null
 
 func load_level(spawnpoint:SpawnPoint):
 	print(spawnpoint)

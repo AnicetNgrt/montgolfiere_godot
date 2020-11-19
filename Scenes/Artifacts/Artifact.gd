@@ -2,9 +2,15 @@ tool
 extends Node2D
 
 export(Resource) var artifact setget set_artifact
+var local_time = 0
 var face = "A"
-var last_swap = OS.get_ticks_msec()
+var last_swap = 0
 var swap_cooldown = 500
+
+
+func _physics_process(delta):
+	local_time += delta
+
 
 func set_artifact(val):
 	artifact = val
@@ -55,11 +61,10 @@ func change_to_face_B():
 	face = "B"
 
 
-func _on_Area2D_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton:
-		if OS.get_ticks_msec() - last_swap > swap_cooldown:
-			last_swap = OS.get_ticks_msec()
-			if face == "B":
-				change_to_face_A()
-			else: 
-				change_to_face_B()
+func _on_Button_pressed():
+	if (local_time*1000) - last_swap > swap_cooldown:
+		last_swap = local_time
+		if face == "B":
+			change_to_face_A()
+		else: 
+			change_to_face_B()

@@ -12,3 +12,19 @@ var is_inside := false
 var character_state: CharacterState
 var checkpoint: SpawnPoint
 var time_of_day: float
+
+var play_daylight_score = -1
+
+signal play_daynight()
+signal pause_daynight()
+
+func pause_daynight():
+	play_daylight_score -= 1
+	if play_daylight_score < 0:
+		emit_signal("pause_daynight")
+
+
+func play_daynight():
+	play_daylight_score += 1
+	if play_daylight_score >= 0:
+		emit_signal("play_daynight")

@@ -146,9 +146,13 @@ offset = Vector2( 0.5, 0.5 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/toFaceB = SubResource( 1 )
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-visible = false
-polygon = PoolVector2Array( -19, -32, 20, -32, 20, 33, -19, 33 )
-[connection signal="input_event" from="Area2D" to="." method="_on_Area2D_input_event"]
+[node name="Button" type="Button" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -18.0
+margin_top = -31.0
+margin_right = 19.0
+margin_bottom = 32.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

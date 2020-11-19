@@ -11,10 +11,9 @@ export(Resource) var region #: Region
 
 var is_ready_and_spawned = false
 
-
 func _physics_process(delta):
 	if day_night_animator and day_night_animator.current_animation == "day_night":
-		region.time_of_day = day_night_animator.current_animation_position/day_night_animator.current_animation_length 
+		region.time_of_day = day_night_animator.current_animation_position/day_night_animator.current_animation_length
 
 func _ready():
 	day_night_animator.add_animation("day_night", region.day_night_anim)
@@ -50,12 +49,24 @@ func enter_at(key:String):
 			region.is_inside = true
 			on_region_enter(spawner.spawnpoint_data)
 		
-		play_daynight()
+		region.connect("play_daynight", self, "on_region_play_daynight")
+		region.connect("pause_daynight", self, "on_region_pause_daynight")
+		region.play_daynight()
 		day_night_animator.seek(day_night_animator.current_animation_length*region.time_of_day)
 		
 		if instance is Character:
 			instance.connect("layer_changed", self, "on_character_layer_changed")
 			instance.physics_profile = region.physics_profile
+
+
+func on_region_play_daynight():
+	day_night_animator.play("day_night", -1, 0.3)
+	day_night_animator.seek(day_night_animator.current_animation_length*region.time_of_day)
+
+
+func on_region_pause_daynight():
+	day_night_animator.stop()
+
 
 func on_region_enter(spawnpoint:SpawnPoint):
 	region.checkpoint = spawnpoint
@@ -75,12 +86,7 @@ func set_custom_modulate(value):
 					layer.modulate = value
 
 
-func pause_daynight():
-	day_night_animator.stop()
 
-
-func play_daynight():
-	day_night_animator.play("day_night", -1, 0.3)
 
 
 func on_character_layer_changed(layer:int):
