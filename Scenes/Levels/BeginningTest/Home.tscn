@@ -21,7 +21,8 @@
 [ext_resource path="res://Assets/Levels/beginning/plaine5.png" type="Texture" id=19]
 [ext_resource path="res://Assets/Levels/beginning/front1.png" type="Texture" id=20]
 [ext_resource path="res://Assets/Levels/beginning/front2.png" type="Texture" id=21]
-[ext_resource path="res://Scenes/Levels/Beginning/spawnpoint_default.tres" type="Resource" id=22]
+[ext_resource path="res://Scenes/Levels/BeginningTest/spawnpoint_default.tres" type="Resource" id=22]
+
 
 [node name="Level" instance=ExtResource( 5 )]
 default_spawn = "default"

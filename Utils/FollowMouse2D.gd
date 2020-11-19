@@ -14,4 +14,5 @@ func _input(event):
 
 func _mouse_anim(mouse_pos:Vector2):
 	if initial_pos != null:
-		position = initial_pos + 0.05 * factor * (mouse_pos - position - follow_offset) 
+		var screen_size = OS.get_window_safe_area().size
+		position = initial_pos + 50 * factor * (mouse_pos/screen_size - position/screen_size - follow_offset/screen_size) 

@@ -1,0 +1,277 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Scenes/Artifacts/Artifact.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/UI/watch.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Artifacts/physics-book.tres" type="Resource" id=3]
+[ext_resource path="res://Assets/Fonts/Jost/static/Jost-Medium.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Assets/UI/coil_logo.png" type="Texture" id=5]
+[ext_resource path="res://Assets/UI/arrow.png" type="Texture" id=6]
+[ext_resource path="res://Assets/UI/arrow/arrow_hover.png" type="Texture" id=7]
+[ext_resource path="res://Assets/UI/arrow/arrow_disabled.png" type="Texture" id=8]
+[ext_resource path="res://Assets/UI/coil_logo_hover.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Clues/clue_paper.png" type="Texture" id=12]
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 1, 1, 1, 0.54902 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="DynamicFont" id=3]
+size = 35
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 35
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 50
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 4 )
+
+[node name="DashBoard" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color( 0.47451, 0.227451, 0.501961, 1 )
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 1910.0
+margin_bottom = 720.0
+mouse_filter = 2
+custom_styles/panel = SubResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel2" type="Panel" parent="."]
+modulate = Color( 0.705882, 0.12549, 0.164706, 1 )
+margin_left = 10.0
+margin_top = 730.0
+margin_right = 300.0
+margin_bottom = 1070.0
+mouse_filter = 2
+custom_styles/panel = SubResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel3" type="Panel" parent="."]
+modulate = Color( 0.364706, 0.686275, 0.552941, 1 )
+margin_left = 310.0
+margin_top = 730.0
+margin_right = 1610.0
+margin_bottom = 1070.0
+mouse_filter = 2
+custom_styles/panel = SubResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel4" type="Panel" parent="."]
+modulate = Color( 1, 0.835294, 0.254902, 1 )
+margin_left = 1620.0
+margin_top = 730.0
+margin_right = 1910.0
+margin_bottom = 1070.0
+mouse_filter = 2
+custom_styles/panel = SubResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Clue" type="Control" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -1450.0
+margin_top = 800.0
+margin_right = -1410.0
+margin_bottom = 840.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Clue"]
+margin_right = 98.0
+margin_bottom = 21.0
+rect_scale = Vector2( 10, 10 )
+texture = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Clue"]
+margin_left = 29.9999
+margin_top = 10.0
+margin_right = 940.0
+margin_bottom = 132.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Region" type="Label" parent="Clue/VBoxContainer"]
+margin_right = 910.0
+margin_bottom = 52.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Secret clue: Space Graveyard"
+
+[node name="Clue" type="Label" parent="Clue/VBoxContainer"]
+margin_top = 52.0
+margin_right = 910.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 910, 0 )
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "\"Where the wind meets the grass\""
+autowrap = true
+
+[node name="ArrowButton3" type="TextureButton" parent="Clue"]
+margin_left = -110.0
+margin_top = 60.0001
+margin_right = -102.0
+margin_bottom = 68.0001
+rect_scale = Vector2( 10, 10 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 7 )
+texture_disabled = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ArrowButton4" type="TextureButton" parent="Clue"]
+margin_left = 1090.0
+margin_top = 150.0
+margin_right = 1098.0
+margin_bottom = 158.0
+rect_rotation = 180.0
+rect_scale = Vector2( 10, 10 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 7 )
+texture_disabled = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Artifacts" type="Node2D" parent="."]
+position = Vector2( 960, 350 )
+
+[node name="A1" parent="Artifacts" instance=ExtResource( 1 )]
+position = Vector2( -630, 10.0001 )
+artifact = ExtResource( 3 )
+
+[node name="A2" parent="Artifacts" instance=ExtResource( 1 )]
+position = Vector2( -210, 10.0001 )
+artifact = ExtResource( 3 )
+
+[node name="A3" parent="Artifacts" instance=ExtResource( 1 )]
+position = Vector2( 210, 10.0001 )
+artifact = ExtResource( 3 )
+
+[node name="A4" parent="Artifacts" instance=ExtResource( 1 )]
+position = Vector2( 630, 10.0001 )
+artifact = ExtResource( 3 )
+
+[node name="ArrowButton" type="TextureButton" parent="Artifacts"]
+margin_left = -910.0
+margin_top = -39.9999
+margin_right = -902.0
+margin_bottom = -31.9999
+rect_scale = Vector2( 10, 10 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 7 )
+texture_disabled = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ArrowButton2" type="TextureButton" parent="Artifacts"]
+margin_left = 920.0
+margin_top = 40.0001
+margin_right = 928.0
+margin_bottom = 48.0001
+rect_rotation = 180.0
+rect_scale = Vector2( 10, 10 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 7 )
+texture_disabled = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Clock" type="Control" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -20.0
+margin_right = 40.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="watch" type="Sprite" parent="Clock"]
+position = Vector2( 160, -160 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 2 )
+
+[node name="Time" type="Label" parent="Clock"]
+margin_left = 90.0
+margin_top = -310.0
+margin_right = 220.0
+margin_bottom = -237.0
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "10:30"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Coil" type="Label" parent="."]
+margin_left = 1650.0
+margin_top = 980.0
+margin_right = 2560.0
+margin_bottom = 1032.0
+rect_min_size = Vector2( 910, 0 )
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Mysterious Coil"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton" type="TextureButton" parent="Coil"]
+margin_left = -50.0
+margin_top = -260.0
+margin_right = -10.0
+margin_bottom = -220.0
+rect_scale = Vector2( 10, 10 )
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 9 )
+texture_hover = ExtResource( 9 )
+texture_disabled = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

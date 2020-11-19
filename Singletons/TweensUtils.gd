@@ -33,6 +33,6 @@ func fadeout(element:CanvasItem, fade_duration = 1):
 	self.interpolate_property(
 		element,
 		"modulate", 
-		Color(1,1,1,1), 
+		element.modulate, 
 		Color(1,1,1,0),
 		fade_duration, null, null)
