@@ -56,7 +56,6 @@ func change_to_face_B():
 
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
-	print(event)
 	if event is InputEventMouseButton:
 		if OS.get_ticks_msec() - last_swap > swap_cooldown:
 			last_swap = OS.get_ticks_msec()

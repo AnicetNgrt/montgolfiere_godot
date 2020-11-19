@@ -249,6 +249,7 @@ position = Vector2( 730, 30 )
 script = ExtResource( 8 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/ClimbAnchor3" index="0"]
+position = Vector2( 20, 0 )
 polygon = PoolVector2Array( 0, 0, -40, 100, 0, 100 )
 
 [node name="ClimbAnchor8" type="Area2D" parent="layer2" index="12"]
@@ -256,6 +257,7 @@ position = Vector2( 730, -260 )
 script = ExtResource( 8 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/ClimbAnchor8" index="0"]
+position = Vector2( 20, 0 )
 polygon = PoolVector2Array( 0, 0, -40, 100, 0, 100 )
 
 [node name="ClimbAnchor10" type="Area2D" parent="layer2" index="13"]
@@ -263,6 +265,7 @@ position = Vector2( 640, -100 )
 script = ExtResource( 8 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/ClimbAnchor10" index="0"]
+position = Vector2( -20, 0 )
 polygon = PoolVector2Array( 0, 0, 30, 90, 0, 90 )
 
 [node name="ClimbAnchor12" type="Area2D" parent="layer2" index="14"]
@@ -277,6 +280,7 @@ position = Vector2( 640, -410 )
 script = ExtResource( 8 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/ClimbAnchor11" index="0"]
+position = Vector2( -10, 0 )
 polygon = PoolVector2Array( 0, 0, 30, 90, 0, 90 )
 
 [node name="ClimbAnchor9" type="Area2D" parent="layer2" index="16"]
@@ -284,13 +288,15 @@ position = Vector2( 730, -520 )
 script = ExtResource( 8 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/ClimbAnchor9" index="0"]
-polygon = PoolVector2Array( 0, 0, -30, 50, 0, 50 )
+position = Vector2( 10, 0 )
+polygon = PoolVector2Array( 0, 0, -30, 40, 0, 40 )
 
 [node name="ClimbAnchor4" type="Area2D" parent="layer2" index="17"]
 position = Vector2( 630, 230 )
 script = ExtResource( 8 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/ClimbAnchor4" index="0"]
+position = Vector2( 10, 20 )
 polygon = PoolVector2Array( 0, 0, -30, 30, 0, 50 )
 
 [node name="layer1" type="Node2D" parent="." index="5"]

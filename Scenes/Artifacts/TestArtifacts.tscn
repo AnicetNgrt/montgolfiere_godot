@@ -7,6 +7,9 @@
 [ext_resource path="res://Resources/Artifacts/water.tres" type="Resource" id=5]
 
 [node name="Node2D" type="Node2D"]
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Artifact" parent="." instance=ExtResource( 1 )]
 position = Vector2( 320, 520 )
