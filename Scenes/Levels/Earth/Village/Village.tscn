@@ -6,7 +6,7 @@
 [ext_resource path="res://Scenes/Level/Camera/Camera.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Level/LayerSwitch/LayerSwitch.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Level/Entrance/CharacterSpawner.gd" type="Script" id=6]
-[ext_resource path="res://Scenes/Levels/Earth/sp_village_default.tres" type="Resource" id=7]
+[ext_resource path="res://Scenes/Levels/Earth/Village/sp_village_default.tres" type="Resource" id=7]
 [ext_resource path="res://Scenes/Level/ClimbAnchor/ClimbAnchor.gd" type="Script" id=8]
 [ext_resource path="res://Assets/Levels/earth/village/village_silos_front.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Levels/earth/village/village_scaf_front.png" type="Texture" id=10]
@@ -20,7 +20,7 @@
 [ext_resource path="res://Resources/Animations/day_night_regular.tres" type="Animation" id=18]
 [ext_resource path="res://Scenes/Level/Exit/Exit.gd" type="Script" id=19]
 [ext_resource path="res://Assets/Levels/earth/earth/earth_sky.png" type="Texture" id=20]
-[ext_resource path="res://Scenes/Levels/Earth/sp_earth1_left1.tres" type="Resource" id=21]
+[ext_resource path="res://Scenes/Levels/Earth/Earth1/sp_earth1_left1.tres" type="Resource" id=21]
 [ext_resource path="res://Scenes/Level/BackgroundLayer/BackgroundLayer.tscn" type="PackedScene" id=22]
 
 [sub_resource type="Shader" id=1]
@@ -171,7 +171,7 @@ position = Vector2( -1970, 370 )
 polygon = PoolVector2Array( 1200, -680, 1240, -680, 1240, -510, 1200, -510 )
 
 [node name="CollisionPolygon2D31" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="11"]
-polygon = PoolVector2Array( 580, -100, 410, -100, 50, 80, 50, 90, 90, 90, 410, -70, 580, -70 )
+polygon = PoolVector2Array( 580, -100, 450, -100, 50, 100, 50, 110, 90, 110, 410, -40, 580, -70 )
 
 [node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="12"]
 polygon = PoolVector2Array( 580, 130, 560, 130, 560, -100, 640, -100, 640, -10, 580, -10 )
@@ -273,7 +273,8 @@ position = Vector2( 10, -60 )
 script = ExtResource( 8 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/ClimbAnchor12" index="0"]
-polygon = PoolVector2Array( 0, 30, 30, 40, 0, 70 )
+position = Vector2( -10, 20 )
+polygon = PoolVector2Array( 0, 30, 20, 40, 0, 50 )
 
 [node name="ClimbAnchor11" type="Area2D" parent="layer2" index="15"]
 position = Vector2( 640, -410 )

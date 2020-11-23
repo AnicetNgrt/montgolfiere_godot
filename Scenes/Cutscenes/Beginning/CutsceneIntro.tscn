@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://Resources/Fonts/small_df.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Resources/Fonts/regular_df.tres" type="DynamicFont" id=2]
@@ -8,11 +8,11 @@
 [ext_resource path="res://Assets/Custcenes/Beginning/A/A_layer 6.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Custcenes/Beginning/C/C_space.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Custcenes/Beginning/A/A_layer 3.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Music/Pavane_for_a_Dead_Princess.ogg" type="AudioStream" id=9]
+[ext_resource path="res://Assets/Music/Olga Gurevich/Charles Mayer/Valse-mélancolique-_-_Le-Regret__-Op.-332.ogg" type="AudioStream" id=9]
 [ext_resource path="res://Assets/Custcenes/Beginning/D/D_space.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Custcenes/Beginning/D/D_layer 2.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Custcenes/Beginning/A/A_layer 5.png" type="Texture" id=12]
-[ext_resource path="res://Assets/Music/Humoresque_1955_performance.ogg" type="AudioStream" id=13]
+[ext_resource path="res://Assets/Music/Olga Gurevich/Chopin/Grande-valse-brillante-in-E-flat-major_-Op.-18.ogg" type="AudioStream" id=13]
 [ext_resource path="res://Assets/Custcenes/Beginning/B/B_sky.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Custcenes/Beginning/B/B_layer 1.png" type="Texture" id=15]
 [ext_resource path="res://Assets/Custcenes/Beginning/B/B_layer 3.png" type="Texture" id=16]
@@ -28,8 +28,10 @@
 [ext_resource path="res://Utils/LoopAudioPlayer.gd" type="Script" id=26]
 [ext_resource path="res://Assets/Fonts/Jost/static/Jost-Medium.ttf" type="DynamicFontData" id=27]
 [ext_resource path="res://Assets/Fonts/Jost/static/Jost-Light.ttf" type="DynamicFontData" id=28]
+[ext_resource path="res://Scenes/UI/Button/Button.tscn" type="PackedScene" id=29]
 [ext_resource path="res://Resources/Buttons/black_border.tres" type="StyleBox" id=30]
 [ext_resource path="res://Resources/Buttons/trans_border.tres" type="StyleBox" id=31]
+[ext_resource path="res://Resources/Buttons/white.tres" type="StyleBox" id=32]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -145,7 +147,7 @@ tracks/6/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("Tchaikovsky:playing")
+tracks/7/path = NodePath("MusiqueDiscours:playing")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -157,7 +159,7 @@ tracks/7/keys = {
 "values": [ false, true, false ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("Tchaikovsky:volume_db")
+tracks/8/path = NodePath("MusiqueDiscours:volume_db")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -166,7 +168,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 1.4, 3.1, 64.6, 70.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ -80.0, -20.0, -20.0, -80.0 ]
+"values": [ -80.0, -15.0, -15.0, -80.0 ]
 }
 tracks/9/type = "value"
 tracks/9/path = NodePath("Texts/Engine:modulate")
@@ -241,28 +243,28 @@ tracks/14/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/15/type = "value"
-tracks/15/path = NodePath("Pavane:playing")
+tracks/15/path = NodePath("MusiqueEspace:playing")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/imported = false
 tracks/15/enabled = true
 tracks/15/keys = {
-"times": PoolRealArray( 0, 72.5 ),
+"times": PoolRealArray( 0, 68.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
 }
 tracks/16/type = "value"
-tracks/16/path = NodePath("Pavane:volume_db")
+tracks/16/path = NodePath("MusiqueEspace:volume_db")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/imported = false
 tracks/16/enabled = true
 tracks/16/keys = {
-"times": PoolRealArray( 0, 72.3, 110 ),
+"times": PoolRealArray( 0, 68.1, 71.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ -80.0, -80.0, -7.0 ]
+"values": [ -80.0, -80.0, -5.0 ]
 }
 
 [node name="Cutscene" type="Node"]
@@ -494,7 +496,6 @@ __meta__ = {
 }
 
 [node name="Poem" type="Control" parent="Texts"]
-modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -585,7 +586,6 @@ __meta__ = {
 }
 
 [node name="Disclaimer" type="Control" parent="Texts"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -604,13 +604,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -730.0
+margin_left = -680.0
 margin_top = -130.0
-margin_right = 724.0
-margin_bottom = -37.0
+margin_right = 774.0
+margin_bottom = 59.0
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Please, turn the sound on, go fullscreen, and enjoy!"
+text = "Please, turn the sound on, go fullscreen, and enjoy!
+(Esc to open the menu)"
 align = 1
 valign = 1
 script = ExtResource( 4 )
@@ -620,10 +621,10 @@ __meta__ = {
 factor = 0.5
 
 [node name="ContinueToPoemButton" type="Button" parent="Texts/Disclaimer"]
-margin_left = 875.0
-margin_top = 562.0
-margin_right = 1025.0
-margin_bottom = 609.0
+margin_left = 880.0
+margin_top = 650.0
+margin_right = 1030.0
+margin_bottom = 701.0
 rect_min_size = Vector2( 150, 0 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -644,6 +645,7 @@ __meta__ = {
 }
 
 [node name="SceneA" type="Node2D" parent="."]
+modulate = Color( 1, 1, 1, 0 )
 scale = Vector2( 10, 10 )
 
 [node name="A_sky" type="Sprite" parent="SceneA"]
@@ -689,6 +691,7 @@ script = ExtResource( 3 )
 factor = 0.3
 
 [node name="UI" type="Control" parent="SceneA"]
+modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_scale = Vector2( 0.1, 0.1 )
@@ -696,20 +699,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Button" parent="SceneA/UI" instance=ExtResource( 29 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 1600.0
+margin_top = 1000.0
+margin_right = 1891.0
+margin_bottom = 1051.0
+custom_styles/pressed = ExtResource( 32 )
+custom_styles/normal = ExtResource( 32 )
+text = " Begin your journey "
+
 [node name="Ttitle" type="Label" parent="SceneA/UI"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 510.0
-margin_top = 680.0
-margin_right = 1383.0
-margin_bottom = 1261.0
+margin_left = 30.0
+margin_top = 740.0
+margin_right = 786.0
+margin_bottom = 1121.0
 custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "EARTH'S
 SECRETS"
-align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -783,21 +798,25 @@ factor = 0.2
 
 [node name="Wind" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 21 )
-volume_db = -2.0
+volume_db = -11.7
 autoplay = true
+bus = "Sfx"
 script = ExtResource( 26 )
 
 [node name="ObamaSpeech" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 17 )
-volume_db = -10.0
+volume_db = -17.0
+bus = "Music"
 
-[node name="Tchaikovsky" type="AudioStreamPlayer" parent="."]
+[node name="MusiqueDiscours" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
-volume_db = -80.0
+volume_db = -65.8823
+bus = "Music"
 
-[node name="Pavane" type="AudioStreamPlayer" parent="."]
+[node name="MusiqueEspace" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
-volume_db = -7.0
+volume_db = -80.0
+bus = "Music"
 script = ExtResource( 26 )
 
 [node name="Animation" type="AnimationPlayer" parent="."]

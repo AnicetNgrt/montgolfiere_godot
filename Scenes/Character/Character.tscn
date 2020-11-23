@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=80 format=2]
 
 [ext_resource path="res://Scenes/Character/Character.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Character/sky_charac_run.png" type="Texture" id=2]
@@ -10,8 +10,10 @@
 [ext_resource path="res://Assets/Sfx/FootstepsDirt/Footstep_Dirt_08.wav" type="AudioStream" id=8]
 [ext_resource path="res://Assets/Character/sky_charac_climb.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Character/sky_charac_jump.png" type="Texture" id=10]
-[ext_resource path="res://Resources/CharacterState/default_character_state.tres" type="Resource" id=11]
-[ext_resource path="res://Resources/CharacterPhysicsProfile/default_physics_profile.tres" type="Resource" id=12]
+[ext_resource path="res://Assets/Sfx/Breath/1.wav" type="AudioStream" id=11]
+[ext_resource path="res://Assets/Sfx/Breath/2.wav" type="AudioStream" id=12]
+[ext_resource path="res://Assets/Sfx/Breath/4.wav" type="AudioStream" id=13]
+[ext_resource path="res://Assets/Character/sky_charac_search.png" type="Texture" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 2.50002, 4.00853 )
@@ -173,56 +175,96 @@ atlas = ExtResource( 9 )
 region = Rect2( 156, 0, 13, 12 )
 
 [sub_resource type="AtlasTexture" id=41]
-atlas = ExtResource( 10 )
-region = Rect2( 0, 0, 13, 12 )
-
-[sub_resource type="AtlasTexture" id=42]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 11, 12 )
 
-[sub_resource type="AtlasTexture" id=43]
+[sub_resource type="AtlasTexture" id=42]
 atlas = ExtResource( 2 )
 region = Rect2( 11, 0, 11, 12 )
 
-[sub_resource type="AtlasTexture" id=44]
+[sub_resource type="AtlasTexture" id=43]
 atlas = ExtResource( 2 )
 region = Rect2( 22, 0, 11, 12 )
 
-[sub_resource type="AtlasTexture" id=45]
+[sub_resource type="AtlasTexture" id=44]
 atlas = ExtResource( 2 )
 region = Rect2( 33, 0, 11, 12 )
 
-[sub_resource type="AtlasTexture" id=46]
+[sub_resource type="AtlasTexture" id=45]
 atlas = ExtResource( 2 )
 region = Rect2( 44, 0, 11, 12 )
 
-[sub_resource type="AtlasTexture" id=47]
+[sub_resource type="AtlasTexture" id=46]
 atlas = ExtResource( 2 )
 region = Rect2( 55, 0, 11, 12 )
 
-[sub_resource type="AtlasTexture" id=48]
+[sub_resource type="AtlasTexture" id=47]
 atlas = ExtResource( 2 )
 region = Rect2( 66, 0, 11, 12 )
 
-[sub_resource type="AtlasTexture" id=49]
+[sub_resource type="AtlasTexture" id=48]
 atlas = ExtResource( 2 )
 region = Rect2( 77, 0, 11, 12 )
 
-[sub_resource type="AtlasTexture" id=50]
+[sub_resource type="AtlasTexture" id=49]
 atlas = ExtResource( 2 )
 region = Rect2( 88, 0, 11, 12 )
 
-[sub_resource type="AtlasTexture" id=51]
+[sub_resource type="AtlasTexture" id=50]
 atlas = ExtResource( 2 )
 region = Rect2( 99, 0, 11, 12 )
 
-[sub_resource type="AtlasTexture" id=52]
+[sub_resource type="AtlasTexture" id=51]
 atlas = ExtResource( 2 )
 region = Rect2( 110, 0, 11, 12 )
 
-[sub_resource type="AtlasTexture" id=53]
+[sub_resource type="AtlasTexture" id=52]
 atlas = ExtResource( 2 )
 region = Rect2( 121, 0, 11, 12 )
+
+[sub_resource type="AtlasTexture" id=53]
+atlas = ExtResource( 10 )
+region = Rect2( 0, 0, 13, 12 )
+
+[sub_resource type="AtlasTexture" id=55]
+atlas = ExtResource( 14 )
+region = Rect2( 0, 0, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=56]
+atlas = ExtResource( 14 )
+region = Rect2( 12, 0, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=57]
+atlas = ExtResource( 14 )
+region = Rect2( 24, 0, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=58]
+atlas = ExtResource( 14 )
+region = Rect2( 36, 0, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=59]
+atlas = ExtResource( 14 )
+region = Rect2( 48, 0, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=60]
+atlas = ExtResource( 14 )
+region = Rect2( 48, 0, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=61]
+atlas = ExtResource( 14 )
+region = Rect2( 60, 0, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=62]
+atlas = ExtResource( 14 )
+region = Rect2( 72, 0, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=63]
+atlas = ExtResource( 14 )
+region = Rect2( 84, 0, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=64]
+atlas = ExtResource( 14 )
+region = Rect2( 96, 0, 12, 12 )
 
 [sub_resource type="SpriteFrames" id=54]
 animations = [ {
@@ -241,22 +283,33 @@ animations = [ {
 "name": "climb",
 "speed": 30.0
 }, {
-"frames": [ SubResource( 41 ) ],
+"frames": [ SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ) ],
+"loop": true,
+"name": "run",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 53 ) ],
 "loop": false,
 "name": "jump",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ) ],
-"loop": true,
-"name": "run",
-"speed": 10.0
+"frames": [ SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ) ],
+"loop": false,
+"name": "start_searching",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 60 ), SubResource( 61 ), SubResource( 62 ), SubResource( 63 ), SubResource( 64 ) ],
+"loop": false,
+"name": "end_searching",
+"speed": 5.0
 } ]
+
+[sub_resource type="CircleShape2D" id=65]
+radius = 0.01
 
 [node name="Character" type="KinematicBody2D"]
 collision_mask = 2147483648
 script = ExtResource( 1 )
-state = ExtResource( 11 )
-physics_profile = ExtResource( 12 )
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2( 2.98023e-08, -40 )
@@ -267,8 +320,8 @@ shape = SubResource( 1 )
 position = Vector2( -5, -60 )
 scale = Vector2( 10, 10 )
 frames = SubResource( 54 )
-animation = "idle"
-frame = 12
+animation = "end_searching"
+frame = 4
 playing = true
 offset = Vector2( -1.52588e-05, 0 )
 
@@ -276,37 +329,63 @@ offset = Vector2( -1.52588e-05, 0 )
 
 [node name="Footsteps" type="AudioStreamPlayer2D" parent="FootstepSounds"]
 stream = ExtResource( 5 )
-volume_db = -15.0
+volume_db = -10.0
 pitch_scale = 0.6
 attenuation = 2.82843
 bus = "Sfx"
 
 [node name="Footsteps2" type="AudioStreamPlayer2D" parent="FootstepSounds"]
 stream = ExtResource( 6 )
-volume_db = -15.0
+volume_db = -10.0
 pitch_scale = 0.6
 attenuation = 2.82843
 bus = "Sfx"
 
 [node name="Footsteps4" type="AudioStreamPlayer2D" parent="FootstepSounds"]
 stream = ExtResource( 7 )
-volume_db = -15.0
+volume_db = -10.0
 pitch_scale = 0.6
 attenuation = 2.82843
 bus = "Sfx"
 
 [node name="Footsteps5" type="AudioStreamPlayer2D" parent="FootstepSounds"]
 stream = ExtResource( 4 )
-volume_db = -15.0
+volume_db = -10.0
 pitch_scale = 0.6
 attenuation = 2.82843
 bus = "Sfx"
 
 [node name="Footsteps6" type="AudioStreamPlayer2D" parent="FootstepSounds"]
 stream = ExtResource( 8 )
-volume_db = -15.0
+volume_db = -10.0
 pitch_scale = 0.6
 attenuation = 2.82843
+bus = "Sfx"
+
+[node name="BreatheSounds" type="Node2D" parent="."]
+
+[node name="Breathe" type="AudioStreamPlayer2D" parent="BreatheSounds"]
+stream = ExtResource( 11 )
+volume_db = -25.0
+pitch_scale = 0.9
+bus = "Sfx"
+
+[node name="Breathe2" type="AudioStreamPlayer2D" parent="BreatheSounds"]
+stream = ExtResource( 12 )
+volume_db = -25.0
+pitch_scale = 0.9
+bus = "Sfx"
+
+[node name="Breathe3" type="AudioStreamPlayer2D" parent="BreatheSounds"]
+stream = ExtResource( 13 )
+volume_db = -25.0
+pitch_scale = 0.9
+bus = "Sfx"
+
+[node name="Breathe4" type="AudioStreamPlayer2D" parent="BreatheSounds"]
+stream = ExtResource( 11 )
+volume_db = -25.0
+pitch_scale = 0.9
 bus = "Sfx"
 
 [node name="HintsRaycasts" type="Node2D" parent="."]
@@ -478,4 +557,10 @@ rotation = -0.261799
 enabled = true
 cast_to = Vector2( 0, 200 )
 collision_mask = 262144
+
+[node name="TreasureScan" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TreasureScan"]
+position = Vector2( -10, -40 )
+shape = SubResource( 65 )
 [connection signal="frame_changed" from="Sprite" to="." method="_on_Sprite_frame_changed"]

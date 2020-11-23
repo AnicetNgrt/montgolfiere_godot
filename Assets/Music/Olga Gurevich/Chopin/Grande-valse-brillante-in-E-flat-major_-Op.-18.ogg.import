@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Grande-valse-brillante-in-E-flat-major_-Op.-18.ogg-39153f8bc38eec1cf6c4a0a3040b441f.oggstr"
+
+[deps]
+
+source_file="res://Assets/Music/Olga Gurevich/Chopin/Grande-valse-brillante-in-E-flat-major_-Op.-18.ogg"
+dest_files=[ "res://.import/Grande-valse-brillante-in-E-flat-major_-Op.-18.ogg-39153f8bc38eec1cf6c4a0a3040b441f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,7 +1,7 @@
 extends Node
 
-var inventory = []
-var spawnpoint:SpawnPoint = preload("res://Scenes/Levels/Earth/sp_earth1_default.tres")
+var artifacts = []
+var spawnpoint:SpawnPoint = preload("res://Scenes/Levels/Earth/Earth1/sp_earth1_default.tres")
 var character_state:CharacterState
 var is_initialized = false
 
@@ -20,3 +20,7 @@ func is_savefile_available() -> bool:
 
 func on_initialized():
 	is_initialized = true
+
+
+func on_npc_triggered(npc:NPC):
+	pass

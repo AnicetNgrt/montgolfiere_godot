@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource( 1 )
 name = "default"
-level_path = "res://Scenes/Levels/Earth/Earth1.tscn"
+level_path = "res://Scenes/Levels/Earth/Earth1/Earth1.tscn"

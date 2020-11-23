@@ -7,6 +7,7 @@ export(Environment) var environment = preload("res://Resources/Environment/defau
 export(Resource) var physics_profile = preload("res://Resources/CharacterPhysicsProfile/default_physics_profile.tres")#: CharacterPhysicsProfile
 export(Resource) var day_night_anim = preload("res://Resources/Animations/day_night_regular.tres")
 
+var clues = []
 var discovered := false
 var is_inside := false
 var character_state: CharacterState
@@ -15,8 +16,10 @@ var time_of_day: float
 
 var play_daylight_score = -1
 
+
 signal play_daynight()
 signal pause_daynight()
+
 
 func pause_daynight():
 	play_daylight_score -= 1

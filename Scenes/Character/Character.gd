@@ -4,12 +4,17 @@ extends KinematicBody2D
 enum Directions { LEFT = 0, RIGHT }
 
 var physics_profile: CharacterPhysicsProfile
+var profile: CharacterProfile
 var wind_direction := Vector2(0, 0)
 var velocity := Vector2.ZERO
 var climbing := false
+var last_breathe = OS.get_ticks_msec()
+var searching := false
+
 
 signal stamina_changed(stamina)
 signal layer_changed(layer)
+
 
 func _ready():
 	$Sprite.play("idle")
@@ -23,23 +28,37 @@ func _physics_process(delta:float):
 
 func get_input(delta:float):
 	handle_walking(delta)
-	if Input.is_action_just_pressed("show_platforms_hints"):
-		refresh_platforms_hints()
+	if Input.is_action_pressed("search") and not searching and velocity.distance_to(Vector2.ZERO) < 0.5:
+		start_searching()
+	elif not Input.is_action_pressed("search") and searching:
+		end_searching()
 
 
 func handle_walking(delta:float) -> void:
+	var state:CharacterState = ProgressManager.character_state
+	var breathe_sep = 100000
+	if state.stamina <= 10:
+		breathe_sep = 1000
+	
+	if OS.get_ticks_msec() - last_breathe > breathe_sep:
+		play_breathe()
+		last_breathe = OS.get_ticks_msec()
+	
 	if is_on_floor() and not climbing:
 		if Input.is_action_pressed("walk_right"):
 			on_walking_started(Directions.RIGHT, delta)
 		elif Input.is_action_pressed("walk_left"):
 			on_walking_started(Directions.LEFT, delta)
 		else:
+			if state.stamina + state.stamina_recovery <= state.max_stamina:
+				state.stamina += state.stamina_recovery
 			on_walking_ended()
 	else:
 		on_walking_ended()
 
 
 func on_walking_started(direction:int, delta:float) -> void:
+	var state:CharacterState = ProgressManager.character_state
 	$Sprite.flip_h = direction == Directions.RIGHT
 	if direction == Directions.RIGHT:
 		velocity = lerp(velocity, get_max_speed(), get_acceleration())
@@ -47,10 +66,15 @@ func on_walking_started(direction:int, delta:float) -> void:
 		velocity = lerp(velocity, get_max_speed() * Vector2(-1, 0), get_acceleration())
 	#velocity.y = lerp(velocity.y, -get_floor_normal().y, get_acceleration())
 	velocity += physics_profile.ground_stick_factor*get_floor_normal()*-1
-	if is_running(): 
-		$Sprite.play("run")
-	else: 
+	if is_running():
+		state.stamina -= state.run_stamina_loss
 		$Sprite.play("walk")
+		$Sprite.speed_scale = 1.5
+	else:
+		if state.stamina + state.walk_stamina_recovery <= state.max_stamina:
+			state.stamina += state.walk_stamina_recovery
+		$Sprite.play("walk")
+		$Sprite.speed_scale = 1
 
 
 func on_walking_ended() -> void:
@@ -103,15 +127,19 @@ func on_climbing_finished(towards:Vector2):
 	#$Sprite.play("idle")
 
 
-func _on_Sprite_frame_changed():
-	var anim = $Sprite.animation
-	if (anim == "run" || anim == "walk") && is_on_floor() && $Sprite.frame % 3 == 0:
-		play_footstep()
-
-
 func play_footstep():
 	var sound_player = RandomUtils.get_random_child($FootstepSounds)
+	while sound_player.playing:
+		sound_player = RandomUtils.get_random_child($FootstepSounds)
 	sound_player.play()
+
+
+func play_breathe():
+	var sound_player = RandomUtils.get_random_child($BreatheSounds)
+	while sound_player.playing:
+		sound_player = RandomUtils.get_random_child($BreatheSounds)
+	sound_player.play()
+
 
 func get_friction() -> float:
 	if is_on_floor():
@@ -135,11 +163,11 @@ func get_acceleration() -> float:
 
 
 func is_running() -> bool:
-	return Input.is_action_pressed("run") and ProgressManager.character_state.stamina > 0
+	return Input.is_action_pressed("run") #and ProgressManager.character_state.stamina > 0
 
 
 func can_climb() -> bool:
-	return !climbing
+	return !climbing #and ProgressManager.character_state.stamina > 0
 
 
 func switch_layer(layer:int):
@@ -161,9 +189,17 @@ func set_stamina_and_notify(value):
 	#ProgressManager.character_state.stamina = new_stamina
 
 
-func refresh_platforms_hints():
-	pass
-#	for c in $HintsRaycasts.get_children():
-#		if c is RayCast2D:
-#			print(c.get_collider())
-#			print(c.get_collision_point())
+func start_searching():
+	searching = true
+	$Sprite.play("start_searching")
+
+
+func end_searching():
+	searching = false
+	$Sprite.play("end_searching")
+
+
+func _on_Sprite_frame_changed():
+	var anim = $Sprite.animation
+	if (anim == "run" || anim == "walk") && is_on_floor() && $Sprite.frame % 3 == 0:
+		play_footstep()
