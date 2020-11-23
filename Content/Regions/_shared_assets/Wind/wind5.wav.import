@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/wind5.wav-3f59a2b14765a7d62d9f799b74986da2.sample"
+
+[deps]
+
+source_file="res://Content/Regions/_shared_assets/Wind/wind5.wav"
+dest_files=[ "res://.import/wind5.wav-3f59a2b14765a7d62d9f799b74986da2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

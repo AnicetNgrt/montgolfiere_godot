@@ -65,9 +65,19 @@ _global_script_classes=[ {
 "path": "res://Systems/Classes/PlatformerController/_subclasses/State/PlatformerControllerState.gd"
 }, {
 "base": "Resource",
+"class": "ProgressDB",
+"language": "GDScript",
+"path": "res://Systems/Classes/ProgressDB/ProgressDB.gd"
+}, {
+"base": "Resource",
 "class": "Region",
 "language": "GDScript",
 "path": "res://Systems/Classes/Region/Region.gd"
+}, {
+"base": "Resource",
+"class": "SaveSlot",
+"language": "GDScript",
+"path": "res://Systems/Classes/SaveSlot/SaveSlot.gd"
 }, {
 "base": "Reference",
 "class": "SpawnPoint",
@@ -86,7 +96,9 @@ _global_script_class_icons={
 "PlatformerControllerPhysicsProfile": "",
 "PlatformerControllerSpawner": "",
 "PlatformerControllerState": "",
+"ProgressDB": "",
 "Region": "",
+"SaveSlot": "",
 "SpawnPoint": ""
 }
 

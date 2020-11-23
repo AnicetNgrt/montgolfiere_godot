@@ -20,7 +20,7 @@
 [ext_resource path="res://Content/Custcenes/Intro/A/A_sky.png" type="Texture" id=18]
 [ext_resource path="res://Content/Custcenes/Intro/A/A_layer 1.png" type="Texture" id=19]
 [ext_resource path="res://Content/Custcenes/Intro/A/A_layer 2.png" type="Texture" id=20]
-[ext_resource path="res://_shared_assets/Sfx/Wind/windLoopable.wav" type="AudioStream" id=21]
+[ext_resource path="res://Content/Regions/_shared_assets/Wind/windLoopable.wav" type="AudioStream" id=21]
 [ext_resource path="res://Content/Custcenes/Intro/A/A_layer 4.png" type="Texture" id=22]
 [ext_resource path="res://Content/Custcenes/Intro/D/D_layer 1.png" type="Texture" id=23]
 [ext_resource path="res://Content/Custcenes/Intro/C/C_iss.png" type="Texture" id=24]
@@ -32,6 +32,7 @@
 [ext_resource path="res://Systems/Classes/UI/_building_blocks/Button/_resources/black_border.tres" type="StyleBox" id=30]
 [ext_resource path="res://Systems/Classes/UI/_building_blocks/Button/_resources/trans_border.tres" type="StyleBox" id=31]
 [ext_resource path="res://Systems/Classes/UI/_building_blocks/Button/_resources/white.tres" type="StyleBox" id=32]
+
 
 
 

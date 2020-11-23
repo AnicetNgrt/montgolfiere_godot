@@ -1,19 +1,20 @@
 [gd_scene load_steps=80 format=2]
 
-[ext_resource path="res://_shared_assets/Sfx/FootstepsDirt/Footstep_Dirt_08.wav" type="AudioStream" id=1]
-[ext_resource path="res://_shared_assets/Sfx/FootstepsDirt/Footstep_Dirt_07.wav" type="AudioStream" id=2]
-[ext_resource path="res://_shared_assets/Sfx/FootstepsDirt/Footstep_Dirt_00.wav" type="AudioStream" id=3]
+[ext_resource path="res://Systems/Classes/PlatformerController/_assets/FootstepsDirt/Footstep_Dirt_08.wav" type="AudioStream" id=1]
+[ext_resource path="res://Systems/Classes/PlatformerController/_assets/FootstepsDirt/Footstep_Dirt_07.wav" type="AudioStream" id=2]
+[ext_resource path="res://Systems/Classes/PlatformerController/_assets/FootstepsDirt/Footstep_Dirt_00.wav" type="AudioStream" id=3]
 [ext_resource path="res://Systems/Classes/PlatformerController/_assets/sky_charac_run.png" type="Texture" id=4]
 [ext_resource path="res://Systems/Classes/PlatformerController/_assets/sky_charac_jump.png" type="Texture" id=5]
-[ext_resource path="res://_shared_assets/Sfx/Breath/1.wav" type="AudioStream" id=6]
-[ext_resource path="res://_shared_assets/Sfx/Breath/2.wav" type="AudioStream" id=7]
-[ext_resource path="res://_shared_assets/Sfx/Breath/4.wav" type="AudioStream" id=8]
-[ext_resource path="res://_shared_assets/Sfx/FootstepsDirt/Footstep_Dirt_01.wav" type="AudioStream" id=9]
+[ext_resource path="res://Systems/Classes/PlatformerController/_assets/Breath/1.wav" type="AudioStream" id=6]
+[ext_resource path="res://Systems/Classes/PlatformerController/_assets/Breath/2.wav" type="AudioStream" id=7]
+[ext_resource path="res://Systems/Classes/PlatformerController/_assets/Breath/4.wav" type="AudioStream" id=8]
+[ext_resource path="res://Systems/Classes/PlatformerController/_assets/FootstepsDirt/Footstep_Dirt_01.wav" type="AudioStream" id=9]
 [ext_resource path="res://Systems/Classes/PlatformerController/_assets/sky_charac_search.png" type="Texture" id=10]
 [ext_resource path="res://Systems/Classes/PlatformerController/_assets/sky_charac_climb.png" type="Texture" id=11]
-[ext_resource path="res://_shared_assets/Sfx/FootstepsDirt/Footstep_Dirt_03.wav" type="AudioStream" id=12]
+[ext_resource path="res://Systems/Classes/PlatformerController/_assets/FootstepsDirt/Footstep_Dirt_03.wav" type="AudioStream" id=12]
 [ext_resource path="res://Systems/Classes/PlatformerController/_assets/sky_charac_idle.png" type="Texture" id=13]
 [ext_resource path="res://Systems/Classes/PlatformerController/PlatformerController.gd" type="Script" id=14]
+
 
 
 

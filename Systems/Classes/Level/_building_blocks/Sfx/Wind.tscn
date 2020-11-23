@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://_shared_assets/Sfx/Wind/windLoopable.wav" type="AudioStream" id=1]
+[ext_resource path="res://Content/Regions/_shared_assets/Wind/windLoopable.wav" type="AudioStream" id=1]
 [ext_resource path="res://_shared_scripts/LoopAudioPlayer.gd" type="Script" id=2]
+
 
 
 

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Systems/Classes/Character/Character.gd" type="Script" id=1]
+[ext_resource path="res://Content/Characters/the_savant/_assets/pp_savant.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "The Savant"
+dialogue_texture = ExtResource( 2 )

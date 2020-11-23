@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Footstep_Dirt_01.wav-365d34e29fbaea01e8dcf8d6453da1c9.sample"
+
+[deps]
+
+source_file="res://Systems/Classes/PlatformerController/_assets/FootstepsDirt/Footstep_Dirt_01.wav"
+dest_files=[ "res://.import/Footstep_Dirt_01.wav-365d34e29fbaea01e8dcf8d6453da1c9.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
