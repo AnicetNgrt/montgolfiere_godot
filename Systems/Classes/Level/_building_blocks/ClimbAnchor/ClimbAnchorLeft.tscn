@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/ClimbAnchor/ClimbAnchor.gd" type="Script" id=1]
+
+
+
+
+[node name="ClimbAnchorLeft" type="Area2D"]
+position = Vector2( -2.38419e-07, -2.38419e-07 )
+collision_layer = 0
+script = ExtResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 0, 0, -30, 90, 0, 90 )

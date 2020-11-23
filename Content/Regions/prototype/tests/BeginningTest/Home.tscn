@@ -1,0 +1,474 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/BackgroundLayer/BackgroundLayer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/Props/Test/ClimbableBlock.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/Props/Test/Block.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/Camera/Camera.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Systems/Classes/Level/Level.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/LayerSwitch/LayerSwitch.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/Camera/CameraArea/CameraArea.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/Props/Test/Platform.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/Entrance/PlatformerControllerSpawner.gd" type="Script" id=9]
+[ext_resource path="res://Content/Regions/prototype/beginning/plaine1.png" type="Texture" id=10]
+[ext_resource path="res://Content/Regions/prototype/beginning/nuages2.png" type="Texture" id=11]
+[ext_resource path="res://Content/Regions/prototype/beginning/nuages1.png" type="Texture" id=12]
+[ext_resource path="res://Content/Regions/prototype/beginning/plaine3.png" type="Texture" id=13]
+[ext_resource path="res://Content/Regions/prototype/beginning/plaine4.png" type="Texture" id=14]
+[ext_resource path="res://Content/Regions/prototype/beginning/nuages0.png" type="Texture" id=15]
+[ext_resource path="res://Content/Regions/prototype/beginning/sky.png" type="Texture" id=16]
+[ext_resource path="res://Content/Regions/prototype/beginning/montagnes.png" type="Texture" id=17]
+[ext_resource path="res://Content/Regions/prototype/beginning/plaine2.png" type="Texture" id=18]
+[ext_resource path="res://Content/Regions/prototype/beginning/plaine5.png" type="Texture" id=19]
+[ext_resource path="res://Content/Regions/prototype/beginning/front1.png" type="Texture" id=20]
+[ext_resource path="res://Content/Regions/prototype/beginning/front2.png" type="Texture" id=21]
+[ext_resource path="res://Content/Regions/prototype/tests/BeginningTest/spawnpoint_default.tres" type="Resource" id=22]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[node name="Level" instance=ExtResource( 5 )]
+default_spawn = "default"
+
+[node name="Background" type="ParallaxBackground" parent="." index="1"]
+
+[node name="sky" type="ParallaxLayer" parent="Background" index="0"]
+motion_scale = Vector2( 0, 0 )
+
+[node name="sky" type="Sprite" parent="Background/sky" index="0"]
+position = Vector2( 3230, -10 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 16 )
+
+[node name="montagnes" type="ParallaxLayer" parent="Background" index="1"]
+motion_scale = Vector2( 0.05, 0 )
+
+[node name="montagnes" type="Sprite" parent="Background/montagnes" index="0"]
+position = Vector2( 4290, 180 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 17 )
+
+[node name="nuages0" type="ParallaxLayer" parent="Background" index="2"]
+motion_scale = Vector2( 0.05, 0 )
+
+[node name="BackgroundLayer" parent="Background/nuages0" index="0" instance=ExtResource( 1 )]
+material = null
+position = Vector2( 1200, 650 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 15 )
+speed = 0.001
+
+[node name="plaine1" type="ParallaxLayer" parent="Background" index="3"]
+position = Vector2( 0, 30 )
+motion_scale = Vector2( 0.1, 0 )
+
+[node name="plaine1" type="Sprite" parent="Background/plaine1" index="0"]
+position = Vector2( 10, 190 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 10 )
+
+[node name="nuages1" type="ParallaxLayer" parent="Background" index="4"]
+visible = false
+motion_scale = Vector2( 0.1, 0 )
+
+[node name="BackgroundLayer" parent="Background/nuages1" index="0" instance=ExtResource( 1 )]
+material = null
+position = Vector2( 30, 250 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 12 )
+speed = -0.002
+
+[node name="plaine2" type="ParallaxLayer" parent="Background" index="5"]
+position = Vector2( -1, 0 )
+motion_scale = Vector2( 0.2, 0 )
+
+[node name="plaine2" type="Sprite" parent="Background/plaine2" index="0"]
+position = Vector2( 0, 260 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 18 )
+
+[node name="nuages2" type="ParallaxLayer" parent="Background" index="6"]
+visible = false
+motion_scale = Vector2( 0.45, 0.5 )
+
+[node name="BackgroundLayer" parent="Background/nuages2" index="0" instance=ExtResource( 1 )]
+material = null
+position = Vector2( 0, 200 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 11 )
+speed = 0.003
+
+[node name="plaine3" type="ParallaxLayer" parent="Background" index="7"]
+motion_scale = Vector2( 0.5, 0.5 )
+
+[node name="plaine3" type="Sprite" parent="Background/plaine3" index="0"]
+position = Vector2( 20, 90 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 13 )
+offset = Vector2( 0, 8 )
+
+[node name="plaine4" type="ParallaxLayer" parent="Background" index="8"]
+motion_scale = Vector2( 0.6, 0.5 )
+
+[node name="plaine4" type="Sprite" parent="Background/plaine4" index="0"]
+position = Vector2( -30, 40 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 14 )
+offset = Vector2( 0, 10 )
+
+[node name="EnvBack" type="Node2D" parent="." index="2"]
+scale = Vector2( 10, 10 )
+
+[node name="plaine5" type="Sprite" parent="EnvBack" index="0"]
+texture = ExtResource( 19 )
+
+[node name="front1" type="Sprite" parent="EnvBack" index="1"]
+position = Vector2( -1, 0 )
+texture = ExtResource( 20 )
+
+[node name="CharacterSpawner" type="Node2D" parent="." index="3"]
+position = Vector2( -3450, 920 )
+script = ExtResource( 9 )
+spawnpoint_data = ExtResource( 22 )
+layer = 2
+
+[node name="CameraAnchor" type="Node2D" parent="CharacterSpawner" index="0"]
+position = Vector2( 0, -180 )
+
+[node name="layer0" type="Node2D" parent="." index="4"]
+visible = false
+modulate = Color( 1, 1, 1, 0.494118 )
+position = Vector2( -3620, -60 )
+
+[node name="Platform" parent="layer0" index="0" instance=ExtResource( 8 )]
+modulate = Color( 0.623529, 1, 0.588235, 1 )
+position = Vector2( 30, 0 )
+collision_mask = 32
+
+[node name="Platform2" parent="layer0" index="1" instance=ExtResource( 8 )]
+modulate = Color( 0.623529, 1, 0.588235, 1 )
+position = Vector2( 390, 0 )
+collision_mask = 32
+
+[node name="Platform3" parent="layer0" index="2" instance=ExtResource( 8 )]
+modulate = Color( 0.623529, 1, 0.588235, 1 )
+position = Vector2( 750, 0 )
+collision_mask = 32
+
+[node name="Platform7" parent="layer0" index="3" instance=ExtResource( 8 )]
+modulate = Color( 0.623529, 1, 0.588235, 1 )
+position = Vector2( 1110, 0 )
+collision_mask = 32
+
+[node name="Platform8" parent="layer0" index="4" instance=ExtResource( 8 )]
+modulate = Color( 0.623529, 1, 0.588235, 1 )
+position = Vector2( 1470, 0 )
+collision_mask = 32
+
+[node name="Platform9" parent="layer0" index="5" instance=ExtResource( 8 )]
+modulate = Color( 0.623529, 1, 0.588235, 1 )
+position = Vector2( 1830, 0 )
+collision_mask = 32
+
+[node name="Platform10" parent="layer0" index="6" instance=ExtResource( 8 )]
+modulate = Color( 0.623529, 1, 0.588235, 1 )
+position = Vector2( 2190, 0 )
+collision_mask = 32
+
+[node name="Platform11" parent="layer0" index="7" instance=ExtResource( 8 )]
+modulate = Color( 0.623529, 1, 0.588235, 1 )
+position = Vector2( 2550, 0 )
+collision_mask = 32
+
+[node name="Platform12" parent="layer0" index="8" instance=ExtResource( 8 )]
+modulate = Color( 0.623529, 1, 0.588235, 1 )
+position = Vector2( 2910, 0 )
+collision_mask = 32
+
+[node name="Platform13" parent="layer0" index="9" instance=ExtResource( 8 )]
+modulate = Color( 0.623529, 1, 0.588235, 1 )
+position = Vector2( 3270, 0 )
+collision_mask = 32
+
+[node name="Platform14" parent="layer0" index="10" instance=ExtResource( 8 )]
+modulate = Color( 0.623529, 1, 0.588235, 1 )
+position = Vector2( 3630, 0 )
+collision_mask = 32
+
+[node name="Platform15" parent="layer0" index="11" instance=ExtResource( 8 )]
+modulate = Color( 0.623529, 1, 0.588235, 1 )
+position = Vector2( 3990, 0 )
+collision_mask = 32
+
+[node name="Platform16" parent="layer0" index="12" instance=ExtResource( 8 )]
+modulate = Color( 0.623529, 1, 0.588235, 1 )
+position = Vector2( 4350, 0 )
+collision_mask = 32
+
+[node name="Platform17" parent="layer0" index="13" instance=ExtResource( 8 )]
+modulate = Color( 0.623529, 1, 0.588235, 1 )
+position = Vector2( 4710, 0 )
+collision_mask = 32
+
+[node name="Platform18" parent="layer0" index="14" instance=ExtResource( 8 )]
+modulate = Color( 0.623529, 1, 0.588235, 1 )
+position = Vector2( 5070, 0 )
+collision_mask = 32
+
+[node name="Platform4" parent="layer0" index="15" instance=ExtResource( 8 )]
+modulate = Color( 0.623529, 1, 0.588235, 1 )
+position = Vector2( -180, 30 )
+collision_mask = 32
+
+[node name="Platform6" parent="layer0" index="16" instance=ExtResource( 8 )]
+modulate = Color( 0.623529, 1, 0.588235, 1 )
+position = Vector2( -620, 90 )
+rotation = -1.57079
+collision_mask = 32
+
+[node name="Platform5" parent="layer0" index="17" instance=ExtResource( 8 )]
+modulate = Color( 0.623529, 1, 0.588235, 1 )
+position = Vector2( -350, 60 )
+collision_mask = 32
+
+[node name="Block" parent="layer0" index="18" instance=ExtResource( 3 )]
+modulate = Color( 0.623529, 1, 0.588235, 1 )
+position = Vector2( -530, 90 )
+collision_mask = 32
+
+[node name="Block2" parent="layer0" index="19" instance=ExtResource( 3 )]
+modulate = Color( 0.623529, 1, 0.588235, 1 )
+position = Vector2( -440, 90 )
+collision_mask = 32
+
+[node name="[1] LayerSwitch" parent="layer0" index="20" instance=ExtResource( 6 )]
+modulate = Color( 0.623529, 1, 0.588235, 1 )
+position = Vector2( -430, 90 )
+scale = Vector2( 0.600001, 1 )
+
+[node name="layer1" type="Node2D" parent="." index="5"]
+visible = false
+modulate = Color( 1, 1, 1, 0.494118 )
+position = Vector2( -3620, -60 )
+
+[node name="Block" parent="layer1" index="0" instance=ExtResource( 3 )]
+modulate = Color( 1, 0.792157, 0.792157, 1 )
+position = Vector2( -350, 120 )
+collision_mask = 64
+
+[node name="Block4" parent="layer1" index="1" instance=ExtResource( 3 )]
+modulate = Color( 1, 0.792157, 0.792157, 1 )
+position = Vector2( -440, 120 )
+collision_mask = 64
+
+[node name="Block5" parent="layer1" index="2" instance=ExtResource( 3 )]
+modulate = Color( 1, 0.792157, 0.792157, 1 )
+position = Vector2( -530, 120 )
+collision_mask = 64
+
+[node name="Block7" parent="layer1" index="3" instance=ExtResource( 3 )]
+modulate = Color( 1, 0.792157, 0.792157, 1 )
+position = Vector2( -440, 90 )
+collision_mask = 64
+
+[node name="Block9" parent="layer1" index="4" instance=ExtResource( 3 )]
+modulate = Color( 1, 0.792157, 0.792157, 1 )
+position = Vector2( -40, 100 )
+collision_mask = 64
+
+[node name="Block10" parent="layer1" index="5" instance=ExtResource( 3 )]
+modulate = Color( 1, 0.792157, 0.792157, 1 )
+position = Vector2( -40, 10 )
+collision_mask = 64
+
+[node name="Block8" parent="layer1" index="6" instance=ExtResource( 3 )]
+modulate = Color( 1, 0.792157, 0.792157, 1 )
+position = Vector2( -530, 90 )
+collision_mask = 64
+
+[node name="Block6" parent="layer1" index="7" instance=ExtResource( 3 )]
+modulate = Color( 1, 0.792157, 0.792157, 1 )
+position = Vector2( -620, 30 )
+collision_mask = 64
+
+[node name="Block2" parent="layer1" index="8" instance=ExtResource( 3 )]
+modulate = Color( 1, 0.792157, 0.792157, 1 )
+position = Vector2( -260, 140 )
+collision_mask = 64
+
+[node name="Block3" parent="layer1" index="9" instance=ExtResource( 3 )]
+modulate = Color( 1, 0.792157, 0.792157, 1 )
+position = Vector2( -210, 160 )
+collision_mask = 64
+
+[node name="[0] LayerSwitch" parent="layer1" index="10" instance=ExtResource( 6 )]
+modulate = Color( 1, 0.792157, 0.792157, 1 )
+position = Vector2( -250, 60 )
+scale = Vector2( 0.600001, 1 )
+collision_mask = 64
+layer_out = 0
+
+[node name="[2] LayerSwitch" parent="layer1" index="11" instance=ExtResource( 6 )]
+modulate = Color( 1, 0.792157, 0.792157, 1 )
+position = Vector2( -80, 190 )
+scale = Vector2( 0.360001, 1 )
+collision_mask = 64
+layer_out = 2
+
+[node name="layer2" type="Node2D" parent="." index="6"]
+visible = false
+modulate = Color( 1, 1, 1, 0.494118 )
+position = Vector2( -3620, -60 )
+
+[node name="Platform" parent="layer2" index="0" instance=ExtResource( 8 )]
+modulate = Color( 0.996078, 1, 0.505882, 1 )
+position = Vector2( -320, 190 )
+collision_mask = 128
+
+[node name="Platform2" parent="layer2" index="1" instance=ExtResource( 8 )]
+modulate = Color( 0.996078, 1, 0.505882, 1 )
+position = Vector2( -950, 190 )
+collision_mask = 128
+
+[node name="ClimbableBlock5" parent="layer2" index="2" instance=ExtResource( 2 )]
+modulate = Color( 0.996078, 1, 0.505882, 1 )
+position = Vector2( -370, 230 )
+collision_mask = 128
+
+[node name="ClimbableBlock6" parent="layer2" index="3" instance=ExtResource( 2 )]
+modulate = Color( 0.996078, 1, 0.505882, 1 )
+position = Vector2( -580, 320 )
+collision_mask = 128
+
+[node name="ClimbableBlock7" parent="layer2" index="4" instance=ExtResource( 2 )]
+modulate = Color( 0.996078, 1, 0.505882, 1 )
+position = Vector2( -410, 450 )
+collision_mask = 128
+
+[node name="ClimbableBlock8" parent="layer2" index="5" instance=ExtResource( 2 )]
+modulate = Color( 0.996078, 1, 0.505882, 1 )
+position = Vector2( -330, 540 )
+collision_mask = 128
+
+[node name="ClimbableBlock9" parent="layer2" index="6" instance=ExtResource( 2 )]
+modulate = Color( 0.996078, 1, 0.505882, 1 )
+position = Vector2( -170, 690 )
+scale = Vector2( 8.87996, 10 )
+collision_mask = 128
+
+[node name="Platform3" parent="layer2" index="7" instance=ExtResource( 8 )]
+modulate = Color( 0.996078, 1, 0.505882, 1 )
+position = Vector2( -390, 720 )
+collision_mask = 128
+
+[node name="ClimbableBlock10" parent="layer2" index="8" instance=ExtResource( 2 )]
+modulate = Color( 0.996078, 1, 0.505882, 1 )
+position = Vector2( -436.182, 764.353 )
+rotation = -0.0904369
+collision_mask = 128
+
+[node name="ClimbableBlock11" parent="layer2" index="9" instance=ExtResource( 2 )]
+modulate = Color( 0.996078, 1, 0.505882, 1 )
+position = Vector2( -610, 900 )
+collision_mask = 128
+
+[node name="Platform4" parent="layer2" index="10" instance=ExtResource( 8 )]
+modulate = Color( 0.996078, 1, 0.505882, 1 )
+position = Vector2( -800, 950 )
+collision_mask = 128
+
+[node name="Platform5" parent="layer2" index="11" instance=ExtResource( 8 )]
+modulate = Color( 0.996078, 1, 0.505882, 1 )
+position = Vector2( -440, 980 )
+collision_mask = 128
+
+[node name="Platform13" parent="layer2" index="12" instance=ExtResource( 8 )]
+modulate = Color( 0.996078, 1, 0.505882, 1 )
+position = Vector2( -720, 500 )
+collision_mask = 128
+
+[node name="Block" parent="layer2" index="13" instance=ExtResource( 3 )]
+modulate = Color( 0.996078, 1, 0.505882, 1 )
+position = Vector2( -620, 370 )
+collision_mask = 128
+
+[node name="Block2" parent="layer2" index="14" instance=ExtResource( 3 )]
+modulate = Color( 0.996078, 1, 0.505882, 1 )
+position = Vector2( -540, 410 )
+collision_mask = 128
+
+[node name="Platform6" parent="layer2" index="15" instance=ExtResource( 8 )]
+modulate = Color( 0.996078, 1, 0.505882, 1 )
+position = Vector2( -80, 980 )
+collision_mask = 128
+
+[node name="Platform7" parent="layer2" index="16" instance=ExtResource( 8 )]
+modulate = Color( 0.996078, 1, 0.505882, 1 )
+position = Vector2( -40, 830 )
+rotation = -1.57079
+collision_mask = 128
+
+[node name="Platform8" parent="layer2" index="17" instance=ExtResource( 8 )]
+modulate = Color( 0.996078, 1, 0.505882, 1 )
+position = Vector2( -40, 550 )
+rotation = -1.57079
+collision_mask = 128
+
+[node name="Platform9" parent="layer2" index="18" instance=ExtResource( 8 )]
+modulate = Color( 0.996078, 1, 0.505882, 1 )
+position = Vector2( -40, 390 )
+rotation = -1.57079
+collision_mask = 128
+
+[node name="Platform10" parent="layer2" index="19" instance=ExtResource( 8 )]
+modulate = Color( 0.996078, 1, 0.505882, 1 )
+position = Vector2( -950, 280 )
+rotation = -1.57079
+collision_mask = 128
+
+[node name="Platform11" parent="layer2" index="20" instance=ExtResource( 8 )]
+modulate = Color( 0.996078, 1, 0.505882, 1 )
+position = Vector2( -710, 640 )
+rotation = -1.57079
+collision_mask = 128
+
+[node name="Platform12" parent="layer2" index="21" instance=ExtResource( 8 )]
+modulate = Color( 0.996078, 1, 0.505882, 1 )
+position = Vector2( -740, 1000 )
+rotation = -1.57079
+collision_mask = 128
+
+[node name="[1] LayerSwitch" parent="layer2" index="22" instance=ExtResource( 6 )]
+modulate = Color( 0.996078, 1, 0.505882, 1 )
+position = Vector2( -90, 160 )
+scale = Vector2( 0.480001, 1 )
+collision_mask = 128
+
+[node name="EnvFront" type="Node2D" parent="." index="7"]
+
+[node name="front2" type="Sprite" parent="EnvFront" index="0"]
+position = Vector2( 0, 10 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 21 )
+
+[node name="CameraArea" parent="." index="8" instance=ExtResource( 7 )]
+visible = false
+position = Vector2( -3810, -80 )
+
+[node name="CollisionPolygon2D" parent="CameraArea" index="0"]
+polygon = PoolVector2Array( -1070, -2300, 7060, -2280, 7110, 1420, -1070, 1400 )
+
+[node name="Camera" parent="." index="9" instance=ExtResource( 4 )]
+visible = false
+
+[editable path="CameraArea"]

@@ -1,0 +1,359 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Systems/Classes/Level/Level.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/Backgrounds/SkyBackDefault.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/Props/Test/Platform.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/Props/Test/ClimbableBlock.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/Props/Test/Block.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/Camera/Camera.gd" type="Script" id=7]
+[ext_resource path="res://_shared_assets/Props/debug/test_props.png" type="Texture" id=8]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/Props/WindTurbine.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/Props/Cow.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/LayerSwitch/LayerSwitch.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Classes/Level/Exit/Exit.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/Entrance/PlatformerControllerSpawner.gd" type="Script" id=13]
+
+
+
+
+
+
+
+
+[sub_resource type="GDScript" id=1]
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 8 )
+region = Rect2( 69, 58, 12, 6 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 8 )
+region = Rect2( 82, 51, 12, 13 )
+
+[node name="Level" instance=ExtResource( 1 )]
+default_spawn = "test0-spawn"
+
+[node name="SkyBackDefault" parent="." index="0" instance=ExtResource( 2 )]
+
+[node name="Exit" parent="Exits" index="0" instance=ExtResource( 12 )]
+position = Vector2( 1990, 150 )
+key = "test0-0a"
+
+[node name="Area2D" type="Area2D" parent="Exits/Exit" index="0"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Exits/Exit/Area2D" index="0"]
+position = Vector2( 60, 0 )
+polygon = PoolVector2Array( -60, 230, 40, 230, 40, -150, -60, -150 )
+
+[node name="Props" type="Node2D" parent="." index="2"]
+
+[node name="Cow" parent="Props" index="0" instance=ExtResource( 10 )]
+frame = 8
+
+[node name="WindTurbine" parent="Props" index="1" instance=ExtResource( 9 )]
+frame = 1
+
+[node name="Layer0Back" type="Node2D" parent="." index="3"]
+script = SubResource( 1 )
+
+[node name="[1] LayerSwitch" parent="Layer0Back" index="0" instance=ExtResource( 11 )]
+position = Vector2( 1510, 380 )
+
+[node name="Platform" parent="Layer0Back" index="1" instance=ExtResource( 3 )]
+position = Vector2( -660, 3.05176e-05 )
+collision_mask = 32
+
+[node name="Platform6" parent="Layer0Back" index="2" instance=ExtResource( 3 )]
+position = Vector2( -1020, 9.15527e-05 )
+collision_mask = 32
+
+[node name="Platform7" parent="Layer0Back" index="3" instance=ExtResource( 3 )]
+position = Vector2( -1380, 9.15527e-05 )
+collision_mask = 32
+
+[node name="Platform2" parent="Layer0Back" index="4" instance=ExtResource( 3 )]
+position = Vector2( -210, 3.05176e-05 )
+collision_mask = 32
+
+[node name="Platform13" parent="Layer0Back" index="5" instance=ExtResource( 3 )]
+position = Vector2( 1350, 380 )
+collision_mask = 32
+
+[node name="Platform14" parent="Layer0Back" index="6" instance=ExtResource( 3 )]
+position = Vector2( 990, 350 )
+collision_mask = 32
+
+[node name="Platform15" parent="Layer0Back" index="7" instance=ExtResource( 3 )]
+position = Vector2( 630, 320 )
+collision_mask = 32
+
+[node name="Platform4" parent="Layer0Back" index="8" instance=ExtResource( 3 )]
+position = Vector2( 6.10352e-05, 230 )
+collision_mask = 32
+
+[node name="Platform5" parent="Layer0Back" index="9" instance=ExtResource( 3 )]
+position = Vector2( 360, 230 )
+collision_mask = 32
+
+[node name="Platform8" parent="Layer0Back" index="10" instance=ExtResource( 3 )]
+position = Vector2( -580, 330 )
+collision_mask = 32
+
+[node name="Platform9" parent="Layer0Back" index="11" instance=ExtResource( 3 )]
+position = Vector2( -1170, 550 )
+collision_mask = 32
+
+[node name="Platform10" parent="Layer0Back" index="12" instance=ExtResource( 3 )]
+position = Vector2( -1530, 550 )
+collision_mask = 32
+
+[node name="Block" parent="Layer0Back" index="13" instance=ExtResource( 6 )]
+position = Vector2( 150, 3.8147e-06 )
+collision_mask = 32
+
+[node name="Ramp" type="StaticBody2D" parent="Layer0Back" index="14"]
+position = Vector2( -60, 260 )
+scale = Vector2( 10, 10 )
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Layer0Back/Ramp" index="0"]
+polygon = PoolVector2Array( -6, 3, 6, -3, 6, -3, 6, 4, -4, 9, -6, 9 )
+
+[node name="Sprite" type="Sprite" parent="Layer0Back/Ramp" index="1"]
+texture = SubResource( 2 )
+
+[node name="Sprite2" type="Sprite" parent="Layer0Back/Ramp" index="2"]
+position = Vector2( -4.76837e-07, 6 )
+rotation = -3.14159
+texture = SubResource( 2 )
+
+[node name="Ramp2" type="StaticBody2D" parent="Layer0Back" index="15"]
+position = Vector2( -160, 310 )
+scale = Vector2( 10, 10 )
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Layer0Back/Ramp2" index="0"]
+polygon = PoolVector2Array( -6, 3, 6, -3, 6, -3, 6, 4, -4, 9, -6, 9 )
+
+[node name="Sprite" type="Sprite" parent="Layer0Back/Ramp2" index="1"]
+texture = SubResource( 2 )
+
+[node name="Sprite2" type="Sprite" parent="Layer0Back/Ramp2" index="2"]
+position = Vector2( -4.76837e-07, 6 )
+rotation = -3.14159
+texture = SubResource( 2 )
+
+[node name="Ramp3" type="StaticBody2D" parent="Layer0Back" index="16"]
+position = Vector2( -640, 420 )
+scale = Vector2( 10, 10 )
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Layer0Back/Ramp3" index="0"]
+polygon = PoolVector2Array( -6.00001, 3, 6, -9.00001, 6, -3, 6, 3, -5.00001, 14, -6.00001, 14 )
+
+[node name="Sprite" type="Sprite" parent="Layer0Back/Ramp3" index="1"]
+position = Vector2( -7.62939e-06, -4 )
+texture = SubResource( 3 )
+offset = Vector2( 0, 0.5 )
+
+[node name="Sprite2" type="Sprite" parent="Layer0Back/Ramp3" index="2"]
+position = Vector2( -7.62939e-06, 8.99998 )
+rotation = -3.14159
+texture = SubResource( 3 )
+offset = Vector2( 0, 0.5 )
+
+[node name="Ramp4" type="StaticBody2D" parent="Layer0Back" index="17"]
+position = Vector2( -750, 530 )
+scale = Vector2( 10, 10 )
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Layer0Back/Ramp4" index="0"]
+polygon = PoolVector2Array( -6.00001, 3, 6, -9.00001, 6, -3, 6, 3, -5.00001, 14, -6.00001, 14 )
+
+[node name="Sprite" type="Sprite" parent="Layer0Back/Ramp4" index="1"]
+position = Vector2( -7.62939e-06, -4 )
+texture = SubResource( 3 )
+offset = Vector2( 0, 0.5 )
+
+[node name="Sprite2" type="Sprite" parent="Layer0Back/Ramp4" index="2"]
+position = Vector2( -7.62939e-06, 8.99998 )
+rotation = -3.14159
+texture = SubResource( 3 )
+offset = Vector2( 0, 0.5 )
+
+[node name="Layer1Back" type="Node2D" parent="." index="4"]
+modulate = Color( 1, 0.988235, 0.682353, 1 )
+position = Vector2( 1920, 980 )
+
+[node name="Platform10" parent="Layer1Back" index="0" instance=ExtResource( 3 )]
+position = Vector2( -570, -600 )
+collision_mask = 64
+
+[node name="Platform13" parent="Layer1Back" index="1" instance=ExtResource( 3 )]
+position = Vector2( -210, -600 )
+collision_mask = 64
+
+[node name="Platform11" parent="Layer1Back" index="2" instance=ExtResource( 3 )]
+position = Vector2( -930, -570 )
+collision_mask = 64
+
+[node name="Platform12" parent="Layer1Back" index="3" instance=ExtResource( 3 )]
+position = Vector2( -1290, -540 )
+collision_mask = 64
+
+[node name="[0] LayerSwitch" parent="Layer1Back" index="4" instance=ExtResource( 11 )]
+position = Vector2( -700, -630 )
+collision_mask = 64
+layer_out = 0
+
+[node name="[2] LayerSwitch" parent="Layer1Back" index="5" instance=ExtResource( 11 )]
+position = Vector2( -1060, -540 )
+collision_mask = 64
+layer_out = 2
+
+[node name="Layer2Back" type="Node2D" parent="." index="5"]
+modulate = Color( 0.952941, 0.682353, 1, 1 )
+position = Vector2( 1920, 980 )
+
+[node name="Platform10" parent="Layer2Back" index="0" instance=ExtResource( 3 )]
+position = Vector2( -570, -480 )
+collision_mask = 128
+
+[node name="Platform11" parent="Layer2Back" index="1" instance=ExtResource( 3 )]
+position = Vector2( -930, -510 )
+collision_mask = 128
+
+[node name="Platform12" parent="Layer2Back" index="2" instance=ExtResource( 3 )]
+position = Vector2( -1290, -540 )
+collision_mask = 128
+
+[node name="[1] LayerSwitch" parent="Layer2Back" index="3" instance=ExtResource( 11 )]
+position = Vector2( -770, -570 )
+collision_mask = 128
+
+[node name="CharacterSpawner" type="Node2D" parent="." index="6"]
+position = Vector2( -440, 0 )
+script = ExtResource( 13 )
+key = "test0-spawn"
+
+[node name="CameraAnchor" type="Node2D" parent="CharacterSpawner" index="0"]
+position = Vector2( -3.05176e-05, -270 )
+
+[node name="CharacterSpawner2" type="Node2D" parent="." index="7"]
+position = Vector2( 1510, 40 )
+script = ExtResource( 13 )
+key = "test0-0a"
+direction = 1
+
+[node name="CameraAnchor" type="Node2D" parent="CharacterSpawner2" index="0"]
+position = Vector2( -480, 40 )
+
+[node name="Layer0Front" type="Node2D" parent="." index="8"]
+
+[node name="ClimbableBlock" parent="Layer0Front" index="0" instance=ExtResource( 4 )]
+position = Vector2( 400, 180 )
+
+[node name="ClimbableBlock3" parent="Layer0Front" index="1" instance=ExtResource( 4 )]
+position = Vector2( 760, 270 )
+
+[node name="ClimbableBlock2" parent="Layer0Front" index="2" instance=ExtResource( 4 )]
+position = Vector2( 490, 90 )
+
+[node name="ClimbableBlock6" parent="Layer0Front" index="3" instance=ExtResource( 4 )]
+position = Vector2( 670, 180 )
+
+[node name="ClimbableBlock4" parent="Layer0Front" index="4" instance=ExtResource( 4 )]
+position = Vector2( 280, -50 )
+
+[node name="ClimbableBlock5" parent="Layer0Front" index="5" instance=ExtResource( 4 )]
+
+[node name="Camera" type="Camera2D" parent="." index="9"]
+position = Vector2( 210, 120 )
+current = true
+script = ExtResource( 7 )
+
+[node name="BorderTop" type="Area2D" parent="Camera" index="0"]
+visible = false
+position = Vector2( -950, -1400 )
+collision_layer = 0
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Camera/BorderTop" index="0"]
+position = Vector2( 0, 1100 )
+polygon = PoolVector2Array( 0, -20, 1920, -20, 1920, -240, 0, -240 )
+
+[node name="BorderBottom" type="Area2D" parent="Camera" index="1"]
+visible = false
+position = Vector2( -960, 320 )
+collision_layer = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Camera/BorderBottom" index="0"]
+position = Vector2( 0, 240 )
+polygon = PoolVector2Array( 0, -20, 1920, -20, 1920, -240, 0, -240 )
+
+[node name="BorderLeft" type="Area2D" parent="Camera" index="2"]
+visible = false
+position = Vector2( -940, -540 )
+collision_layer = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Camera/BorderLeft" index="0"]
+polygon = PoolVector2Array( 650, 0, 650, 1080, -20, 1080, -20, 0 )
+
+[node name="BorderRight" type="Area2D" parent="Camera" index="3"]
+visible = false
+position = Vector2( -960, -540 )
+collision_layer = 0
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Camera/BorderRight" index="0"]
+position = Vector2( 1270, 0 )
+polygon = PoolVector2Array( 650, 0, 650, 1080, -20, 1080, -20, 0 )
+
+[node name="DetectorTop" type="Area2D" parent="Camera" index="4"]
+position = Vector2( -960, -540 )
+collision_layer = 0
+collision_mask = 524288
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Camera/DetectorTop" index="0"]
+position = Vector2( 0, -1 )
+polygon = PoolVector2Array( 0, 0, 1920, 0, 1920, -20, 0, -20 )
+
+[node name="DetectorBottom" type="Area2D" parent="Camera" index="5"]
+position = Vector2( -960, -540 )
+collision_layer = 0
+collision_mask = 524288
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Camera/DetectorBottom" index="0"]
+position = Vector2( 0, 1101 )
+polygon = PoolVector2Array( 0, 0, 1920, 0, 1920, -20, 0, -20 )
+
+[node name="DetectorLeft" type="Area2D" parent="Camera" index="6"]
+position = Vector2( -940, -540 )
+collision_layer = 0
+collision_mask = 524288
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Camera/DetectorLeft" index="0"]
+position = Vector2( -21, 0 )
+polygon = PoolVector2Array( 0, 0, 0, 1080, -20, 1080, -20, 0 )
+
+[node name="DetectorRight" type="Area2D" parent="Camera" index="7"]
+position = Vector2( -960, -540 )
+collision_layer = 0
+collision_mask = 524288
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Camera/DetectorRight" index="0"]
+position = Vector2( 1271, 0 )
+polygon = PoolVector2Array( 670, 0, 670, 1080, 650, 1080, 650, 0 )
+
+[node name="CameraArea" type="Area2D" parent="." index="10"]
+visible = false
+collision_layer = 524288
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CameraArea" index="0"]
+modulate = Color( 0.133333, 0.8, 0.368627, 0.839216 )
+polygon = PoolVector2Array( -1990, -540, 1920, -540, 1920, 760, -1990, 760 )
+
+[editable path="Layer0Front/ClimbableBlock5"]

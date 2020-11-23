@@ -1,0 +1,848 @@
+[gd_scene load_steps=40 format=2]
+
+[ext_resource path="res://Systems/Classes/UI/_shared_resources/Fonts/small_df.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Systems/Classes/UI/_shared_resources/Fonts/regular_df.tres" type="DynamicFont" id=2]
+[ext_resource path="res://_shared_scripts/FollowMouse2D.gd" type="Script" id=3]
+[ext_resource path="res://_shared_scripts/FollowMouseControl.gd" type="Script" id=4]
+[ext_resource path="res://Content/Regions/earth/_levels/earth/_cutscenes/Intro/CutsceneIntro.gd" type="Script" id=5]
+[ext_resource path="res://Content/Custcenes/Intro/A/A_layer 6.png" type="Texture" id=6]
+[ext_resource path="res://Content/Custcenes/Intro/C/C_space.png" type="Texture" id=7]
+[ext_resource path="res://Content/Custcenes/Intro/A/A_layer 3.png" type="Texture" id=8]
+[ext_resource path="res://_shared_assets/Music/Olga Gurevich/Charles Mayer/Valse-mélancolique-_-_Le-Regret__-Op.-332.ogg" type="AudioStream" id=9]
+[ext_resource path="res://Content/Custcenes/Intro/D/D_space.png" type="Texture" id=10]
+[ext_resource path="res://Content/Custcenes/Intro/D/D_layer 2.png" type="Texture" id=11]
+[ext_resource path="res://Content/Custcenes/Intro/A/A_layer 5.png" type="Texture" id=12]
+[ext_resource path="res://_shared_assets/Music/Olga Gurevich/Chopin/Grande-valse-brillante-in-E-flat-major_-Op.-18.ogg" type="AudioStream" id=13]
+[ext_resource path="res://Content/Custcenes/Intro/B/B_sky.png" type="Texture" id=14]
+[ext_resource path="res://Content/Custcenes/Intro/B/B_layer 1.png" type="Texture" id=15]
+[ext_resource path="res://Content/Custcenes/Intro/B/B_layer 3.png" type="Texture" id=16]
+[ext_resource path="res://Content/Custcenes/Intro/obama_speech_moonshot.wav" type="AudioStream" id=17]
+[ext_resource path="res://Content/Custcenes/Intro/A/A_sky.png" type="Texture" id=18]
+[ext_resource path="res://Content/Custcenes/Intro/A/A_layer 1.png" type="Texture" id=19]
+[ext_resource path="res://Content/Custcenes/Intro/A/A_layer 2.png" type="Texture" id=20]
+[ext_resource path="res://_shared_assets/Sfx/Wind/windLoopable.wav" type="AudioStream" id=21]
+[ext_resource path="res://Content/Custcenes/Intro/A/A_layer 4.png" type="Texture" id=22]
+[ext_resource path="res://Content/Custcenes/Intro/D/D_layer 1.png" type="Texture" id=23]
+[ext_resource path="res://Content/Custcenes/Intro/C/C_iss.png" type="Texture" id=24]
+[ext_resource path="res://Content/Custcenes/Intro/B/B_layer 2.png" type="Texture" id=25]
+[ext_resource path="res://_shared_scripts/LoopAudioPlayer.gd" type="Script" id=26]
+[ext_resource path="res://_shared_assets/Fonts/Jost/static/Jost-Medium.ttf" type="DynamicFontData" id=27]
+[ext_resource path="res://_shared_assets/Fonts/Jost/static/Jost-Light.ttf" type="DynamicFontData" id=28]
+[ext_resource path="res://Systems/Classes/UI/_building_blocks/Button/Button.tscn" type="PackedScene" id=29]
+[ext_resource path="res://Systems/Classes/UI/_building_blocks/Button/_resources/black_border.tres" type="StyleBox" id=30]
+[ext_resource path="res://Systems/Classes/UI/_building_blocks/Button/_resources/trans_border.tres" type="StyleBox" id=31]
+[ext_resource path="res://Systems/Classes/UI/_building_blocks/Button/_resources/white.tres" type="StyleBox" id=32]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 27 )
+
+[sub_resource type="StyleBoxLine" id=2]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 64
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 27 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 200
+use_mipmaps = true
+use_filter = true
+extra_spacing_top = -100
+font_data = ExtResource( 28 )
+
+[sub_resource type="Animation" id=7]
+length = 110.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("ObamaSpeech:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2, 64.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Texts/Poem:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Wind:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2, 72, 72.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 0.329877 ),
+"update": 0,
+"values": [ -11.7, -80.0, -80.0, -2.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ObamaSpeech:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 54.5, 64.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -17.0, -17.0, -10.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Texts/Music:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 31.7, 34.4, 48.9, 51.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Texts/Team:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 16.4, 19.1, 28.8, 31.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Texts/Jams:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 3.1, 5.7, 14.2, 16.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("MusiqueDiscours:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 1.4, 70.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("MusiqueDiscours:volume_db")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 1.4, 3.1, 64.6, 70.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ -80.0, -15.0, -15.0, -80.0 ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Texts/Engine:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 51.7, 54.5, 64.6, 66.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("SceneA:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 106, 108 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("SceneB:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 94, 96, 106, 108 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("SceneC:modulate")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0, 82, 84, 94, 96 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("SceneD:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0, 72.3, 72.4, 82, 84 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("SceneA/UI:modulate")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0, 108, 110 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("MusiqueEspace:playing")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0, 68.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("MusiqueEspace:volume_db")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0, 68.1, 71.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -80.0, -80.0, -5.0 ]
+}
+
+[node name="Cutscene" type="Node"]
+script = ExtResource( 5 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Texts" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Jams" type="Control" parent="Texts"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Texts/Jams"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -410.0
+margin_top = -120.0
+margin_right = 400.0
+margin_bottom = 121.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Texts/Jams/VBoxContainer"]
+margin_right = 810.0
+margin_bottom = 47.0
+custom_fonts/font = ExtResource( 2 )
+text = "Made in 1 month as part of"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="C" type="Label" parent="Texts/Jams/VBoxContainer"]
+margin_top = 51.0
+margin_right = 810.0
+margin_bottom = 144.0
+custom_fonts/font = SubResource( 1 )
+text = "Github Game Off 2020"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="C2" type="Label" parent="Texts/Jams/VBoxContainer"]
+margin_top = 148.0
+margin_right = 810.0
+margin_bottom = 241.0
+custom_fonts/font = SubResource( 1 )
+text = "Web monetization jam 2020"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Team" type="VBoxContainer" parent="Texts"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -356.5
+margin_top = -160.0
+margin_right = 356.5
+margin_bottom = 160.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Texts/Team"]
+margin_right = 713.0
+margin_bottom = 47.0
+custom_fonts/font = ExtResource( 2 )
+text = "Story, Design, Art, Code & Marketing"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="C" type="Label" parent="Texts/Team"]
+margin_top = 51.0
+margin_right = 713.0
+margin_bottom = 144.0
+custom_fonts/font = SubResource( 1 )
+text = "Anicet Nougaret"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="Texts/Team"]
+margin_top = 148.0
+margin_right = 713.0
+margin_bottom = 198.0
+custom_styles/separator = SubResource( 2 )
+custom_constants/separation = 50
+
+[node name="Label2" type="Label" parent="Texts/Team"]
+margin_top = 202.0
+margin_right = 713.0
+margin_bottom = 249.0
+custom_fonts/font = ExtResource( 2 )
+text = "Design & Code Assist"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="C2" type="Label" parent="Texts/Team"]
+margin_top = 253.0
+margin_right = 713.0
+margin_bottom = 346.0
+custom_fonts/font = SubResource( 1 )
+text = "Thibault Henrion"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Music" type="VBoxContainer" parent="Texts"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -570.5
+margin_top = -173.5
+margin_right = 570.5
+margin_bottom = 173.5
+custom_constants/separation = 40
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Texts/Music"]
+margin_right = 1141.0
+margin_bottom = 47.0
+custom_fonts/font = ExtResource( 2 )
+text = "Featuring public domain recordings of public domain classical pieces"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="Texts/Music"]
+margin_top = 87.0
+margin_right = 1141.0
+margin_bottom = 184.0
+rect_min_size = Vector2( 0, 60 )
+custom_fonts/font = ExtResource( 2 )
+text = "United States Navy Band Symphony Orchestra
+ - Tchaikovsky: \"Humoresque\", Op. 10, No. 2 -"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Texts/Music"]
+margin_top = 224.0
+margin_right = 1141.0
+margin_bottom = 371.0
+rect_min_size = Vector2( 0, 60 )
+custom_fonts/font = ExtResource( 2 )
+text = "Markus Staab 
+- Mozart/Liszt: Lacrymosa from \"Requiem\" -
+- Maurice Ravel: \"Pavane for a Dead Princess\" -"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Engine" type="VBoxContainer" parent="Texts"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -570.5
+margin_top = -97.5
+margin_right = 570.5
+margin_bottom = 97.5
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Texts/Engine"]
+margin_right = 1141.0
+margin_bottom = 47.0
+custom_fonts/font = ExtResource( 2 )
+text = "A game made with the amazing open source"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="C3" type="Label" parent="Texts/Engine"]
+margin_top = 51.0
+margin_right = 1141.0
+margin_bottom = 144.0
+custom_fonts/font = SubResource( 1 )
+text = "Godot Game Engine"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Poem" type="Control" parent="Texts"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Texts/Poem"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Texts/Poem"]
+margin_left = 600.0
+margin_top = 130.0
+margin_right = 1303.0
+margin_bottom = 912.0
+custom_constants/separation = 30
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+factor = 0.5
+
+[node name="MarginContainer" type="MarginContainer" parent="Texts/Poem/VBoxContainer2"]
+margin_right = 703.0
+margin_bottom = 717.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="Text" type="Label" parent="Texts/Poem/VBoxContainer2/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 693.0
+margin_bottom = 707.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Not solitarily in fields we find
+Earth's secret open, though one page is there;
+Her plainest, such as children spell, and share
+With bird and beast; raised letters for the blind.
+Not where the troubled passions toss the mind,
+In turbid cities, can the key be bare.
+It hangs for those who hither thither fare,
+Close interthreading nature with our kind.
+They, hearing History speak, of what men were,
+And have become, are wise. The gain is great
+In vision and solidity; it lives.
+Yet at a thought of life apart from her,
+Solidity and vision lose their state,
+For Earth, that gives the milk, the spirit gives. "
+valign = 1
+
+[node name="Source" type="Label" parent="Texts/Poem/VBoxContainer2"]
+margin_top = 747.0
+margin_right = 703.0
+margin_bottom = 782.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "George Meredith, \"Earth's Secret\", 1883"
+align = 2
+
+[node name="PoemContinueButton" type="Button" parent="Texts/Poem"]
+margin_left = 828.0
+margin_top = 920.0
+margin_right = 978.0
+margin_bottom = 971.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_styles/hover = ExtResource( 30 )
+custom_styles/pressed = ExtResource( 31 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = ExtResource( 31 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+text = "Continue"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Disclaimer" type="Control" parent="Texts"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Texts/Disclaimer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="Texts/Disclaimer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -680.0
+margin_top = -130.0
+margin_right = 774.0
+margin_bottom = 59.0
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Please, turn the sound on, go fullscreen, and enjoy!
+(Esc to open the menu)"
+align = 1
+valign = 1
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+factor = 0.5
+
+[node name="ContinueToPoemButton" type="Button" parent="Texts/Disclaimer"]
+margin_left = 880.0
+margin_top = 650.0
+margin_right = 1030.0
+margin_bottom = 701.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_styles/hover = ExtResource( 30 )
+custom_styles/pressed = ExtResource( 31 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = ExtResource( 31 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+text = "Continue"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SceneA" type="Node2D" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+scale = Vector2( 10, 10 )
+
+[node name="A_sky" type="Sprite" parent="SceneA"]
+position = Vector2( 81, 39 )
+texture = ExtResource( 18 )
+script = ExtResource( 3 )
+factor = 0.05
+
+[node name="A_layer 6" type="Sprite" parent="SceneA"]
+position = Vector2( 81, 39 )
+texture = ExtResource( 6 )
+script = ExtResource( 3 )
+factor = 0.07
+
+[node name="A_layer 5" type="Sprite" parent="SceneA"]
+position = Vector2( 81, 39 )
+texture = ExtResource( 12 )
+script = ExtResource( 3 )
+factor = 0.125
+
+[node name="A_layer 4" type="Sprite" parent="SceneA"]
+position = Vector2( 81, 39 )
+texture = ExtResource( 22 )
+script = ExtResource( 3 )
+factor = 0.15
+
+[node name="A_layer 3" type="Sprite" parent="SceneA"]
+position = Vector2( 81, 39 )
+texture = ExtResource( 8 )
+script = ExtResource( 3 )
+factor = 0.175
+
+[node name="A_layer 2" type="Sprite" parent="SceneA"]
+position = Vector2( 81, 39 )
+texture = ExtResource( 20 )
+script = ExtResource( 3 )
+factor = 0.2
+
+[node name="A_layer 1" type="Sprite" parent="SceneA"]
+position = Vector2( 81, 39 )
+texture = ExtResource( 19 )
+script = ExtResource( 3 )
+factor = 0.3
+
+[node name="UI" type="Control" parent="SceneA"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_scale = Vector2( 0.1, 0.1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" parent="SceneA/UI" instance=ExtResource( 29 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 1600.0
+margin_top = 1000.0
+margin_right = 1891.0
+margin_bottom = 1051.0
+custom_styles/pressed = ExtResource( 32 )
+custom_styles/normal = ExtResource( 32 )
+text = " Begin your journey "
+
+[node name="Ttitle" type="Label" parent="SceneA/UI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 30.0
+margin_top = 740.0
+margin_right = 786.0
+margin_bottom = 1121.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "EARTH'S
+SECRETS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SceneB" type="Node2D" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+scale = Vector2( 10, 10 )
+
+[node name="B_sky" type="Sprite" parent="SceneB"]
+position = Vector2( 81, 39 )
+texture = ExtResource( 14 )
+script = ExtResource( 3 )
+factor = 0.1
+
+[node name="B_layer 2" type="Sprite" parent="SceneB"]
+position = Vector2( 81, 39 )
+texture = ExtResource( 25 )
+script = ExtResource( 3 )
+factor = 0.15
+
+[node name="B_layer 1" type="Sprite" parent="SceneB"]
+position = Vector2( 81, 39 )
+texture = ExtResource( 15 )
+script = ExtResource( 3 )
+factor = 0.2
+
+[node name="B_layer 3" type="Sprite" parent="SceneB"]
+position = Vector2( 81, 39 )
+texture = ExtResource( 16 )
+script = ExtResource( 3 )
+factor = 0.3
+
+[node name="SceneC" type="Node2D" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 430, 20 )
+scale = Vector2( 10, 10 )
+
+[node name="C_space" type="Sprite" parent="SceneC"]
+position = Vector2( 38, 37 )
+texture = ExtResource( 7 )
+script = ExtResource( 3 )
+factor = 0.05
+
+[node name="C_iss" type="Sprite" parent="SceneC"]
+position = Vector2( 38, 37 )
+texture = ExtResource( 24 )
+script = ExtResource( 3 )
+factor = 0.2
+
+[node name="SceneD" type="Node2D" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+scale = Vector2( 10, 10 )
+
+[node name="D_space" type="Sprite" parent="SceneD"]
+position = Vector2( 81, 39 )
+texture = ExtResource( 10 )
+script = ExtResource( 3 )
+factor = 0.05
+
+[node name="D_layer 1" type="Sprite" parent="SceneD"]
+position = Vector2( 81, 39 )
+texture = ExtResource( 23 )
+script = ExtResource( 3 )
+factor = 0.2
+
+[node name="D_layer 2" type="Sprite" parent="SceneD"]
+position = Vector2( 81, 39 )
+texture = ExtResource( 11 )
+script = ExtResource( 3 )
+factor = 0.2
+
+[node name="Wind" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 21 )
+volume_db = -11.7
+autoplay = true
+bus = "Sfx"
+script = ExtResource( 26 )
+
+[node name="ObamaSpeech" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+volume_db = -17.0
+bus = "Music"
+
+[node name="MusiqueDiscours" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+volume_db = -65.8823
+bus = "Music"
+
+[node name="MusiqueEspace" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -80.0
+bus = "Music"
+script = ExtResource( 26 )
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+anims/Main = SubResource( 7 )
+[connection signal="pressed" from="Texts/Poem/PoemContinueButton" to="." method="_on_PoemContinueButton_pressed"]
+[connection signal="pressed" from="Texts/Disclaimer/ContinueToPoemButton" to="." method="_on_ContinueToPoemButton_pressed"]

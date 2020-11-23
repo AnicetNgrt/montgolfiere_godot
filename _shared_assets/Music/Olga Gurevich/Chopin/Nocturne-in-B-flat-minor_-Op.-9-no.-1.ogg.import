@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Nocturne-in-B-flat-minor_-Op.-9-no.-1.ogg-ec2545da43f20aee780c1dec8e0eda50.oggstr"
+
+[deps]
+
+source_file="res://_shared_assets/Music/Olga Gurevich/Chopin/Nocturne-in-B-flat-minor_-Op.-9-no.-1.ogg"
+dest_files=[ "res://.import/Nocturne-in-B-flat-minor_-Op.-9-no.-1.ogg-ec2545da43f20aee780c1dec8e0eda50.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

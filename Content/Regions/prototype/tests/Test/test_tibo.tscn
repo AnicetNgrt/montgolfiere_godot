@@ -1,0 +1,78 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Systems/Classes/Level/Level.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Content/Regions/prototype/Test.png" type="Texture" id=2]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/Entrance/PlatformerControllerSpawner.gd" type="Script" id=3]
+[ext_resource path="res://Content/Regions/prototype/tests/Test/sp_test_tibo_default.tres" type="Resource" id=4]
+[ext_resource path="res://Regions/earth/_levels/region_earth.tres" type="Resource" id=5]
+[ext_resource path="res://Content/Regions/earth/_shared_animations/day_night_regular.tres" type="Animation" id=6]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/LayerSwitch/LayerSwitch.tscn" type="PackedScene" id=7]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[node name="Level" instance=ExtResource( 1 )]
+default_spawn = "default"
+custom_modulate = Color( 0, 0, 0, 1 )
+region = ExtResource( 5 )
+
+[node name="DayNightAnimator" parent="." index="0"]
+anims/day_night = ExtResource( 6 )
+
+[node name="Test" type="Sprite" parent="." index="1"]
+position = Vector2( 960, 540 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 2 )
+
+[node name="layer0" type="Node2D" parent="." index="2"]
+
+[node name="[1] LayerSwitch" parent="layer0" index="0" instance=ExtResource( 7 )]
+position = Vector2( 1300, 300 )
+rotation = 0.424141
+scale = Vector2( 0.52, 1 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="layer0" index="1"]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer0/StaticBody2D" index="0"]
+polygon = PoolVector2Array( 0, 170, 180, 170, 180, 420, 0, 420 )
+
+[node name="layer1" type="Node2D" parent="." index="3"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="layer1" index="0"]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer1/StaticBody2D" index="0"]
+polygon = PoolVector2Array( 1080, 280, 1080, 300, 1140, 410, 1420, 370, 1420, 360, 1260, 280 )
+
+[node name="[0] LayerSwitch" parent="layer1" index="1" instance=ExtResource( 7 )]
+position = Vector2( 1280, 370 )
+rotation = -0.105874
+scale = Vector2( 2.767, 1 )
+collision_mask = 64
+layer_out = 0
+
+[node name="CharacterSpawner" type="Node2D" parent="." index="4"]
+position = Vector2( 80, 170 )
+script = ExtResource( 3 )
+spawnpoint_data = ExtResource( 4 )
+direction = 1

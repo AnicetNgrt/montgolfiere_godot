@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Systems/Classes/PlatformerController/_subclasses/State/PlatformerControllerState.gd" type="Script" id=1]
+
+
+
+
+
+
+
+
+[resource]
+script = ExtResource( 1 )
+stamina = 100.0
+max_stamina = 100.0
+walk_stamina_loss_mult = 0.0
+run_stamina_loss_mult = 5.0
+jump_stamina_loss = 1.0
+jump_run_stamina_loss = 2.0
+climb_stamina_loss = 2.0

@@ -9,83 +9,83 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Resource",
+"base": "Reference",
 "class": "Artifact",
 "language": "GDScript",
-"path": "res://Resources/Artifacts/Artifact.gd"
+"path": "res://Systems/Classes/Artifact/Artifact.gd"
 }, {
-"base": "Sprite",
+"base": "Reference",
 "class": "BackgroundLayer",
 "language": "GDScript",
-"path": "res://Scenes/Level/BackgroundLayer/BackgroundLayer.gd"
+"path": "res://Systems/Classes/Level/_building_blocks/BackgroundLayer/BackgroundLayer.gd"
 }, {
-"base": "KinematicBody2D",
+"base": "Reference",
 "class": "Character",
 "language": "GDScript",
-"path": "res://Scenes/Character/Character.gd"
-}, {
-"base": "Resource",
-"class": "CharacterPhysicsProfile",
-"language": "GDScript",
-"path": "res://Resources/CharacterPhysicsProfile/CharacterPhysicsProfile.gd"
-}, {
-"base": "Resource",
-"class": "CharacterProfile",
-"language": "GDScript",
-"path": "res://Resources/CharacterProfile/CharacterProfile.gd"
-}, {
-"base": "Node2D",
-"class": "CharacterSpawner",
-"language": "GDScript",
-"path": "res://Scenes/Level/Entrance/CharacterSpawner.gd"
-}, {
-"base": "Resource",
-"class": "CharacterState",
-"language": "GDScript",
-"path": "res://Resources/CharacterState/CharacterState.gd"
+"path": "res://Systems/Classes/Character/Character.gd"
 }, {
 "base": "Area2D",
 "class": "ClimbAnchor",
 "language": "GDScript",
-"path": "res://Scenes/Level/ClimbAnchor/ClimbAnchor.gd"
+"path": "res://Systems/Classes/Level/_building_blocks/ClimbAnchor/ClimbAnchor.gd"
 }, {
 "base": "Area2D",
 "class": "Exit",
 "language": "GDScript",
-"path": "res://Scenes/Level/Exit/Exit.gd"
+"path": "res://Systems/Classes/Level/_building_blocks/Exit/Exit.gd"
 }, {
 "base": "Node2D",
 "class": "Level",
 "language": "GDScript",
-"path": "res://Scenes/Level/Level.gd"
+"path": "res://Systems/Classes/Level/Level.gd"
 }, {
-"base": "Area2D",
+"base": "Reference",
 "class": "NPC",
 "language": "GDScript",
-"path": "res://Scenes/NPC/NPC.gd"
+"path": "res://Systems/Classes/Level/_building_blocks/NPC/NPC.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "PlatformerController",
+"language": "GDScript",
+"path": "res://Systems/Classes/PlatformerController/PlatformerController.gd"
+}, {
+"base": "Reference",
+"class": "PlatformerControllerPhysicsProfile",
+"language": "GDScript",
+"path": "res://Systems/Classes/PlatformerController/_subclasses/PhysicsProfile/PlatformerControllerPhysicsProfile.gd"
+}, {
+"base": "Node2D",
+"class": "PlatformerControllerSpawner",
+"language": "GDScript",
+"path": "res://Systems/Classes/Level/_building_blocks/Entrance/PlatformerControllerSpawner.gd"
+}, {
+"base": "Reference",
+"class": "PlatformerControllerState",
+"language": "GDScript",
+"path": "res://Systems/Classes/PlatformerController/_subclasses/State/PlatformerControllerState.gd"
 }, {
 "base": "Resource",
 "class": "Region",
 "language": "GDScript",
-"path": "res://Resources/Region/Region.gd"
+"path": "res://Systems/Classes/Region/Region.gd"
 }, {
-"base": "Resource",
+"base": "Reference",
 "class": "SpawnPoint",
 "language": "GDScript",
-"path": "res://Resources/SpawnPoint/SpawnPoint.gd"
+"path": "res://Systems/Classes/SpawnPoint/SpawnPoint.gd"
 } ]
 _global_script_class_icons={
 "Artifact": "",
 "BackgroundLayer": "",
 "Character": "",
-"CharacterPhysicsProfile": "",
-"CharacterProfile": "",
-"CharacterSpawner": "",
-"CharacterState": "",
 "ClimbAnchor": "",
 "Exit": "",
 "Level": "",
 "NPC": "",
+"PlatformerController": "",
+"PlatformerControllerPhysicsProfile": "",
+"PlatformerControllerSpawner": "",
+"PlatformerControllerState": "",
 "Region": "",
 "SpawnPoint": ""
 }
@@ -93,18 +93,18 @@ _global_script_class_icons={
 [application]
 
 config/name="SkyExploration"
-run/main_scene="res://Scenes/Game/Game.tscn"
+run/main_scene="res://Systems/Classes/GameLauncher/GameLauncher.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-RandomUtils="*res://Singletons/RandomUtils.gd"
-TweensUtils="*res://Singletons/TweensUtils.gd"
-ProgressManager="*res://Singletons/ProgressManager.gd"
-WorldEnvManager="*res://Singletons/WorldEnvironmentManager.gd"
-LevelLoader="*res://Singletons/LevelLoader.gd"
-UiSummoner="*res://Singletons/UiSummoner.gd"
-RootManager="*res://Singletons/RootManager.gd"
+RandomUtils="*res://Systems/Autoloads/RandomUtils.gd"
+TweensUtils="*res://Systems/Autoloads/TweensUtils.gd"
+ProgressManager="*res://Systems/Autoloads/ProgressManager.gd"
+WorldEnvManager="*res://Systems/Autoloads/WorldEnvironmentManager.gd"
+LevelLoader="*res://Systems/Autoloads/LevelLoader.gd"
+UiSummoner="*res://Systems/Autoloads/UiSummoner.gd"
+RootManager="*res://Systems/Autoloads/RootManager.gd"
 
 [display]
 

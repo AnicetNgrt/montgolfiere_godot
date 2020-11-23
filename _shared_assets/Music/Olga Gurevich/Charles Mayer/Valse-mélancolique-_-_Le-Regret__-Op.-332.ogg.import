@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Valse-mélancolique-_-_Le-Regret__-Op.-332.ogg-f7291a58329944daf6d38e3d5aad92b8.oggstr"
+
+[deps]
+
+source_file="res://_shared_assets/Music/Olga Gurevich/Charles Mayer/Valse-mélancolique-_-_Le-Regret__-Op.-332.ogg"
+dest_files=[ "res://.import/Valse-mélancolique-_-_Le-Regret__-Op.-332.ogg-f7291a58329944daf6d38e3d5aad92b8.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

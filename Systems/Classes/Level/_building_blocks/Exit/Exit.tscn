@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/Exit/Exit.gd" type="Script" id=1]
+
+[node name="Exit" type="Area2D"]
+script = ExtResource( 1 )

@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/sacred-stone_layer 1.png-3fb35bca8ad1eb87bc6d2a84d4fe3f8c.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Content/Artifacts/sacred-stone/_assets/sacred-stone_layer 1.png"
+dest_files=[ "res://.import/sacred-stone_layer 1.png-3fb35bca8ad1eb87bc6d2a84d4fe3f8c.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=false
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/BackgroundLayer/BackgroundLayer.gd" type="Script" id=1]
+[ext_resource path="res://Content/Regions/_shared_assets/Clouds/clouds3.png" type="Texture" id=2]
+[ext_resource path="res://_shared_resources/DropShadow/scrollAndDropShadow.tres" type="Material" id=3]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[node name="BackgroundLayer" type="Sprite"]
+material = ExtResource( 3 )
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+speed = 0.1

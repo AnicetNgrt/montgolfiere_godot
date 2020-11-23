@@ -1,0 +1,392 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://Systems/Classes/Level/Level.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Content/Regions/island1/_levels/island1-1/_assets/island1-1_layout.png" type="Texture" id=2]
+[ext_resource path="res://Content/Regions/island1/_levels/island1-1/_assets/island1-1_invisible-walls.png" type="Texture" id=3]
+[ext_resource path="res://Content/Regions/island1/_levels/island1-1/_assets/island1-1_triggers.png" type="Texture" id=4]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/Props/Test/Platform.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/Props/Test/Block.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/Entrance/PlatformerControllerSpawner.gd" type="Script" id=7]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/Camera/Camera.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/Camera/CameraArea/CameraArea.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Content/Regions/island1/_levels/island1-1/_resources/sp_default.tres" type="Resource" id=10]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/ClimbAnchor/ClimbAnchor.gd" type="Script" id=11]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/LayerSwitch/LayerSwitch.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Content/Regions/island1/_levels/island1-1/_assets/island1-1_l0_back1.png" type="Texture" id=13]
+[ext_resource path="res://Content/Regions/island1/_levels/island1-1/_assets/island1-1_l0_back2.png" type="Texture" id=14]
+[ext_resource path="res://Content/Regions/island1/_levels/island1-1/_assets/island1-1_l0_front2.png" type="Texture" id=15]
+[ext_resource path="res://Content/Regions/island1/_levels/island1-1/_assets/island1-1_l0_front1.png" type="Texture" id=16]
+[ext_resource path="res://Content/Regions/island1/_levels/island1-1/_assets/island1-1_l1_back1.png" type="Texture" id=17]
+[ext_resource path="res://Content/Regions/island1/_levels/island1-1/_assets/island1-1_l1_front1.png" type="Texture" id=18]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/BackgroundLayer/BackgroundLayer.gd" type="Script" id=19]
+[ext_resource path="res://Content/Regions/_shared_assets/Clouds/clouds-white-long.png" type="Texture" id=20]
+[ext_resource path="res://_shared_resources/DropShadow/scrollAndDropShadow.tres" type="Material" id=21]
+[ext_resource path="res://Content/Regions/island1/_levels/island1-1/_assets/island1-1_bg.png" type="Texture" id=22]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/BackgroundLayer/BackgroundLayer.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Content/Regions/_shared_assets/Clouds/clouds-white-front.png" type="Texture" id=24]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float scroll_speed;
+uniform float radius = 5.0;
+uniform vec4 modulate: hint_color;
+
+void fragment() {
+	vec2 ps = TEXTURE_PIXEL_SIZE;
+	
+	vec2 shifteduv = UV;
+    shifteduv.x = mod(shifteduv.x+TIME*scroll_speed, 1.0);
+	
+	vec4 shadow = texture(TEXTURE, shifteduv + vec2(-radius, -radius) * ps);
+	
+	shadow += texture(TEXTURE, shifteduv + vec2(-radius, 0.0) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(-radius, radius) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(0.0, -radius) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(0.0, radius) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(radius, -radius) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(radius, 0.0) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(radius, radius) * ps);
+	shadow /= 8.0;
+	shadow *= modulate;
+	
+    vec4 color = texture(TEXTURE, shifteduv);
+    COLOR = mix(shadow, color, color.a);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/scroll_speed = -0.03
+shader_param/radius = 1.0
+shader_param/modulate = Color( 0, 0, 0, 0.0980392 )
+
+[node name="Level" instance=ExtResource( 1 )]
+default_spawn = "default"
+
+[node name="background" type="Node2D" parent="." index="1"]
+scale = Vector2( 10, 10 )
+
+[node name="island1-1_bg" type="Sprite" parent="background" index="0"]
+position = Vector2( 96, 54 )
+texture = ExtResource( 22 )
+
+[node name="clouds_back" type="Sprite" parent="background" index="1"]
+modulate = Color( 0.156863, 0.360784, 0.768627, 1 )
+material = ExtResource( 21 )
+position = Vector2( 216, 93 )
+texture = ExtResource( 20 )
+script = ExtResource( 19 )
+speed = 0.01
+
+[node name="layout-reference" type="Node2D" parent="." index="2"]
+visible = false
+scale = Vector2( 10, 10 )
+
+[node name="island1-1_invisible-walls" type="Sprite" parent="layout-reference" index="0"]
+position = Vector2( 96, 54 )
+texture = ExtResource( 3 )
+
+[node name="island1-1_layout" type="Sprite" parent="layout-reference" index="1"]
+position = Vector2( 96, 54 )
+texture = ExtResource( 2 )
+
+[node name="island1-1_triggers" type="Sprite" parent="layout-reference" index="2"]
+position = Vector2( 96, 54 )
+texture = ExtResource( 4 )
+
+[node name="layer1_back" type="Node2D" parent="." index="3"]
+scale = Vector2( 10, 10 )
+
+[node name="island1-1_l1_back1" type="Sprite" parent="layer1_back" index="0"]
+position = Vector2( 96, 54 )
+texture = ExtResource( 17 )
+
+[node name="layer1" type="Node2D" parent="." index="4"]
+
+[node name="Block10" parent="layer1" index="0" instance=ExtResource( 6 )]
+position = Vector2( 1070, 250 )
+scale = Vector2( 12.1958, 5.57548 )
+collision_mask = 64
+
+[node name="Block15" parent="layer1" index="1" instance=ExtResource( 6 )]
+position = Vector2( 1180, 280 )
+scale = Vector2( 12.1958, 5.57548 )
+collision_mask = 64
+
+[node name="Block11" parent="layer1" index="2" instance=ExtResource( 6 )]
+position = Vector2( 960, 220 )
+scale = Vector2( 12.1958, 5.57548 )
+collision_mask = 64
+
+[node name="Block12" parent="layer1" index="3" instance=ExtResource( 6 )]
+position = Vector2( 850, 190 )
+scale = Vector2( 12.1958, 5.57548 )
+collision_mask = 64
+
+[node name="Block14" parent="layer1" index="4" instance=ExtResource( 6 )]
+position = Vector2( 620, 7.62939e-06 )
+rotation = 0.464216
+scale = Vector2( 17.3927, 5.35527 )
+collision_mask = 64
+
+[node name="Block13" parent="layer1" index="5" instance=ExtResource( 6 )]
+position = Vector2( 770, 70 )
+scale = Vector2( 5.55699, 5.57181 )
+collision_mask = 64
+
+[node name="Platform" parent="layer1" index="6" instance=ExtResource( 5 )]
+position = Vector2( 1290, 330 )
+rotation = -1.57079
+collision_mask = 64
+
+[node name="[0] LayerSwitch" parent="layer1" index="7" instance=ExtResource( 12 )]
+position = Vector2( 1230, 280 )
+collision_mask = 64
+layer_out = 0
+
+[node name="ClimbAnchor" type="Area2D" parent="layer1" index="8"]
+position = Vector2( 820, 70 )
+script = ExtResource( 11 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer1/ClimbAnchor" index="0"]
+polygon = PoolVector2Array( 0, 0, 50, 50, 10, 50, 0, 20 )
+
+[node name="layer1_front" type="Node2D" parent="." index="5"]
+scale = Vector2( 10, 10 )
+
+[node name="island1-1_l1_front1" type="Sprite" parent="layer1_front" index="0"]
+position = Vector2( 96, 54 )
+texture = ExtResource( 18 )
+
+[node name="layer0_back" type="Node2D" parent="." index="6"]
+scale = Vector2( 10, 10 )
+
+[node name="island1-1_l0_back1" type="Sprite" parent="layer0_back" index="0"]
+position = Vector2( 96, 54 )
+texture = ExtResource( 13 )
+
+[node name="island1-1_l0_back2" type="Sprite" parent="layer0_back" index="1"]
+position = Vector2( 96, 54 )
+texture = ExtResource( 14 )
+
+[node name="layer0" type="Node2D" parent="." index="7"]
+visible = false
+
+[node name="Platform" parent="layer0" index="0" instance=ExtResource( 5 )]
+position = Vector2( 240, 710 )
+collision_mask = 32
+
+[node name="Platform4" parent="layer0" index="1" instance=ExtResource( 5 )]
+position = Vector2( 150, 710 )
+rotation = -1.57079
+collision_mask = 32
+
+[node name="Platform2" parent="layer0" index="2" instance=ExtResource( 5 )]
+position = Vector2( 420, 710 )
+collision_mask = 32
+
+[node name="Platform3" parent="layer0" index="3" instance=ExtResource( 5 )]
+position = Vector2( 779.96, 710.042 )
+rotation = -0.460672
+collision_mask = 32
+
+[node name="Block" parent="layer0" index="4" instance=ExtResource( 6 )]
+position = Vector2( 1102.43, 549.984 )
+scale = Vector2( 10.8328, 10.3372 )
+collision_mask = 32
+
+[node name="Block10" parent="layer0" index="5" instance=ExtResource( 6 )]
+position = Vector2( 1190, 640 )
+scale = Vector2( 10.8328, 10.3372 )
+collision_mask = 32
+
+[node name="Block12" parent="layer0" index="6" instance=ExtResource( 6 )]
+position = Vector2( 1100, 640 )
+scale = Vector2( 11.0959, 19.0461 )
+collision_mask = 32
+
+[node name="Block13" parent="layer0" index="7" instance=ExtResource( 6 )]
+position = Vector2( 1270, 630 )
+scale = Vector2( 11.0959, 19.0461 )
+collision_mask = 32
+
+[node name="Block14" parent="layer0" index="8" instance=ExtResource( 6 )]
+position = Vector2( 1340, 630 )
+scale = Vector2( 11.0959, 19.0461 )
+collision_mask = 32
+
+[node name="Block15" parent="layer0" index="9" instance=ExtResource( 6 )]
+position = Vector2( 1550, 640 )
+scale = Vector2( 11.0959, 19.0461 )
+collision_mask = 32
+
+[node name="Block11" parent="layer0" index="10" instance=ExtResource( 6 )]
+position = Vector2( 1450, 640 )
+scale = Vector2( 10.8328, 10.3372 )
+collision_mask = 32
+
+[node name="Block2" parent="layer0" index="11" instance=ExtResource( 6 )]
+position = Vector2( 1270, 550 )
+scale = Vector2( 18.92, 10 )
+collision_mask = 32
+
+[node name="Block3" parent="layer0" index="12" instance=ExtResource( 6 )]
+position = Vector2( 1550, 550 )
+scale = Vector2( 41.1092, 9.94576 )
+collision_mask = 32
+
+[node name="Block4" parent="layer0" index="13" instance=ExtResource( 6 )]
+position = Vector2( 480, 510 )
+scale = Vector2( 12.1958, 5.57548 )
+collision_mask = 32
+
+[node name="Block5" parent="layer0" index="14" instance=ExtResource( 6 )]
+position = Vector2( 660, 510 )
+scale = Vector2( 12.1958, 5.57548 )
+collision_mask = 32
+
+[node name="Block6" parent="layer0" index="15" instance=ExtResource( 6 )]
+position = Vector2( 850, 370 )
+scale = Vector2( 12.1958, 5.57548 )
+collision_mask = 32
+
+[node name="Block7" parent="layer0" index="16" instance=ExtResource( 6 )]
+position = Vector2( 960, 340 )
+scale = Vector2( 12.1958, 5.57548 )
+collision_mask = 32
+
+[node name="Block8" parent="layer0" index="17" instance=ExtResource( 6 )]
+position = Vector2( 1070, 310 )
+scale = Vector2( 12.1958, 5.57548 )
+collision_mask = 32
+
+[node name="Block9" parent="layer0" index="18" instance=ExtResource( 6 )]
+position = Vector2( 1180, 280 )
+scale = Vector2( 12.1958, 5.57548 )
+collision_mask = 32
+
+[node name="[1] LayerSwitch" parent="layer0" index="19" instance=ExtResource( 12 )]
+position = Vector2( 1230, 250 )
+
+[node name="ClimbAnchor" type="Area2D" parent="layer0" index="20"]
+position = Vector2( 770, 510 )
+collision_layer = 0
+collision_mask = 32
+script = ExtResource( 11 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer0/ClimbAnchor" index="0"]
+polygon = PoolVector2Array( 0, 0, 50, 50, 0, 50 )
+
+[node name="ClimbAnchor6" type="Area2D" parent="layer0" index="21"]
+position = Vector2( 1270, 550 )
+collision_layer = 0
+collision_mask = 32
+script = ExtResource( 11 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer0/ClimbAnchor6" index="0"]
+polygon = PoolVector2Array( 0, 0, -30, 20, 0, 20 )
+
+[node name="ClimbAnchor4" type="Area2D" parent="layer0" index="22"]
+position = Vector2( 1440, 550 )
+collision_layer = 0
+collision_mask = 32
+script = ExtResource( 11 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer0/ClimbAnchor4" index="0"]
+polygon = PoolVector2Array( 0, 0, 50, 50, 0, 50 )
+
+[node name="ClimbAnchor2" type="Area2D" parent="layer0" index="23"]
+position = Vector2( 850, 370 )
+collision_layer = 0
+collision_mask = 32
+script = ExtResource( 11 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer0/ClimbAnchor2" index="0"]
+polygon = PoolVector2Array( 0, 0, -50, 50, 0, 50 )
+
+[node name="ClimbAnchor5" type="Area2D" parent="layer0" index="24"]
+position = Vector2( 1550, 550 )
+collision_layer = 0
+collision_mask = 32
+script = ExtResource( 11 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer0/ClimbAnchor5" index="0"]
+polygon = PoolVector2Array( 0, 0, -50, 50, 0, 50 )
+
+[node name="Platform5" parent="layer0" index="25" instance=ExtResource( 5 )]
+position = Vector2( 1290, 330 )
+rotation = -1.57079
+collision_mask = 32
+
+[node name="CharacterSpawner" type="Node2D" parent="." index="8"]
+position = Vector2( 280, 710 )
+script = ExtResource( 7 )
+spawnpoint_data = ExtResource( 10 )
+direction = 1
+
+[node name="layer0_front" type="Node2D" parent="." index="9"]
+scale = Vector2( 10, 10 )
+
+[node name="island1-1_l0_front1" type="Sprite" parent="layer0_front" index="0"]
+position = Vector2( 96, 54 )
+texture = ExtResource( 16 )
+
+[node name="island1-1_l0_front2" type="Sprite" parent="layer0_front" index="1"]
+position = Vector2( 96, 54 )
+texture = ExtResource( 15 )
+
+[node name="foreground" type="Node2D" parent="." index="10"]
+position = Vector2( 470, -770 )
+scale = Vector2( 10, 10 )
+
+[node name="BackgroundLayer" parent="foreground" index="0" instance=ExtResource( 23 )]
+material = SubResource( 2 )
+position = Vector2( 47, 78 )
+texture = ExtResource( 24 )
+speed = -0.05
+
+[node name="BackgroundLayer2" parent="foreground" index="1" instance=ExtResource( 23 )]
+material = SubResource( 2 )
+position = Vector2( 25, 178 )
+rotation = -3.14159
+texture = ExtResource( 24 )
+speed = -0.03
+
+[node name="Camera" parent="." index="11" instance=ExtResource( 8 )]
+visible = false
+position = Vector2( 960, 540 )
+
+[node name="CameraArea" parent="." index="12" instance=ExtResource( 9 )]
+visible = false
+position = Vector2( 1990, 540 )
+
+[node name="CollisionPolygon2D" parent="CameraArea" index="0"]
+polygon = PoolVector2Array( -1990, -540, -70, -540, -70, 540, -1990, 540 )
+
+[node name="DayNight" type="AnimationPlayer" parent="." index="13"]
+
+[editable path="CameraArea"]
