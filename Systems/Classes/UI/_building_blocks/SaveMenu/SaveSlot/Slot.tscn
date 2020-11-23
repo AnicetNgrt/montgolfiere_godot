@@ -1,0 +1,84 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Systems/Classes/UI/_building_blocks/Button/Button.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Systems/Classes/UI/_shared_resources/Fonts/regular_df.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Systems/Classes/UI/_shared_resources/Fonts/small_df.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Systems/Classes/UI/_building_blocks/SaveMenu/SaveSlot/Slot.gd" type="Script" id=4]
+[ext_resource path="res://Systems/Classes/UI/_building_blocks/Button/_resources/white.tres" type="StyleBox" id=5]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[node name="Slot" type="PanelContainer"]
+margin_right = 630.0
+margin_bottom = 149.0
+size_flags_horizontal = 3
+custom_styles/panel = ExtResource( 5 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_right = 630.0
+margin_bottom = 149.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 620.0
+margin_bottom = 139.0
+custom_constants/separation = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+margin_right = 155.0
+margin_bottom = 129.0
+
+[node name="Name" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+margin_right = 155.0
+margin_bottom = 47.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Test 0"
+
+[node name="CreatedAt" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 51.0
+margin_right = 155.0
+margin_bottom = 86.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Created at: "
+
+[node name="Modified" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 90.0
+margin_right = 155.0
+margin_bottom = 125.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Last modified: "
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+margin_left = 460.0
+margin_right = 610.0
+margin_bottom = 129.0
+size_flags_horizontal = 10
+
+[node name="ButtonPlay" parent="MarginContainer/HBoxContainer/VBoxContainer2" instance=ExtResource( 1 )]
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 150.0
+margin_bottom = 129.0
+size_flags_horizontal = 10
+size_flags_vertical = 3
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/focus = SubResource( 2 )
+custom_styles/disabled = SubResource( 3 )
+custom_styles/normal = ExtResource( 5 )
+text = "Play"

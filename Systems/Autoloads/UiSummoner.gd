@@ -57,7 +57,7 @@ func summon(path:String, parent:Node) -> Control:
 	parent.call_deferred("add_child", instance)
 	connect_ui_instance(instance)
 	return instance
-	
+
 
 func connect_ui_instance(instance:Node):
 	instance.connect("finished", self, "on_ui_instance_finished")

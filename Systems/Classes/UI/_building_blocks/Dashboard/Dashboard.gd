@@ -6,6 +6,7 @@ var artifacts_offset = 0
 var clues_offset = 0
 
 func _ready():
+	refresh_buttons()
 	if LevelLoader.current_level != null:
 		$Clock.show()
 		$Artifacts.show()
@@ -20,6 +21,7 @@ func _ready():
 		$Clue.hide()
 	
 
+
 func refresh_buttons():
 	if AudioServer.is_bus_mute(1):
 		$Menu/ButtonSounds.text = "Sounds: OFF"
@@ -33,6 +35,7 @@ func refresh_buttons():
 		$Menu/ButtonFullscreen.text = "Fullscreen: ON"
 	else:
 		$Menu/ButtonFullscreen.text = "Fullscreen: OFF"
+
 
 func set_time_of_day(tod:float):
 	if not is_inside_tree(): yield(self, "ready")

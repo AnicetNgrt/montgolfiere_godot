@@ -1,11 +1,11 @@
+tool
 class_name SaveSlot
 extends Resource
 
 export(String) var name
 export(Dictionary) var created_at = OS.get_datetime()
 export(Dictionary) var last_modified = OS.get_datetime()
-export(Resource) var progress_db
-
+export(Resource) var progress_db = ProgressDB.new()
 
 func save():
 	var file = File.new()
@@ -29,7 +29,9 @@ func load_from_file(path:String):
 	file.open(path, File.READ)
 	
 	var json = file.get_as_text()
-	var data = JSON.parse(json)
+	json = json.replace("\n","")
+	var parse_result = JSON.parse(json)
+	var data = parse_result.result
 	name = data["name"]
 	created_at = data["created_at"]
 	last_modified = data["last_modified"]

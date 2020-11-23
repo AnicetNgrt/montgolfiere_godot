@@ -79,7 +79,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Systems/Classes/SaveSlot/SaveSlot.gd"
 }, {
-"base": "Reference",
+"base": "Resource",
 "class": "SpawnPoint",
 "language": "GDScript",
 "path": "res://Systems/Classes/SpawnPoint/SpawnPoint.gd"
@@ -117,6 +117,7 @@ WorldEnvManager="*res://Systems/Autoloads/WorldEnvironmentManager.gd"
 LevelLoader="*res://Systems/Autoloads/LevelLoader.gd"
 UiSummoner="*res://Systems/Autoloads/UiSummoner.gd"
 RootManager="*res://Systems/Autoloads/RootManager.gd"
+ResourceDB="*res://Systems/Autoloads/ResourceDB.gd"
 
 [display]
 

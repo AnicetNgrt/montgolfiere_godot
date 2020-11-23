@@ -2,42 +2,42 @@ class_name ProgressDB
 extends Resource
 
 # General progress
-export(Resource) var spawnpoint
-export(Array, Resource) var artifacts
-export(Array, Resource) var clues
+export(String) var spawnpoint = "earth1-default"
+export(Array, Resource) var artifacts = []
+export(Array, Resource) var clues = []
 
 # Cutscene progress
-export(bool) var saw_intro_cutscene
+export(bool) var saw_intro_cutscene = false
 
 # NPC progress
-export(bool) var the_savant_met
+export(Dictionary) var the_savant = {
+	"met": false
+}
 
 
 func to_dict() -> Dictionary:
 	return {
 		"general": {
-			"spawnpoint_path": spawnpoint.resource_path,
-			"artifacts_paths": [],
-			"clues_paths": [],	
+			"spawnpoint": spawnpoint,
+			"artifacts": artifacts,
+			"clues": clues,
 		},
 		"cutscenes": {
 			"intro": saw_intro_cutscene
 		},
 		"npcs": {
-			"the_savant": {
-				"met": the_savant_met
-			}
+			"the_savant": the_savant
 		}
 	}
 
 
 func from_dict(dict:Dictionary):
-	spawnpoint = load(dict["general"]["spawnpoint_path"])
-	for path in dict["general"]["artifacts_paths"]:
-		artifacts.append(load(path))
-	for path in dict["general"]["clues_paths"]:
-		clues.append(load(path))
+	spawnpoint = dict["general"]["spawnpoint"]
+	for key in dict["general"]["artifacts"]:
+		artifacts.append(key)
+	for key in dict["general"]["clues"]:
+		clues.append(key)
 	
 	saw_intro_cutscene = dict["cutscenes"]["intro"]
 	
-	the_savant_met = dict["npcs"]["the_savant"]["met"]
+	the_savant = dict["npcs"]["the_savant"]

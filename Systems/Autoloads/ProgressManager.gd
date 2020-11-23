@@ -1,6 +1,5 @@
 extends Node
 
-
 var progress_db
 var platformer_controller_state:PlatformerControllerState
 var is_initialized = false
@@ -25,7 +24,7 @@ func get_available_saveslots():
 			break
 		elif file.begins_with("earthsecrets-") and file.ends_with(".saveslot.json"):
 			var saveslot = SaveSlot.new()
-			saveslot.load_from_file(file)
+			saveslot.load_from_file("user://"+file)
 			slots.append(saveslot)
 
 	return slots
