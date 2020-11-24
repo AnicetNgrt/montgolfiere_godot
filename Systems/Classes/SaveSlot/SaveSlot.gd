@@ -35,6 +35,6 @@ func load_from_file(path:String):
 	name = data["name"]
 	created_at = data["created_at"]
 	last_modified = data["last_modified"]
-	progress_db = data["progress_db"]
+	progress_db.from_dict(data["progress_db"])
 	
 	file.close()

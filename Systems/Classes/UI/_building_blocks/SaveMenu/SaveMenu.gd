@@ -1,5 +1,6 @@
 extends ScrollContainer
 
+signal slot_chosen(slot)
 var slot_count = 0
 
 func _ready():
@@ -22,6 +23,7 @@ func add_slot(slot:SaveSlot):
 	var component = $MarginContainer/VBoxContainer/Slot.duplicate()
 	component.save_slot = slot
 	component.show()
+	component.connect("chosen", self, "on_slot_chosen")
 	$MarginContainer/VBoxContainer.add_child(component)
 	slot_count += 1
 	if slot_count >= 9:
@@ -41,3 +43,9 @@ func _on_Button_pressed():
 		i += 1
 	slot.save()
 	refresh_slots()
+
+
+func on_slot_chosen(instance):
+	emit_signal("slot_chosen", instance.save_slot)
+	ProgressManager.load_slot(instance.save_slot)
+	self.call_deferred("queue_free")

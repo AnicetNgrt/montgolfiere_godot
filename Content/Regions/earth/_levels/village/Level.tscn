@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Systems/Classes/Level/_building_blocks/Entrance/PlatformerControllerSpawner.gd" type="Script" id=1]
 [ext_resource path="res://Systems/Classes/Level/_building_blocks/BackgroundLayer/BackgroundLayer.tscn" type="PackedScene" id=2]
@@ -16,23 +16,14 @@
 [ext_resource path="res://Content/Regions/earth/_levels/village/_assets/village_silos_back.png" type="Texture" id=14]
 [ext_resource path="res://Content/Regions/earth/_levels/village/_assets/village_platforms.png" type="Texture" id=15]
 [ext_resource path="res://Content/Regions/earth/_levels/village/_assets/village_soil.png" type="Texture" id=16]
-[ext_resource path="res://Content/Regions/earth/_levels/earth/_assets/earth_sky.png" type="Texture" id=17]
+[ext_resource path="res://Content/Regions/earth/_levels/earth1/_assets/earth_sky.png" type="Texture" id=17]
 [ext_resource path="res://Content/Regions/earth/_levels/village/_assets/village_silos_front.png" type="Texture" id=18]
 [ext_resource path="res://Content/Regions/earth/_levels/village/_assets/village_ship_blocks.png" type="Texture" id=19]
 [ext_resource path="res://Content/Regions/earth/_levels/village/_resources/sp_village_default.tres" type="Resource" id=20]
-[ext_resource path="res://_shared_resources/Environment/default.tres" type="Environment" id=21]
-[ext_resource path="res://Content/Regions/earth/_levels/earth/_resources/sp_earth1_left1.tres" type="Resource" id=22]
-[ext_resource path="res://Systems/Classes/PlatformerController/_subclasses/PhysicsProfile/_instances/default_physics_profile.tres" type="Resource" id=23]
-[ext_resource path="res://Systems/Classes/Region/Region.gd" type="Script" id=24]
+[ext_resource path="res://Content/Regions/earth/_shared_resources/region.tres" type="Resource" id=21]
+[ext_resource path="res://Content/Regions/earth/_levels/earth1/_resources/sp_earth1_left1.tres" type="Resource" id=22]
 
-[sub_resource type="Resource" id=1]
-script = ExtResource( 24 )
-map_name = "Space Graveyard"
-environment = ExtResource( 21 )
-physics_profile = ExtResource( 23 )
-day_night_anim = ExtResource( 7 )
-
-[sub_resource type="Shader" id=2]
+[sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
 
 uniform float scroll_speed;
@@ -61,16 +52,16 @@ void fragment() {
     COLOR = mix(shadow, color, color.a);
 }"
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
-shader = SubResource( 2 )
+shader = SubResource( 1 )
 shader_param/scroll_speed = 0.01
 shader_param/radius = 0.0
 shader_param/modulate = Color( 0, 0, 0, 0.0980392 )
 
 [node name="Level" instance=ExtResource( 6 )]
 default_spawn = "default"
-region = SubResource( 1 )
+region = ExtResource( 21 )
 
 [node name="DayNightAnimator" parent="." index="0"]
 anims/day_night = ExtResource( 7 )
@@ -96,7 +87,7 @@ position = Vector2( -0.1, -1 )
 motion_scale = Vector2( 0.25, 0.05 )
 
 [node name="BackgroundLayer" parent="bg/ParallaxLayer4" index="0" instance=ExtResource( 2 )]
-material = SubResource( 3 )
+material = SubResource( 2 )
 position = Vector2( 0.1, 31 )
 scale = Vector2( 10, 10 )
 speed = 0.01
@@ -183,7 +174,7 @@ polygon = PoolVector2Array( 1200, -680, 1240, -680, 1240, -510, 1200, -510 )
 polygon = PoolVector2Array( 580, -100, 450, -100, 50, 100, 50, 110, 90, 110, 410, -40, 580, -70 )
 
 [node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="12"]
-polygon = PoolVector2Array( 580, 130, 560, 130, 560, -100, 640, -100, 640, -10, 580, -10 )
+polygon = PoolVector2Array( 580, 40, 560, 40, 560, -100, 640, -100, 640, -10, 580, -10 )
 
 [node name="CollisionPolygon2D9" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="13"]
 polygon = PoolVector2Array( 730, 130, 800, 130, 800, -490, 780, -490, 780, -260, 730, -260, 730, -160, 780, -160, 780, 30, 730, 30 )
@@ -230,7 +221,7 @@ position = Vector2( 160, 280 )
 script = ExtResource( 8 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/ClimbAnchor5" index="0"]
-polygon = PoolVector2Array( 0, 0, 20, 70, 0, 70 )
+polygon = PoolVector2Array( 0, 0, 50, 20, 0, 70 )
 
 [node name="ClimbAnchor6" type="Area2D" parent="layer2" index="8"]
 position = Vector2( 740, 440 )
@@ -291,7 +282,7 @@ script = ExtResource( 8 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/ClimbAnchor11" index="0"]
 position = Vector2( -10, 0 )
-polygon = PoolVector2Array( 0, 0, 30, 90, 0, 90 )
+polygon = PoolVector2Array( 0, 0, 30, 60, 0, 60 )
 
 [node name="ClimbAnchor9" type="Area2D" parent="layer2" index="16"]
 position = Vector2( 730, -520 )
@@ -307,7 +298,7 @@ script = ExtResource( 8 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/ClimbAnchor4" index="0"]
 position = Vector2( 10, 20 )
-polygon = PoolVector2Array( 0, 0, -30, 30, 0, 50 )
+polygon = PoolVector2Array( 0, -20, -60, 0, 0, 30 )
 
 [node name="layer1" type="Node2D" parent="." index="5"]
 modulate = Color( 1, 0.866667, 0, 1 )

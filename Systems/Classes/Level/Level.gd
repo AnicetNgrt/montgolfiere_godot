@@ -11,9 +11,11 @@ export(Resource) var region #: Region
 
 var is_ready_and_spawned = false
 
+
 func _physics_process(delta):
 	if day_night_animator and day_night_animator.current_animation == "day_night":
 		region.time_of_day = day_night_animator.current_animation_position/day_night_animator.current_animation_length
+
 
 func _ready():
 	day_night_animator.add_animation("day_night", region.day_night_anim)
@@ -61,6 +63,7 @@ func enter_at(key:String):
 
 func on_region_play_daynight():
 	day_night_animator.play("day_night", -1, 0.3)
+	print(day_night_animator.current_animation_length*region.time_of_day)
 	day_night_animator.seek(day_night_animator.current_animation_length*region.time_of_day)
 
 
@@ -70,6 +73,7 @@ func on_region_pause_daynight():
 
 func on_region_enter(spawnpoint):
 	region.checkpoint = spawnpoint
+	MusicManager.play_music(region.theme, region.theme_volume)
 	WorldEnvManager.set_environment(region.environment)
 	yield(get_tree().create_timer(1), "timeout")
 	UiSummoner.summon_region_title(region.map_name)
@@ -86,9 +90,6 @@ func set_custom_modulate(value):
 					layer.modulate = value
 
 
-
-
-
 func on_character_layer_changed(layer:int):
 	move_child(get_node("Character"), get_node("layer"+str(layer)).get_index())
 
@@ -96,4 +97,3 @@ func on_character_layer_changed(layer:int):
 func _on_DayNightAnimator_animation_finished(anim_name):
 	region.time_of_day = 0
 	LevelLoader.load_level(region.checkpoint)
-	region.is_inside = false

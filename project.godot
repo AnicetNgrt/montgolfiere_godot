@@ -19,7 +19,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Systems/Classes/Level/_building_blocks/BackgroundLayer/BackgroundLayer.gd"
 }, {
-"base": "Reference",
+"base": "Resource",
 "class": "Character",
 "language": "GDScript",
 "path": "res://Systems/Classes/Character/Character.gd"
@@ -39,7 +39,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Systems/Classes/Level/Level.gd"
 }, {
-"base": "Reference",
+"base": "Area2D",
 "class": "NPC",
 "language": "GDScript",
 "path": "res://Systems/Classes/Level/_building_blocks/NPC/NPC.gd"
@@ -49,7 +49,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Systems/Classes/PlatformerController/PlatformerController.gd"
 }, {
-"base": "Reference",
+"base": "Resource",
 "class": "PlatformerControllerPhysicsProfile",
 "language": "GDScript",
 "path": "res://Systems/Classes/PlatformerController/_subclasses/PhysicsProfile/PlatformerControllerPhysicsProfile.gd"
@@ -59,7 +59,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Systems/Classes/Level/_building_blocks/Entrance/PlatformerControllerSpawner.gd"
 }, {
-"base": "Reference",
+"base": "Resource",
 "class": "PlatformerControllerState",
 "language": "GDScript",
 "path": "res://Systems/Classes/PlatformerController/_subclasses/State/PlatformerControllerState.gd"
@@ -117,7 +117,8 @@ WorldEnvManager="*res://Systems/Autoloads/WorldEnvironmentManager.gd"
 LevelLoader="*res://Systems/Autoloads/LevelLoader.gd"
 UiSummoner="*res://Systems/Autoloads/UiSummoner.gd"
 RootManager="*res://Systems/Autoloads/RootManager.gd"
-ResourceDB="*res://Systems/Autoloads/ResourceDB.gd"
+PathsDB="*res://Systems/Autoloads/PathsDB.gd"
+MusicManager="*res://Systems/Autoloads/MusicManager.gd"
 
 [display]
 

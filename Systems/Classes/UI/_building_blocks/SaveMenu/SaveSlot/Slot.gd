@@ -1,6 +1,8 @@
 tool
 extends PanelContainer
 
+signal chosen(instance)
+
 onready var name_tag = $MarginContainer/HBoxContainer/VBoxContainer/Name
 onready var created_at_tag = $MarginContainer/HBoxContainer/VBoxContainer/CreatedAt
 onready var modified_tag = $MarginContainer/HBoxContainer/VBoxContainer/Modified
@@ -17,3 +19,7 @@ func set_slot(value):
 
 func date_to_string(date:Dictionary):
 	return str(date["month"])+"/"+str(date["day"])+"/"+str(date["year"])+" "+str(date["hour"])+":"+str(date["minute"])
+
+
+func _on_ButtonPlay_pressed():
+	emit_signal("chosen", self)

@@ -167,7 +167,7 @@ func is_running() -> bool:
 
 
 func can_climb() -> bool:
-	return !climbing #and ProgressManager.platformer_controller_state.stamina > 0
+	return !climbing and !is_on_floor() and (abs(velocity.x) > 250 or velocity.y < 0) #and ProgressManager.platformer_controller_state.stamina > 0
 
 
 func switch_layer(layer:int):

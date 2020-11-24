@@ -52,7 +52,7 @@ func set_time_of_day(tod:float):
 
 
 func refresh_clues():
-	var clues:Array = LevelLoader.current_level.region.clues
+	var clues:Array = ProgressManager.progress_db.clues
 	if clues.size() == 0:
 		$Clue/ClueSprite.hide()
 		$Clue/PreviousClue.hide()
@@ -72,7 +72,7 @@ func refresh_clues():
 
 
 func refresh_artifacts():
-	var artifacts:Array = ProgressManager.artifacts
+	var artifacts:Array = ProgressManager.progress_db.artifacts
 	if artifacts.size() == 0:
 		$Artifacts/A1.hide()
 		$Artifacts/A2.hide()

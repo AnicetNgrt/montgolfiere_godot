@@ -1,6 +1,9 @@
 extends Control
 
 
+signal finished(instance)
+
+
 func _ready():
 	refresh_buttons()
 
@@ -39,9 +42,11 @@ func _on_ButtonQuit_pressed():
 	get_tree().quit()
 
 
-func _on_ButtonHideCredits_pressed():
-	$Credits.hide()
-
-
 func _on_ButtonAbout_pressed():
 	$Credits.show()
+
+
+func _on_Saves_slot_chosen(slot):
+	UiSummoner.summon_transition_screen(0.2)
+	yield(get_tree().create_timer(0.5), "timeout")
+	call_deferred("queue_free")

@@ -6,6 +6,8 @@ export(String) var map_name
 export(Environment) var environment
 export(Resource) var physics_profile
 export(Resource) var day_night_anim
+export(AudioStream) var theme
+export(float) var theme_volume
 
 var clues = []
 var discovered := false
