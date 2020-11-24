@@ -5,7 +5,7 @@
 [ext_resource path="res://_shared_assets/Fonts/Jost/static/Jost-Medium.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.956863, 0.823529, 0.611765, 1 )
+bg_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 64
@@ -66,7 +66,7 @@ margin_bottom = 259.0
 margin_right = 1870.0
 margin_bottom = 93.0
 custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "EARTH'S SECRETS"
 align = 1
 
@@ -75,7 +75,7 @@ margin_top = 97.0
 margin_right = 1870.0
 margin_bottom = 259.0
 custom_fonts/font = SubResource( 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "A game jam game made in 1 month as part of:
 - Github Game Off, November 2020  (theme constraint: \"Moonshot\") -
 - Web Monetization Challenge, November 2020 (theme constraint: \"Secrets\") -"
@@ -100,7 +100,7 @@ margin_bottom = 149.0
 margin_right = 933.0
 margin_bottom = 93.0
 custom_fonts/font = SubResource( 4 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Anicet Nougaret"
 align = 1
 
@@ -109,7 +109,7 @@ margin_top = 97.0
 margin_right = 933.0
 margin_bottom = 149.0
 custom_fonts/font = SubResource( 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Design, Art, Story, Code, Additional SFX"
 align = 1
 
@@ -122,7 +122,7 @@ margin_bottom = 328.0
 margin_right = 933.0
 margin_bottom = 93.0
 custom_fonts/font = SubResource( 4 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Thibault Henrion"
 align = 1
 
@@ -131,7 +131,7 @@ margin_top = 97.0
 margin_right = 933.0
 margin_bottom = 149.0
 custom_fonts/font = SubResource( 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Additional Design & Code"
 align = 1
 
@@ -146,7 +146,7 @@ custom_constants/separation = 30
 margin_right = 933.0
 margin_bottom = 52.0
 custom_fonts/font = SubResource( 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Licensed assets:"
 align = 1
 

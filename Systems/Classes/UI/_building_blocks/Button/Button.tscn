@@ -4,7 +4,6 @@
 [ext_resource path="res://Systems/Classes/UI/_building_blocks/Button/_resources/black_border.tres" type="StyleBox" id=3]
 [ext_resource path="res://Systems/Classes/UI/_building_blocks/Button/_resources/trans_border.tres" type="StyleBox" id=4]
 
-
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
@@ -26,8 +25,8 @@ custom_styles/disabled = SubResource( 2 )
 custom_styles/normal = ExtResource( 4 )
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 text = "Continue"
 __meta__ = {
