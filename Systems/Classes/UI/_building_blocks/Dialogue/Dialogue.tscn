@@ -1,104 +1,198 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://_shared_assets/Fonts/goudy-bookletter-1911-master/GoudyBookletter1911.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://Systems/Classes/UI/_shared_resources/Fonts/small_df.tres" type="DynamicFont" id=1]
+[ext_resource path="res://_shared_assets/Fonts/Jost/static/Jost-Medium.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Systems/Classes/UI/_building_blocks/Button/Button.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Systems/Classes/UI/_building_blocks/Button/_resources/white.tres" type="StyleBox" id=4]
+[ext_resource path="res://Content/Characters/the_savant/_assets/pp_savant.png" type="Texture" id=5]
+[ext_resource path="res://_shared_assets/Fonts/Noto_Sans/NotoSans-Regular.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Systems/Classes/UI/_building_blocks/Dialogue/_resources/panel.tres" type="StyleBox" id=7]
+[ext_resource path="res://Systems/Classes/UI/_building_blocks/Dialogue/Dialogue.gd" type="Script" id=8]
 
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 0.584314 )
+border_color = Color( 0.956863, 0.823529, 0.611765, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color( 0, 0, 0, 0.054902 )
+shadow_size = 16
 
-
-
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.780392, 0.690196, 0.545098, 1 )
-
-[sub_resource type="DynamicFont" id=1]
-size = 32
+[sub_resource type="DynamicFont" id=2]
+size = 24
 use_mipmaps = true
 use_filter = true
-font_data = ExtResource( 1 )
+font_data = ExtResource( 2 )
 
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.894118, 0.823529, 0.666667, 1 )
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0, 1 )
+corner_radius_bottom_right = 60
+corner_detail = 1
 
 [sub_resource type="DynamicFont" id=4]
-size = 42
-font_data = ExtResource( 1 )
+size = 64
+use_mipmaps = true
+use_filter = true
+extra_spacing_top = -40
+extra_spacing_bottom = -13
+font_data = ExtResource( 6 )
 
-[node name="Dialogue" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[sub_resource type="DynamicFont" id=5]
+size = 24
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[node name="Dialogue" type="VBoxContainer"]
+margin_right = 570.0
+margin_bottom = 220.0
+rect_min_size = Vector2( 570, 0 )
+rect_pivot_offset = Vector2( 259, 220 )
+custom_constants/separation = -10
+script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+thumbnail = ExtResource( 5 )
+title = "The savant"
+tirades = [ "Hey!", "How are u doing?", "Because I'm doing so fine right now.", "Would you like a chicken?", "I've got plenty at my house if you'd like...", "Ok ok don't worry.", "Now is time to go.", "But you know, I'd like to go away", "pazpidhazpidhzapdizahdpazihdazpidhazpdiazhdpazihdzapdzdhazpidhazpidhazdpizhdazpihdazpdhazdpihazpizhd", "broken" ]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = 30.0
-margin_top = 30.0
-margin_right = 1030.0
-margin_bottom = 142.0
-rect_min_size = Vector2( 1000, 0 )
-custom_constants/separation = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="PanelContainer" type="PanelContainer" parent="."]
+margin_right = 570.0
+margin_bottom = 170.0
+custom_styles/panel = SubResource( 1 )
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
-margin_right = 162.0
-margin_bottom = 61.0
-size_flags_horizontal = 0
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+margin_right = 570.0
+margin_bottom = 170.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 565.0
+margin_bottom = 165.0
+
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+margin_right = 160.0
+margin_bottom = 160.0
+rect_min_size = Vector2( 160, 160 )
+size_flags_horizontal = 4
+size_flags_vertical = 0
+custom_styles/panel = ExtResource( 7 )
+
+[node name="Thumbnail" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer2"]
+margin_right = 160.0
+margin_bottom = 160.0
+rect_min_size = Vector2( 160, 160 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 5 )
+stretch_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+margin_left = 164.0
+margin_right = 560.0
+margin_bottom = 160.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_right = 396.0
+margin_bottom = 35.0
+custom_constants/margin_right = 10
+custom_constants/margin_left = 10
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer"]
+margin_left = 10.0
+margin_right = 386.0
+margin_bottom = 35.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "The savant"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 39.0
+margin_right = 396.0
+margin_bottom = 160.0
+size_flags_vertical = 3
+custom_constants/separation = 6
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_right = 396.0
+margin_bottom = 121.0
+size_flags_horizontal = 3
+custom_styles/panel = ExtResource( 7 )
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer"]
+margin_right = 396.0
+margin_bottom = 121.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 5
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 5
+
+[node name="Text" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = 5.0
+margin_right = 386.0
+margin_bottom = 116.0
+rect_min_size = Vector2( 0, 111 )
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+autowrap = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_top = 160.0
+margin_right = 570.0
+margin_bottom = 220.0
+alignment = 2
+
+[node name="Panel" type="Panel" parent="HBoxContainer"]
+margin_left = 258.0
+margin_right = 318.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 60, 60 )
 custom_styles/panel = SubResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer"]
-margin_right = 162.0
-margin_bottom = 61.0
-custom_constants/margin_right = 30
-custom_constants/margin_top = 10
-custom_constants/margin_left = 30
-custom_constants/margin_bottom = 10
+[node name="Separator" type="MarginContainer" parent="HBoxContainer"]
+margin_left = 322.0
+margin_right = 486.554
+margin_bottom = 60.0
+rect_min_size = Vector2( 164.554, 0 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer"]
-margin_left = 30.0
-margin_top = 10.0
-margin_right = 132.0
-margin_bottom = 51.0
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer"]
+margin_left = 490.0
+margin_right = 570.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 80, 35 )
 
-[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_right = 102.0
-margin_bottom = 41.0
-custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Lauriers"
+[node name="ButtonNext" parent="HBoxContainer/CenterContainer" instance=ExtResource( 3 )]
+margin_left = 0.0
+margin_top = 12.0
+margin_bottom = 47.0
+rect_min_size = Vector2( 80, 0 )
+size_flags_horizontal = 8
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/normal = ExtResource( 4 )
+custom_fonts/font = SubResource( 4 )
+text = "→"
 
-[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer"]
-margin_top = 61.0
-margin_right = 1000.0
-margin_bottom = 305.0
-custom_styles/panel = SubResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer2"]
-margin_right = 1000.0
-margin_bottom = 244.0
-custom_constants/margin_right = 30
-custom_constants/margin_top = 10
-custom_constants/margin_left = 30
-custom_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer2/MarginContainer"]
-margin_left = 30.0
-margin_top = 10.0
-margin_right = 970.0
-margin_bottom = 234.0
-
-[node name="Label" type="RichTextLabel" parent="VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
-margin_right = 940.0
-margin_bottom = 224.0
-custom_fonts/normal_font = SubResource( 4 )
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-visible_characters = 158
-percent_visible = 0.974
-text = "Humans crave for new heights, for new purposes. They want to uncover every secret, put light on what is in the shadows.
-They'll light it all until there is no more."
-fit_content_height = true
+[node name="ButtonOk" parent="HBoxContainer/CenterContainer" instance=ExtResource( 3 )]
+visible = false
+margin_left = 0.0
+margin_top = 12.0
+margin_bottom = 47.0
+rect_min_size = Vector2( 80, 0 )
+size_flags_horizontal = 8
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/normal = ExtResource( 4 )
+custom_fonts/font = SubResource( 5 )
+text = "OK"
+[connection signal="pressed" from="HBoxContainer/CenterContainer/ButtonNext" to="." method="_on_ButtonNext_pressed"]
+[connection signal="pressed" from="HBoxContainer/CenterContainer/ButtonOk" to="." method="_on_ButtonOk_pressed"]
