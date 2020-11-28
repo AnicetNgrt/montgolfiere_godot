@@ -3,14 +3,6 @@
 [ext_resource path="res://_shared_assets/Fonts/Jost/static/Jost-Medium.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Systems/Classes/UI/_building_blocks/RegionTitle/RegionTitle.gd" type="Script" id=2]
 
-
-
-
-
-
-
-
-
 [sub_resource type="DynamicFont" id=1]
 size = 150
 use_mipmaps = true
@@ -19,7 +11,7 @@ font_data = ExtResource( 1 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "in"
-length = 8.0
+length = 5.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("TitleContainer:modulate")
 tracks/0/interp = 1
@@ -27,13 +19,14 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 3, 7, 8 ),
+"times": PoolRealArray( 0, 0.4, 2, 3.8, 5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
 [node name="RegionTitle" type="Control"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2

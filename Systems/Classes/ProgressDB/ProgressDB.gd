@@ -10,9 +10,7 @@ export(Array, Resource) var clues = []
 export(bool) var saw_intro_cutscene = false
 
 # NPC progress
-export(Dictionary) var the_savant = {
-	"met": false
-}
+export(Dictionary) var dialogues = {}
 
 
 func to_dict() -> Dictionary:
@@ -25,9 +23,7 @@ func to_dict() -> Dictionary:
 		"cutscenes": {
 			"intro": saw_intro_cutscene
 		},
-		"npcs": {
-			"the_savant": the_savant
-		}
+		"dialogues": dialogues
 	}
 
 
@@ -40,4 +36,4 @@ func from_dict(dict:Dictionary):
 	
 	saw_intro_cutscene = dict["cutscenes"]["intro"]
 	
-	the_savant = dict["npcs"]["the_savant"]
+	dialogues = dict["dialogues"]

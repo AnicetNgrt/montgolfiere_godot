@@ -1,11 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Systems/Classes/UI/_shared_resources/Fonts/small_df.tres" type="DynamicFont" id=1]
 [ext_resource path="res://_shared_assets/Fonts/Jost/static/Jost-Medium.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Systems/Classes/UI/_building_blocks/Button/Button.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Systems/Classes/UI/_building_blocks/Button/_resources/white.tres" type="StyleBox" id=4]
-[ext_resource path="res://Content/Characters/the_savant/_assets/pp_savant.png" type="Texture" id=5]
-[ext_resource path="res://_shared_assets/Fonts/Noto_Sans/NotoSans-Regular.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://_shared_assets/Sfx/Kenney/drop_003.ogg" type="AudioStream" id=6]
 [ext_resource path="res://Systems/Classes/UI/_building_blocks/Dialogue/_resources/panel.tres" type="StyleBox" id=7]
 [ext_resource path="res://Systems/Classes/UI/_building_blocks/Dialogue/Dialogue.gd" type="Script" id=8]
 
@@ -20,7 +19,7 @@ shadow_color = Color( 0, 0, 0, 0.054902 )
 shadow_size = 16
 
 [sub_resource type="DynamicFont" id=2]
-size = 24
+size = 32
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 2 )
@@ -31,22 +30,14 @@ corner_radius_bottom_right = 60
 corner_detail = 1
 
 [sub_resource type="DynamicFont" id=4]
-size = 64
-use_mipmaps = true
-use_filter = true
-extra_spacing_top = -40
-extra_spacing_bottom = -13
-font_data = ExtResource( 6 )
-
-[sub_resource type="DynamicFont" id=5]
-size = 24
+size = 32
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 2 )
 
 [node name="Dialogue" type="VBoxContainer"]
-margin_right = 570.0
-margin_bottom = 220.0
+margin_right = 590.0
+margin_bottom = 232.0
 rect_min_size = Vector2( 570, 0 )
 rect_pivot_offset = Vector2( 259, 220 )
 custom_constants/separation = -10
@@ -54,18 +45,15 @@ script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-thumbnail = ExtResource( 5 )
-title = "The savant"
-tirades = [ "Hey!", "How are u doing?", "Because I'm doing so fine right now.", "Would you like a chicken?", "I've got plenty at my house if you'd like...", "Ok ok don't worry.", "Now is time to go.", "But you know, I'd like to go away", "pazpidhazpidhzapdizahdpazihdazpidhazpdiazhdpazihdzapdzdhazpidhazpidhazdpizhdazpihdazpdhazdpihazpizhd", "broken" ]
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-margin_right = 570.0
-margin_bottom = 170.0
+margin_right = 590.0
+margin_bottom = 182.0
 custom_styles/panel = SubResource( 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
-margin_right = 570.0
-margin_bottom = 170.0
+margin_right = 590.0
+margin_bottom = 182.0
 custom_constants/margin_right = 5
 custom_constants/margin_top = 5
 custom_constants/margin_left = 5
@@ -74,62 +62,60 @@ custom_constants/margin_bottom = 5
 [node name="VBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 565.0
-margin_bottom = 165.0
+margin_right = 585.0
+margin_bottom = 177.0
 
 [node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
-margin_right = 160.0
-margin_bottom = 160.0
+visible = false
+margin_right = 320.0
+margin_bottom = 320.0
 rect_min_size = Vector2( 160, 160 )
 size_flags_horizontal = 4
 size_flags_vertical = 0
 custom_styles/panel = ExtResource( 7 )
 
 [node name="Thumbnail" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer2"]
-margin_right = 160.0
-margin_bottom = 160.0
-rect_min_size = Vector2( 160, 160 )
+margin_right = 320.0
+margin_bottom = 320.0
+rect_min_size = Vector2( 320, 320 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource( 5 )
 stretch_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
-margin_left = 164.0
-margin_right = 560.0
-margin_bottom = 160.0
+margin_right = 580.0
+margin_bottom = 172.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
-margin_right = 396.0
-margin_bottom = 35.0
+margin_right = 580.0
+margin_bottom = 47.0
 custom_constants/margin_right = 10
 custom_constants/margin_left = 10
 
 [node name="Title" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer"]
 margin_left = 10.0
-margin_right = 386.0
-margin_bottom = 35.0
+margin_right = 570.0
+margin_bottom = 47.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "The savant"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
-margin_top = 39.0
-margin_right = 396.0
-margin_bottom = 160.0
+margin_top = 51.0
+margin_right = 580.0
+margin_bottom = 172.0
 size_flags_vertical = 3
 custom_constants/separation = 6
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_right = 396.0
+margin_right = 580.0
 margin_bottom = 121.0
 size_flags_horizontal = 3
 custom_styles/panel = ExtResource( 7 )
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer"]
-margin_right = 396.0
+margin_right = 580.0
 margin_bottom = 121.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 5
@@ -139,60 +125,67 @@ custom_constants/margin_bottom = 5
 [node name="Text" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer"]
 margin_left = 10.0
 margin_top = 5.0
-margin_right = 386.0
+margin_right = 570.0
 margin_bottom = 116.0
-rect_min_size = Vector2( 0, 111 )
+rect_min_size = Vector2( 560, 111 )
 size_flags_vertical = 1
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 autowrap = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_top = 160.0
-margin_right = 570.0
-margin_bottom = 220.0
+margin_top = 172.0
+margin_right = 590.0
+margin_bottom = 232.0
 alignment = 2
 
-[node name="Panel" type="Panel" parent="HBoxContainer"]
-margin_left = 258.0
-margin_right = 318.0
+[node name="Tail" type="Panel" parent="HBoxContainer"]
+margin_left = 128.0
+margin_right = 188.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 60, 60 )
 custom_styles/panel = SubResource( 3 )
 
 [node name="Separator" type="MarginContainer" parent="HBoxContainer"]
-margin_left = 322.0
-margin_right = 486.554
+margin_left = 192.0
+margin_right = 442.0
 margin_bottom = 60.0
-rect_min_size = Vector2( 164.554, 0 )
+rect_min_size = Vector2( 250, 0 )
 
 [node name="CenterContainer" type="CenterContainer" parent="HBoxContainer"]
-margin_left = 490.0
-margin_right = 570.0
+margin_left = 446.0
+margin_right = 590.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 80, 35 )
 
 [node name="ButtonNext" parent="HBoxContainer/CenterContainer" instance=ExtResource( 3 )]
 margin_left = 0.0
-margin_top = 12.0
-margin_bottom = 47.0
+margin_top = 6.0
+margin_right = 144.0
+margin_bottom = 53.0
 rect_min_size = Vector2( 80, 0 )
 size_flags_horizontal = 8
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/normal = ExtResource( 4 )
 custom_fonts/font = SubResource( 4 )
-text = "→"
+text = " press [E] "
 
 [node name="ButtonOk" parent="HBoxContainer/CenterContainer" instance=ExtResource( 3 )]
 visible = false
-margin_left = 0.0
-margin_top = 12.0
-margin_bottom = 47.0
+margin_left = 5.0
+margin_top = 6.0
+margin_right = 139.0
+margin_bottom = 53.0
 rect_min_size = Vector2( 80, 0 )
 size_flags_horizontal = 8
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/normal = ExtResource( 4 )
-custom_fonts/font = SubResource( 5 )
-text = "OK"
-[connection signal="pressed" from="HBoxContainer/CenterContainer/ButtonNext" to="." method="_on_ButtonNext_pressed"]
+custom_fonts/font = SubResource( 4 )
+text = " press [E]"
+
+[node name="Sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+volume_db = -15.0
+bus = "Sfx"
+[connection signal="pressed" from="HBoxContainer/CenterContainer/ButtonNext" to="." method="_on_ButtonOk_pressed"]
 [connection signal="pressed" from="HBoxContainer/CenterContainer/ButtonOk" to="." method="_on_ButtonOk_pressed"]

@@ -11,6 +11,6 @@ func set_title(val):
 	$TitleContainer/Title.text = title
 
 func _ready():
-	$AnimationPlayer.play("in")
+	$AnimationPlayer.play("in", -1, 1.75)
 	yield($AnimationPlayer, "animation_finished")
 	emit_signal("finished", self)
