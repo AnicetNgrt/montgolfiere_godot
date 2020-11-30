@@ -228,20 +228,20 @@ flip_h = true
 [node name="Cow" parent="back" index="10" instance=ExtResource( 27 )]
 position = Vector2( -79, 89 )
 scale = Vector2( 1, 1 )
-frame = 17
+frame = 7
 offset = Vector2( 0, 0 )
 
 [node name="Cow2" parent="back" index="11" instance=ExtResource( 27 )]
 position = Vector2( 6.99999, 79 )
 scale = Vector2( 1, 1 )
-frame = 14
+frame = 4
 offset = Vector2( 0, 0 )
 flip_h = true
 
 [node name="Cow3" parent="back" index="12" instance=ExtResource( 27 )]
 position = Vector2( 96, 89 )
 scale = Vector2( 1, 1 )
-frame = 10
+frame = 0
 offset = Vector2( 0, 0 )
 flip_h = true
 
@@ -635,7 +635,7 @@ show_tail = false
 
 [node name="F4" parent="dialogues" index="5" instance=ExtResource( 30 )]
 position = Vector2( -320, 900 )
-unique_name = "farm2"
+unique_name = "farm4"
 following = null
 
 [node name="Offset" parent="dialogues/F4" index="0"]
