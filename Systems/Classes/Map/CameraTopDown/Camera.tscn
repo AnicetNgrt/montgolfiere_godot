@@ -2,9 +2,6 @@
 
 [ext_resource path="res://Systems/Classes/Level/_building_blocks/Camera/Camera.gd" type="Script" id=1]
 
-
-
-
 [node name="Camera" type="Camera2D"]
 current = true
 script = ExtResource( 1 )
@@ -15,7 +12,7 @@ collision_layer = 0
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="BorderTop"]
 position = Vector2( -10, 1100 )
-polygon = PoolVector2Array( 0, 480, 1920, 480, 1920, -240, 0, -240 )
+polygon = PoolVector2Array( 0, 230, 1920, 230, 1920, -240, 0, -240 )
 
 [node name="BorderBottom" type="Area2D" parent="."]
 position = Vector2( -960, 320 )
@@ -23,7 +20,7 @@ collision_layer = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BorderBottom"]
 position = Vector2( 0, 240 )
-polygon = PoolVector2Array( 0, -20, 1920, -20, 1920, -220, 0, -230 )
+polygon = PoolVector2Array( 0, -20, 1920, -20, 1920, -490, 0, -490 )
 
 [node name="BorderLeft" type="Area2D" parent="."]
 position = Vector2( -940, -540 )

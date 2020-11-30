@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://Systems/Classes/Map/Balloon/BalloonSkin/BalloonSkin.gd" type="Script" id=1]
+[ext_resource path="res://_shared_assets/Mockups/balloon/balloon/balloon_regular.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 41, 0, 41, 50 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 41, 50 )
+
+[resource]
+script = ExtResource( 1 )
+top_down = SubResource( 2 )
+side = SubResource( 1 )

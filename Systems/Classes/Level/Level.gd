@@ -8,6 +8,8 @@ export(bool) var do_self_spawn = true
 export(String) var default_spawn = ""
 export(Color) var custom_modulate = Color.white setget set_custom_modulate
 export(Resource) var region #: Region
+export(bool) var is_balloon = false
+
 
 var is_ready_and_spawned = false
 
@@ -20,7 +22,7 @@ func _physics_process(delta):
 func _ready():
 	day_night_animator.add_animation("day_night", region.day_night_anim)
 	if !Engine.is_editor_hint():
-		if do_self_spawn and default_spawn != "":
+		if do_self_spawn:
 			RootManager.remove_child_deff(self)
 			LevelLoader.call_deferred("add_child", self)
 			LevelLoader.current_level = self
@@ -39,14 +41,15 @@ func enter_at(key:String):
 				spawner = c
 				break
 
-	if spawner:
-		var instance:Node = spawner.spawn_instance()
+	var instance:Node = null
+	if spawner and !is_balloon: 
+		instance = spawner.spawn_instance()
 		#if not instance.is_inside_tree(): yield(instance, "ready")
 		add_child_below_node(spawner, instance)
 		if spawner.has_node("CameraAnchor"):
 			$Camera.global_position = spawner.get_node("CameraAnchor").global_position
 		is_ready_and_spawned = true
-		
+
 		if not region.is_inside:
 			region.is_inside = true
 			on_region_enter(spawner.spawnpoint_data)
@@ -54,16 +57,21 @@ func enter_at(key:String):
 		region.connect("play_daynight", self, "on_region_play_daynight")
 		region.connect("pause_daynight", self, "on_region_pause_daynight")
 		region.play_daynight()
-		day_night_animator.seek(day_night_animator.current_animation_length*region.time_of_day)
-		
+
 		if instance is PlatformerController:
 			instance.connect("layer_changed", self, "on_character_layer_changed")
 			instance.physics_profile = region.physics_profile
+	
+	if is_balloon:
+		is_ready_and_spawned = true
+		region.is_inside = true
+		region.connect("play_daynight", self, "on_region_play_daynight")
+		region.connect("pause_daynight", self, "on_region_pause_daynight")
+		region.play_daynight()
 
 
 func on_region_play_daynight():
-	day_night_animator.play("day_night", -1, 0.3)
-	print(day_night_animator.current_animation_length*region.time_of_day)
+	day_night_animator.play("day_night", -1, 0.1)
 	day_night_animator.seek(day_night_animator.current_animation_length*region.time_of_day)
 
 
@@ -97,4 +105,5 @@ func on_character_layer_changed(layer:int):
 
 func _on_DayNightAnimator_animation_finished(anim_name):
 	region.time_of_day = 0
+	ProgressManager.save()
 	LevelLoader.load_level(region.checkpoint)

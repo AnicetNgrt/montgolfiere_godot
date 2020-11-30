@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Systems/Classes/Level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Systems/Classes/Level/_building_blocks/Entrance/PlatformerControllerSpawner.gd" type="Script" id=2]
@@ -31,6 +31,7 @@
 [ext_resource path="res://Content/Regions/earth/_levels/earth1/_resources/sp_earth1_left1.tres" type="Resource" id=29]
 [ext_resource path="res://Systems/Classes/Level/_building_blocks/ZoneDialogue/ZoneDialogue.tscn" type="PackedScene" id=30]
 [ext_resource path="res://Content/Characters/the_explorer/_assets/pp_character.png" type="Texture" id=31]
+[ext_resource path="res://Content/Regions/_shared_assets/Clouds/clouds3.png" type="Texture" id=32]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -68,6 +69,19 @@ shader_param/scroll_speed = 0.01
 shader_param/radius = 0.0
 shader_param/modulate = Color( 0, 0, 0, 0.0980392 )
 
+[sub_resource type="CircleShape2D" id=3]
+radius = 120.0
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 97.0
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 90.0
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 20 )
+region = Rect2( 142, 146, 9, 45 )
+
 [node name="Level" instance=ExtResource( 1 )]
 default_spawn = "default"
 region = ExtResource( 25 )
@@ -99,6 +113,7 @@ motion_scale = Vector2( 0.25, 0.1 )
 material = SubResource( 2 )
 position = Vector2( 0.100001, 151 )
 scale = Vector2( 10, 10 )
+texture = ExtResource( 32 )
 speed = 0.01
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="bg" index="2"]
@@ -220,7 +235,7 @@ modulate = Color( 1, 0.423529, 0, 1 )
 position = Vector2( -330, 1050 )
 collision_layer = 0
 collision_mask = 64
-unique_name = "test"
+unique_name = "tuto4"
 
 [node name="CanvasLayer" parent="layer1/ZoneDialogue4" index="2"]
 follow_viewport_enable = true
@@ -228,15 +243,15 @@ follow_viewport_enable = true
 [node name="Dialogue" parent="layer1/ZoneDialogue4/CanvasLayer" index="0"]
 visible = false
 thumbnail = ExtResource( 31 )
-title = "The explorer"
-tirades = [ "Hmm ... that's very tall ...", "~ Tutorial: You can climb most walls and ledges by jumping to them ~" ]
+title = "The Explorer"
+tirades = [ "Hmm ... that's very tall ...", "~ You can climb most walls and ledges by jumping to them ~" ]
 pitch_scale = 0.9
 
 [node name="ZoneDialogue5" parent="layer1" index="1" instance=ExtResource( 30 )]
 position = Vector2( -230, 910 )
 collision_layer = 0
 collision_mask = 64
-unique_name = "test"
+unique_name = "tuto5"
 
 [node name="CanvasLayer" parent="layer1/ZoneDialogue5" index="2"]
 follow_viewport_enable = true
@@ -244,15 +259,15 @@ follow_viewport_enable = true
 [node name="Dialogue" parent="layer1/ZoneDialogue5/CanvasLayer" index="0"]
 visible = false
 thumbnail = ExtResource( 31 )
-title = "The explorer"
-tirades = [ "Pfiuu ... That was quite a difficult jump!", "Looks like I can either go down or jump to climb this large pillar.", "~ Tutorial: Some jumps are difficult, you can run with [SHIFT] to increase momentum ~" ]
+title = "The Explorer"
+tirades = [ "Pfiuu ... That was quite a difficult jump!", "Looks like I can either go down or jump to climb this large pillar.", "~ Some jumps are difficult, you can run with [SHIFT] to increase momentum ~" ]
 pitch_scale = 0.9
 
 [node name="ZoneDialogue6" parent="layer1" index="2" instance=ExtResource( 30 )]
 position = Vector2( 30, 1190 )
 collision_layer = 0
 collision_mask = 64
-unique_name = "test"
+unique_name = "tuto7"
 
 [node name="CanvasLayer" parent="layer1/ZoneDialogue6" index="2"]
 follow_viewport_enable = true
@@ -260,15 +275,15 @@ follow_viewport_enable = true
 [node name="Dialogue" parent="layer1/ZoneDialogue6/CanvasLayer" index="0"]
 visible = false
 thumbnail = ExtResource( 31 )
-title = "The explorer"
-tirades = [ "It's night time soon. I should hurry", "~ Tutorial: Once night comes you'll come back to the beginning of the level ~" ]
+title = "The Explorer"
+tirades = [ "It's night time soon. I should hurry", "~ Once night comes you'll come back to the beginning of the level ~" ]
 pitch_scale = 0.9
 
 [node name="ZoneDialogue7" parent="layer1" index="3" instance=ExtResource( 30 )]
 position = Vector2( 5, 710 )
 collision_layer = 0
 collision_mask = 64
-unique_name = "test"
+unique_name = "tuto7"
 
 [node name="CanvasLayer" parent="layer1/ZoneDialogue7" index="2"]
 follow_viewport_enable = true
@@ -276,8 +291,8 @@ follow_viewport_enable = true
 [node name="Dialogue" parent="layer1/ZoneDialogue7/CanvasLayer" index="0"]
 visible = false
 thumbnail = ExtResource( 31 )
-title = "The explorer"
-tirades = [ "It's night time soon. I should hurry", "~ Tutorial: Once night comes you'll come back to the beginning of the level ~" ]
+title = "The Explorer"
+tirades = [ "It's night time soon. I should hurry", "~ Once night comes you'll come back to the beginning of the level ~" ]
 pitch_scale = 0.9
 
 [node name="[0] LayerSwitch" parent="layer1" index="4" instance=ExtResource( 7 )]
@@ -378,7 +393,7 @@ collision_mask = 64
 script = ExtResource( 8 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer1/ClimbAnchor8" index="0"]
-polygon = PoolVector2Array( 0, 0, 40, 80, 0, 80 )
+polygon = PoolVector2Array( 0, 0, 40, 0, 40, 80, 0, 80 )
 
 [node name="ClimbAnchor9" type="Area2D" parent="layer1" index="17"]
 position = Vector2( -540, 390 )
@@ -481,10 +496,13 @@ polygon = PoolVector2Array( 390, 190, 390, 280, 690, 280, 690, 190, 960, 190, 96
 modulate = Color( 0, 0.486275, 1, 1 )
 
 [node name="ZoneDialogue" parent="layer0" index="0" instance=ExtResource( 30 )]
-position = Vector2( -170, 1500 )
+position = Vector2( 0, 1500 )
 collision_layer = 0
 collision_mask = 32
-unique_name = "test"
+unique_name = "tuto1"
+
+[node name="CollisionShape2D" parent="layer0/ZoneDialogue" index="1"]
+shape = SubResource( 3 )
 
 [node name="CanvasLayer" parent="layer0/ZoneDialogue" index="2"]
 follow_viewport_enable = true
@@ -492,18 +510,21 @@ follow_viewport_enable = true
 [node name="Dialogue" parent="layer0/ZoneDialogue/CanvasLayer" index="0"]
 visible = false
 thumbnail = ExtResource( 31 )
-title = "The explorer"
-tirades = [ "I must have fell asleep ...", "Well ... I need to climb back now." ]
+title = "The Explorer"
+tirades = [ "I must have fell asleep ...", "Well ... I need to climb back now.", "~ You can move around with [LEFT]/[RIGHT] or [A]/[D] or [Q]/[D] ~" ]
 pitch_scale = 0.9
 
 [node name="ZoneDialogue2" parent="layer0" index="1" instance=ExtResource( 30 )]
 position = Vector2( -557, 1400 )
 collision_layer = 0
 collision_mask = 32
-unique_name = "test"
+unique_name = "tuto2"
 
 [node name="Offset" parent="layer0/ZoneDialogue2" index="0"]
 position = Vector2( 167, -34 )
+
+[node name="CollisionShape2D" parent="layer0/ZoneDialogue2" index="1"]
+shape = SubResource( 4 )
 
 [node name="CanvasLayer" parent="layer0/ZoneDialogue2" index="2"]
 follow_viewport_enable = true
@@ -511,18 +532,21 @@ follow_viewport_enable = true
 [node name="Dialogue" parent="layer0/ZoneDialogue2/CanvasLayer" index="0"]
 visible = false
 thumbnail = ExtResource( 31 )
-title = "The explorer"
-tirades = [ "It's a bit tall for a stair...", "Maybe I can jump over it.", "~ Tutorial: You can jump over most obstacles ~", "~ Press [UP] or [Z] or [W] or [SPACE] to jump ~" ]
+title = "The Explorer"
+tirades = [ "It's a bit tall for a stair...", "Maybe I can jump over it.", "~ You can jump over most obstacles ~", "~ Press [UP] or [Z] or [W] or [SPACE] to jump ~" ]
 pitch_scale = 0.9
 
 [node name="ZoneDialogue3" parent="layer0" index="2" instance=ExtResource( 30 )]
-position = Vector2( -820, 1320 )
+position = Vector2( -760, 1380 )
 collision_layer = 0
 collision_mask = 32
-unique_name = "test"
+unique_name = "tuto3"
 
 [node name="Offset" parent="layer0/ZoneDialogue3" index="0"]
 position = Vector2( 430, -17 )
+
+[node name="CollisionShape2D" parent="layer0/ZoneDialogue3" index="1"]
+shape = SubResource( 5 )
 
 [node name="CanvasLayer" parent="layer0/ZoneDialogue3" index="2"]
 follow_viewport_enable = true
@@ -530,14 +554,14 @@ follow_viewport_enable = true
 [node name="Dialogue" parent="layer0/ZoneDialogue3/CanvasLayer" index="0"]
 visible = false
 thumbnail = ExtResource( 31 )
-title = "The explorer"
-tirades = [ "I can jump over this light gray stair too.", "~ Tutorial: The level is made of multiple layers ~", "~ Jumping over background elements can bring you to different layers ~" ]
+title = "The Explorer"
+tirades = [ "I can jump over this light gray stair too.", "~ The level is made of multiple layers ~", "~ Jumping over background elements can bring you to different layers ~" ]
 pitch_scale = 0.9
 show_tail = false
 
 [node name="[1] LayerSwitch" parent="layer0" index="3" instance=ExtResource( 7 )]
-position = Vector2( -790, 1300 )
-scale = Vector2( 0.285, 1 )
+position = Vector2( -810, 1290 )
+scale = Vector2( 0.159, 0.412 )
 
 [node name="[1] LayerSwitch2" parent="layer0" index="4" instance=ExtResource( 7 )]
 position = Vector2( 760, 1210 )
@@ -575,6 +599,11 @@ scale = Vector2( 10, 10 )
 [node name="earth_cave_fg" type="Sprite" parent="front" index="0"]
 position = Vector2( 0, 54 )
 texture = ExtResource( 21 )
+
+[node name="Sprite" type="Sprite" parent="front" index="1"]
+position = Vector2( 50, 114.2 )
+texture = SubResource( 6 )
+offset = Vector2( 0.5, 0.5 )
 
 [node name="Camera" parent="." index="10" instance=ExtResource( 5 )]
 visible = false

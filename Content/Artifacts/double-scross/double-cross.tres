@@ -5,19 +5,6 @@
 [ext_resource path="res://Content/Artifacts/double-scross/_assets/double-scross_layer 3.png" type="Texture" id=3]
 [ext_resource path="res://Content/Artifacts/double-scross/_assets/double-scross_layer 2.png" type="Texture" id=4]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 [resource]
 script = ExtResource( 1 )
 frame = ExtResource( 3 )

@@ -21,17 +21,21 @@ var tirade_word_index = 0
 var tirade_words = ""
 var completed = false
 var last_word_addition = OS.get_ticks_msec()
+var muted = false
 
 
 signal completed()
 
 
-func _physics_process(delta):	
+func _physics_process(delta):
 	if tirade_word_index < tirade_words.length():
 		if OS.get_ticks_msec() - last_word_addition > 50:
 			add_word()
 			$Sfx.pitch_scale = rand_range(pitch_scale-0.025,pitch_scale+0.025)
-			$Sfx.play()
+			if !muted: 
+				$Sfx.play()
+			else:
+				$Sfx.stop()
 	else:
 		$Sfx.stop()
 
@@ -53,7 +57,6 @@ func add_word():
 func increment_tirade_index():
 	last_word_addition = 0
 	if tirade_index == tirades.size() - 1:
-		print("here")
 		emit_signal("completed")
 		completed = true
 		return
@@ -99,3 +102,11 @@ func set_show_tail(value):
 	if not is_inside_tree(): 
 		yield(self, "ready")
 	$HBoxContainer/Tail.visible = show_tail
+
+
+func mute():
+	muted = true
+
+
+func unmute():
+	muted = false

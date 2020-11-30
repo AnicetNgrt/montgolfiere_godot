@@ -1,0 +1,155 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Systems/Classes/Map/CameraTopDown/Camera.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Systems/Classes/Map/Balloon/Balloon.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/Camera/CameraArea/CameraArea_2x2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Systems/Classes/Map/_assets/balloon2/balloon2_layer 2.png" type="Texture" id=4]
+[ext_resource path="res://Systems/Classes/Map/_assets/balloon2/balloon2_deepsea.png" type="Texture" id=5]
+[ext_resource path="res://Systems/Classes/Map/_assets/balloon2/balloon2_sand.png" type="Texture" id=6]
+[ext_resource path="res://Systems/Classes/Map/_assets/balloon2/balloon2_soil.png" type="Texture" id=7]
+[ext_resource path="res://Systems/Classes/Map/_assets/balloon2/balloon2_sea.png" type="Texture" id=8]
+[ext_resource path="res://Systems/Classes/Map/_assets/balloon2/balloon2_clouds1.png" type="Texture" id=9]
+[ext_resource path="res://Systems/Classes/Map/Map.gd" type="Script" id=10]
+[ext_resource path="res://Content/Regions/earth/_shared_animations/day_night_regular.tres" type="Animation" id=11]
+[ext_resource path="res://Content/Regions/earth/_shared_resources/region.tres" type="Resource" id=12]
+[ext_resource path="res://Content/Regions/_shared_assets/Wind/windLoopable.wav" type="AudioStream" id=13]
+[ext_resource path="res://_shared_scripts/LoopAudioPlayer.gd" type="Script" id=14]
+
+[sub_resource type="Animation" id=1]
+resource_name = "wind"
+length = 520.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("ParallaxLayer6/Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 519.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 4830, 1770 ), Vector2( -7547, -4142 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ParallaxLayer5/Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 519.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 5000, 2370 ), Vector2( -7366.73, -3531.67 ) ]
+}
+
+[node name="Map" type="Node2D"]
+modulate = Color( 0, 0, 0, 1 )
+script = ExtResource( 10 )
+custom_modulate = Color( 0, 0, 0, 1 )
+region = ExtResource( 12 )
+is_balloon = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color( 0, 0, 0, 1 )
+motion_scale = Vector2( 0.7, 0.7 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 4830, 1770 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 5 )
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color( 0, 0, 0, 1 )
+motion_scale = Vector2( 0.7, 0.7 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2( 4830, 1770 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 8 )
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color( 0, 0, 0, 1 )
+motion_scale = Vector2( 0.7, 0.7 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2( 4830, 1770 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 6 )
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color( 0, 0, 0, 1 )
+motion_scale = Vector2( 0.7, 0.7 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer4"]
+position = Vector2( 4830, 1770 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 7 )
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color( 0, 0, 0, 1 )
+motion_scale = Vector2( 0.7, 0.7 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer5"]
+modulate = Color( 0.145098, 0.196078, 0.305882, 0.376471 )
+position = Vector2( 5000, 2370 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 9 )
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color( 0, 0, 0, 1 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer6"]
+position = Vector2( 4830, 1770 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 9 )
+
+[node name="wind" type="AnimationPlayer" parent="ParallaxBackground"]
+autoplay = "wind"
+anims/wind = SubResource( 1 )
+
+[node name="CamAreas" type="Node2D" parent="."]
+position = Vector2( 0, 1150 )
+
+[node name="CameraArea" parent="CamAreas" instance=ExtResource( 3 )]
+
+[node name="CameraArea2" parent="CamAreas" instance=ExtResource( 3 )]
+position = Vector2( -3840, 10 )
+
+[node name="CameraArea3" parent="CamAreas" instance=ExtResource( 3 )]
+position = Vector2( -3840, -2160 )
+
+[node name="CameraArea4" parent="CamAreas" instance=ExtResource( 3 )]
+position = Vector2( 0, -2160 )
+
+[node name="CameraArea5" parent="CamAreas" instance=ExtResource( 3 )]
+position = Vector2( -3840, -4330 )
+
+[node name="CameraArea6" parent="CamAreas" instance=ExtResource( 3 )]
+position = Vector2( 0, -4330 )
+
+[node name="grass" type="Sprite" parent="."]
+position = Vector2( 197, 10 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 4 )
+
+[node name="Balloon" parent="." instance=ExtResource( 2 )]
+collision_mask = 0
+
+[node name="Camera" parent="." instance=ExtResource( 1 )]
+visible = false
+smoothing_enabled = true
+speed_mult_x = 300.0
+speed_mult_y = 100.0
+
+[node name="DayNightAnimator" type="AnimationPlayer" parent="."]
+anims/day_night = ExtResource( 11 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+autoplay = true
+script = ExtResource( 14 )
+[connection signal="animation_finished" from="DayNightAnimator" to="." method="_on_DayNightAnimator_animation_finished"]

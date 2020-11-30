@@ -52,9 +52,9 @@ __meta__ = {
 
 [node name="ButtonAbout" parent="Menu" instance=ExtResource( 2 )]
 margin_left = 0.0
-margin_top = -1.0
+margin_top = 0.0
 margin_right = 300.0
-margin_bottom = 94.0
+margin_bottom = 95.0
 rect_min_size = Vector2( 150, 95 )
 size_flags_horizontal = 5
 custom_styles/pressed = ExtResource( 7 )
@@ -63,9 +63,9 @@ text = "About"
 
 [node name="ButtonFullscreen" parent="Menu" instance=ExtResource( 2 )]
 margin_left = 0.0
-margin_top = 104.0
+margin_top = 105.0
 margin_right = 300.0
-margin_bottom = 199.0
+margin_bottom = 200.0
 rect_min_size = Vector2( 300, 95 )
 size_flags_horizontal = 5
 custom_styles/pressed = ExtResource( 7 )
@@ -74,9 +74,9 @@ text = "Fullscreen: ON"
 
 [node name="ButtonSounds" parent="Menu" instance=ExtResource( 2 )]
 margin_left = 0.0
-margin_top = 209.0
+margin_top = 210.0
 margin_right = 300.0
-margin_bottom = 304.0
+margin_bottom = 305.0
 rect_min_size = Vector2( 300, 95 )
 size_flags_horizontal = 5
 custom_styles/pressed = ExtResource( 7 )
@@ -85,9 +85,9 @@ text = "Sounds: ON"
 
 [node name="ButtonMusic" parent="Menu" instance=ExtResource( 2 )]
 margin_left = 0.0
-margin_top = 314.0
+margin_top = 315.0
 margin_right = 300.0
-margin_bottom = 409.0
+margin_bottom = 410.0
 rect_min_size = Vector2( 300, 95 )
 size_flags_horizontal = 5
 custom_styles/pressed = ExtResource( 7 )
@@ -96,9 +96,9 @@ text = "Music: ON"
 
 [node name="ButtonQuit" parent="Menu" instance=ExtResource( 2 )]
 margin_left = 0.0
-margin_top = 419.0
+margin_top = 420.0
 margin_right = 300.0
-margin_bottom = 514.0
+margin_bottom = 515.0
 rect_min_size = Vector2( 300, 95 )
 size_flags_horizontal = 5
 custom_styles/pressed = ExtResource( 7 )
@@ -107,9 +107,9 @@ text = "Quit"
 
 [node name="Title" type="Label" parent="."]
 margin_left = 60.0
-margin_top = -20.0
+margin_top = 20.0
 margin_right = 878.0
-margin_bottom = 361.0
+margin_bottom = 401.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "EARTH'S
@@ -125,7 +125,6 @@ margin_right = 870.0
 margin_bottom = 467.0
 custom_fonts/font = ExtResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "A game by Anicet Nougaret"
 __meta__ = {
 "_edit_use_anchors_": false
 }

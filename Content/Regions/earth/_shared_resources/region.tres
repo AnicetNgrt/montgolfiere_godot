@@ -1,9 +1,10 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" load_steps=6 format=2]
 
 [ext_resource path="res://Systems/Classes/Region/Region.gd" type="Script" id=1]
 [ext_resource path="res://_shared_resources/Environment/default.tres" type="Environment" id=2]
 [ext_resource path="res://Systems/Classes/PlatformerController/_subclasses/PhysicsProfile/_instances/default_physics_profile.tres" type="Resource" id=3]
 [ext_resource path="res://Content/Regions/earth/_shared_animations/day_night_regular.tres" type="Animation" id=4]
+[ext_resource path="res://_shared_assets/Music/Olga Gurevich/Chopin/Waltz in B minor, Op. 69 no. 2.ogg" type="AudioStream" id=5]
 
 [resource]
 script = ExtResource( 1 )
@@ -11,4 +12,5 @@ map_name = "Space Graveyard"
 environment = ExtResource( 2 )
 physics_profile = ExtResource( 3 )
 day_night_anim = ExtResource( 4 )
+theme = ExtResource( 5 )
 theme_volume = -10.0

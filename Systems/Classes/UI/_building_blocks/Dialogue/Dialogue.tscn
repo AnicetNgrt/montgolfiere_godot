@@ -185,7 +185,7 @@ text = " press [E]"
 
 [node name="Sfx" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 6 )
-volume_db = -15.0
+volume_db = -30.0
 bus = "Sfx"
 [connection signal="pressed" from="HBoxContainer/CenterContainer/ButtonNext" to="." method="_on_ButtonOk_pressed"]
 [connection signal="pressed" from="HBoxContainer/CenterContainer/ButtonOk" to="." method="_on_ButtonOk_pressed"]

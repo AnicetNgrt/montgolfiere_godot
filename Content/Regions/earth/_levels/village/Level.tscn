@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Systems/Classes/Level/_building_blocks/Entrance/PlatformerControllerSpawner.gd" type="Script" id=1]
 [ext_resource path="res://Systems/Classes/Level/_building_blocks/BackgroundLayer/BackgroundLayer.tscn" type="PackedScene" id=2]
@@ -22,6 +22,9 @@
 [ext_resource path="res://Content/Regions/earth/_levels/village/_resources/sp_village_default.tres" type="Resource" id=20]
 [ext_resource path="res://Content/Regions/earth/_shared_resources/region.tres" type="Resource" id=21]
 [ext_resource path="res://Content/Regions/earth/_levels/earth1/_resources/sp_earth1_left1.tres" type="Resource" id=22]
+[ext_resource path="res://Systems/Classes/Map/sp_default.tres" type="Resource" id=23]
+[ext_resource path="res://Content/Regions/_shared_assets/Clouds/clouds3.png" type="Texture" id=24]
+[ext_resource path="res://Content/Regions/earth/_levels/village/BalloonSprite.gd" type="Script" id=25]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -90,6 +93,7 @@ motion_scale = Vector2( 0.25, 0.05 )
 material = SubResource( 2 )
 position = Vector2( 0.1, 31 )
 scale = Vector2( 10, 10 )
+texture = ExtResource( 24 )
 speed = 0.01
 
 [node name="back" type="Node2D" parent="." index="3"]
@@ -126,6 +130,10 @@ texture = ExtResource( 11 )
 [node name="village_soil" type="Sprite" parent="back" index="7"]
 position = Vector2( 0, 7.62939e-06 )
 texture = ExtResource( 16 )
+
+[node name="BalloonSprite" type="Sprite" parent="back" index="8"]
+position = Vector2( 100, -77 )
+script = ExtResource( 25 )
 
 [node name="layer2" type="Node2D" parent="." index="4"]
 modulate = Color( 1, 0, 0, 1 )
@@ -171,7 +179,7 @@ position = Vector2( -1970, 370 )
 polygon = PoolVector2Array( 1200, -680, 1240, -680, 1240, -510, 1200, -510 )
 
 [node name="CollisionPolygon2D31" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="11"]
-polygon = PoolVector2Array( 580, -100, 450, -100, 50, 100, 50, 110, 90, 110, 410, -40, 580, -70 )
+polygon = PoolVector2Array( 580, -100, 420, -100, 50, 80, 50, 110, 90, 110, 410, -40, 580, -70 )
 
 [node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="12"]
 polygon = PoolVector2Array( 580, 40, 560, 40, 560, -100, 640, -100, 640, -10, 580, -10 )
@@ -274,7 +282,7 @@ script = ExtResource( 8 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/ClimbAnchor12" index="0"]
 position = Vector2( -10, 20 )
-polygon = PoolVector2Array( 0, 30, 20, 40, 0, 50 )
+polygon = PoolVector2Array( 0, 30, 30, 20, 0, 50 )
 
 [node name="ClimbAnchor11" type="Area2D" parent="layer2" index="15"]
 position = Vector2( 640, -410 )
@@ -299,6 +307,16 @@ script = ExtResource( 8 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/ClimbAnchor4" index="0"]
 position = Vector2( 10, 20 )
 polygon = PoolVector2Array( 0, -20, -60, 0, 0, 30 )
+
+[node name="Exit2" type="Area2D" parent="layer2" index="18"]
+position = Vector2( -970, -1470 )
+collision_layer = 0
+collision_mask = 128
+script = ExtResource( 9 )
+spawnpoint = ExtResource( 23 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/Exit2" index="0"]
+polygon = PoolVector2Array( 1920, 800, 1920, 950, 1950, 950, 1950, 800 )
 
 [node name="layer1" type="Node2D" parent="." index="5"]
 modulate = Color( 1, 0.866667, 0, 1 )

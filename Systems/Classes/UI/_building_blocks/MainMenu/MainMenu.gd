@@ -2,6 +2,7 @@ extends Control
 
 
 signal finished(instance)
+signal game_loaded()
 
 
 func _ready():
@@ -49,4 +50,5 @@ func _on_ButtonAbout_pressed():
 func _on_Saves_slot_chosen(slot):
 	UiSummoner.summon_transition_screen(0.2)
 	yield(get_tree().create_timer(0.5), "timeout")
+	emit_signal("game_loaded")
 	call_deferred("queue_free")

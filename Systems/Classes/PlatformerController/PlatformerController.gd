@@ -10,6 +10,7 @@ var velocity := Vector2.ZERO
 var climbing := false
 var last_breathe = OS.get_ticks_msec()
 var searching := false
+var locked = false
 
 
 signal stamina_changed(stamina)
@@ -23,7 +24,7 @@ func _ready():
 func _physics_process(delta:float):
 	get_input(delta)
 	update_jump(delta)
-	update_movement(delta)
+	if !locked: update_movement(delta)
 
 
 func get_input(delta:float):

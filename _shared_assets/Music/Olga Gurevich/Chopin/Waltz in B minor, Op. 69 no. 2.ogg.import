@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Waltz in B minor, Op. 69 no. 2.ogg-d9af2b6f4e3ac54f51bf9cd8f9e2702f.oggstr"
+
+[deps]
+
+source_file="res://_shared_assets/Music/Olga Gurevich/Chopin/Waltz in B minor, Op. 69 no. 2.ogg"
+dest_files=[ "res://.import/Waltz in B minor, Op. 69 no. 2.ogg-d9af2b6f4e3ac54f51bf9cd8f9e2702f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

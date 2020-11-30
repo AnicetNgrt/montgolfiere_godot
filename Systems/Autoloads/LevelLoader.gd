@@ -20,9 +20,6 @@ func load_level(spawnpoint:SpawnPoint):
 	
 	new_level.enter_at(spawnpoint.name)
 	
-	if not new_level.is_ready_and_spawned: 
-		yield(new_level, "ready_and_spawned")
-	
 	current_level = new_level
 	
 	emit_signal("level_loaded")

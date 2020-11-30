@@ -13,14 +13,26 @@ var wind:Vector2
 onready var Wind_time:Timer = $WindTimer
 
 var velocity = Vector2.ZERO
+var locked = false
+
+
+func _ready():
+	on_skin_changed(ProgressManager.progress_db.balloon_skin)
+	ProgressManager.connect("balloon_skin_changed", self, "on_skin_changed")
+
+
+func on_skin_changed(skin:BalloonSkin):
+	$Sprite.texture = skin.top_down
+
 
 func _physics_process(delta):
-	var input_vector = get_action_balloon()
-	move_balloon(delta, input_vector)
-	balloon_rotation(input_vector)
-	
-	if(Input.is_action_pressed("use_artifact")):
-		start_wind()
+	if !locked:
+		var input_vector = get_action_balloon()
+		move_balloon(delta, input_vector)
+		balloon_rotation(input_vector)
+		
+		if(Input.is_action_pressed("use_artifact")):
+			start_wind()
 
 func get_action_balloon():
 	var input_vector = Vector2.ZERO

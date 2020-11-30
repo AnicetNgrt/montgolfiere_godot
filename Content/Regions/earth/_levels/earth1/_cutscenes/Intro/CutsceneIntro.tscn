@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://Systems/Classes/UI/_shared_resources/Fonts/small_df.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Systems/Classes/UI/_shared_resources/Fonts/regular_df.tres" type="DynamicFont" id=2]
@@ -27,38 +27,112 @@
 [ext_resource path="res://Content/Custcenes/Intro/B/B_layer 2.png" type="Texture" id=25]
 [ext_resource path="res://_shared_scripts/LoopAudioPlayer.gd" type="Script" id=26]
 [ext_resource path="res://_shared_assets/Fonts/Jost/static/Jost-Medium.ttf" type="DynamicFontData" id=27]
+[ext_resource path="res://Content/Regions/_shared_assets/Clouds/clouds-white-front.png" type="Texture" id=28]
 [ext_resource path="res://Systems/Classes/UI/_building_blocks/Button/Button.tscn" type="PackedScene" id=29]
 [ext_resource path="res://Systems/Classes/UI/_building_blocks/Button/_resources/black_border.tres" type="StyleBox" id=30]
 [ext_resource path="res://Systems/Classes/UI/_building_blocks/Button/_resources/trans_border.tres" type="StyleBox" id=31]
 [ext_resource path="res://Systems/Classes/UI/_building_blocks/Button/_resources/white.tres" type="StyleBox" id=32]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/BackgroundLayer/BackgroundLayer.tscn" type="PackedScene" id=34]
 
-[sub_resource type="DynamicFont" id=1]
-size = 64
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 27 )
+[sub_resource type="Shader" id=1]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
 
-[sub_resource type="StyleBoxLine" id=2]
+uniform float scroll_speed;
+uniform float radius = 5.0;
+uniform vec4 modulate: hint_color;
 
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.6, 0.6, 0.6, 0 )
+void fragment() {
+	vec2 ps = TEXTURE_PIXEL_SIZE;
+	
+	vec2 shifteduv = UV;
+    shifteduv.x = mod(shifteduv.x+TIME*scroll_speed, 1.0);
+	
+	vec4 shadow = texture(TEXTURE, shifteduv + vec2(-radius, -radius) * ps);
+	
+	shadow += texture(TEXTURE, shifteduv + vec2(-radius, 0.0) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(-radius, radius) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(0.0, -radius) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(0.0, radius) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(radius, -radius) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(radius, 0.0) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(radius, radius) * ps);
+	shadow /= 8.0;
+	shadow *= modulate;
+	
+    vec4 color = texture(TEXTURE, shifteduv);
+    COLOR = mix(shadow, color, color.a);
+}"
 
-[sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 0.6, 0.6, 0.6, 0 )
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/scroll_speed = 0.01
+shader_param/radius = 0.0
+shader_param/modulate = Color( 0, 0, 0, 0.0980392 )
 
-[sub_resource type="DynamicFont" id=5]
-size = 64
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 27 )
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/scroll_speed = 0.02
+shader_param/radius = 0.0
+shader_param/modulate = Color( 0, 0, 0, 0.0980392 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="ShaderMaterial" id=4]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/scroll_speed = 0.03
+shader_param/radius = 0.0
+shader_param/modulate = Color( 0, 0, 0, 0.0980392 )
+
+[sub_resource type="ShaderMaterial" id=5]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/scroll_speed = 0.05
+shader_param/radius = 0.0
+shader_param/modulate = Color( 0, 0, 0, 0.0980392 )
+
+[sub_resource type="ShaderMaterial" id=6]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/scroll_speed = 0.06
+shader_param/radius = 0.0
+shader_param/modulate = Color( 0, 0, 0, 0.0980392 )
+
+[sub_resource type="ShaderMaterial" id=7]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/scroll_speed = 0.07
+shader_param/radius = 0.0
+shader_param/modulate = Color( 0, 0, 0, 0.0980392 )
+
+[sub_resource type="DynamicFont" id=13]
 size = 32
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 27 )
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="DynamicFont" id=8]
+size = 64
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 27 )
+
+[sub_resource type="StyleBoxLine" id=9]
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxFlat" id=11]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 64
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 27 )
+
+[sub_resource type="Animation" id=14]
 length = 110.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("ObamaSpeech:playing")
@@ -91,10 +165,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 2, 72, 72.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 0.329877 ),
+"times": PoolRealArray( 0, 2.5, 64.5, 70.6 ),
+"transitions": PoolRealArray( 1, 1, 0.329877, 1 ),
 "update": 0,
-"values": [ -11.7, -80.0, -80.0, -2.0 ]
+"values": [ -80.0, -10.0, -10.0, -80.0 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("ObamaSpeech:volume_db")
@@ -276,6 +350,18 @@ tracks/17/keys = {
 "update": 1,
 "values": [ true, false ]
 }
+tracks/18/type = "value"
+tracks/18/path = NodePath("ColorRect3:modulate")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0, 66.6, 68.1, 110.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="Cutscene" type="Control"]
 anchor_right = 1.0
@@ -286,6 +372,62 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.141176, 0.623529, 0.870588, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackgroundLayer6" parent="." instance=ExtResource( 34 )]
+modulate = Color( 0.419608, 0.780392, 1, 1 )
+material = SubResource( 2 )
+position = Vector2( -510, -230 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 28 )
+speed = 0.01
+
+[node name="BackgroundLayer5" parent="." instance=ExtResource( 34 )]
+modulate = Color( 0.6, 0.831373, 1, 1 )
+material = SubResource( 3 )
+position = Vector2( 1480, -190 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 28 )
+speed = 0.02
+
+[node name="BackgroundLayer3" parent="." instance=ExtResource( 34 )]
+modulate = Color( 0.72549, 0.909804, 0.984314, 1 )
+material = SubResource( 4 )
+position = Vector2( 930, -150 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 28 )
+speed = 0.03
+
+[node name="BackgroundLayer" parent="." instance=ExtResource( 34 )]
+modulate = Color( 0.890196, 0.929412, 1, 1 )
+material = SubResource( 5 )
+position = Vector2( 1120, -100 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 28 )
+speed = 0.05
+
+[node name="BackgroundLayer4" parent="." instance=ExtResource( 34 )]
+modulate = Color( 0.964706, 0.968627, 1, 1 )
+material = SubResource( 6 )
+position = Vector2( 520, -40 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 28 )
+speed = 0.06
+
+[node name="BackgroundLayer2" parent="." instance=ExtResource( 34 )]
+material = SubResource( 7 )
+position = Vector2( 840, 0 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 28 )
+speed = 0.07
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
@@ -348,6 +490,56 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="VBoxContainer4" type="VBoxContainer" parent="SceneA/UI"]
+margin_left = 340.0
+margin_top = 650.0
+margin_right = 1540.0
+margin_bottom = 1698.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text3" type="Label" parent="SceneA/UI/VBoxContainer4"]
+margin_right = 1200.0
+margin_bottom = 47.0
+custom_fonts/font = SubResource( 13 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "\"The Explorer\", a young and eccentric woman, is one of the nomads."
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text5" type="Label" parent="SceneA/UI/VBoxContainer4"]
+margin_top = 51.0
+margin_right = 1200.0
+margin_bottom = 98.0
+custom_fonts/font = SubResource( 13 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Everyday, she wakes up and rides her gas balloon to the sky."
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text4" type="Label" parent="SceneA/UI/VBoxContainer4"]
+margin_top = 102.0
+margin_right = 1200.0
+margin_bottom = 199.0
+custom_fonts/font = SubResource( 13 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "The galactic dream may have died centuries ago, but the very human fascination for clouds and the stars remains."
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ButtonFinish" parent="SceneA/UI" instance=ExtResource( 29 )]
 anchor_left = 0.5
 anchor_top = 1.0
@@ -389,6 +581,57 @@ texture = ExtResource( 16 )
 script = ExtResource( 3 )
 factor = 0.3
 
+[node name="VBoxContainer3" type="VBoxContainer" parent="SceneB"]
+margin_left = 8.0
+margin_top = 7.0
+margin_right = 748.0
+margin_bottom = 255.0
+rect_scale = Vector2( 0.1, 0.1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text3" type="Label" parent="SceneB/VBoxContainer3"]
+margin_right = 740.0
+margin_bottom = 97.0
+custom_fonts/font = SubResource( 13 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "The remaining ones  live a simple life with nature and freedom."
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text4" type="Label" parent="SceneB/VBoxContainer3"]
+margin_top = 101.0
+margin_right = 740.0
+margin_bottom = 198.0
+custom_fonts/font = SubResource( 13 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "The struggle for surivial is still real, but today's humans have hope."
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text5" type="Label" parent="SceneB/VBoxContainer3"]
+margin_top = 202.0
+margin_right = 740.0
+margin_bottom = 299.0
+custom_fonts/font = SubResource( 13 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = " Hope fueled by an admiration for their god-like, yet unwise, ancestors."
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="SceneC" type="Node2D" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 430, 20 )
@@ -401,10 +644,47 @@ script = ExtResource( 3 )
 factor = 0.05
 
 [node name="C_iss" type="Sprite" parent="SceneC"]
-position = Vector2( 38, 37 )
+position = Vector2( 15, 46 )
 texture = ExtResource( 24 )
 script = ExtResource( 3 )
 factor = 0.2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="SceneC"]
+margin_left = 61.0
+margin_top = 12.0
+margin_right = 801.0
+margin_bottom = 160.0
+rect_scale = Vector2( 0.1, 0.1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text3" type="Label" parent="SceneC/VBoxContainer2"]
+margin_right = 740.0
+margin_bottom = 147.0
+custom_fonts/font = SubResource( 13 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "As greedy development of the 21st century failed to sustain 9 billion individuals on a shrinking land choking to a death loop of global warming,"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text4" type="Label" parent="SceneC/VBoxContainer2"]
+margin_top = 151.0
+margin_right = 740.0
+margin_bottom = 248.0
+custom_fonts/font = SubResource( 13 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "many fled their homeland and died to global conflicts, diseases, and starvation."
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="SceneD" type="Node2D" parent="."]
 modulate = Color( 1, 1, 1, 0 )
@@ -428,6 +708,41 @@ texture = ExtResource( 11 )
 script = ExtResource( 3 )
 factor = 0.2
 
+[node name="VBoxContainer" type="VBoxContainer" parent="SceneD"]
+margin_left = 20.0
+margin_top = 12.0
+margin_right = 1528.0
+margin_bottom = 110.0
+rect_scale = Vector2( 0.1, 0.1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text3" type="Label" parent="SceneD/VBoxContainer"]
+margin_right = 1508.0
+margin_bottom = 47.0
+custom_fonts/font = SubResource( 13 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "In a few centuries, an almost extinct humankind still lives on the surface of the Earth."
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text4" type="Label" parent="SceneD/VBoxContainer"]
+margin_top = 51.0
+margin_right = 1508.0
+margin_bottom = 98.0
+custom_fonts/font = SubResource( 13 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Masters of a nomad lifestyle, they survive with what's left of the resources of the planet."
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Texts" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -439,6 +754,8 @@ __meta__ = {
 modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = -140.0
+margin_bottom = -140.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -461,6 +778,7 @@ __meta__ = {
 margin_right = 810.0
 margin_bottom = 47.0
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Made in 1 month as part of"
 align = 1
 __meta__ = {
@@ -471,7 +789,8 @@ __meta__ = {
 margin_top = 51.0
 margin_right = 810.0
 margin_bottom = 144.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Github Game Off 2020"
 align = 1
 __meta__ = {
@@ -482,7 +801,8 @@ __meta__ = {
 margin_top = 148.0
 margin_right = 810.0
 margin_bottom = 241.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Web monetization jam 2020"
 align = 1
 __meta__ = {
@@ -496,9 +816,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -356.5
-margin_top = -160.0
+margin_top = -300.0
 margin_right = 356.5
-margin_bottom = 160.0
+margin_bottom = 46.0
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -508,6 +828,7 @@ __meta__ = {
 margin_right = 713.0
 margin_bottom = 47.0
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Story, Design, Art, Code & Marketing"
 align = 1
 __meta__ = {
@@ -518,7 +839,8 @@ __meta__ = {
 margin_top = 51.0
 margin_right = 713.0
 margin_bottom = 144.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Anicet Nougaret"
 align = 1
 __meta__ = {
@@ -526,10 +848,11 @@ __meta__ = {
 }
 
 [node name="HSeparator" type="HSeparator" parent="Texts/Team"]
+modulate = Color( 1, 1, 1, 0 )
 margin_top = 148.0
 margin_right = 713.0
 margin_bottom = 198.0
-custom_styles/separator = SubResource( 2 )
+custom_styles/separator = SubResource( 9 )
 custom_constants/separation = 50
 
 [node name="Label2" type="Label" parent="Texts/Team"]
@@ -537,6 +860,7 @@ margin_top = 202.0
 margin_right = 713.0
 margin_bottom = 249.0
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Design & Code Assist"
 align = 1
 __meta__ = {
@@ -547,7 +871,8 @@ __meta__ = {
 margin_top = 253.0
 margin_right = 713.0
 margin_bottom = 346.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Thibault Henrion"
 align = 1
 __meta__ = {
@@ -561,9 +886,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -570.5
-margin_top = -173.5
+margin_top = -313.5
 margin_right = 570.5
-margin_bottom = 173.5
+margin_bottom = 57.5
 custom_constants/separation = 40
 script = ExtResource( 4 )
 __meta__ = {
@@ -574,6 +899,7 @@ __meta__ = {
 margin_right = 1141.0
 margin_bottom = 47.0
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Featuring public domain recordings of public domain classical pieces"
 align = 1
 __meta__ = {
@@ -586,6 +912,7 @@ margin_right = 1141.0
 margin_bottom = 184.0
 rect_min_size = Vector2( 0, 60 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "United States Navy Band Symphony Orchestra
  - Tchaikovsky: \"Humoresque\", Op. 10, No. 2 -"
 align = 1
@@ -600,6 +927,7 @@ margin_right = 1141.0
 margin_bottom = 371.0
 rect_min_size = Vector2( 0, 60 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Markus Staab 
 - Mozart/Liszt: Lacrymosa from \"Requiem\" -
 - Maurice Ravel: \"Pavane for a Dead Princess\" -"
@@ -616,9 +944,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -570.5
-margin_top = -97.5
+margin_top = -237.5
 margin_right = 570.5
-margin_bottom = 97.5
+margin_bottom = -42.5
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -628,6 +956,7 @@ __meta__ = {
 margin_right = 1141.0
 margin_bottom = 47.0
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "A game made with the amazing open source"
 align = 1
 __meta__ = {
@@ -638,7 +967,8 @@ __meta__ = {
 margin_top = 51.0
 margin_right = 1141.0
 margin_bottom = 144.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Godot Game Engine"
 align = 1
 __meta__ = {
@@ -706,7 +1036,7 @@ valign = 1
 [node name="Source" type="Label" parent="Texts/Poem/VBoxContainer2"]
 margin_top = 747.0
 margin_right = 703.0
-margin_bottom = 782.0
+margin_bottom = 794.0
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "George Meredith, \"Earth's Secret\", 1883"
@@ -722,8 +1052,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 custom_styles/hover = ExtResource( 30 )
 custom_styles/pressed = ExtResource( 31 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
+custom_styles/focus = SubResource( 10 )
+custom_styles/disabled = SubResource( 11 )
 custom_styles/normal = ExtResource( 31 )
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
@@ -756,13 +1086,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -660.0
+margin_left = -720.0
 margin_top = -160.0
-margin_right = 794.0
+margin_right = 734.0
 margin_bottom = 29.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 12 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Please, turn the sound on, go fullscreen, and enjoy!"
+text = "Press [TAB] to open/close the menu.
+Please, turn the sound on, go fullscreen, and enjoy!"
 align = 1
 valign = 1
 script = ExtResource( 4 )
@@ -780,9 +1111,8 @@ margin_left = -700.0
 margin_top = -70.0
 margin_right = 754.0
 margin_bottom = 119.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Tip: Press [ESC] to open/close the menu"
 align = 1
 valign = 1
 script = ExtResource( 4 )
@@ -801,8 +1131,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 custom_styles/hover = ExtResource( 30 )
 custom_styles/pressed = ExtResource( 31 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
+custom_styles/focus = SubResource( 10 )
+custom_styles/disabled = SubResource( 11 )
 custom_styles/normal = ExtResource( 31 )
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
@@ -815,9 +1145,45 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ColorRect2" type="ColorRect" parent="."]
+margin_left = 1240.0
+margin_top = 930.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+mouse_filter = 1
+color = Color( 1, 1, 1, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SkipButton" type="Button" parent="."]
+visible = false
+margin_left = 1050.0
+margin_top = 1010.0
+margin_right = 1892.0
+margin_bottom = 1061.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_styles/hover = ExtResource( 30 )
+custom_styles/pressed = ExtResource( 31 )
+custom_styles/focus = SubResource( 10 )
+custom_styles/disabled = SubResource( 11 )
+custom_styles/normal = ExtResource( 31 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+text = " Please don't skip this cutscene but if you click me you can "
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Wind" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 21 )
-volume_db = -11.7
+volume_db = -80.0
 autoplay = true
 bus = "Sfx"
 script = ExtResource( 26 )
@@ -829,7 +1195,7 @@ bus = "Music"
 
 [node name="MusiqueDiscours" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
-volume_db = -72.3529
+volume_db = -15.0
 bus = "Music"
 
 [node name="MusiqueEspace" type="AudioStreamPlayer" parent="."]
@@ -839,7 +1205,11 @@ bus = "Music"
 script = ExtResource( 26 )
 
 [node name="Animation" type="AnimationPlayer" parent="."]
-anims/Main = SubResource( 7 )
+anims/Main = SubResource( 14 )
 [connection signal="pressed" from="SceneA/UI/ButtonFinish" to="." method="_on_ButtonFinish_pressed"]
 [connection signal="pressed" from="Texts/Poem/PoemContinueButton" to="." method="_on_PoemContinueButton_pressed"]
 [connection signal="pressed" from="Texts/Disclaimer/ContinueToPoemButton" to="." method="_on_ContinueToPoemButton_pressed"]
+[connection signal="mouse_entered" from="ColorRect2" to="." method="_on_ColorRect2_mouse_entered"]
+[connection signal="mouse_exited" from="ColorRect2" to="." method="_on_ColorRect2_mouse_exited"]
+[connection signal="mouse_entered" from="SkipButton" to="." method="_on_SkipButton_mouse_entered"]
+[connection signal="pressed" from="SkipButton" to="." method="_on_SkipButton_pressed"]

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 110.0
+height = 0.0
+
+[node name="BalloonEntrance" type="Area2D"]
+position = Vector2( 990, -520 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -110 )
+shape = SubResource( 1 )

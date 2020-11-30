@@ -9,8 +9,8 @@ func _ready():
 	refresh_buttons()
 	if LevelLoader.current_level != null:
 		$Clock.show()
-		$Artifacts.show()
-		$Clue.show()
+		#$Artifacts.show()
+		#$Clue.show()
 		set_time_of_day(LevelLoader.current_level.region.time_of_day)
 		
 		refresh_clues()
@@ -137,3 +137,7 @@ func _on_ButtonHideCredits_pressed():
 
 func _on_ButtonAbout_pressed():
 	$Credits.show()
+
+
+func _on_ButtonCoil_pressed():
+	$Skins.visible = !$Skins.visible
