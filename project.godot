@@ -125,6 +125,7 @@ UiSummoner="*res://Systems/Autoloads/UiSummoner.gd"
 RootManager="*res://Systems/Autoloads/RootManager.gd"
 PathsDB="*res://Systems/Autoloads/PathsDB.gd"
 MusicManager="*res://Systems/Autoloads/MusicManager.gd"
+WebMonetization="*res://Systems/Autoloads/WebMonetization.gd.gd"
 
 [display]
 

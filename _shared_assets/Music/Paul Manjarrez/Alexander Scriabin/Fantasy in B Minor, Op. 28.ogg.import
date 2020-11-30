@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Fantasy in B Minor, Op. 28.ogg-d372d54ef6d1ed05f3b828960c3168c1.oggstr"
+
+[deps]
+
+source_file="res://_shared_assets/Music/Paul Manjarrez/Alexander Scriabin/Fantasy in B Minor, Op. 28.ogg"
+dest_files=[ "res://.import/Fantasy in B Minor, Op. 28.ogg-d372d54ef6d1ed05f3b828960c3168c1.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

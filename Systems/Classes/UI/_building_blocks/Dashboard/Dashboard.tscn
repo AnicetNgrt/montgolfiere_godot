@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Systems/Classes/Artifact/Artifact2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Systems/Classes/UI/_building_blocks/Clock/_assets/watch.png" type="Texture" id=2]
@@ -23,12 +23,17 @@
 [ext_resource path="res://_shared_assets/Mockups/balloon/balloon/balloon_leaf.png" type="Texture" id=21]
 [ext_resource path="res://Systems/Classes/Map/Balloon/BalloonSkin/_instances/water.tres" type="Resource" id=22]
 [ext_resource path="res://Systems/Classes/Map/Balloon/BalloonSkin/_instances/smiley.tres" type="Resource" id=23]
+[ext_resource path="res://_shared_assets/Mockups/balloon/balloon/balloon_regular.png" type="Texture" id=24]
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 24 )
+region = Rect2( 0, 0, 41, 50 )
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 21 )
 region = Rect2( 0, 0, 41, 50 )
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 20 )
 region = Rect2( 0, 0, 41, 50 )
 
@@ -40,26 +45,26 @@ region = Rect2( 0, 0, 41, 50 )
 atlas = ExtResource( 18 )
 region = Rect2( 0, 0, 41, 50 )
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0, 0, 0, 1 )
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=9]
 size = 35
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=10]
 size = 50
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=11]
 size = 35
 use_mipmaps = true
 use_filter = true
@@ -135,6 +140,7 @@ custom_constants/separation = 80
 alignment = 1
 
 [node name="TextRegular" parent="Skins/MarginContainer/VBoxContainer/Buttons" instance=ExtResource( 15 )]
+texture = SubResource( 2 )
 
 [node name="TextRegular2" parent="Skins/MarginContainer/VBoxContainer/Buttons" instance=ExtResource( 15 )]
 margin_left = 405.0
@@ -145,7 +151,7 @@ balloon = ExtResource( 17 )
 [node name="TextRegular3" parent="Skins/MarginContainer/VBoxContainer/Buttons" instance=ExtResource( 15 )]
 margin_left = 715.0
 margin_right = 945.0
-texture = SubResource( 2 )
+texture = SubResource( 7 )
 balloon = ExtResource( 22 )
 
 [node name="TextRegular4" parent="Skins/MarginContainer/VBoxContainer/Buttons" instance=ExtResource( 15 )]
@@ -214,8 +220,8 @@ margin_left = 150.0
 margin_top = -50.0
 margin_right = 377.0
 margin_bottom = 2.0
-custom_styles/normal = SubResource( 7 )
-custom_fonts/font = SubResource( 8 )
+custom_styles/normal = SubResource( 8 )
+custom_fonts/font = SubResource( 9 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Secret clues"
 align = 1
@@ -228,7 +234,7 @@ margin_left = 70.0
 margin_top = 20.0
 margin_right = 520.0
 margin_bottom = 237.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 9 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "You don't have any clues for this place yet.
 Clues can be found by trading with someone"
@@ -296,8 +302,8 @@ margin_left = -90.0
 margin_top = -340.0
 margin_right = 97.0
 margin_bottom = -288.0
-custom_styles/normal = SubResource( 7 )
-custom_fonts/font = SubResource( 8 )
+custom_styles/normal = SubResource( 8 )
+custom_fonts/font = SubResource( 9 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Artifacts"
 align = 1
@@ -310,7 +316,7 @@ margin_left = -400.0
 margin_top = -140.0
 margin_right = 460.0
 margin_bottom = 90.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 9 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "You don't have any Artifact yet.
 Artifacts can be found in Secret Treasures.
@@ -341,7 +347,7 @@ margin_left = 90.0
 margin_top = -310.0
 margin_right = 220.0
 margin_bottom = -237.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 10 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "10:30"
 __meta__ = {
@@ -372,8 +378,8 @@ __meta__ = {
 margin_left = 26.0
 margin_right = 256.0
 margin_bottom = 50.0
-custom_styles/normal = SubResource( 7 )
-custom_fonts/font = SubResource( 4 )
+custom_styles/normal = SubResource( 8 )
+custom_fonts/font = SubResource( 11 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Mystery Coil"
 align = 1
@@ -446,6 +452,24 @@ text = "Quit"
 
 [node name="Credits" parent="." instance=ExtResource( 13 )]
 visible = false
+
+[node name="CoilWarning" type="Label" parent="."]
+visible = false
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 90.0
+margin_bottom = 97.0
+custom_fonts/font = ExtResource( 14 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Coil is a monetization service for indie content creators such as game developpers.
+If you want to support the game and gain access to bonus skins, please head to 
+coil.com
+
+PS: If you really want those skins, they are free on the desktop version!
+Thanks for playing!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="Coil/ButtonCoil" to="." method="_on_ButtonCoil_pressed"]
 [connection signal="pressed" from="Menu/ButtonFullscreen" to="." method="_on_ButtonFullscreen_pressed"]
 [connection signal="pressed" from="Menu/ButtonSounds" to="." method="_on_ButtonSounds_pressed"]

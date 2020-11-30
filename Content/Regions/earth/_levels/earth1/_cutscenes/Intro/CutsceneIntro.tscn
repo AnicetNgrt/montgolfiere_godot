@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://Systems/Classes/UI/_shared_resources/Fonts/small_df.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Systems/Classes/UI/_shared_resources/Fonts/regular_df.tres" type="DynamicFont" id=2]
@@ -120,6 +120,24 @@ font_data = ExtResource( 27 )
 
 [sub_resource type="StyleBoxLine" id=9]
 
+[sub_resource type="DynamicFont" id=15]
+size = 24
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 27 )
+
+[sub_resource type="DynamicFont" id=16]
+size = 35
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 27 )
+
+[sub_resource type="DynamicFont" id=17]
+size = 24
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 27 )
+
 [sub_resource type="StyleBoxFlat" id=10]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
@@ -133,7 +151,7 @@ use_filter = true
 font_data = ExtResource( 27 )
 
 [sub_resource type="Animation" id=14]
-length = 110.0
+length = 160.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("ObamaSpeech:playing")
 tracks/0/interp = 1
@@ -168,7 +186,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 2.5, 64.5, 70.6 ),
 "transitions": PoolRealArray( 1, 1, 0.329877, 1 ),
 "update": 0,
-"values": [ -80.0, -10.0, -10.0, -80.0 ]
+"values": [ -10.0, -10.0, -10.0, -80.0 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("ObamaSpeech:volume_db")
@@ -261,7 +279,7 @@ tracks/10/loop_wrap = true
 tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/keys = {
-"times": PoolRealArray( 0, 106, 108 ),
+"times": PoolRealArray( 0, 117.6, 119.6 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
@@ -273,7 +291,7 @@ tracks/11/loop_wrap = true
 tracks/11/imported = false
 tracks/11/enabled = true
 tracks/11/keys = {
-"times": PoolRealArray( 0, 94, 96, 106, 108 ),
+"times": PoolRealArray( 0, 101.1, 103.1, 117.6, 119.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
@@ -285,7 +303,7 @@ tracks/12/loop_wrap = true
 tracks/12/imported = false
 tracks/12/enabled = true
 tracks/12/keys = {
-"times": PoolRealArray( 0, 82, 84, 94, 96 ),
+"times": PoolRealArray( 0, 85.7, 87.7, 101.1, 103.1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
@@ -297,7 +315,7 @@ tracks/13/loop_wrap = true
 tracks/13/imported = false
 tracks/13/enabled = true
 tracks/13/keys = {
-"times": PoolRealArray( 0, 72.3, 72.4, 82, 84 ),
+"times": PoolRealArray( 0, 72.3, 72.4, 85.7, 87.7 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
@@ -309,7 +327,7 @@ tracks/14/loop_wrap = true
 tracks/14/imported = false
 tracks/14/enabled = true
 tracks/14/keys = {
-"times": PoolRealArray( 0, 108, 110 ),
+"times": PoolRealArray( 0, 119.6, 121.6 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
@@ -491,10 +509,10 @@ __meta__ = {
 }
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="SceneA/UI"]
-margin_left = 340.0
-margin_top = 650.0
-margin_right = 1540.0
-margin_bottom = 1698.0
+margin_left = 350.0
+margin_top = 660.0
+margin_right = 1550.0
+margin_bottom = 1708.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -505,7 +523,6 @@ margin_bottom = 47.0
 custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "\"The Explorer\", a young and eccentric woman, is one of the nomads."
-align = 1
 valign = 1
 autowrap = true
 __meta__ = {
@@ -515,11 +532,10 @@ __meta__ = {
 [node name="Text5" type="Label" parent="SceneA/UI/VBoxContainer4"]
 margin_top = 51.0
 margin_right = 1200.0
-margin_bottom = 98.0
+margin_bottom = 148.0
 custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Everyday, she wakes up and rides her gas balloon to the sky."
-align = 1
+text = "Everyday, she wakes up and rides her gas balloon to the sky, with the hope of discovering new places and secrets from the past."
 valign = 1
 autowrap = true
 __meta__ = {
@@ -527,13 +543,12 @@ __meta__ = {
 }
 
 [node name="Text4" type="Label" parent="SceneA/UI/VBoxContainer4"]
-margin_top = 102.0
+margin_top = 152.0
 margin_right = 1200.0
-margin_bottom = 199.0
+margin_bottom = 249.0
 custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "The galactic dream may have died centuries ago, but the very human fascination for clouds and the stars remains."
-align = 1
+text = "The galactic dream may have died centuries ago, but the very human fascination for clouds and stars remains."
 valign = 1
 autowrap = true
 __meta__ = {
@@ -596,8 +611,7 @@ margin_right = 740.0
 margin_bottom = 97.0
 custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "The remaining ones  live a simple life with nature and freedom."
-align = 1
+text = "The remaining ones now live a simple life without civilization on their mind."
 valign = 1
 autowrap = true
 __meta__ = {
@@ -610,8 +624,7 @@ margin_right = 740.0
 margin_bottom = 198.0
 custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "The struggle for surivial is still real, but today's humans have hope."
-align = 1
+text = "The struggle for surivial is still real thought. But today's humans have hope."
 valign = 1
 autowrap = true
 __meta__ = {
@@ -621,11 +634,10 @@ __meta__ = {
 [node name="Text5" type="Label" parent="SceneB/VBoxContainer3"]
 margin_top = 202.0
 margin_right = 740.0
-margin_bottom = 299.0
+margin_bottom = 349.0
 custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = " Hope fueled by an admiration for their god-like, yet unwise, ancestors."
-align = 1
+text = "They developped a new kind of romanticism fueled by their admiration for their god-like, yet unwise, ancestors."
 valign = 1
 autowrap = true
 __meta__ = {
@@ -661,11 +673,10 @@ __meta__ = {
 
 [node name="Text3" type="Label" parent="SceneC/VBoxContainer2"]
 margin_right = 740.0
-margin_bottom = 147.0
+margin_bottom = 247.0
 custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "As greedy development of the 21st century failed to sustain 9 billion individuals on a shrinking land choking to a death loop of global warming,"
-align = 1
+text = "As greedy development during the 21st century failed to sustain 9 billion individuals living in a desperate world, many fled their homeland and died from global conflicts, fires, diseases, and starvation."
 valign = 1
 autowrap = true
 __meta__ = {
@@ -673,13 +684,11 @@ __meta__ = {
 }
 
 [node name="Text4" type="Label" parent="SceneC/VBoxContainer2"]
-margin_top = 151.0
+margin_top = 251.0
 margin_right = 740.0
-margin_bottom = 248.0
+margin_bottom = 298.0
 custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "many fled their homeland and died to global conflicts, diseases, and starvation."
-align = 1
 valign = 1
 autowrap = true
 __meta__ = {
@@ -709,36 +718,37 @@ script = ExtResource( 3 )
 factor = 0.2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SceneD"]
-margin_left = 20.0
-margin_top = 12.0
-margin_right = 1528.0
-margin_bottom = 110.0
+margin_left = 90.0
+margin_top = 11.0
+margin_right = 710.0
+margin_bottom = 309.0
 rect_scale = Vector2( 0.1, 0.1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Text3" type="Label" parent="SceneD/VBoxContainer"]
-margin_right = 1508.0
-margin_bottom = 47.0
+margin_right = 620.0
+margin_bottom = 97.0
 custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "In a few centuries, an almost extinct humankind still lives on the surface of the Earth."
-align = 1
+text = "A few centuries past the industrial era, an almost extinct mankind still lives on Earth."
 valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Text4" type="Label" parent="SceneD/VBoxContainer"]
-margin_top = 51.0
-margin_right = 1508.0
-margin_bottom = 98.0
+margin_top = 101.0
+margin_right = 620.0
+margin_bottom = 248.0
 custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Masters of a nomad lifestyle, they survive with what's left of the resources of the planet."
-align = 1
+text = "Tribes, masters of a nomad lifestyle. 
+Peoples that survive on top of ancient debris from the civilized era."
 valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -829,7 +839,7 @@ margin_right = 713.0
 margin_bottom = 47.0
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Story, Design, Art, Code & Marketing"
+text = "Story, Design, Art & Code"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -895,47 +905,61 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Texts/Music"]
+[node name="Desc2" type="Label" parent="Texts/Music"]
 margin_right = 1141.0
-margin_bottom = 47.0
-custom_fonts/font = ExtResource( 2 )
+margin_bottom = 35.0
+custom_fonts/font = SubResource( 15 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Featuring public domain recordings of public domain classical pieces"
+text = "Featuring public domain recordings of public domain classical pieces:"
 align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+autowrap = true
 
-[node name="Label3" type="Label" parent="Texts/Music"]
-margin_top = 87.0
+[node name="Person3" type="VBoxContainer" parent="Texts/Music"]
+margin_top = 75.0
 margin_right = 1141.0
-margin_bottom = 184.0
-rect_min_size = Vector2( 0, 60 )
-custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "United States Navy Band Symphony Orchestra
- - Tchaikovsky: \"Humoresque\", Op. 10, No. 2 -"
-align = 1
-valign = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_bottom = 375.0
 
-[node name="Label2" type="Label" parent="Texts/Music"]
-margin_top = 224.0
+[node name="Desc4" type="Label" parent="Texts/Music/Person3"]
 margin_right = 1141.0
-margin_bottom = 371.0
-rect_min_size = Vector2( 0, 60 )
-custom_fonts/font = ExtResource( 2 )
+margin_bottom = 52.0
+custom_fonts/font = SubResource( 16 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Markus Staab 
-- Mozart/Liszt: Lacrymosa from \"Requiem\" -
-- Maurice Ravel: \"Pavane for a Dead Princess\" -"
+text = "Interpreted by Olga Gurevich:"
 align = 1
-valign = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+autowrap = true
+
+[node name="Desc3" type="Label" parent="Texts/Music/Person3"]
+margin_top = 56.0
+margin_right = 1141.0
+margin_bottom = 205.0
+custom_fonts/font = SubResource( 17 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "- Charles Mayer, \"Valse mélancolique\", Le Regret -
+- Chopin, \"Grande valse brillante\" in B flat minor -
+- Chopin, \"Nocturne\" in B flat minor -
+- Chopin, Waltz in B minor, Op. 69 no.2 -"
+align = 1
+autowrap = true
+
+[node name="Desc5" type="Label" parent="Texts/Music/Person3"]
+margin_top = 209.0
+margin_right = 1141.0
+margin_bottom = 261.0
+custom_fonts/font = SubResource( 16 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Interpreted by Paul Manjarrez:"
+align = 1
+autowrap = true
+
+[node name="Desc6" type="Label" parent="Texts/Music/Person3"]
+margin_top = 265.0
+margin_right = 1141.0
+margin_bottom = 300.0
+custom_fonts/font = SubResource( 17 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "- Alexander Scriabin, Fantasy in B Minor, Op 28 -"
+align = 1
+autowrap = true
 
 [node name="Engine" type="VBoxContainer" parent="Texts"]
 modulate = Color( 1, 1, 1, 0 )
@@ -1183,7 +1207,7 @@ __meta__ = {
 
 [node name="Wind" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 21 )
-volume_db = -80.0
+volume_db = -10.0
 autoplay = true
 bus = "Sfx"
 script = ExtResource( 26 )

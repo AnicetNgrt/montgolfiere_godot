@@ -6,21 +6,6 @@
 [ext_resource path="res://Content/Artifacts/physics-book/physics-book.tres" type="Resource" id=4]
 [ext_resource path="res://Content/Artifacts/water/water.tres" type="Resource" id=5]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 [node name="Node2D" type="Node2D"]
 __meta__ = {
 "_edit_group_": true

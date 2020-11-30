@@ -140,4 +140,10 @@ func _on_ButtonAbout_pressed():
 
 
 func _on_ButtonCoil_pressed():
-	$Skins.visible = !$Skins.visible
+	if OS.get_name() == "HTML5":
+		if WebMonetization.is_paying():
+			$Skins.visible = !$Skins.visible
+		else:
+			$CoilWarning.visible = !$CoilWarning.visible
+	else:
+		$Skins.visible = !$Skins.visible

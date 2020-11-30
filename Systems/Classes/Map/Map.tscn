@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Systems/Classes/Map/CameraTopDown/Camera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Systems/Classes/Map/Balloon/Balloon.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://Content/Regions/earth/_shared_resources/region.tres" type="Resource" id=12]
 [ext_resource path="res://Content/Regions/_shared_assets/Wind/windLoopable.wav" type="AudioStream" id=13]
 [ext_resource path="res://_shared_scripts/LoopAudioPlayer.gd" type="Script" id=14]
+[ext_resource path="res://_shared_assets/Music/Paul Manjarrez/Alexander Scriabin/Fantasy in B Minor, Op. 28.ogg" type="AudioStream" id=15]
 
 [sub_resource type="Animation" id=1]
 resource_name = "wind"
@@ -50,6 +51,7 @@ script = ExtResource( 10 )
 custom_modulate = Color( 0, 0, 0, 1 )
 region = ExtResource( 12 )
 is_balloon = true
+theme = ExtResource( 15 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -152,4 +154,18 @@ anims/day_night = ExtResource( 11 )
 stream = ExtResource( 13 )
 autoplay = true
 script = ExtResource( 14 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+scale = Vector2( 1.1, 1.1 )
+polygon = PoolVector2Array( -3950, -3340, 4010, -3300, 4030, 3480, -3900, 3500, -3990, 3310, -3970, -3290, -4110, -3290, -4150, 3650, 4250, 3670, 4210, -3510, -4120, -3480, -4030, -3310 )
+
+[node name="ThanksForPlaying" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ThanksForPlaying"]
+polygon = PoolVector2Array( -4020, -3320, -4440, -3700, 4470, -3730, 4540, 3920, -4430, 3910, -4440, -3450, -4040, -3280, -3990, 3510, 4100, 3510, 4070, -3350 )
 [connection signal="animation_finished" from="DayNightAnimator" to="." method="_on_DayNightAnimator_animation_finished"]
+[connection signal="body_entered" from="ThanksForPlaying" to="." method="_on_ThanksForPlaying_body_entered"]

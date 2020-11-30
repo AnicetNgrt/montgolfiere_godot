@@ -62,9 +62,22 @@ func change_to_face_B():
 
 
 func _on_Button_pressed():
-	if (local_time*1000) - last_swap > swap_cooldown:
-		last_swap = local_time
-		if face == "B":
-			change_to_face_A()
-		else: 
-			change_to_face_B()
+	#if (local_time*1000) - last_swap > swap_cooldown:
+	#	last_swap = local_time
+	#	if face == "B":
+	#		change_to_face_A()
+	#	else: 
+	#		change_to_face_B()
+	TweensUtils.fadeout(self)
+	pass
+
+
+func _on_Area2D_body_entered(body):
+	TweensUtils.fadein(self)
+	TweensUtils.fadein($Label)
+	yield(get_tree().create_timer(1.5), "timeout")
+	TweensUtils.fadeout($Label)
+
+
+func _on_Area2D_body_exited(body):
+	TweensUtils.fadeout(self)

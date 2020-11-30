@@ -85,7 +85,7 @@ func on_region_enter(spawnpoint):
 		MusicManager.play_music(region.theme, region.theme_volume)
 	WorldEnvManager.set_environment(region.environment)
 	yield(get_tree().create_timer(1), "timeout")
-	UiSummoner.summon_region_title(region.map_name)
+	#UiSummoner.summon_region_title(region.map_name)
 
 
 func set_custom_modulate(value):

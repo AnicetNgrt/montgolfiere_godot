@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://Systems/Classes/Level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Systems/Classes/Level/_building_blocks/Entrance/PlatformerControllerSpawner.gd" type="Script" id=2]
@@ -32,6 +32,18 @@
 [ext_resource path="res://Systems/Classes/Level/_building_blocks/ZoneDialogue/ZoneDialogue.tscn" type="PackedScene" id=30]
 [ext_resource path="res://Content/Characters/the_explorer/_assets/pp_character.png" type="Texture" id=31]
 [ext_resource path="res://Content/Regions/_shared_assets/Clouds/clouds3.png" type="Texture" id=32]
+[ext_resource path="res://Systems/Classes/Character/_assets/savant.png" type="Texture" id=33]
+[ext_resource path="res://Content/Characters/the_savant/_assets/pp_savant.png" type="Texture" id=34]
+[ext_resource path="res://Content/Characters/note/pp_note.png" type="Texture" id=35]
+[ext_resource path="res://Systems/Classes/Artifact/Artifact2D.tscn" type="PackedScene" id=36]
+[ext_resource path="res://Content/Artifacts/sacred-stone/_assets/sacred-stone_layer 1.png" type="Texture" id=37]
+[ext_resource path="res://Content/Artifacts/sacred-stone/_assets/sacred-stone_layer 3.png" type="Texture" id=38]
+[ext_resource path="res://Content/Artifacts/sacred-stone/_assets/sacred-stone_layer 2.png" type="Texture" id=39]
+[ext_resource path="res://Content/Artifacts/sacred-stone/sacred-stone.tres" type="Resource" id=40]
+[ext_resource path="res://Content/Artifacts/double-scross/_assets/double-scross_layer 5.png" type="Texture" id=41]
+[ext_resource path="res://Content/Artifacts/double-scross/_assets/double-scross_layer 3.png" type="Texture" id=42]
+[ext_resource path="res://Content/Artifacts/double-scross/_assets/double-scross_layer 2.png" type="Texture" id=43]
+[ext_resource path="res://Content/Artifacts/double-scross/double-cross.tres" type="Resource" id=44]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -69,8 +81,14 @@ shader_param/scroll_speed = 0.01
 shader_param/radius = 0.0
 shader_param/modulate = Color( 0, 0, 0, 0.0980392 )
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 20 )
+region = Rect2( 142, 146, 9, 45 )
+
+[sub_resource type="CircleShape2D" id=7]
 radius = 120.0
+
+[sub_resource type="CircleShape2D" id=3]
 
 [sub_resource type="CircleShape2D" id=4]
 radius = 97.0
@@ -78,9 +96,75 @@ radius = 97.0
 [sub_resource type="CircleShape2D" id=5]
 radius = 90.0
 
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 20 )
-region = Rect2( 142, 146, 9, 45 )
+[sub_resource type="CircleShape2D" id=8]
+
+[sub_resource type="CircleShape2D" id=9]
+radius = 0.0
+
+[sub_resource type="CircleShape2D" id=10]
+radius = 60.8276
+
+[sub_resource type="Shader" id=11]
+code = "shader_type canvas_item;
+
+uniform float radius = 5.0;
+uniform vec4 modulate: hint_color;
+
+void fragment() {
+	vec2 ps = TEXTURE_PIXEL_SIZE;
+	
+	vec2 shifteduv = UV;
+
+	vec4 shadow = texture(TEXTURE, shifteduv + vec2(-radius, -radius) * ps);
+	
+	shadow += texture(TEXTURE, shifteduv + vec2(-radius, 0.0) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(-radius, radius) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(0.0, -radius) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(0.0, radius) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(radius, -radius) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(radius, 0.0) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(radius, radius) * ps);
+	shadow /= 8.0;
+	shadow *= modulate;
+	
+    vec4 color = texture(TEXTURE, shifteduv);
+    COLOR = mix(shadow, color, color.a);
+}"
+
+[sub_resource type="ShaderMaterial" id=12]
+resource_local_to_scene = true
+shader = SubResource( 11 )
+shader_param/radius = 1.0
+shader_param/modulate = Color( 0, 0, 0, 1 )
+
+[sub_resource type="Animation" id=13]
+resource_name = "toFaceB"
+length = 0.5
+step = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("FaceA:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1e-05, 1 ), Vector2( 1e-05, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("FaceB:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1 ), Vector2( 1e-05, 1 ), Vector2( 1, 1 ) ]
+}
 
 [node name="Level" instance=ExtResource( 1 )]
 default_spawn = "default"
@@ -111,7 +195,7 @@ motion_scale = Vector2( 0.25, 0.1 )
 
 [node name="BackgroundLayer" parent="bg/ParallaxLayer4" index="0" instance=ExtResource( 24 )]
 material = SubResource( 2 )
-position = Vector2( 0.100001, 151 )
+position = Vector2( 0.1, 151 )
 scale = Vector2( 10, 10 )
 texture = ExtResource( 32 )
 speed = 0.01
@@ -182,6 +266,10 @@ texture = ExtResource( 23 )
 position = Vector2( 0, 54 )
 texture = ExtResource( 20 )
 
+[node name="Savant" type="Sprite" parent="back" index="11"]
+position = Vector2( 22, -5 )
+texture = ExtResource( 33 )
+
 [node name="SpawnDefault" type="Node2D" parent="." index="4"]
 position = Vector2( 0, 1500 )
 script = ExtResource( 2 )
@@ -213,7 +301,7 @@ collision_layer = 0
 collision_mask = 128
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="0"]
-polygon = PoolVector2Array( -60, 70, -60, 110, -130, 110, -130, 140, 60, 140, 60, 100, 120, 100, 120, 70, 190, 70, 190, 40, 960, 40, 960, 10, 130, 10, 130, 40, 70, 40, 70, 70 )
+polygon = PoolVector2Array( -60, 70, -60, 110, -130, 110, -130, 140, 60, 140, 60, 100, 120, 100, 120, 70, 190, 70, 190, 40, 960, 40, 960, 10, 920, -320, 919.398, 10, 130, 10, 130, 40, 70, 40, 70, 70 )
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="layer2/StaticBody2D" index="1"]
 polygon = PoolVector2Array( -600, 70, -600, 110, -390, 110, -390, 140, -750, 140, -750, 110, -780, 110, -780, 70, -850, 70, -850, 40, -960, 40, -960, 10, -780, 10, -780, 40, -720, 40, -720, 70 )
@@ -231,99 +319,35 @@ polygon = PoolVector2Array( 25, 77, -5, 77, -5, -63, 25, -63 )
 [node name="layer1" type="Node2D" parent="." index="7"]
 modulate = Color( 1, 0.423529, 0, 1 )
 
-[node name="ZoneDialogue4" parent="layer1" index="0" instance=ExtResource( 30 )]
-position = Vector2( -330, 1050 )
-collision_layer = 0
-collision_mask = 64
-unique_name = "tuto4"
-
-[node name="CanvasLayer" parent="layer1/ZoneDialogue4" index="2"]
-follow_viewport_enable = true
-
-[node name="Dialogue" parent="layer1/ZoneDialogue4/CanvasLayer" index="0"]
-visible = false
-thumbnail = ExtResource( 31 )
-title = "The Explorer"
-tirades = [ "Hmm ... that's very tall ...", "~ You can climb most walls and ledges by jumping to them ~" ]
-pitch_scale = 0.9
-
-[node name="ZoneDialogue5" parent="layer1" index="1" instance=ExtResource( 30 )]
-position = Vector2( -230, 910 )
-collision_layer = 0
-collision_mask = 64
-unique_name = "tuto5"
-
-[node name="CanvasLayer" parent="layer1/ZoneDialogue5" index="2"]
-follow_viewport_enable = true
-
-[node name="Dialogue" parent="layer1/ZoneDialogue5/CanvasLayer" index="0"]
-visible = false
-thumbnail = ExtResource( 31 )
-title = "The Explorer"
-tirades = [ "Pfiuu ... That was quite a difficult jump!", "Looks like I can either go down or jump to climb this large pillar.", "~ Some jumps are difficult, you can run with [SHIFT] to increase momentum ~" ]
-pitch_scale = 0.9
-
-[node name="ZoneDialogue6" parent="layer1" index="2" instance=ExtResource( 30 )]
-position = Vector2( 30, 1190 )
-collision_layer = 0
-collision_mask = 64
-unique_name = "tuto7"
-
-[node name="CanvasLayer" parent="layer1/ZoneDialogue6" index="2"]
-follow_viewport_enable = true
-
-[node name="Dialogue" parent="layer1/ZoneDialogue6/CanvasLayer" index="0"]
-visible = false
-thumbnail = ExtResource( 31 )
-title = "The Explorer"
-tirades = [ "It's night time soon. I should hurry", "~ Once night comes you'll come back to the beginning of the level ~" ]
-pitch_scale = 0.9
-
-[node name="ZoneDialogue7" parent="layer1" index="3" instance=ExtResource( 30 )]
-position = Vector2( 5, 710 )
-collision_layer = 0
-collision_mask = 64
-unique_name = "tuto7"
-
-[node name="CanvasLayer" parent="layer1/ZoneDialogue7" index="2"]
-follow_viewport_enable = true
-
-[node name="Dialogue" parent="layer1/ZoneDialogue7/CanvasLayer" index="0"]
-visible = false
-thumbnail = ExtResource( 31 )
-title = "The Explorer"
-tirades = [ "It's night time soon. I should hurry", "~ Once night comes you'll come back to the beginning of the level ~" ]
-pitch_scale = 0.9
-
-[node name="[0] LayerSwitch" parent="layer1" index="4" instance=ExtResource( 7 )]
+[node name="[0] LayerSwitch" parent="layer1" index="0" instance=ExtResource( 7 )]
 position = Vector2( -830, 1330 )
 collision_mask = 64
 layer_out = 0
 
-[node name="[0] LayerSwitch2" parent="layer1" index="5" instance=ExtResource( 7 )]
+[node name="[0] LayerSwitch2" parent="layer1" index="1" instance=ExtResource( 7 )]
 position = Vector2( 920, 1240 )
 collision_mask = 64
 layer_out = 0
 
-[node name="[2] LayerSwitch" parent="layer1" index="6" instance=ExtResource( 7 )]
+[node name="[2] LayerSwitch" parent="layer1" index="2" instance=ExtResource( 7 )]
 position = Vector2( 0, 80 )
 scale = Vector2( 0.376, 1.389 )
 collision_mask = 64
 layer_out = 2
 
-[node name="[2] LayerSwitch2" parent="layer1" index="7" instance=ExtResource( 7 )]
+[node name="[2] LayerSwitch2" parent="layer1" index="3" instance=ExtResource( 7 )]
 position = Vector2( -650, 80 )
 scale = Vector2( 0.427, 1.146 )
 collision_mask = 64
 layer_out = 2
 
-[node name="[0] LayerSwitch3" parent="layer1" index="8" instance=ExtResource( 7 )]
+[node name="[0] LayerSwitch3" parent="layer1" index="4" instance=ExtResource( 7 )]
 position = Vector2( 270, 1260 )
 scale = Vector2( 1.774, 1 )
 collision_mask = 64
 layer_out = 0
 
-[node name="ClimbAnchor" type="Area2D" parent="layer1" index="9"]
+[node name="ClimbAnchor" type="Area2D" parent="layer1" index="5"]
 position = Vector2( -270, 890 )
 collision_layer = 0
 collision_mask = 64
@@ -332,7 +356,7 @@ script = ExtResource( 8 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer1/ClimbAnchor" index="0"]
 polygon = PoolVector2Array( 0, 0, -50, 90, 0, 90 )
 
-[node name="ClimbAnchor2" type="Area2D" parent="layer1" index="10"]
+[node name="ClimbAnchor2" type="Area2D" parent="layer1" index="6"]
 position = Vector2( -200, 890 )
 collision_layer = 0
 collision_mask = 64
@@ -341,7 +365,7 @@ script = ExtResource( 8 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer1/ClimbAnchor2" index="0"]
 polygon = PoolVector2Array( 0, 0, 40, 90, 0, 90 )
 
-[node name="ClimbAnchor3" type="Area2D" parent="layer1" index="11"]
+[node name="ClimbAnchor3" type="Area2D" parent="layer1" index="7"]
 position = Vector2( -140, 1050 )
 collision_layer = 0
 collision_mask = 64
@@ -350,7 +374,7 @@ script = ExtResource( 8 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer1/ClimbAnchor3" index="0"]
 polygon = PoolVector2Array( 0, 0, 40, 130, 0, 130 )
 
-[node name="ClimbAnchor4" type="Area2D" parent="layer1" index="12"]
+[node name="ClimbAnchor4" type="Area2D" parent="layer1" index="8"]
 position = Vector2( -330, 590 )
 collision_layer = 0
 collision_mask = 64
@@ -359,7 +383,7 @@ script = ExtResource( 8 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer1/ClimbAnchor4" index="0"]
 polygon = PoolVector2Array( 0, 0, 40, 80, 0, 80 )
 
-[node name="ClimbAnchor5" type="Area2D" parent="layer1" index="13"]
+[node name="ClimbAnchor5" type="Area2D" parent="layer1" index="9"]
 position = Vector2( 140, 710 )
 collision_layer = 0
 collision_mask = 64
@@ -368,7 +392,7 @@ script = ExtResource( 8 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer1/ClimbAnchor5" index="0"]
 polygon = PoolVector2Array( 0, 0, 40, 80, 0, 80 )
 
-[node name="ClimbAnchor6" type="Area2D" parent="layer1" index="14"]
+[node name="ClimbAnchor6" type="Area2D" parent="layer1" index="10"]
 position = Vector2( 390, 710 )
 collision_layer = 0
 collision_mask = 64
@@ -377,7 +401,7 @@ script = ExtResource( 8 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer1/ClimbAnchor6" index="0"]
 polygon = PoolVector2Array( 0, 0, 40, 80, 0, 80 )
 
-[node name="ClimbAnchor7" type="Area2D" parent="layer1" index="15"]
+[node name="ClimbAnchor7" type="Area2D" parent="layer1" index="11"]
 position = Vector2( 770, 440 )
 collision_layer = 0
 collision_mask = 64
@@ -386,7 +410,7 @@ script = ExtResource( 8 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer1/ClimbAnchor7" index="0"]
 polygon = PoolVector2Array( 0, 0, 40, 80, 0, 80 )
 
-[node name="ClimbAnchor8" type="Area2D" parent="layer1" index="16"]
+[node name="ClimbAnchor8" type="Area2D" parent="layer1" index="12"]
 position = Vector2( -390, 110 )
 collision_layer = 0
 collision_mask = 64
@@ -395,7 +419,7 @@ script = ExtResource( 8 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer1/ClimbAnchor8" index="0"]
 polygon = PoolVector2Array( 0, 0, 40, 0, 40, 80, 0, 80 )
 
-[node name="ClimbAnchor9" type="Area2D" parent="layer1" index="17"]
+[node name="ClimbAnchor9" type="Area2D" parent="layer1" index="13"]
 position = Vector2( -540, 390 )
 collision_layer = 0
 collision_mask = 64
@@ -404,7 +428,7 @@ script = ExtResource( 8 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer1/ClimbAnchor9" index="0"]
 polygon = PoolVector2Array( 0, 0, 40, 80, 0, 80 )
 
-[node name="ClimbAnchor10" type="Area2D" parent="layer1" index="18"]
+[node name="ClimbAnchor10" type="Area2D" parent="layer1" index="14"]
 position = Vector2( -420, 590 )
 collision_layer = 0
 collision_mask = 64
@@ -413,7 +437,7 @@ script = ExtResource( 8 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer1/ClimbAnchor10" index="0"]
 polygon = PoolVector2Array( 0, 0, -40, 80, 0, 80 )
 
-[node name="ClimbAnchor11" type="Area2D" parent="layer1" index="19"]
+[node name="ClimbAnchor11" type="Area2D" parent="layer1" index="15"]
 position = Vector2( -60, 710 )
 collision_layer = 0
 collision_mask = 64
@@ -422,7 +446,7 @@ script = ExtResource( 8 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer1/ClimbAnchor11" index="0"]
 polygon = PoolVector2Array( 0, 0, -40, 80, 0, 80 )
 
-[node name="ClimbAnchor12" type="Area2D" parent="layer1" index="20"]
+[node name="ClimbAnchor12" type="Area2D" parent="layer1" index="16"]
 position = Vector2( 290, 710 )
 collision_layer = 0
 collision_mask = 64
@@ -431,7 +455,7 @@ script = ExtResource( 8 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer1/ClimbAnchor12" index="0"]
 polygon = PoolVector2Array( 0, 0, -40, 80, 0, 80 )
 
-[node name="ClimbAnchor13" type="Area2D" parent="layer1" index="21"]
+[node name="ClimbAnchor13" type="Area2D" parent="layer1" index="17"]
 position = Vector2( 630, 710 )
 collision_layer = 0
 collision_mask = 64
@@ -440,7 +464,7 @@ script = ExtResource( 8 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer1/ClimbAnchor13" index="0"]
 polygon = PoolVector2Array( 0, 0, -40, 80, 0, 80 )
 
-[node name="ClimbAnchor14" type="Area2D" parent="layer1" index="22"]
+[node name="ClimbAnchor14" type="Area2D" parent="layer1" index="18"]
 position = Vector2( -230, 280 )
 collision_layer = 0
 collision_mask = 64
@@ -449,7 +473,7 @@ script = ExtResource( 8 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer1/ClimbAnchor14" index="0"]
 polygon = PoolVector2Array( 0, 0, -60, 60, 0, 80 )
 
-[node name="ClimbAnchor15" type="Area2D" parent="layer1" index="23"]
+[node name="ClimbAnchor15" type="Area2D" parent="layer1" index="19"]
 position = Vector2( -130, 110 )
 collision_layer = 0
 collision_mask = 64
@@ -458,7 +482,7 @@ script = ExtResource( 8 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer1/ClimbAnchor15" index="0"]
 polygon = PoolVector2Array( 0, 0, -40, 80, 0, 80 )
 
-[node name="StaticBody" type="StaticBody2D" parent="layer1" index="24"]
+[node name="StaticBody" type="StaticBody2D" parent="layer1" index="20"]
 position = Vector2( 0, 610 )
 collision_layer = 262144
 collision_mask = 64
@@ -495,79 +519,15 @@ polygon = PoolVector2Array( 390, 190, 390, 280, 690, 280, 690, 190, 960, 190, 96
 [node name="layer0" type="Node2D" parent="." index="8"]
 modulate = Color( 0, 0.486275, 1, 1 )
 
-[node name="ZoneDialogue" parent="layer0" index="0" instance=ExtResource( 30 )]
-position = Vector2( 0, 1500 )
-collision_layer = 0
-collision_mask = 32
-unique_name = "tuto1"
-
-[node name="CollisionShape2D" parent="layer0/ZoneDialogue" index="1"]
-shape = SubResource( 3 )
-
-[node name="CanvasLayer" parent="layer0/ZoneDialogue" index="2"]
-follow_viewport_enable = true
-
-[node name="Dialogue" parent="layer0/ZoneDialogue/CanvasLayer" index="0"]
-visible = false
-thumbnail = ExtResource( 31 )
-title = "The Explorer"
-tirades = [ "I must have fell asleep ...", "Well ... I need to climb back now.", "~ You can move around with [LEFT]/[RIGHT] or [A]/[D] or [Q]/[D] ~" ]
-pitch_scale = 0.9
-
-[node name="ZoneDialogue2" parent="layer0" index="1" instance=ExtResource( 30 )]
-position = Vector2( -557, 1400 )
-collision_layer = 0
-collision_mask = 32
-unique_name = "tuto2"
-
-[node name="Offset" parent="layer0/ZoneDialogue2" index="0"]
-position = Vector2( 167, -34 )
-
-[node name="CollisionShape2D" parent="layer0/ZoneDialogue2" index="1"]
-shape = SubResource( 4 )
-
-[node name="CanvasLayer" parent="layer0/ZoneDialogue2" index="2"]
-follow_viewport_enable = true
-
-[node name="Dialogue" parent="layer0/ZoneDialogue2/CanvasLayer" index="0"]
-visible = false
-thumbnail = ExtResource( 31 )
-title = "The Explorer"
-tirades = [ "It's a bit tall for a stair...", "Maybe I can jump over it.", "~ You can jump over most obstacles ~", "~ Press [UP] or [Z] or [W] or [SPACE] to jump ~" ]
-pitch_scale = 0.9
-
-[node name="ZoneDialogue3" parent="layer0" index="2" instance=ExtResource( 30 )]
-position = Vector2( -760, 1380 )
-collision_layer = 0
-collision_mask = 32
-unique_name = "tuto3"
-
-[node name="Offset" parent="layer0/ZoneDialogue3" index="0"]
-position = Vector2( 430, -17 )
-
-[node name="CollisionShape2D" parent="layer0/ZoneDialogue3" index="1"]
-shape = SubResource( 5 )
-
-[node name="CanvasLayer" parent="layer0/ZoneDialogue3" index="2"]
-follow_viewport_enable = true
-
-[node name="Dialogue" parent="layer0/ZoneDialogue3/CanvasLayer" index="0"]
-visible = false
-thumbnail = ExtResource( 31 )
-title = "The Explorer"
-tirades = [ "I can jump over this light gray stair too.", "~ The level is made of multiple layers ~", "~ Jumping over background elements can bring you to different layers ~" ]
-pitch_scale = 0.9
-show_tail = false
-
-[node name="[1] LayerSwitch" parent="layer0" index="3" instance=ExtResource( 7 )]
+[node name="[1] LayerSwitch" parent="layer0" index="0" instance=ExtResource( 7 )]
 position = Vector2( -810, 1290 )
 scale = Vector2( 0.159, 0.412 )
 
-[node name="[1] LayerSwitch2" parent="layer0" index="4" instance=ExtResource( 7 )]
+[node name="[1] LayerSwitch2" parent="layer0" index="1" instance=ExtResource( 7 )]
 position = Vector2( 760, 1210 )
 scale = Vector2( 0.268, 1 )
 
-[node name="ClimbAnchor4" type="Area2D" parent="layer0" index="5"]
+[node name="ClimbAnchor4" type="Area2D" parent="layer0" index="2"]
 position = Vector2( 550, 1030 )
 collision_layer = 0
 collision_mask = 32
@@ -576,7 +536,7 @@ script = ExtResource( 8 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer0/ClimbAnchor4" index="0"]
 polygon = PoolVector2Array( 0, 0, 70, 140, 0, 140 )
 
-[node name="ClimbAnchor5" type="Area2D" parent="layer0" index="6"]
+[node name="ClimbAnchor5" type="Area2D" parent="layer0" index="3"]
 position = Vector2( 690, 1240 )
 collision_layer = 0
 collision_mask = 32
@@ -585,7 +545,7 @@ script = ExtResource( 8 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer0/ClimbAnchor5" index="0"]
 polygon = PoolVector2Array( 0, 0, -50, 130, 0, 130 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="layer0" index="7"]
+[node name="StaticBody2D" type="StaticBody2D" parent="layer0" index="4"]
 collision_layer = 262144
 collision_mask = 32
 
@@ -605,31 +565,613 @@ position = Vector2( 50, 114.2 )
 texture = SubResource( 6 )
 offset = Vector2( 0.5, 0.5 )
 
-[node name="Camera" parent="." index="10" instance=ExtResource( 5 )]
+[node name="dialogues" type="Node2D" parent="." index="10"]
+
+[node name="D1" parent="dialogues" index="0" instance=ExtResource( 30 )]
+position = Vector2( 0, 1500 )
+collision_layer = 0
+collision_mask = 32
+unique_name = "mono1"
+following = NodePath("../T1")
+
+[node name="CollisionShape2D" parent="dialogues/D1" index="1"]
+shape = SubResource( 7 )
+
+[node name="CanvasLayer" parent="dialogues/D1" index="2"]
+follow_viewport_enable = true
+
+[node name="Dialogue" parent="dialogues/D1/CanvasLayer" index="0"]
+visible = false
+thumbnail = ExtResource( 31 )
+title = "The Explorer"
+tirades = [ "I must have fell asleep ...", "Well ... I need to climb back now." ]
+pitch_scale = 0.9
+
+[node name="T1" parent="dialogues" index="1" instance=ExtResource( 30 )]
+position = Vector2( 0, 1500 )
+collision_layer = 0
+collision_mask = 0
+unique_name = "tuto1"
+following = null
+
+[node name="Offset" parent="dialogues/T1" index="0"]
+position = Vector2( 100, 80 )
+
+[node name="CollisionShape2D" parent="dialogues/T1" index="1"]
+shape = SubResource( 3 )
+
+[node name="CanvasLayer" parent="dialogues/T1" index="2"]
+follow_viewport_enable = true
+
+[node name="Dialogue" parent="dialogues/T1/CanvasLayer" index="0"]
+visible = false
+title = "Tutorial"
+tirades = [ "You can move around with [LEFT]/[RIGHT] or [A]/[D] or [Q]/[D]" ]
+pitch_scale = 0.7
+show_tail = false
+
+[node name="D2" parent="dialogues" index="2" instance=ExtResource( 30 )]
+position = Vector2( -557, 1400 )
+collision_layer = 0
+collision_mask = 32
+unique_name = "mono2"
+following = NodePath("../T2")
+
+[node name="Offset" parent="dialogues/D2" index="0"]
+position = Vector2( 167, -34 )
+
+[node name="CollisionShape2D" parent="dialogues/D2" index="1"]
+shape = SubResource( 4 )
+
+[node name="CanvasLayer" parent="dialogues/D2" index="2"]
+follow_viewport_enable = true
+
+[node name="Dialogue" parent="dialogues/D2/CanvasLayer" index="0"]
+visible = false
+thumbnail = ExtResource( 31 )
+title = "The Explorer"
+tirades = [ "It's a bit tall for a stair...", "Maybe I can jump over it." ]
+pitch_scale = 0.9
+
+[node name="T2" parent="dialogues" index="3" instance=ExtResource( 30 )]
+position = Vector2( -557, 1400 )
+collision_layer = 0
+collision_mask = 0
+unique_name = "tuto2"
+following = null
+
+[node name="Offset" parent="dialogues/T2" index="0"]
+position = Vector2( 167, 80 )
+
+[node name="CollisionShape2D" parent="dialogues/T2" index="1"]
+shape = SubResource( 3 )
+
+[node name="CanvasLayer" parent="dialogues/T2" index="2"]
+follow_viewport_enable = true
+
+[node name="Dialogue" parent="dialogues/T2/CanvasLayer" index="0"]
+visible = false
+title = "Tutorial"
+tirades = [ "You can jump over most obstacles", "Press [UP] or [Z] or [W] or [SPACE] to jump" ]
+pitch_scale = 0.7
+show_tail = false
+
+[node name="D3" parent="dialogues" index="4" instance=ExtResource( 30 )]
+position = Vector2( -760, 1380 )
+collision_layer = 0
+collision_mask = 32
+unique_name = "mono3"
+following = NodePath("../T3")
+
+[node name="Offset" parent="dialogues/D3" index="0"]
+position = Vector2( 430, -17 )
+
+[node name="CollisionShape2D" parent="dialogues/D3" index="1"]
+shape = SubResource( 5 )
+
+[node name="CanvasLayer" parent="dialogues/D3" index="2"]
+follow_viewport_enable = true
+
+[node name="Dialogue" parent="dialogues/D3/CanvasLayer" index="0"]
+visible = false
+thumbnail = ExtResource( 31 )
+title = "Tutorial"
+tirades = [ "I can jump over this light gray stair too." ]
+pitch_scale = 0.9
+show_tail = false
+
+[node name="T3" parent="dialogues" index="5" instance=ExtResource( 30 )]
+position = Vector2( -760, 1380 )
+collision_layer = 0
+collision_mask = 0
+unique_name = "tuto3"
+following = null
+
+[node name="Offset" parent="dialogues/T3" index="0"]
+position = Vector2( 430, 90 )
+
+[node name="CollisionShape2D" parent="dialogues/T3" index="1"]
+shape = SubResource( 3 )
+
+[node name="CanvasLayer" parent="dialogues/T3" index="2"]
+follow_viewport_enable = true
+
+[node name="Dialogue" parent="dialogues/T3/CanvasLayer" index="0"]
+visible = false
+title = "Tutorial"
+tirades = [ "The level is made of multiple layers", "Jumping over background elements can bring you to different layers" ]
+pitch_scale = 0.7
+show_tail = false
+
+[node name="D4" parent="dialogues" index="6" instance=ExtResource( 30 )]
+position = Vector2( -330, 1050 )
+collision_layer = 0
+collision_mask = 64
+unique_name = "mono4"
+following = NodePath("../T4")
+
+[node name="CanvasLayer" parent="dialogues/D4" index="2"]
+follow_viewport_enable = true
+
+[node name="Dialogue" parent="dialogues/D4/CanvasLayer" index="0"]
+visible = false
+thumbnail = ExtResource( 31 )
+title = "The Explorer"
+tirades = [ "Hmm ... that's very tall ..." ]
+pitch_scale = 0.9
+
+[node name="T4" parent="dialogues" index="7" instance=ExtResource( 30 )]
+position = Vector2( -330, 1050 )
+collision_layer = 0
+collision_mask = 0
+unique_name = "tuto4"
+following = null
+
+[node name="Offset" parent="dialogues/T4" index="0"]
+position = Vector2( 100, 60 )
+
+[node name="CollisionShape2D" parent="dialogues/T4" index="1"]
+shape = SubResource( 3 )
+
+[node name="CanvasLayer" parent="dialogues/T4" index="2"]
+follow_viewport_enable = true
+
+[node name="Dialogue" parent="dialogues/T4/CanvasLayer" index="0"]
+visible = false
+title = "Tutorial"
+tirades = [ "You can climb most walls and ledges by jumping to them" ]
+pitch_scale = 0.7
+show_tail = false
+
+[node name="D5" parent="dialogues" index="8" instance=ExtResource( 30 )]
+position = Vector2( -230, 910 )
+collision_layer = 0
+collision_mask = 64
+unique_name = "mono5"
+following = NodePath("../T5")
+
+[node name="CanvasLayer" parent="dialogues/D5" index="2"]
+follow_viewport_enable = true
+
+[node name="Dialogue" parent="dialogues/D5/CanvasLayer" index="0"]
+visible = false
+thumbnail = ExtResource( 31 )
+title = "The Explorer"
+tirades = [ "Pfiuu ... That was quite a difficult jump!", "Looks like I can either go down or jump to climb this large pillar." ]
+pitch_scale = 0.9
+
+[node name="T5" parent="dialogues" index="9" instance=ExtResource( 30 )]
+position = Vector2( -230, 910 )
+collision_layer = 0
+collision_mask = 0
+unique_name = "tuto5"
+following = null
+
+[node name="Offset" parent="dialogues/T5" index="0"]
+position = Vector2( 90, 50 )
+
+[node name="CollisionShape2D" parent="dialogues/T5" index="1"]
+shape = SubResource( 3 )
+
+[node name="CanvasLayer" parent="dialogues/T5" index="2"]
+follow_viewport_enable = true
+
+[node name="Dialogue" parent="dialogues/T5/CanvasLayer" index="0"]
+visible = false
+title = "Tutorial"
+tirades = [ "Some jumps are difficult, you can run with [SHIFT] to increase momentum" ]
+pitch_scale = 0.7
+show_tail = false
+
+[node name="D6A" parent="dialogues" index="10" instance=ExtResource( 30 )]
+position = Vector2( 30, 1190 )
+collision_layer = 0
+collision_mask = 64
+unique_name = "tuto7"
+following = null
+
+[node name="CanvasLayer" parent="dialogues/D6A" index="2"]
+follow_viewport_enable = true
+
+[node name="Dialogue" parent="dialogues/D6A/CanvasLayer" index="0"]
+visible = false
+thumbnail = ExtResource( 31 )
+title = "The Explorer"
+tirades = [ "It's night time soon. I should hurry", "I can't take off at night." ]
+pitch_scale = 0.9
+
+[node name="D6B" parent="dialogues" index="11" instance=ExtResource( 30 )]
+position = Vector2( 5, 710 )
+collision_layer = 0
+collision_mask = 64
+unique_name = "tuto7"
+following = null
+
+[node name="CanvasLayer" parent="dialogues/D6B" index="2"]
+follow_viewport_enable = true
+
+[node name="Dialogue" parent="dialogues/D6B/CanvasLayer" index="0"]
+visible = false
+thumbnail = ExtResource( 31 )
+title = "The Explorer"
+tirades = [ "It's night time soon. I should hurry", "I can't take off at night." ]
+pitch_scale = 0.9
+
+[node name="M1" parent="dialogues" index="12" instance=ExtResource( 30 )]
+position = Vector2( 219, 10 )
+collision_layer = 0
+collision_mask = 128
+unique_name = "merch1"
+following = NodePath("../M2")
+
+[node name="Offset" parent="dialogues/M1" index="0"]
+position = Vector2( -190, 0 )
+
+[node name="CanvasLayer" parent="dialogues/M1" index="2"]
+follow_viewport_enable = true
+
+[node name="Dialogue" parent="dialogues/M1/CanvasLayer" index="0"]
+visible = false
+thumbnail = ExtResource( 34 )
+title = "Villager"
+tirades = [ "Hey! Are you the girl who flies with a balloon? " ]
+pitch_scale = 0.5
+show_tail = false
+
+[node name="M2" parent="dialogues" index="13" instance=ExtResource( 30 )]
+position = Vector2( 219, 10 )
+collision_layer = 0
+collision_mask = 128
+unique_name = "merch2"
+following = NodePath("../M3")
+
+[node name="Offset" parent="dialogues/M2" index="0"]
+position = Vector2( -190, 0 )
+
+[node name="CollisionShape2D" parent="dialogues/M2" index="1"]
+shape = SubResource( 8 )
+disabled = true
+
+[node name="CanvasLayer" parent="dialogues/M2" index="2"]
+follow_viewport_enable = true
+
+[node name="Dialogue" parent="dialogues/M2/CanvasLayer" index="0"]
+visible = false
+thumbnail = ExtResource( 31 )
+title = "The Explorer"
+tirades = [ "Yes....", "It's me" ]
+pitch_scale = 0.9
+show_tail = false
+
+[node name="M3" parent="dialogues" index="14" instance=ExtResource( 30 )]
+position = Vector2( 219, 10 )
+collision_layer = 0
+collision_mask = 128
+unique_name = "merch3"
+following = NodePath("../M4")
+
+[node name="Offset" parent="dialogues/M3" index="0"]
+position = Vector2( -190, 0 )
+
+[node name="CollisionShape2D" parent="dialogues/M3" index="1"]
+shape = SubResource( 9 )
+
+[node name="CanvasLayer" parent="dialogues/M3" index="2"]
+follow_viewport_enable = true
+
+[node name="Dialogue" parent="dialogues/M3/CanvasLayer" index="0"]
+visible = false
+thumbnail = ExtResource( 34 )
+title = "Villager"
+tirades = [ "THATS SO COOL!", "Everyday the villagers are watching you take off from that red structure.", "It's amazing!", "Are you going to stay near our coastline for some time?" ]
+pitch_scale = 0.5
+show_tail = false
+
+[node name="M4" parent="dialogues" index="15" instance=ExtResource( 30 )]
+position = Vector2( 219, 10 )
+collision_layer = 0
+collision_mask = 128
+unique_name = "merch4"
+following = NodePath("../M5")
+
+[node name="Offset" parent="dialogues/M4" index="0"]
+position = Vector2( -190, 0 )
+
+[node name="CollisionShape2D" parent="dialogues/M4" index="1"]
+shape = SubResource( 8 )
+
+[node name="CanvasLayer" parent="dialogues/M4" index="2"]
+follow_viewport_enable = true
+
+[node name="Dialogue" parent="dialogues/M4/CanvasLayer" index="0"]
+visible = false
+thumbnail = ExtResource( 31 )
+title = "The Explorer"
+tirades = [ "Well... I'm not used to staying at some place for too long" ]
+pitch_scale = 0.9
+show_tail = false
+
+[node name="M5" parent="dialogues" index="16" instance=ExtResource( 30 )]
+position = Vector2( 219, 10 )
+collision_layer = 0
+collision_mask = 128
+unique_name = "merch5"
+following = null
+
+[node name="Offset" parent="dialogues/M5" index="0"]
+position = Vector2( -190, 0 )
+
+[node name="CollisionShape2D" parent="dialogues/M5" index="1"]
+shape = SubResource( 9 )
+
+[node name="CanvasLayer" parent="dialogues/M5" index="2"]
+follow_viewport_enable = true
+
+[node name="Dialogue" parent="dialogues/M5/CanvasLayer" index="0"]
+visible = false
+thumbnail = ExtResource( 34 )
+title = "Villager"
+tirades = [ "Stay with us for as long as you please" ]
+pitch_scale = 0.5
+show_tail = false
+
+[node name="N1" parent="dialogues" index="17" instance=ExtResource( 30 )]
+position = Vector2( 820, 1240 )
+collision_layer = 0
+collision_mask = 2147483744
+unique_name = "note1"
+following = null
+
+[node name="Offset" parent="dialogues/N1" index="0"]
+position = Vector2( -270, 0 )
+
+[node name="CollisionShape2D" parent="dialogues/N1" index="1"]
+shape = SubResource( 10 )
+
+[node name="CanvasLayer" parent="dialogues/N1" index="2"]
+follow_viewport_enable = true
+
+[node name="Dialogue" parent="dialogues/N1/CanvasLayer" index="0"]
+visible = false
+thumbnail = ExtResource( 35 )
+title = "Ancient sheet of paper"
+tirades = [ "\" [...] the Pan Atlantic Federation (PAF) declared war on China following previous events that happened in Taïwan and Turkey back in April. UN warns both alliance about warlike behaviors [...] \" " ]
+pitch_scale = 0.5
+show_tail = false
+
+[node name="N2" parent="dialogues" index="18" instance=ExtResource( 30 )]
+position = Vector2( -402, 590 )
+collision_layer = 0
+collision_mask = 2147483744
+unique_name = "note2"
+following = null
+
+[node name="Offset" parent="dialogues/N2" index="0"]
+position = Vector2( 32, 0 )
+
+[node name="CollisionShape2D" parent="dialogues/N2" index="1"]
+shape = SubResource( 10 )
+
+[node name="CanvasLayer" parent="dialogues/N2" index="2"]
+follow_viewport_enable = true
+
+[node name="Dialogue" parent="dialogues/N2/CanvasLayer" index="0"]
+visible = false
+thumbnail = ExtResource( 35 )
+title = "Ancient sheet of paper"
+tirades = [ "\" [...] Doctor in Cybernetics Ms Florin claims self-sustaining climatic disasters could worsen the situation even more as the American people celebrate the 100th anniversary of the [...] \"", "\" [...] several rumors spread online about an eventual cyberattack by Polish hacktivists on French nuclear plants [...] \"" ]
+pitch_scale = 0.5
+show_tail = false
+
+[node name="N3" parent="dialogues" index="19" instance=ExtResource( 30 )]
+position = Vector2( -850, 110 )
+collision_layer = 0
+collision_mask = 2147483744
+unique_name = "note3"
+following = null
+
+[node name="Offset" parent="dialogues/N3" index="0"]
+position = Vector2( 400, 0 )
+
+[node name="CollisionShape2D" parent="dialogues/N3" index="1"]
+shape = SubResource( 10 )
+
+[node name="CanvasLayer" parent="dialogues/N3" index="2"]
+follow_viewport_enable = true
+
+[node name="Dialogue" parent="dialogues/N3/CanvasLayer" index="0"]
+visible = false
+thumbnail = ExtResource( 35 )
+title = "Ancient sheet of paper"
+tirades = [ "\" [...] \"Money! Money! Money flying all over the place!\" shouts a man in Varsovia just after the coup that happened last sunday [...] \"" ]
+pitch_scale = 0.5
+show_tail = false
+
+[node name="N4" parent="dialogues" index="20" instance=ExtResource( 30 )]
+position = Vector2( -168, 280 )
+collision_layer = 0
+collision_mask = 2147483744
+unique_name = "note3"
+following = null
+
+[node name="CollisionShape2D" parent="dialogues/N4" index="1"]
+shape = SubResource( 10 )
+
+[node name="CanvasLayer" parent="dialogues/N4" index="2"]
+follow_viewport_enable = true
+
+[node name="Dialogue" parent="dialogues/N4/CanvasLayer" index="0"]
+visible = false
+thumbnail = ExtResource( 35 )
+title = "Ancient sheet of paper"
+tirades = [ "\" [...] the famous japanese film director passed away aged 103. According to his family his last words where \"All my life I waited for the flood, and now it comes for real! Haha! It's happening, nature is about to take over against that cursed [...]\"" ]
+pitch_scale = 0.5
+show_tail = false
+
+[node name="Camera" parent="." index="11" instance=ExtResource( 5 )]
 visible = false
 position = Vector2( 0, 1080 )
 
-[node name="CameraArea" parent="." index="11" instance=ExtResource( 4 )]
+[node name="CameraArea" parent="." index="12" instance=ExtResource( 4 )]
 visible = false
 
-[node name="CameraArea3" parent="." index="12" instance=ExtResource( 4 )]
+[node name="CameraArea3" parent="." index="13" instance=ExtResource( 4 )]
 visible = false
 position = Vector2( 0, -370 )
 
-[node name="CameraArea2" parent="." index="13" instance=ExtResource( 4 )]
+[node name="CameraArea2" parent="." index="14" instance=ExtResource( 4 )]
 visible = false
 position = Vector2( 0, 1070 )
 
-[editable path="layer1/ZoneDialogue4"]
+[node name="Artifacts" type="Node2D" parent="." index="15"]
 
-[editable path="layer1/ZoneDialogue5"]
+[node name="Artifact" parent="Artifacts" index="0" instance=ExtResource( 36 )]
+position = Vector2( 720, -290 )
+artifact = ExtResource( 40 )
 
-[editable path="layer1/ZoneDialogue6"]
+[node name="Painting" parent="Artifacts/Artifact/FaceA" index="1"]
+texture = ExtResource( 37 )
 
-[editable path="layer1/ZoneDialogue7"]
+[node name="Frame" parent="Artifacts/Artifact/FaceA" index="2"]
+texture = ExtResource( 38 )
 
-[editable path="layer0/ZoneDialogue"]
+[node name="Object" parent="Artifacts/Artifact/FaceA" index="3"]
+material = SubResource( 12 )
+texture = ExtResource( 39 )
 
-[editable path="layer0/ZoneDialogue2"]
+[node name="NORTH" parent="Artifacts/Artifact/FaceB" index="1"]
+visible = true
+material = SubResource( 12 )
 
-[editable path="layer0/ZoneDialogue3"]
+[node name="SOUTH" parent="Artifacts/Artifact/FaceB" index="2"]
+material = SubResource( 12 )
+
+[node name="WEST" parent="Artifacts/Artifact/FaceB" index="3"]
+material = SubResource( 12 )
+
+[node name="EAST" parent="Artifacts/Artifact/FaceB" index="4"]
+material = SubResource( 12 )
+
+[node name="N_EAST" parent="Artifacts/Artifact/FaceB" index="5"]
+material = SubResource( 12 )
+
+[node name="N_WEST" parent="Artifacts/Artifact/FaceB" index="6"]
+material = SubResource( 12 )
+
+[node name="S_EAST" parent="Artifacts/Artifact/FaceB" index="7"]
+material = SubResource( 12 )
+
+[node name="S_WEST" parent="Artifacts/Artifact/FaceB" index="8"]
+material = SubResource( 12 )
+
+[node name="Artifact2" parent="Artifacts" index="1" instance=ExtResource( 36 )]
+position = Vector2( 510, 730 )
+artifact = ExtResource( 44 )
+
+[node name="Painting" parent="Artifacts/Artifact2/FaceA" index="1"]
+texture = ExtResource( 43 )
+
+[node name="Frame" parent="Artifacts/Artifact2/FaceA" index="2"]
+texture = ExtResource( 42 )
+
+[node name="Object" parent="Artifacts/Artifact2/FaceA" index="3"]
+material = SubResource( 12 )
+texture = ExtResource( 41 )
+
+[node name="NORTH" parent="Artifacts/Artifact2/FaceB" index="1"]
+visible = true
+material = SubResource( 12 )
+
+[node name="SOUTH" parent="Artifacts/Artifact2/FaceB" index="2"]
+material = SubResource( 12 )
+
+[node name="WEST" parent="Artifacts/Artifact2/FaceB" index="3"]
+material = SubResource( 12 )
+
+[node name="EAST" parent="Artifacts/Artifact2/FaceB" index="4"]
+material = SubResource( 12 )
+
+[node name="N_EAST" parent="Artifacts/Artifact2/FaceB" index="5"]
+material = SubResource( 12 )
+
+[node name="N_WEST" parent="Artifacts/Artifact2/FaceB" index="6"]
+material = SubResource( 12 )
+
+[node name="S_EAST" parent="Artifacts/Artifact2/FaceB" index="7"]
+material = SubResource( 12 )
+
+[node name="S_WEST" parent="Artifacts/Artifact2/FaceB" index="8"]
+material = SubResource( 12 )
+
+[node name="AnimationPlayer" parent="Artifacts/Artifact2" index="2"]
+anims/toFaceB = SubResource( 13 )
+
+[node name="Area2D" parent="Artifacts/Artifact2" index="4"]
+collision_layer = 0
+collision_mask = 32
+
+[editable path="dialogues/D1"]
+
+[editable path="dialogues/T1"]
+
+[editable path="dialogues/D2"]
+
+[editable path="dialogues/T2"]
+
+[editable path="dialogues/D3"]
+
+[editable path="dialogues/T3"]
+
+[editable path="dialogues/D4"]
+
+[editable path="dialogues/T4"]
+
+[editable path="dialogues/D5"]
+
+[editable path="dialogues/T5"]
+
+[editable path="dialogues/D6A"]
+
+[editable path="dialogues/D6B"]
+
+[editable path="dialogues/M1"]
+
+[editable path="dialogues/M2"]
+
+[editable path="dialogues/M3"]
+
+[editable path="dialogues/M4"]
+
+[editable path="dialogues/M5"]
+
+[editable path="dialogues/N1"]
+
+[editable path="dialogues/N2"]
+
+[editable path="dialogues/N3"]
+
+[editable path="dialogues/N4"]
+
+[editable path="Artifacts/Artifact"]
+
+[editable path="Artifacts/Artifact2"]

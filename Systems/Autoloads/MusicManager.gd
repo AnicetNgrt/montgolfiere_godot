@@ -16,6 +16,8 @@ func play_music(music:AudioStream, volume:float = 1):
 
 
 func stop_music():
+	if music_player == null:
+		return
 	music_player.stop()
 	music_player.call_deferred("queue_free")
 	music_player = null

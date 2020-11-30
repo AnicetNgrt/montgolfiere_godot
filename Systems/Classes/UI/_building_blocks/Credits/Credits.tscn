@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Systems/Classes/UI/_building_blocks/Credits/Credits.gd" type="Script" id=1]
 [ext_resource path="res://Systems/Classes/UI/_building_blocks/Button/Button.tscn" type="PackedScene" id=2]
@@ -25,10 +25,22 @@ use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 3 )
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="DynamicFont" id=5]
+size = 24
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 24
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
 [node name="Credits" type="Panel"]
@@ -84,11 +96,11 @@ align = 1
 [node name="categs" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 299.0
 margin_right = 1870.0
-margin_bottom = 627.0
+margin_bottom = 664.0
 
 [node name="production" type="VBoxContainer" parent="MarginContainer/VBoxContainer/categs"]
 margin_right = 933.0
-margin_bottom = 328.0
+margin_bottom = 365.0
 size_flags_horizontal = 3
 custom_constants/separation = 30
 
@@ -138,24 +150,72 @@ align = 1
 [node name="production2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/categs"]
 margin_left = 937.0
 margin_right = 1870.0
-margin_bottom = 328.0
+margin_bottom = 365.0
 size_flags_horizontal = 3
 custom_constants/separation = 30
 
-[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/categs/production2"]
+[node name="Desc2" type="Label" parent="MarginContainer/VBoxContainer/categs/production2"]
+margin_right = 933.0
+margin_bottom = 35.0
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Featuring public domain recordings of public domain classical pieces:"
+align = 1
+autowrap = true
+
+[node name="Person3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/categs/production2"]
+margin_top = 65.0
+margin_right = 933.0
+margin_bottom = 365.0
+
+[node name="Desc4" type="Label" parent="MarginContainer/VBoxContainer/categs/production2/Person3"]
 margin_right = 933.0
 margin_bottom = 52.0
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Licensed assets:"
+text = "Interpreted by Olga Gurevich:"
 align = 1
+autowrap = true
+
+[node name="Desc3" type="Label" parent="MarginContainer/VBoxContainer/categs/production2/Person3"]
+margin_top = 56.0
+margin_right = 933.0
+margin_bottom = 205.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "- Charles Mayer, \"Valse mélancolique\", Le Regret -
+- Chopin, \"Grande valse brillante\" in B flat minor -
+- Chopin, \"Nocturne\" in B flat minor -
+- Chopin, Waltz in B minor, Op. 69 no.2 -"
+align = 1
+autowrap = true
+
+[node name="Desc5" type="Label" parent="MarginContainer/VBoxContainer/categs/production2/Person3"]
+margin_top = 209.0
+margin_right = 933.0
+margin_bottom = 261.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Interpreted by Paul Manjarrez:"
+align = 1
+autowrap = true
+
+[node name="Desc6" type="Label" parent="MarginContainer/VBoxContainer/categs/production2/Person3"]
+margin_top = 265.0
+margin_right = 933.0
+margin_bottom = 300.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "- Alexander Scriabin, Fantasy in B Minor, Op 28 -"
+align = 1
+autowrap = true
 
 [node name="ButtonHideCredits" parent="." instance=ExtResource( 2 )]
 margin_left = 1730.0
 margin_top = 1000.0
 margin_right = 1880.0
 margin_bottom = 1051.0
-custom_styles/focus = SubResource( 5 )
-custom_styles/disabled = SubResource( 6 )
+custom_styles/focus = SubResource( 7 )
+custom_styles/disabled = SubResource( 8 )
 text = "Back"
 [connection signal="pressed" from="ButtonHideCredits" to="." method="_on_ButtonHideCredits_pressed"]

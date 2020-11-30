@@ -3,8 +3,8 @@ extends Area2D
 
 export(String) var unique_name
 export(bool) var repeat_after_complete = false
+export(NodePath) var following = null
 var _body: PlatformerController = null
-
 
 func _input(event):
 	if Input.is_action_just_pressed("interact") and $CanvasLayer/Dialogue.visible:
@@ -21,7 +21,7 @@ func _on_ZoneDialogue_body_entered(body):
 	
 	if !repeat_after_complete and $CanvasLayer/Dialogue.completed:
 		return
-	elif body is PlatformerController:
+	elif body != null:
 		print("LOCK")
 		_body = body
 		_body.locked = true
@@ -33,10 +33,9 @@ func _on_ZoneDialogue_body_entered(body):
 
 
 func _on_ZoneDialogue_body_exited(body):
-	if body is PlatformerController:
-		print("YARE")
-		body.locked = false
-		_body = null
+	print("YARE")
+	body.locked = false
+	_body = null
 	
 	TweensUtils.fadeout($CanvasLayer/Dialogue, 0.5)
 	$CanvasLayer/Dialogue.mute()
@@ -45,7 +44,9 @@ func _on_ZoneDialogue_body_exited(body):
 
 
 func _on_Dialogue_completed():
-	if _body != null:
+	if following != null:
+		get_node(following)._on_ZoneDialogue_body_entered(_body)
+	elif _body != null:
 		print("HERE")
 		_body.locked = false
 		_body = null

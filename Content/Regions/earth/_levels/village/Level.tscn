@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://Systems/Classes/Level/_building_blocks/Entrance/PlatformerControllerSpawner.gd" type="Script" id=1]
 [ext_resource path="res://Systems/Classes/Level/_building_blocks/BackgroundLayer/BackgroundLayer.tscn" type="PackedScene" id=2]
@@ -25,6 +25,21 @@
 [ext_resource path="res://Systems/Classes/Map/sp_default.tres" type="Resource" id=23]
 [ext_resource path="res://Content/Regions/_shared_assets/Clouds/clouds3.png" type="Texture" id=24]
 [ext_resource path="res://Content/Regions/earth/_levels/village/BalloonSprite.gd" type="Script" id=25]
+[ext_resource path="res://Systems/Classes/Character/_assets/farmer.png" type="Texture" id=26]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/Props/Cow.tscn" type="PackedScene" id=27]
+[ext_resource path="res://Content/Characters/the_farmer/pp_farmer.png" type="Texture" id=28]
+[ext_resource path="res://Content/Characters/note/pp_note.png" type="Texture" id=29]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/ZoneDialogue/ZoneDialogue.tscn" type="PackedScene" id=30]
+[ext_resource path="res://Content/Characters/the_explorer/_assets/pp_character.png" type="Texture" id=31]
+[ext_resource path="res://Systems/Classes/Artifact/Artifact2D.tscn" type="PackedScene" id=32]
+[ext_resource path="res://Content/Artifacts/physics-book/_assets/physics-book_layer 2.png" type="Texture" id=33]
+[ext_resource path="res://Content/Artifacts/physics-book/_assets/physics-book_layer 1.png" type="Texture" id=34]
+[ext_resource path="res://Content/Artifacts/physics-book/_assets/physics-book_layer 3.png" type="Texture" id=35]
+[ext_resource path="res://Content/Artifacts/physics-book/physics-book.tres" type="Resource" id=36]
+[ext_resource path="res://Content/Artifacts/water/_assets/water_layer 2.png" type="Texture" id=37]
+[ext_resource path="res://Content/Artifacts/water/_assets/water_layer 3.png" type="Texture" id=38]
+[ext_resource path="res://Content/Artifacts/water/_assets/water_layer 4.png" type="Texture" id=39]
+[ext_resource path="res://Content/Artifacts/water/water.tres" type="Resource" id=40]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -61,6 +76,75 @@ shader = SubResource( 1 )
 shader_param/scroll_speed = 0.01
 shader_param/radius = 0.0
 shader_param/modulate = Color( 0, 0, 0, 0.0980392 )
+
+[sub_resource type="CircleShape2D" id=3]
+
+[sub_resource type="CircleShape2D" id=4]
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 70.7107
+
+[sub_resource type="Shader" id=11]
+code = "shader_type canvas_item;
+
+uniform float radius = 5.0;
+uniform vec4 modulate: hint_color;
+
+void fragment() {
+	vec2 ps = TEXTURE_PIXEL_SIZE;
+	
+	vec2 shifteduv = UV;
+
+	vec4 shadow = texture(TEXTURE, shifteduv + vec2(-radius, -radius) * ps);
+	
+	shadow += texture(TEXTURE, shifteduv + vec2(-radius, 0.0) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(-radius, radius) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(0.0, -radius) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(0.0, radius) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(radius, -radius) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(radius, 0.0) * ps);
+	shadow += texture(TEXTURE, shifteduv + vec2(radius, radius) * ps);
+	shadow /= 8.0;
+	shadow *= modulate;
+	
+    vec4 color = texture(TEXTURE, shifteduv);
+    COLOR = mix(shadow, color, color.a);
+}"
+
+[sub_resource type="ShaderMaterial" id=7]
+resource_local_to_scene = true
+shader = SubResource( 11 )
+shader_param/radius = 1.0
+shader_param/modulate = Color( 0, 0, 0, 1 )
+
+[sub_resource type="Animation" id=8]
+resource_name = "toFaceB"
+length = 0.5
+step = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("FaceA:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1e-05, 1 ), Vector2( 1e-05, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("FaceB:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1 ), Vector2( 1e-05, 1 ), Vector2( 1, 1 ) ]
+}
 
 [node name="Level" instance=ExtResource( 6 )]
 default_spawn = "default"
@@ -135,7 +219,34 @@ texture = ExtResource( 16 )
 position = Vector2( 100, -77 )
 script = ExtResource( 25 )
 
+[node name="Sprite" type="Sprite" parent="back" index="9"]
+position = Vector2( -33, 84 )
+texture = ExtResource( 26 )
+offset = Vector2( 0.5, 0 )
+flip_h = true
+
+[node name="Cow" parent="back" index="10" instance=ExtResource( 27 )]
+position = Vector2( -79, 89 )
+scale = Vector2( 1, 1 )
+frame = 17
+offset = Vector2( 0, 0 )
+
+[node name="Cow2" parent="back" index="11" instance=ExtResource( 27 )]
+position = Vector2( 6.99999, 79 )
+scale = Vector2( 1, 1 )
+frame = 14
+offset = Vector2( 0, 0 )
+flip_h = true
+
+[node name="Cow3" parent="back" index="12" instance=ExtResource( 27 )]
+position = Vector2( 96, 89 )
+scale = Vector2( 1, 1 )
+frame = 10
+offset = Vector2( 0, 0 )
+flip_h = true
+
 [node name="layer2" type="Node2D" parent="." index="4"]
+visible = false
 modulate = Color( 1, 0, 0, 1 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="layer2" index="0"]
@@ -273,8 +384,8 @@ position = Vector2( 640, -100 )
 script = ExtResource( 8 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="layer2/ClimbAnchor10" index="0"]
-position = Vector2( -20, 0 )
-polygon = PoolVector2Array( 0, 0, 30, 90, 0, 90 )
+position = Vector2( -10, 0 )
+polygon = PoolVector2Array( 0, 0, 40, 60, 0, 90 )
 
 [node name="ClimbAnchor12" type="Area2D" parent="layer2" index="14"]
 position = Vector2( 10, -60 )
@@ -319,6 +430,7 @@ spawnpoint = ExtResource( 23 )
 polygon = PoolVector2Array( 1920, 800, 1920, 950, 1950, 950, 1950, 800 )
 
 [node name="layer1" type="Node2D" parent="." index="5"]
+visible = false
 modulate = Color( 1, 0.866667, 0, 1 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="layer1" index="0"]
@@ -373,6 +485,7 @@ script = ExtResource( 8 )
 polygon = PoolVector2Array( 0, 0, -20, 70, 0, 70 )
 
 [node name="layer0" type="Node2D" parent="." index="6"]
+visible = false
 modulate = Color( 0, 1, 0.180392, 1 )
 
 [node name="Static" type="StaticBody2D" parent="layer0" index="0"]
@@ -407,10 +520,307 @@ position = Vector2( -920, -410 )
 [node name="front" type="Node2D" parent="." index="8"]
 scale = Vector2( 10, 10 )
 
-[node name="Camera" parent="." index="9" instance=ExtResource( 4 )]
+[node name="dialogues" type="Node2D" parent="." index="9"]
+
+[node name="M1" parent="dialogues" index="0" instance=ExtResource( 30 )]
+position = Vector2( 1680, 950 )
+unique_name = "vill mono1"
+following = null
+
+[node name="Offset" parent="dialogues/M1" index="0"]
+position = Vector2( -60, 70 )
+
+[node name="CanvasLayer" parent="dialogues/M1" index="2"]
+follow_viewport_enable = true
+
+[node name="Dialogue" parent="dialogues/M1/CanvasLayer" index="0"]
+visible = false
+margin_right = 914.0
+margin_bottom = 200.0
+thumbnail = ExtResource( 31 )
+title = "The Explorer"
+tirades = [ "Our ancestors used to go to space with that structure...", "I landed my balloon on the top of it, I need to get there before night time." ]
+pitch_scale = 0.9
+show_tail = false
+
+[node name="M2" parent="dialogues" index="1" instance=ExtResource( 30 )]
+position = Vector2( 450, 300 )
+unique_name = "vill mono2"
+following = null
+
+[node name="Offset" parent="dialogues/M2" index="0"]
+position = Vector2( 130, 130 )
+
+[node name="CanvasLayer" parent="dialogues/M2" index="2"]
+follow_viewport_enable = true
+
+[node name="Dialogue" parent="dialogues/M2/CanvasLayer" index="0"]
+visible = false
+margin_right = 914.0
+margin_bottom = 200.0
+thumbnail = ExtResource( 31 )
+title = "The Explorer"
+tirades = [ "That's it! The red tower.", "Now I just need to climb it... ", "Easier said than done" ]
+pitch_scale = 0.9
+show_tail = false
+
+[node name="F1" parent="dialogues" index="2" instance=ExtResource( 30 )]
+position = Vector2( -320, 900 )
+unique_name = "farm1"
+following = NodePath("../F2")
+
+[node name="Offset" parent="dialogues/F1" index="0"]
+position = Vector2( 140, 110 )
+
+[node name="CanvasLayer" parent="dialogues/F1" index="2"]
+follow_viewport_enable = true
+
+[node name="Dialogue" parent="dialogues/F1/CanvasLayer" index="0"]
+visible = false
+margin_right = 914.0
+margin_bottom = 200.0
+thumbnail = ExtResource( 28 )
+title = "Farmer"
+tirades = [ "Come closer my child", "With my old and dusty eyes I can't see you well" ]
+pitch_scale = 0.4
+show_tail = false
+
+[node name="F2" parent="dialogues" index="3" instance=ExtResource( 30 )]
+position = Vector2( -320, 900 )
+unique_name = "farm2"
+following = NodePath("../F3")
+
+[node name="Offset" parent="dialogues/F2" index="0"]
+position = Vector2( 140, 110 )
+
+[node name="CollisionShape2D" parent="dialogues/F2" index="1"]
+shape = SubResource( 3 )
+
+[node name="CanvasLayer" parent="dialogues/F2" index="2"]
+follow_viewport_enable = true
+
+[node name="Dialogue" parent="dialogues/F2/CanvasLayer" index="0"]
+visible = false
+margin_right = 914.0
+margin_bottom = 200.0
+thumbnail = ExtResource( 31 )
+title = "The Explorer"
+tirades = [ "Hi ..." ]
+pitch_scale = 0.9
+show_tail = false
+
+[node name="F3" parent="dialogues" index="4" instance=ExtResource( 30 )]
+position = Vector2( -320, 900 )
+unique_name = "farm3"
+following = NodePath("../F4")
+
+[node name="Offset" parent="dialogues/F3" index="0"]
+position = Vector2( 140, 110 )
+
+[node name="CollisionShape2D" parent="dialogues/F3" index="1"]
+shape = SubResource( 4 )
+
+[node name="CanvasLayer" parent="dialogues/F3" index="2"]
+follow_viewport_enable = true
+
+[node name="Dialogue" parent="dialogues/F3/CanvasLayer" index="0"]
+visible = false
+margin_right = 914.0
+margin_bottom = 200.0
+thumbnail = ExtResource( 28 )
+title = "Farmer"
+tirades = [ "My child, it's not a safe place for you here", "It's dangerous to play in those ruins. They may collapse at any time", "Oh! Sorry! I misrecognized you my child...", "You are the girl with the balloon", "I'm so old and weak, I couldn't survive such a journey like yours" ]
+pitch_scale = 0.4
+show_tail = false
+
+[node name="F4" parent="dialogues" index="5" instance=ExtResource( 30 )]
+position = Vector2( -320, 900 )
+unique_name = "farm2"
+following = null
+
+[node name="Offset" parent="dialogues/F4" index="0"]
+position = Vector2( 140, 110 )
+
+[node name="CollisionShape2D" parent="dialogues/F4" index="1"]
+shape = SubResource( 3 )
+
+[node name="CanvasLayer" parent="dialogues/F4" index="2"]
+follow_viewport_enable = true
+
+[node name="Dialogue" parent="dialogues/F4/CanvasLayer" index="0"]
+visible = false
+margin_right = 914.0
+margin_bottom = 200.0
+thumbnail = ExtResource( 31 )
+title = "The Explorer"
+tirades = [ "..." ]
+pitch_scale = 0.9
+show_tail = false
+
+[node name="N1" parent="dialogues" index="6" instance=ExtResource( 30 )]
+position = Vector2( -350, -150 )
+unique_name = "vill note1"
+following = null
+
+[node name="Offset" parent="dialogues/N1" index="0"]
+position = Vector2( 140, 110 )
+
+[node name="CollisionShape2D" parent="dialogues/N1" index="1"]
+shape = SubResource( 5 )
+
+[node name="CanvasLayer" parent="dialogues/N1" index="2"]
+follow_viewport_enable = true
+
+[node name="Dialogue" parent="dialogues/N1/CanvasLayer" index="0"]
+visible = false
+margin_right = 914.0
+margin_bottom = 200.0
+thumbnail = ExtResource( 29 )
+title = "Ancient piece of paper"
+tirades = [ "\" [...] Log [29/01/2065|10:30AM]: Departure of flight #207323 for the Moon in 3 [...] \"" ]
+pitch_scale = 0.5
+show_tail = false
+
+[node name="N2" parent="dialogues" index="7" instance=ExtResource( 30 )]
+position = Vector2( 1310, 700 )
+unique_name = "vill note2"
+following = null
+
+[node name="Offset" parent="dialogues/N2" index="0"]
+position = Vector2( 140, 110 )
+
+[node name="CollisionShape2D" parent="dialogues/N2" index="1"]
+shape = SubResource( 5 )
+
+[node name="CanvasLayer" parent="dialogues/N2" index="2"]
+follow_viewport_enable = true
+
+[node name="Dialogue" parent="dialogues/N2/CanvasLayer" index="0"]
+visible = false
+margin_right = 914.0
+margin_bottom = 200.0
+thumbnail = ExtResource( 29 )
+title = "Ancient piece of paper"
+tirades = [ "\" [...] We did it! September 16th 2055 mankind finally lands on Mars after more than 50 years of struggle with failed and deadly attempts amid difficult technical concerns such as radiations and fuel. [...] \"" ]
+pitch_scale = 0.9
+show_tail = false
+
+[node name="Camera" parent="." index="10" instance=ExtResource( 4 )]
 visible = false
 position = Vector2( 960, 540 )
 
-[node name="CameraArea" parent="." index="10" instance=ExtResource( 5 )]
+[node name="CameraArea" parent="." index="11" instance=ExtResource( 5 )]
 visible = false
-position = Vector2( -1920, -1080 )
+position = Vector2( -1930, -1090 )
+
+[node name="Artifacts" type="Node2D" parent="." index="12"]
+
+[node name="Artifact" parent="Artifacts" index="0" instance=ExtResource( 32 )]
+position = Vector2( -980, 50 )
+artifact = ExtResource( 36 )
+
+[node name="Painting" parent="Artifacts/Artifact/FaceA" index="1"]
+texture = ExtResource( 35 )
+
+[node name="Frame" parent="Artifacts/Artifact/FaceA" index="2"]
+texture = ExtResource( 34 )
+
+[node name="Object" parent="Artifacts/Artifact/FaceA" index="3"]
+material = SubResource( 7 )
+texture = ExtResource( 33 )
+
+[node name="NORTH" parent="Artifacts/Artifact/FaceB" index="1"]
+visible = true
+material = SubResource( 7 )
+
+[node name="SOUTH" parent="Artifacts/Artifact/FaceB" index="2"]
+material = SubResource( 7 )
+
+[node name="WEST" parent="Artifacts/Artifact/FaceB" index="3"]
+material = SubResource( 7 )
+
+[node name="EAST" parent="Artifacts/Artifact/FaceB" index="4"]
+material = SubResource( 7 )
+
+[node name="N_EAST" parent="Artifacts/Artifact/FaceB" index="5"]
+material = SubResource( 7 )
+
+[node name="N_WEST" parent="Artifacts/Artifact/FaceB" index="6"]
+material = SubResource( 7 )
+
+[node name="S_EAST" parent="Artifacts/Artifact/FaceB" index="7"]
+material = SubResource( 7 )
+
+[node name="S_WEST" parent="Artifacts/Artifact/FaceB" index="8"]
+material = SubResource( 7 )
+
+[node name="Area2D" parent="Artifacts/Artifact" index="4"]
+position = Vector2( 1, 49 )
+collision_layer = 0
+collision_mask = 2147483712
+
+[node name="Artifact2" parent="Artifacts" index="1" instance=ExtResource( 32 )]
+position = Vector2( -690, -600 )
+artifact = ExtResource( 40 )
+
+[node name="Painting" parent="Artifacts/Artifact2/FaceA" index="1"]
+texture = ExtResource( 37 )
+
+[node name="Frame" parent="Artifacts/Artifact2/FaceA" index="2"]
+texture = ExtResource( 38 )
+
+[node name="Object" parent="Artifacts/Artifact2/FaceA" index="3"]
+material = SubResource( 7 )
+texture = ExtResource( 39 )
+
+[node name="NORTH" parent="Artifacts/Artifact2/FaceB" index="1"]
+visible = true
+material = SubResource( 7 )
+
+[node name="SOUTH" parent="Artifacts/Artifact2/FaceB" index="2"]
+material = SubResource( 7 )
+
+[node name="WEST" parent="Artifacts/Artifact2/FaceB" index="3"]
+material = SubResource( 7 )
+
+[node name="EAST" parent="Artifacts/Artifact2/FaceB" index="4"]
+material = SubResource( 7 )
+
+[node name="N_EAST" parent="Artifacts/Artifact2/FaceB" index="5"]
+material = SubResource( 7 )
+
+[node name="N_WEST" parent="Artifacts/Artifact2/FaceB" index="6"]
+material = SubResource( 7 )
+
+[node name="S_EAST" parent="Artifacts/Artifact2/FaceB" index="7"]
+material = SubResource( 7 )
+
+[node name="S_WEST" parent="Artifacts/Artifact2/FaceB" index="8"]
+material = SubResource( 7 )
+
+[node name="AnimationPlayer" parent="Artifacts/Artifact2" index="2"]
+anims/toFaceB = SubResource( 8 )
+
+[node name="Area2D" parent="Artifacts/Artifact2" index="4"]
+position = Vector2( 1, 49 )
+collision_layer = 0
+
+[editable path="dialogues/M1"]
+
+[editable path="dialogues/M2"]
+
+[editable path="dialogues/F1"]
+
+[editable path="dialogues/F2"]
+
+[editable path="dialogues/F3"]
+
+[editable path="dialogues/F4"]
+
+[editable path="dialogues/N1"]
+
+[editable path="dialogues/N2"]
+
+[editable path="Artifacts/Artifact"]
+
+[editable path="Artifacts/Artifact2"]

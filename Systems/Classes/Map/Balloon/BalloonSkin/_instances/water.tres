@@ -7,11 +7,11 @@
 atlas = ExtResource( 2 )
 region = Rect2( 41, 0, 41, 50 )
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 41, 50 )
 
 [resource]
 script = ExtResource( 1 )
-top_down = SubResource( 2 )
+top_down = SubResource( 7 )
 side = SubResource( 1 )

@@ -31,8 +31,8 @@ func _physics_process(delta):
 		move_balloon(delta, input_vector)
 		balloon_rotation(input_vector)
 		
-		if(Input.is_action_pressed("use_artifact")):
-			start_wind()
+		#if(Input.is_action_pressed("use_artifact")):
+		#	start_wind()
 
 func get_action_balloon():
 	var input_vector = Vector2.ZERO

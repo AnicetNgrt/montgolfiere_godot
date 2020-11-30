@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Systems/Classes/Artifact/Artifact2D.gd" type="Script" id=1]
 [ext_resource path="res://Content/Artifacts/_shared_assets/background.png" type="Texture" id=2]
@@ -13,31 +13,7 @@
 [ext_resource path="res://Content/Artifacts/_shared_assets/wind-directions/wind-directions_south-west.png" type="Texture" id=11]
 [ext_resource path="res://Content/Artifacts/_shared_assets/wind-directions/wind-directions_north-east.png" type="Texture" id=12]
 [ext_resource path="res://Content/Artifacts/_shared_assets/wind-directions/wind-directions_north.png" type="Texture" id=13]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+[ext_resource path="res://Systems/Classes/UI/_shared_resources/Fonts/regular_df.tres" type="DynamicFont" id=14]
 
 [sub_resource type="Animation" id=1]
 resource_name = "toFaceB"
@@ -68,7 +44,11 @@ tracks/1/keys = {
 "values": [ Vector2( 1e-05, 1 ), Vector2( 1e-05, 1 ), Vector2( 1, 1 ) ]
 }
 
+[sub_resource type="CircleShape2D" id=2]
+radius = 9.05539
+
 [node name="Artifact" type="Node2D"]
+modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 180, 310 )
 scale = Vector2( 10, 10 )
 script = ExtResource( 1 )
@@ -86,13 +66,13 @@ factor = 0.0
 offset = Vector2( 0.5, 0.5 )
 script = ExtResource( 6 )
 follow_offset = Vector2( 1000, 500 )
-factor = 0.0
+factor = 0.01
 
 [node name="Frame" type="Sprite" parent="FaceA"]
 offset = Vector2( 0.5, 0.5 )
 script = ExtResource( 6 )
 follow_offset = Vector2( 1000, 500 )
-factor = 0.0
+factor = 0.03
 
 [node name="Object" type="Sprite" parent="FaceA"]
 material = ExtResource( 7 )
@@ -180,4 +160,25 @@ margin_bottom = 32.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 0, 30 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -13.0
+margin_top = 20.0
+margin_right = 252.0
+margin_bottom = 67.0
+rect_scale = Vector2( 0.1, 0.1 )
+custom_fonts/font = ExtResource( 14 )
+text = "Secret found!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
