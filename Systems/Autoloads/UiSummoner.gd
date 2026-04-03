@@ -22,13 +22,13 @@ func _ready():
 	RootManager.add_child_deff(ui_layer)
 
 
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("open_dashboard"):
 		if dashboard == null: summon_dashboard()
 		elif Input.is_action_just_pressed("close"):
 			close_dashboard()
 	elif Input.is_action_just_pressed("close"):
-		if dashboard != null: 
+		if dashboard != null:
 			close_dashboard()
 
 
@@ -41,7 +41,7 @@ func summon_cutscene(cutscene_name) -> Node:
 	return cutscene
 
 
-func on_cutscene_finished(instance):
+func on_cutscene_finished(_instance):
 	emit_signal("cutscene_finished", cutscene)
 	cutscene = null
 

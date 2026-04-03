@@ -34,7 +34,7 @@ func from_dict(dict:Dictionary):
 		artifacts.append(key)
 	for key in dict.get("general", {}).get("clues", []):
 		clues.append(key)
-	
+
 	saw_intro_cutscene = dict.get("cutscenes", {}).get("intro", false)
-	
+
 	dialogues = dict.get("dialogues", {})

@@ -11,7 +11,7 @@ func refresh_slots():
 		if c.name != "Button" and c.name != "Slot":
 			c.call_deferred("queue_free")
 	slot_count = 0
-	
+
 	var slots = ProgressManager.get_available_saveslots()
 	for s in slots:
 		add_slot(s)

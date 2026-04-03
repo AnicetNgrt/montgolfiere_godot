@@ -4,7 +4,8 @@ extends VBoxContainer
 onready var thumbnail_container = $PanelContainer/MarginContainer/VBoxContainer/PanelContainer2
 onready var thumbnail_node = $PanelContainer/MarginContainer/VBoxContainer/PanelContainer2/Thumbnail
 onready var title_node = $PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/Title
-onready var text_node = $PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/Text
+onready var text_node = get_node( # gdlint:ignore=max-line-length
+	"PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/Text")
 onready var button_next = $HBoxContainer/CenterContainer/ButtonNext
 onready var button_ok = $HBoxContainer/CenterContainer/ButtonOk
 
@@ -27,12 +28,12 @@ var muted = false
 signal completed()
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if tirade_word_index < tirade_words.length():
 		if OS.get_ticks_msec() - last_word_addition > 50:
 			add_word()
 			$Sfx.pitch_scale = rand_range(pitch_scale-0.025,pitch_scale+0.025)
-			if !muted: 
+			if !muted:
 				$Sfx.play()
 			else:
 				$Sfx.stop()
@@ -86,12 +87,12 @@ func set_tirade_index(value):
 		return
 	if not is_inside_tree():
 		yield(self, "ready")
-	
+
 	tirade_index = value
 	text_node.text = ""
 	tirade_word_index = 0
 	tirade_words = tirades[tirade_index]
-	
+
 	if value >= tirades.size():
 		completed = true
 		emit_signal("completed")
@@ -99,7 +100,7 @@ func set_tirade_index(value):
 
 func set_show_tail(value):
 	show_tail = value
-	if not is_inside_tree(): 
+	if not is_inside_tree():
 		yield(self, "ready")
 	$HBoxContainer/Tail.visible = show_tail
 

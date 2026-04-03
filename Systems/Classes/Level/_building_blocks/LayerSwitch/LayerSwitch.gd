@@ -17,7 +17,7 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func _on_LayerSwitch_body_exited(body):
+func _on_LayerSwitch_body_exited(_body):
 	pass
 
 

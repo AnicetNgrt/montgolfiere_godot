@@ -51,7 +51,7 @@ func get_available_saveslots():
 	var dir = Directory.new()
 	dir.open("user://")
 	dir.list_dir_begin()
-	
+
 	while true:
 		var file = dir.get_next()
 		if file == "":
@@ -60,7 +60,7 @@ func get_available_saveslots():
 			var saveslot = SaveSlot.new()
 			saveslot.load_from_file("user://"+file)
 			slots.append(saveslot)
-	
+
 	return slots
 
 
@@ -68,5 +68,5 @@ func on_initialized():
 	is_initialized = true
 
 
-func on_npc_triggered(npc:NPC):
+func on_npc_triggered(_npc:NPC):
 	pass

@@ -9,5 +9,5 @@ func _ready():
 		MusicManager.play_music(theme)
 
 
-func _on_ThanksForPlaying_body_entered(body):
+func _on_ThanksForPlaying_body_entered(_body):
 	UiSummoner.summon_region_title("Thanks for playing!")

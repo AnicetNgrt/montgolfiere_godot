@@ -4,7 +4,7 @@ extends Node2D
 
 onready var day_night_animator = $DayNightAnimator
 
-export(bool) var do_self_spawn = true 
+export(bool) var do_self_spawn = true
 export(String) var default_spawn = ""
 export(Color) var custom_modulate = Color.white setget set_custom_modulate
 export(Resource) var region #: Region
@@ -14,7 +14,7 @@ export(bool) var is_balloon = false
 var is_ready_and_spawned = false
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if day_night_animator and day_night_animator.current_animation == "day_night":
 		region.time_of_day = day_night_animator.current_animation_position/day_night_animator.current_animation_length
 
@@ -29,7 +29,7 @@ func _ready():
 			enter_at(default_spawn)
 
 
-func on_exit_body_exited(body:Node, data:Resource) -> void:
+func on_exit_body_exited(_body:Node, data:Resource) -> void:
 	emit_signal("goto_level", data)
 
 
@@ -37,12 +37,12 @@ func enter_at(key:String):
 	var spawner = null
 	for c in get_children():
 		if c is PlatformerControllerSpawner:
-			if c.spawnpoint_data.name == key: 
+			if c.spawnpoint_data.name == key:
 				spawner = c
 				break
 
 	var instance:Node = null
-	if spawner and !is_balloon: 
+	if spawner and !is_balloon:
 		instance = spawner.spawn_instance()
 		#if not instance.is_inside_tree(): yield(instance, "ready")
 		add_child_below_node(spawner, instance)
@@ -53,7 +53,7 @@ func enter_at(key:String):
 		if not region.is_inside:
 			region.is_inside = true
 			on_region_enter(spawner.spawnpoint_data)
-		
+
 		region.connect("play_daynight", self, "on_region_play_daynight")
 		region.connect("pause_daynight", self, "on_region_pause_daynight")
 		region.play_daynight()
@@ -61,7 +61,7 @@ func enter_at(key:String):
 		if instance is PlatformerController:
 			instance.connect("layer_changed", self, "on_character_layer_changed")
 			instance.physics_profile = region.physics_profile
-	
+
 	if is_balloon:
 		is_ready_and_spawned = true
 		region.is_inside = true
@@ -81,7 +81,7 @@ func on_region_pause_daynight():
 
 func on_region_enter(spawnpoint):
 	region.checkpoint = spawnpoint
-	if region.theme != null: 
+	if region.theme != null:
 		MusicManager.play_music(region.theme, region.theme_volume)
 	WorldEnvManager.set_environment(region.environment)
 	yield(get_tree().create_timer(1), "timeout")
@@ -103,7 +103,7 @@ func on_character_layer_changed(layer:int):
 	move_child(get_node("Character"), get_node("layer"+str(layer)).get_index())
 
 
-func _on_DayNightAnimator_animation_finished(anim_name):
+func _on_DayNightAnimator_animation_finished(_anim_name):
 	region.time_of_day = 0
 	ProgressManager.save()
 	LevelLoader.load_level(region.checkpoint)

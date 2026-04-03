@@ -52,11 +52,11 @@ func hide_all_directions():
 	$FaceB/S_EAST.hide()
 	$FaceB/S_WEST.hide()
 
-func change_to_face_A():
+func change_to_face_a():
 	if face == "B": $AnimationPlayer.play_backwards("toFaceB")
 	face = "A"
 
-func change_to_face_B():
+func change_to_face_b():
 	if face == "A": $AnimationPlayer.play("toFaceB")
 	face = "B"
 
@@ -66,18 +66,17 @@ func _on_Button_pressed():
 	#	last_swap = local_time
 	#	if face == "B":
 	#		change_to_face_A()
-	#	else: 
+	#	else:
 	#		change_to_face_B()
 	TweensUtils.fadeout(self)
-	pass
 
 
-func _on_Area2D_body_entered(body):
+func _on_Area2D_body_entered(_body):
 	TweensUtils.fadein(self)
 	TweensUtils.fadein($Label)
 	yield(get_tree().create_timer(1.5), "timeout")
 	TweensUtils.fadeout($Label)
 
 
-func _on_Area2D_body_exited(body):
+func _on_Area2D_body_exited(_body):
 	TweensUtils.fadeout(self)

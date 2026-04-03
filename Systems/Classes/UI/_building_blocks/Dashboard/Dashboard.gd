@@ -12,14 +12,14 @@ func _ready():
 		#$Artifacts.show()
 		#$Clue.show()
 		set_time_of_day(LevelLoader.current_level.region.time_of_day)
-		
+
 		refresh_clues()
 		refresh_artifacts()
 	else:
 		$Clock.hide()
 		$Artifacts.hide()
 		$Clue.hide()
-	
+
 
 
 func refresh_buttons():

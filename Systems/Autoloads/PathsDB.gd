@@ -5,11 +5,11 @@ var spawnpoints = {
 }
 
 var artifacts = {
-	
+
 }
 
 var clues = {
-	
+
 }
 
 var cutscenes = {

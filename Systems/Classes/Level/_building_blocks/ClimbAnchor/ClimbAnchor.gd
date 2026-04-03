@@ -5,7 +5,7 @@ export var scan_rate := 600
 
 var last_scan = 0
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if OS.get_ticks_msec() - last_scan > 6000/scan_rate:
 		last_scan = OS.get_ticks_msec()
 		var bodies = get_overlapping_bodies()
@@ -17,7 +17,7 @@ func _physics_process(delta):
 					add_child(tween)
 					tween.interpolate_property(
 						body,
-						"global_position", 
+						"global_position",
 						body.global_position,
 						global_position + Vector2(s*10, 40),
 						0.40,
@@ -29,7 +29,7 @@ func _physics_process(delta):
 					if tween.is_active(): yield(tween,"tween_completed")
 					tween.interpolate_property(
 						body,
-						"global_position", 
+						"global_position",
 						body.global_position,
 						global_position + Vector2(s*10, 0),
 						0.24,

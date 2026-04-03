@@ -30,7 +30,7 @@ func _physics_process(delta):
 		var input_vector = get_action_balloon()
 		move_balloon(delta, input_vector)
 		balloon_rotation(input_vector)
-		
+
 		#if(Input.is_action_pressed("use_artifact")):
 		#	start_wind()
 
@@ -60,13 +60,18 @@ func balloon_rotation (vector:Vector2):
 
 func start_wind():
 	if(Wind_time.is_stopped() and cards.size() != 0):
-		if(cards[-1].direction == Artifact.Directions.N_EAST or cards[-1].direction == Artifact.Directions.EAST or cards[-1].direction == Artifact.Directions.S_EAST):
+		var dir = cards[-1].direction
+		if(dir == Artifact.Directions.N_EAST or dir == Artifact.Directions.EAST \
+				or dir == Artifact.Directions.S_EAST):
 			wind.x = 1
-		if(cards[-1].direction == Artifact.Directions.N_WEST or cards[-1].direction == Artifact.Directions.WEST or cards[-1].direction == Artifact.Directions.S_WEST):
+		if(dir == Artifact.Directions.N_WEST or dir == Artifact.Directions.WEST \
+				or dir == Artifact.Directions.S_WEST):
 			wind.x = -1
-		if(cards[-1].direction == Artifact.Directions.S_WEST or cards[-1].direction == Artifact.Directions.SOUTH or cards[-1].direction == Artifact.Directions.S_EAST):
+		if(dir == Artifact.Directions.S_WEST or dir == Artifact.Directions.SOUTH \
+				or dir == Artifact.Directions.S_EAST):
 			wind.y = 1
-		if(cards[-1].direction == Artifact.Directions.N_EAST or cards[-1].direction == Artifact.Directions.NORTH or cards[-1].direction == Artifact.Directions.N_WEST):
+		if(dir == Artifact.Directions.N_EAST or dir == Artifact.Directions.NORTH \
+				or dir == Artifact.Directions.N_WEST):
 			wind.y = -1
 		wind.normalized()
 		Wind_time.start(ARTIFACT_DURATION)
