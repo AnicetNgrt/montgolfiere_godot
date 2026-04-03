@@ -40,11 +40,11 @@ func handle_walking(delta:float) -> void:
 	var breathe_sep = 100000
 	if state.stamina <= 10:
 		breathe_sep = 1000
-	
+
 	if OS.get_ticks_msec() - last_breathe > breathe_sep:
 		play_breathe()
 		last_breathe = OS.get_ticks_msec()
-	
+
 	if is_on_floor() and not climbing:
 		if Input.is_action_pressed("walk_right"):
 			on_walking_started(Directions.RIGHT, delta)
@@ -58,12 +58,12 @@ func handle_walking(delta:float) -> void:
 		on_walking_ended()
 
 
-func on_walking_started(direction:int, delta:float) -> void:
+func on_walking_started(direction:int, _delta:float) -> void:
 	var state = ProgressManager.platformer_controller_state
 	$Sprite.flip_h = direction == Directions.RIGHT
 	if direction == Directions.RIGHT:
 		velocity = lerp(velocity, get_max_speed(), get_acceleration())
-	else: 
+	else:
 		velocity = lerp(velocity, get_max_speed() * Vector2(-1, 0), get_acceleration())
 	#velocity.y = lerp(velocity.y, -get_floor_normal().y, get_acceleration())
 	velocity += physics_profile.ground_stick_factor*get_floor_normal()*-1
@@ -99,7 +99,7 @@ func update_movement(delta:float) -> void:
 	velocity = move_and_slide(velocity, Vector2.UP)
 
 
-func update_jump(delta:float) -> void:
+func update_jump(_delta:float) -> void:
 	if is_on_floor() and $Sprite.animation == "jump":
 		$Sprite.play("idle")
 		play_footstep()
@@ -122,7 +122,7 @@ func on_climbing_started(towards:Vector2):
 	play_footstep()
 
 
-func on_climbing_finished(towards:Vector2):
+func on_climbing_finished(_towards:Vector2):
 	climbing = false
 	play_footstep()
 	#$Sprite.play("idle")
@@ -145,22 +145,19 @@ func play_breathe():
 func get_friction() -> float:
 	if is_on_floor():
 		return physics_profile.friction_floor
-	else:
-		return physics_profile.friction_air
+	return physics_profile.friction_air
 
 
 func get_max_speed() -> Vector2:
 	if is_running():
 		return physics_profile.max_speed_running
-	else:
-		return physics_profile.max_speed_walking
+	return physics_profile.max_speed_walking
 
 
 func get_acceleration() -> float:
 	if is_running():
 		return physics_profile.acceleration_running
-	else:
-		return physics_profile.acceleration_walking
+	return physics_profile.acceleration_walking
 
 
 func is_running() -> bool:
@@ -168,7 +165,8 @@ func is_running() -> bool:
 
 
 func can_climb() -> bool:
-	return !climbing and !is_on_floor() and (abs(velocity.x) > 250 or velocity.y < 0) #and ProgressManager.platformer_controller_state.stamina > 0
+	# and ProgressManager.platformer_controller_state.stamina > 0
+	return !climbing and !is_on_floor() and (abs(velocity.x) > 250 or velocity.y < 0)
 
 
 func switch_layer(layer:int):
@@ -182,7 +180,7 @@ func set_direction(direction:int):
 	$Sprite.flip_h = direction == Directions.RIGHT
 
 
-func set_stamina_and_notify(value):
+func set_stamina_and_notify(_value):
 	pass
 	#var new_stamina = clamp(value, 0, ProgressManager.platformer_controller_state.max_stamina)
 	#if new_stamina != ProgressManager.platformer_controller_state.stamina:

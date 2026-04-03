@@ -47,7 +47,7 @@ func _on_ButtonAbout_pressed():
 	$Credits.show()
 
 
-func _on_Saves_slot_chosen(slot):
+func _on_Saves_slot_chosen(_slot):
 	UiSummoner.summon_transition_screen(0.2)
 	yield(get_tree().create_timer(0.5), "timeout")
 	emit_signal("game_loaded")

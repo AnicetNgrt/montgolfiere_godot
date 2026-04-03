@@ -3,12 +3,12 @@ extends Node
 func interpolate_property(node:Node, property:String, before, after, duration:float, trans, easing):
 	if trans == null: trans = 1
 	if easing == null: easing = 1
-	
+
 	var tween = Tween.new()
 	tween.interpolate_property(
 		node,
-		property, 
-		before, 
+		property,
+		before,
 		after,
 		duration,
 		trans,
@@ -22,9 +22,9 @@ func interpolate_property(node:Node, property:String, before, after, duration:fl
 
 func fadein(element:CanvasItem, fade_duration = 1):
 	self.interpolate_property(
-		element, 
-		"modulate", 
-		Color(1,1,1,0), 
+		element,
+		"modulate",
+		Color(1,1,1,0),
 		Color(1,1,1,1),
 		fade_duration, null, null)
 
@@ -32,7 +32,7 @@ func fadein(element:CanvasItem, fade_duration = 1):
 func fadeout(element:CanvasItem, fade_duration = 1):
 	self.interpolate_property(
 		element,
-		"modulate", 
-		element.modulate, 
+		"modulate",
+		element.modulate,
 		Color(1,1,1,0),
 		fade_duration, null, null)

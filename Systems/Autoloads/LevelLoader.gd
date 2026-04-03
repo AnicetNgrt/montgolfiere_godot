@@ -12,16 +12,16 @@ func load_level(spawnpoint:SpawnPoint):
 	if current_level != null:
 		current_level.call_deferred("queue_free")
 		emit_signal("level_unloaded")
-	
+
 	var new_level = load(spawnpoint.level_path).instance()
 	call_deferred("add_child", new_level)
 	new_level.do_self_spawn = false
 	yield(new_level, "ready")
-	
+
 	new_level.enter_at(spawnpoint.name)
-	
+
 	current_level = new_level
-	
+
 	emit_signal("level_loaded")
 
 
