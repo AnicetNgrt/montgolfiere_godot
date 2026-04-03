@@ -1,5 +1,5 @@
-class_name WindZone
 tool
+class_name WindZone
 extends Area2D
 
 # Direction and magnitude of wind force applied to the player inside this zone.
