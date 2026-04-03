@@ -44,6 +44,7 @@
 [ext_resource path="res://Content/Artifacts/double-scross/_assets/double-scross_layer 3.png" type="Texture" id=42]
 [ext_resource path="res://Content/Artifacts/double-scross/_assets/double-scross_layer 2.png" type="Texture" id=43]
 [ext_resource path="res://Content/Artifacts/double-scross/double-cross.tres" type="Resource" id=44]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/WindZone/WindZone.tscn" type="PackedScene" id=45]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -1129,6 +1130,10 @@ anims/toFaceB = SubResource( 13 )
 [node name="Area2D" parent="Artifacts/Artifact2" index="4"]
 collision_layer = 0
 collision_mask = 32
+
+[node name="WindZone" parent="." instance=ExtResource( 45 )]
+position = Vector2( -300, 500 )
+wind_force = Vector2( 50, -20 )
 
 [editable path="dialogues/D1"]
 
