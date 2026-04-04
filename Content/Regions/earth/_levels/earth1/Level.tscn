@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://Systems/Classes/Level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Systems/Classes/Level/_building_blocks/Entrance/PlatformerControllerSpawner.gd" type="Script" id=2]
@@ -44,6 +44,7 @@
 [ext_resource path="res://Content/Artifacts/double-scross/_assets/double-scross_layer 3.png" type="Texture" id=42]
 [ext_resource path="res://Content/Artifacts/double-scross/_assets/double-scross_layer 2.png" type="Texture" id=43]
 [ext_resource path="res://Content/Artifacts/double-scross/double-cross.tres" type="Resource" id=44]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/Props/MovingPlatform/MovingPlatform.tscn" type="PackedScene" id=45]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -1129,6 +1130,11 @@ anims/toFaceB = SubResource( 13 )
 [node name="Area2D" parent="Artifacts/Artifact2" index="4"]
 collision_layer = 0
 collision_mask = 32
+
+[node name="MovingPlatform" parent="." instance=ExtResource( 45 )]
+position = Vector2( 200, 1370 )
+travel = Vector2( 250, 0 )
+speed = 90.0
 
 [editable path="dialogues/D1"]
 
