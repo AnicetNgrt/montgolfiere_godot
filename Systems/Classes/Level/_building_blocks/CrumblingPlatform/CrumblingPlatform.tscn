@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/CrumblingPlatform/CrumblingPlatform.gd" type="Script" id=1]
+[ext_resource path="res://_shared_assets/Props/debug/test_props.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 10, 55, 9, 9 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 180, 45 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 175, 20 )
+
+[node name="CrumblingPlatform" type="StaticBody2D"]
+collision_layer = 0
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 180, 45 )
+shape = SubResource( 2 )
+
+[node name="Visual" type="Node2D" parent="."]
+modulate = Color( 1, 0.55, 0.1, 1 )
+
+[node name="Blocks" type="Node2D" parent="Visual"]
+scale = Vector2( 10, 10 )
+
+[node name="Block1" type="Sprite" parent="Visual/Blocks"]
+position = Vector2( 4, 4 )
+texture = SubResource( 1 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="Block2" type="Sprite" parent="Visual/Blocks"]
+position = Vector2( 13, 4 )
+texture = SubResource( 1 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="Block3" type="Sprite" parent="Visual/Blocks"]
+position = Vector2( 22, 4 )
+texture = SubResource( 1 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="Block4" type="Sprite" parent="Visual/Blocks"]
+position = Vector2( 31, 4 )
+texture = SubResource( 1 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="Detector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32736
+monitoring = true
+
+[node name="DetectorShape" type="CollisionShape2D" parent="Detector"]
+position = Vector2( 180, -20 )
+shape = SubResource( 3 )
+
+[node name="CrumbleTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="RespawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="Detector" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="Detector" to="." method="_on_body_exited"]
+[connection signal="timeout" from="CrumbleTimer" to="." method="_on_crumble_timeout"]
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timeout"]

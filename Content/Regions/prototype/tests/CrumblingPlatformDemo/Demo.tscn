@@ -1,0 +1,78 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Systems/Classes/Level/Level.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/Camera/Camera.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/Camera/CameraArea/CameraArea.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/Backgrounds/SkyBackDefault.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/CrumblingPlatform/CrumblingPlatform.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/Entrance/PlatformerControllerSpawner.gd" type="Script" id=6]
+[ext_resource path="res://Content/Regions/prototype/tests/CrumblingPlatformDemo/_resources/sp_demo_default.tres" type="Resource" id=7]
+[ext_resource path="res://Content/Regions/earth/_shared_resources/region.tres" type="Resource" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1200, 45 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 300, 45 )
+
+[node name="Level" instance=ExtResource( 1 )]
+do_self_spawn = true
+default_spawn = "default"
+region = ExtResource( 8 )
+
+[node name="ParallaxBackground" parent="." index="1" instance=ExtResource( 4 )]
+
+[node name="Camera" parent="." index="2" instance=ExtResource( 2 )]
+position = Vector2( 0, 500 )
+
+[node name="CameraArea" parent="." index="3" instance=ExtResource( 3 )]
+position = Vector2( 400, 500 )
+
+[node name="CollisionPolygon2D" parent="CameraArea" index="0"]
+polygon = PoolVector2Array( -2000, -1000, 2000, -1000, 2000, 1500, -2000, 1500 )
+
+[node name="Entrance" type="Node2D" parent="." index="4"]
+position = Vector2( -800, 900 )
+script = ExtResource( 6 )
+spawnpoint_data = ExtResource( 7 )
+layer = 0
+
+[node name="layer0" type="Node2D" parent="." index="5"]
+
+[node name="FloorLeft" type="StaticBody2D" parent="layer0"]
+position = Vector2( -800, 990 )
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="layer0/FloorLeft"]
+shape = SubResource( 1 )
+
+[node name="FloorRight" type="StaticBody2D" parent="layer0"]
+position = Vector2( 1600, 990 )
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="layer0/FloorRight"]
+shape = SubResource( 2 )
+
+[node name="CrumblingPlatform1" parent="layer0" instance=ExtResource( 5 )]
+position = Vector2( 300, 860 )
+collision_mask = 32
+
+[node name="CrumblingPlatform2" parent="layer0" instance=ExtResource( 5 )]
+position = Vector2( 600, 780 )
+collision_mask = 32
+crumble_delay = 0.6
+
+[node name="CrumblingPlatform3" parent="layer0" instance=ExtResource( 5 )]
+position = Vector2( 900, 700 )
+collision_mask = 32
+crumble_delay = 0.5
+
+[node name="CrumblingPlatform4" parent="layer0" instance=ExtResource( 5 )]
+position = Vector2( 1100, 860 )
+collision_mask = 32
+crumble_delay = 0.4
+respawn_delay = 2.0
+
+[editable path="CameraArea"]
