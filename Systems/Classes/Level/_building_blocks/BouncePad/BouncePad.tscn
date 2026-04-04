@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Systems/Classes/Level/_building_blocks/BouncePad/BouncePad.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 38, 6 )
+
+[node name="BouncePad" type="Area2D"]
+collision_layer = 0
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -6 )
+shape = SubResource( 1 )
+
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="LeftLeg" type="Polygon2D" parent="Visual"]
+color = Color( 0.22, 0.18, 0.1, 1 )
+polygon = PoolVector2Array( -30, 0, -22, 0, -20, 22, -28, 22 )
+
+[node name="RightLeg" type="Polygon2D" parent="Visual"]
+color = Color( 0.22, 0.18, 0.1, 1 )
+polygon = PoolVector2Array( 22, 0, 30, 0, 28, 22, 20, 22 )
+
+[node name="Pad" type="Polygon2D" parent="Visual"]
+color = Color( 0.22, 0.82, 0.22, 1 )
+polygon = PoolVector2Array( -40, 0, -38, -8, -24, -16, 0, -20, 24, -16, 38, -8, 40, 0, 36, 4, -36, 4 )
+
+[node name="PadHighlight" type="Polygon2D" parent="Visual"]
+color = Color( 0.45, 0.95, 0.45, 0.7 )
+polygon = PoolVector2Array( -26, -4, -14, -18, 0, -20, 14, -18, 26, -4, 16, -2, 0, -16, -16, -2 )

@@ -108,5 +108,6 @@ margin_right = 973.0
 margin_bottom = 1084.0
 rect_scale = Vector2( 2, 2 )
 rect_pivot_offset = Vector2( 486.5, 549.5 )
+
 [connection signal="finished" from="Control" to="." method="_on_Control_finished"]
 [connection signal="game_loaded" from="Control" to="." method="_on_Control_game_loaded"]
